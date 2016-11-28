@@ -1,0 +1,78 @@
+version: '2'
+services:
+  cgw.sip.orchestrator:
+    image: bpulito/ibm-cognitive-gw:cso.latest
+    ports:
+      - "5060:5060"
+      - "5060:5060/udp"
+    environment:
+      # Host name of the CMR. 
+      - RTP_RELAY_HOST=cgw.media.relay:8080
+      - SIP_HOST=${EXTERNAL_IP}
+      - SIP_PORT=5060
+
+      # Uncomment and specify when the Conversation API is used
+      #- CONV_WORKSPACE_ID=
+      #- CONV_USERNAME=
+      #- CONV_PASSWORD=
+      #- CONV_ENDPOINT=https://gateway.watsonplatform.net/conversation/api
+      
+      # Name of the Watson dialog or conversation being orchestrated
+      - DIALOG_NAME=humana_usercalibration
+      - DIALOG_USERNAME=0c430b70-26c1-4540-a1df-dd379ae06c3e
+      - DIALOG_PASSWORD=pwnRT6r6HGU2
+      - DIALOG_ENDPOINT=https://gateway-s.watsonplatform.net/dialog/api
+
+      # Set to true to enable the number (date) conversion plugin
+      - NUMCONV_PLUGIN_ENABLE=true
+      - TAGS_PLUGIN_ENABLE=false
+      - MQTT_PLUGIN_ENABLE=false
+
+      # Uncomment to turn off audit messages. Default is true
+      - ENABLE_AUDIT_MESSAGES=true
+      - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
+      
+      # Uncomment to change the threshold for reporting latency thresholds. Default is 20ms (uncommenting and setting will log for all transactions.)
+      # - LATENCY_REPORTING_THRESHOLD=0
+      # Uncomment to change the threshold for reporting relay latency thresholds. Default is 1000ms (uncommenting and setting will log for all transactions.)
+      # - RELAY_LATENCY_REPORTING_THRESHOLD=0
+      
+      - LOG_LEVEL=fine      
+      
+  cgw.media.relay:
+    #image: bpulito/ibm-cognitive-gw:cmr.latest
+    image: cgw.media.relay:darwin
+    ports:
+      #- "8080:8080"
+      - "16384-16394:16384-16394/udp"
+    environment:
+      - WATSON_RELAY_SDP_ADDRESS=${EXTERNAL_IP}
+      - RTP_UDP_PORT_RANGE=16384-16394
+      - RTP_RELAY_LOGLEVEL=DEBUG
+      - RTP_RELAY_RECORD=false
+      - RTP_PORT=8080
+      
+      # Creds for Bluemix STT
+      - WATSON_STT_USER=7b28d51d-f28f-4a64-91e1-a0657e1dd3f4
+      - WATSON_STT_PASSWORD=IAB5jfxls0Zt
+      #- WATSON_STT_MODEL=
+      #- WATSON_STT_EXTRAS=cluster=secretcustb2
+      #- WATSON_STT_ENDPOINT=https://stream.watsonplatform.net/speech-to-text/api
+      - WATSON_STT_ENDPOINT=http://apache.httpd/speech-to-text/api
+      - WATSON_AUTH_URL=https://stream.watsonplatform.net/speech-to-text/api
+
+      # Creds for Bluemix TTS 
+      - WATSON_TTS_USER=ae1cb8a8-8b0f-4766-8b15-eaa8f7c3fae7
+      - WATSON_TTS_PASSWORD=HcmzFp1kec1P
+      - WATSON_TTS_VOICE=en-US_MichaelVoice
+      #- WATSON_TTS_ENDPOINT=https://stream.watsonplatform.net/text-to-speech/api
+      - WATSON_TTS_ENDPOINT=http://apache.httpd/text-to-speech/api
+      
+      - RTP_RELAY_LOGLEVEL=TRACE
+
+  apache.httpd:
+    image: httpd
+    ports:
+      - "80:80"
+    volumes:
+      - $PWD:/usr/local/apache2/conf
