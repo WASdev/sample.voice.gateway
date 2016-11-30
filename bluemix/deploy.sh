@@ -35,17 +35,13 @@ EOF
 OPTIND=1
 version=latest
 
-while getopts ":S:M:H:" opt; do
+while getopts ":S:M:" opt; do
   case $opt in
     S)
       SO_V=$OPTARG
       ;;
     M)
       MR_V=$OPTARG
-      ;;
-    H)
-      usage >&2
-      exit 1
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
