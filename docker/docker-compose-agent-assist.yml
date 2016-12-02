@@ -34,6 +34,6 @@ services:
       # Creds for Bluemix STT
       - WATSON_STT_USER=
       - WATSON_STT_PASSWORD=
-      #- WATSON_STT_ENDPOINT=https://stream.watsonplatform.net/speech-to-text/api
+      - WATSON_STT_ENDPOINT=
 
       - RTP_RELAY_LOGLEVEL=TRACE
