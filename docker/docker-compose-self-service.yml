@@ -44,7 +44,7 @@ services:
       - WATSON_TTS_ENDPOINT=
       - WATSON_TTS_VOICE=en-US_MichaelVoice
 
-      - RTP_RELAY_LOGLEVEL=TRACE
+      - RTP_RELAY_LOGLEVEL=DEBUG
 
       # Uncomment the following three lines to enable call recording
       #- RTP_RELAY_RECORD=true
