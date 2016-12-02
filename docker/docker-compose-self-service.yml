@@ -16,7 +16,7 @@ services:
       - CONV_WORKSPACE_ID=
       - CONV_USERNAME=
       - CONV_PASSWORD=
-      - CONV_ENDPOINT=https://gateway.watsonplatform.net/conversation/api
+      - CONV_ENDPOINT=
 
       # Logging related variables
       - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
@@ -36,11 +36,13 @@ services:
       # Creds for Bluemix STT
       - WATSON_STT_USER=
       - WATSON_STT_PASSWORD=
+      - WATSON_STT_ENDPOINT=
 
       # Creds for Bluemix TTS
       - WATSON_TTS_USER=
       - WATSON_TTS_PASSWORD=
-      #- WATSON_TTS_VOICE=en-US_MichaelVoice
+      - WATSON_TTS_ENDPOINT=
+      - WATSON_TTS_VOICE=en-US_MichaelVoice
 
       - RTP_RELAY_LOGLEVEL=TRACE
 
