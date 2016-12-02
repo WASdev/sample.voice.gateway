@@ -17,7 +17,7 @@ The **bluemix** directory contains scripts and docker.env files that can be used
 ### Usage
 All the documentation related to the Voice Gateway for Watson and the use of the files in this GitHub repository can be found in the following GitBook:
 
-[Voice Gateway for Watson Documentation](https://www.gitbook.com/book/cjcarpen/voice-gateway-for-watson)
+[Voice Gateway for Watson Documentation](https://cjcarpen.gitbooks.io/voice-gateway-for-watson/content/)
 
 ### Licenses
 The license related to the files found in this GitHub repository:
