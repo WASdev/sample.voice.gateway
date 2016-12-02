@@ -112,14 +112,15 @@ if [ -e docker.env ]; then
 fi
 
 if [ "$VOLUME_NAME" != "" ]; then
-  echo " ** We need a recording volume ${VOLUME_NAME}:${VOLUME_MOUNT}"
   cf ic volume list | grep $VOLUME_NAME
   if [ $? -ne 0 ]; then
     echo "** Creating a recording volume: ${VOLUME_NAME}, may take a while"
     cf ic volume create $VOLUME_NAME
+  else
+    echo "** Recording volume already exist: ${VOLUME_NAME}:${VOLUME_MOUNT}"
   fi
   VOLUME_ARG="--volume ${VOLUME_NAME}:${VOLUME_MOUNT}"
-  echo " ** Should use arguments for volume: ${VOLUME_ARG}"
+  echo "** Should use arguments for volume: ${VOLUME_ARG}"
 fi
 
 echo "** Removing existing containers..."
