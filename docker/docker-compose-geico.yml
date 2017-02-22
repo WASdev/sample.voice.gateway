@@ -1,0 +1,54 @@
+version: '2'
+#  Need to add commands for logging and for running on muleiple instances
+services:
+  cgw.sip.orchestrator:
+    image: bpulito/ibm-cognitive-gw:cso.latest
+    ports:
+      - "5060:5060"
+      - "5060:5060/udp"
+    environment:
+      # Host name of the CMR. 
+      - RTP_RELAY_HOST=cgw.media.relay:8080
+      # External IP of the CSO Docker container where the SIP server is listening 
+      - SIP_HOST=${EXTERNAL_IP}
+      # External SIP port
+      - SIP_PORT=5060
+      # Conversation password credential
+      - CONV_PASSWORD=m1nieRTP
+      # Conversation or Dialog username credential
+      - CONV_USERNAME=geico_administrator
+      # Uncomment and specify when the Conversation API is used
+      - CONV_WORKSPACE_ID=0ce028e0-79ac-404e-88d2-8e9152e3de58
+      # Use one of DIALOG-V1 or CONV-V1
+      - CONV_ENDPOINT=http://cgw.proxy:9080/cgw-proxy/conversation/api/v2/workspaces/274/message?version=2016-07-11
+
+  cgw.media.relay:
+    image: bpulito/ibm-cognitive-gw:cmr.latest
+    ports:
+      - "16384-16394:16384-16394/udp"
+    environment:
+      #  See https://github.ibm.com/real-time-projects/cgw.media.relay/README.md for possible values
+      -  WATSON_RELAY_SDP_ADDRESS=${EXTERNAL_IP}
+      -  RTP_UDP_PORT_RANGE=16384-16394
+      -  RTP_RELAY_LOGLEVEL=DEBUG
+      -  RTP_RELAY_RECORD=false
+      -  RTP_PORT=8080
+      # Creds for  STT 
+      -  WATSON_STT_USER=79516b4b-cc10-427a-935d-381752a64c16
+      -  WATSON_STT_PASSWORD=pKJkHpcXmpyL
+      #-  WATSON_STT_ENDPOINT=https://stream.watsonplatform.net/speech-to-text/api
+      -  WATSON_STT_ENDPOINT=https://gpappproxy.geico.net/speech-to-text/api
+      -  WATSON_STT_MODEL=en-US_Geico_NarrowbandModel
+      -  WATSON_STT_EXTRAS='cluster=secretcusta'
+      -  WATSON_STT_SMART_FORMATTING=true
+      # Creds for TTS 
+      -  WATSON_TTS_USER=d5010f14-2389-4429-9a9b-d3772dc74d0b
+      -  WATSON_TTS_PASSWORD=t4KPzHOuHvvw
+      -  WATSON_TTS_VOICE=en-US_DivaVoice
+      #-  WATSON_TTS_ENDPOINT=https://stream.watsonplatform.net/text-to-speech/api
+      -  WATSON_TTS_ENDPOINT=https://gpappproxy.geico.net/text-to-speech/api
+  cgw.proxy:
+    image: branson1/cgw-proxy:cgwp.latest
+    environment:
+      - JVM_ARGS="-Dproxy.env=dev"
+            # need to set -e JVM_ARGS="-Dproxy.env=dev" cgw-proxy 

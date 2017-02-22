@@ -9,18 +9,19 @@ Some of what's enabled by this kuectrl config file include:
 
  - Three voice gateway Pods deployed across three separate nodes (add more nodes if needed by increasing replicas)
  - Enforces one POD per node. If replicas (PODs > #nodes, the extra replica to be scheduled will remain in a waiting state)
- - Exposes SIP and media relay ports on the associated VM by setting hostNetwork to true 
+ - Exposes SIP and media relay ports on the associated VM by setting hostNetwork to true
+ - Auto restart of any failed containers
 
 ## Working with IBM Spectrum Conductor for Containers (CfC)
 Since CfC includes Kubernetes, the section above also applies when the IBM Voice Gateway is deployed on top of IBM Spectrum CfC. This section describes the procedure for pushing the voice gateway images into the CfC master repository.
 
 Once the voice gateway images have been pulled locally, they can be pushed into the CfC master repository using these commands:
 
-    ```bash
-    docker login https://master.cfc:8500 --username admin --password admin
-    docker tag ibmcom/voice-gateway-so:latest master.cfc:8500/admin/voice-gateway-so:latest
-    docker push master.cfc:8500/admin/voice-gateway-so:latest
-    docker tag ibmcom/voice-gateway-mr:latest master.cfc:8500/admin/ibmcom/voice-gateway-mr:latest
-    docker push master.cfc:8500/admin/ibmcom/voice-gateway-mr:latest
-    ```  
+```bash
+docker login https://master.cfc:8500 --username admin --password admin
+docker tag ibmcom/voice-gateway-so:latest master.cfc:8500/admin/voice-gateway-so:latest
+docker push master.cfc:8500/admin/voice-gateway-so:latest
+docker tag ibmcom/voice-gateway-mr:latest master.cfc:8500/admin/ibmcom/voice-gateway-mr:latest
+docker push master.cfc:8500/admin/ibmcom/voice-gateway-mr:latest
+```  
 

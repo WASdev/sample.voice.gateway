@@ -1,0 +1,272 @@
+[Tue Jan 03 22:05:24.837855 2017] [ssl:info] [pid 1:tid 139888996435840] AH01887: Init: Initializing (virtual) servers for SSL
+[Tue Jan 03 22:05:24.841286 2017] [ssl:info] [pid 1:tid 139888996435840] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+AH00112: Warning: DocumentRoot [/var/www/html] does not exist
+[Tue Jan 03 22:05:24.877199 2017] [ssl:warn] [pid 1:tid 139888996435840] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Jan 03 22:05:24.877632 2017] [ssl:info] [pid 1:tid 139888996435840] AH01887: Init: Initializing (virtual) servers for SSL
+[Tue Jan 03 22:05:24.878194 2017] [ssl:info] [pid 1:tid 139888996435840] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+[Tue Jan 03 22:05:24.879639 2017] [mpm_event:notice] [pid 1:tid 139888996435840] AH00489: Apache/2.4.23 (Unix) OpenSSL/1.0.1t configured -- resuming normal operations
+[Tue Jan 03 22:05:24.880026 2017] [mpm_event:info] [pid 1:tid 139888996435840] AH00490: Server built: Nov  8 2016 19:53:50
+[Tue Jan 03 22:05:24.879808 2017] [proxy:debug] [pid 8:tid 139888996435840] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Tue Jan 03 22:05:24.880032 2017] [proxy:debug] [pid 9:tid 139888996435840] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Tue Jan 03 22:05:24.881351 2017] [proxy:debug] [pid 9:tid 139888996435840] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Tue Jan 03 22:05:24.881749 2017] [proxy:debug] [pid 9:tid 139888996435840] proxy_util.c(1856): AH00930: initialized pool in child 9 for (*) min=0 max=25 smax=25
+[Tue Jan 03 22:05:24.880089 2017] [proxy:debug] [pid 7:tid 139888996435840] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Tue Jan 03 22:05:24.880526 2017] [core:notice] [pid 1:tid 139888996435840] AH00094: Command line: 'httpd -D FOREGROUND'
+[Tue Jan 03 22:05:24.882906 2017] [core:debug] [pid 1:tid 139888996435840] log.c(1546): AH02639: Using SO_REUSEPORT: yes (1)
+[Tue Jan 03 22:05:24.880961 2017] [proxy:debug] [pid 8:tid 139888996435840] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Tue Jan 03 22:05:24.882381 2017] [mpm_event:debug] [pid 9:tid 139888897328896] event.c(2095): AH02471: start_threads: Using epoll
+[Tue Jan 03 22:05:24.882486 2017] [proxy:debug] [pid 7:tid 139888996435840] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Tue Jan 03 22:05:24.883670 2017] [proxy:debug] [pid 8:tid 139888996435840] proxy_util.c(1856): AH00930: initialized pool in child 8 for (*) min=0 max=25 smax=25
+[Tue Jan 03 22:05:24.884750 2017] [proxy:debug] [pid 7:tid 139888996435840] proxy_util.c(1856): AH00930: initialized pool in child 7 for (*) min=0 max=25 smax=25
+[Tue Jan 03 22:05:24.885378 2017] [mpm_event:debug] [pid 8:tid 139888897328896] event.c(2095): AH02471: start_threads: Using epoll
+[Tue Jan 03 22:05:24.885665 2017] [mpm_event:debug] [pid 7:tid 139888897328896] event.c(2095): AH02471: start_threads: Using epoll
+[Tue Jan 03 22:05:45.027377 2017] [core:info] [pid 8:tid 139888712193792] [client 172.21.0.1:50480] AH00566: request failed: invalid characters in URI
+[Tue Jan 03 22:09:11.864425 2017] [core:info] [pid 1:tid 139888996435840] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Tue Jan 03 22:09:11.868162 2017] [mpm_event:notice] [pid 1:tid 139888996435840] AH00491: caught SIGTERM, shutting down
+[Tue Jan 03 22:09:50.217481 2017] [ssl:info] [pid 1:tid 139641414633344] AH01887: Init: Initializing (virtual) servers for SSL
+[Tue Jan 03 22:09:50.218830 2017] [ssl:info] [pid 1:tid 139641414633344] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+AH00112: Warning: DocumentRoot [/var/www/html] does not exist
+[Tue Jan 03 22:09:50.238422 2017] [ssl:warn] [pid 1:tid 139641414633344] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Tue Jan 03 22:09:50.238914 2017] [ssl:info] [pid 1:tid 139641414633344] AH01887: Init: Initializing (virtual) servers for SSL
+[Tue Jan 03 22:09:50.239797 2017] [ssl:info] [pid 1:tid 139641414633344] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+[Tue Jan 03 22:09:50.241185 2017] [proxy:debug] [pid 7:tid 139641414633344] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Tue Jan 03 22:09:50.242061 2017] [proxy:debug] [pid 7:tid 139641414633344] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Tue Jan 03 22:09:50.241199 2017] [mpm_event:notice] [pid 1:tid 139641414633344] AH00489: Apache/2.4.23 (Unix) OpenSSL/1.0.1t configured -- resuming normal operations
+[Tue Jan 03 22:09:50.242902 2017] [mpm_event:info] [pid 1:tid 139641414633344] AH00490: Server built: Nov  8 2016 19:53:50
+[Tue Jan 03 22:09:50.241829 2017] [proxy:debug] [pid 8:tid 139641414633344] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Tue Jan 03 22:09:50.243859 2017] [proxy:debug] [pid 8:tid 139641414633344] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Tue Jan 03 22:09:50.242029 2017] [proxy:debug] [pid 9:tid 139641414633344] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Tue Jan 03 22:09:50.244713 2017] [proxy:debug] [pid 9:tid 139641414633344] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Tue Jan 03 22:09:50.242574 2017] [proxy:debug] [pid 7:tid 139641414633344] proxy_util.c(1856): AH00930: initialized pool in child 7 for (*) min=0 max=25 smax=25
+[Tue Jan 03 22:09:50.243356 2017] [core:notice] [pid 1:tid 139641414633344] AH00094: Command line: 'httpd -D FOREGROUND'
+[Tue Jan 03 22:09:50.246342 2017] [core:debug] [pid 1:tid 139641414633344] log.c(1546): AH02639: Using SO_REUSEPORT: yes (1)
+[Tue Jan 03 22:09:50.245754 2017] [proxy:debug] [pid 8:tid 139641414633344] proxy_util.c(1856): AH00930: initialized pool in child 8 for (*) min=0 max=25 smax=25
+[Tue Jan 03 22:09:50.247622 2017] [proxy:debug] [pid 8:tid 139641414633344] proxy_util.c(1779): AH00925: initializing worker proxy:forward shared
+[Tue Jan 03 22:09:50.248057 2017] [proxy:debug] [pid 8:tid 139641414633344] proxy_util.c(1821): AH00927: initializing worker proxy:forward local
+[Tue Jan 03 22:09:50.245785 2017] [proxy:debug] [pid 7:tid 139641414633344] proxy_util.c(1779): AH00925: initializing worker proxy:forward shared
+[Tue Jan 03 22:09:50.249184 2017] [proxy:debug] [pid 7:tid 139641414633344] proxy_util.c(1821): AH00927: initializing worker proxy:forward local
+[Tue Jan 03 22:09:50.247740 2017] [proxy:debug] [pid 9:tid 139641414633344] proxy_util.c(1856): AH00930: initialized pool in child 9 for (*) min=0 max=25 smax=25
+[Tue Jan 03 22:09:50.250068 2017] [proxy:debug] [pid 9:tid 139641414633344] proxy_util.c(1779): AH00925: initializing worker proxy:forward shared
+[Tue Jan 03 22:09:50.250444 2017] [proxy:debug] [pid 9:tid 139641414633344] proxy_util.c(1821): AH00927: initializing worker proxy:forward local
+[Tue Jan 03 22:09:50.250139 2017] [proxy:debug] [pid 8:tid 139641414633344] proxy_util.c(1856): AH00930: initialized pool in child 8 for (*) min=0 max=25 smax=25
+[Tue Jan 03 22:09:50.251415 2017] [proxy:debug] [pid 7:tid 139641414633344] proxy_util.c(1856): AH00930: initialized pool in child 7 for (*) min=0 max=25 smax=25
+[Tue Jan 03 22:09:50.251435 2017] [mpm_event:debug] [pid 8:tid 139641315526400] event.c(2095): AH02471: start_threads: Using epoll
+[Tue Jan 03 22:09:50.251993 2017] [proxy:debug] [pid 9:tid 139641414633344] proxy_util.c(1856): AH00930: initialized pool in child 9 for (*) min=0 max=25 smax=25
+[Tue Jan 03 22:09:50.253184 2017] [mpm_event:debug] [pid 9:tid 139641315526400] event.c(2095): AH02471: start_threads: Using epoll
+[Tue Jan 03 22:09:50.253814 2017] [mpm_event:debug] [pid 7:tid 139641315526400] event.c(2095): AH02471: start_threads: Using epoll
+[Tue Jan 03 22:10:12.405847 2017] [core:info] [pid 7:tid 139641122416384] [client 172.21.0.1:50488] AH00566: request failed: invalid characters in URI
+[Tue Jan 03 22:14:42.932187 2017] [core:info] [pid 1:tid 139641414633344] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Tue Jan 03 22:14:42.933030 2017] [mpm_event:notice] [pid 1:tid 139641414633344] AH00491: caught SIGTERM, shutting down
+[Tue Jan 03 22:15:55.963464 2017] [ssl:info] [pid 1:tid 139864610670464] AH01887: Init: Initializing (virtual) servers for SSL
+[Tue Jan 03 22:15:55.963858 2017] [ssl:info] [pid 1:tid 139864610670464] AH01914: Configuring server localhost:80 for SSL protocol
+[Tue Jan 03 22:15:55.964265 2017] [ssl:debug] [pid 1:tid 139864610670464] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Tue Jan 03 22:15:55.964519 2017] [ssl:emerg] [pid 1:tid 139864610670464] AH02572: Failed to configure at least one certificate and key for localhost:80
+[Tue Jan 03 22:15:55.964840 2017] [ssl:emerg] [pid 1:tid 139864610670464] SSL Library Error: error:140A80B1:SSL routines:SSL_CTX_check_private_key:no certificate assigned
+[Tue Jan 03 22:15:55.965142 2017] [ssl:emerg] [pid 1:tid 139864610670464] AH02312: Fatal error initialising mod_ssl, exiting.
+AH00016: Configuration Failed
+[Wed Jan 04 13:51:54.991056 2017] [ssl:info] [pid 1:tid 140674602350464] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 13:51:54.993802 2017] [ssl:info] [pid 1:tid 140674602350464] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 13:51:54.994659 2017] [ssl:debug] [pid 1:tid 140674602350464] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 13:51:54.995099 2017] [ssl:emerg] [pid 1:tid 140674602350464] AH02572: Failed to configure at least one certificate and key for localhost:80
+[Wed Jan 04 13:51:54.995438 2017] [ssl:emerg] [pid 1:tid 140674602350464] SSL Library Error: error:140A80B1:SSL routines:SSL_CTX_check_private_key:no certificate assigned
+[Wed Jan 04 13:51:54.995829 2017] [ssl:emerg] [pid 1:tid 140674602350464] AH02312: Fatal error initialising mod_ssl, exiting.
+AH00016: Configuration Failed
+[Wed Jan 04 13:55:24.906020 2017] [ssl:info] [pid 1:tid 140603301468032] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 13:55:24.906458 2017] [ssl:info] [pid 1:tid 140603301468032] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 13:55:24.906940 2017] [ssl:debug] [pid 1:tid 140603301468032] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 13:55:24.907295 2017] [ssl:emerg] [pid 1:tid 140603301468032] AH02572: Failed to configure at least one certificate and key for localhost:80
+[Wed Jan 04 13:55:24.907703 2017] [ssl:emerg] [pid 1:tid 140603301468032] SSL Library Error: error:140A80B1:SSL routines:SSL_CTX_check_private_key:no certificate assigned
+[Wed Jan 04 13:55:24.908197 2017] [ssl:emerg] [pid 1:tid 140603301468032] AH02312: Fatal error initialising mod_ssl, exiting.
+AH00016: Configuration Failed
+[Wed Jan 04 13:56:07.935288 2017] [ssl:info] [pid 1:tid 140083913918336] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 13:56:07.935602 2017] [ssl:info] [pid 1:tid 140083913918336] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 13:56:07.936056 2017] [ssl:debug] [pid 1:tid 140083913918336] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 13:56:07.936422 2017] [ssl:emerg] [pid 1:tid 140083913918336] AH02572: Failed to configure at least one certificate and key for localhost:80
+[Wed Jan 04 13:56:07.936762 2017] [ssl:emerg] [pid 1:tid 140083913918336] SSL Library Error: error:140A80B1:SSL routines:SSL_CTX_check_private_key:no certificate assigned
+[Wed Jan 04 13:56:07.937029 2017] [ssl:emerg] [pid 1:tid 140083913918336] AH02312: Fatal error initialising mod_ssl, exiting.
+AH00016: Configuration Failed
+[Wed Jan 04 16:13:18.097531 2017] [ssl:info] [pid 1:tid 140698319611776] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 16:13:18.100386 2017] [ssl:info] [pid 1:tid 140698319611776] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 16:13:18.100987 2017] [ssl:debug] [pid 1:tid 140698319611776] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 16:13:18.106663 2017] [ssl:warn] [pid 1:tid 140698319611776] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jan 04 16:13:18.107291 2017] [ssl:debug] [pid 1:tid 140698319611776] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Wed Jan 04 16:13:18.107589 2017] [ssl:info] [pid 1:tid 140698319611776] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Wed Jan 04 16:13:18.121813 2017] [ssl:warn] [pid 1:tid 140698319611776] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Wed Jan 04 16:13:18.122606 2017] [ssl:info] [pid 1:tid 140698319611776] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+AH00112: Warning: DocumentRoot [/var/www/html] does not exist
+[Wed Jan 04 16:13:18.140549 2017] [ssl:warn] [pid 1:tid 140698319611776] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Wed Jan 04 16:13:18.140836 2017] [ssl:info] [pid 1:tid 140698319611776] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 16:13:18.141304 2017] [ssl:info] [pid 1:tid 140698319611776] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 16:13:18.141795 2017] [ssl:debug] [pid 1:tid 140698319611776] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 16:13:18.147422 2017] [ssl:warn] [pid 1:tid 140698319611776] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jan 04 16:13:18.148154 2017] [ssl:debug] [pid 1:tid 140698319611776] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Wed Jan 04 16:13:18.148691 2017] [ssl:info] [pid 1:tid 140698319611776] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Wed Jan 04 16:13:18.156577 2017] [ssl:warn] [pid 1:tid 140698319611776] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Wed Jan 04 16:13:18.156991 2017] [ssl:info] [pid 1:tid 140698319611776] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+[Wed Jan 04 16:13:18.158565 2017] [mpm_event:notice] [pid 1:tid 140698319611776] AH00489: Apache/2.4.23 (Unix) OpenSSL/1.0.1t configured -- resuming normal operations
+[Wed Jan 04 16:13:18.158992 2017] [mpm_event:info] [pid 1:tid 140698319611776] AH00490: Server built: Nov  8 2016 19:53:50
+[Wed Jan 04 16:13:18.158651 2017] [proxy:debug] [pid 8:tid 140698319611776] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:13:18.159718 2017] [proxy:debug] [pid 8:tid 140698319611776] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:13:18.160171 2017] [proxy:debug] [pid 8:tid 140698319611776] proxy_util.c(1856): AH00930: initialized pool in child 8 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:13:18.159024 2017] [proxy:debug] [pid 9:tid 140698319611776] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:13:18.161070 2017] [proxy:debug] [pid 9:tid 140698319611776] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:13:18.161460 2017] [proxy:debug] [pid 9:tid 140698319611776] proxy_util.c(1856): AH00930: initialized pool in child 9 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:13:18.159360 2017] [proxy:debug] [pid 10:tid 140698319611776] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:13:18.162399 2017] [proxy:debug] [pid 10:tid 140698319611776] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:13:18.159427 2017] [core:notice] [pid 1:tid 140698319611776] AH00094: Command line: 'httpd -D FOREGROUND'
+[Wed Jan 04 16:13:18.160769 2017] [mpm_event:debug] [pid 8:tid 140698220504832] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:13:18.162053 2017] [mpm_event:debug] [pid 9:tid 140698220504832] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:13:18.162774 2017] [proxy:debug] [pid 10:tid 140698319611776] proxy_util.c(1856): AH00930: initialized pool in child 10 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:13:18.163162 2017] [core:debug] [pid 1:tid 140698319611776] log.c(1546): AH02639: Using SO_REUSEPORT: yes (1)
+[Wed Jan 04 16:13:18.165871 2017] [mpm_event:debug] [pid 10:tid 140698220504832] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:14:17.432364 2017] [core:info] [pid 1:tid 140698319611776] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Wed Jan 04 16:14:17.433126 2017] [mpm_event:notice] [pid 1:tid 140698319611776] AH00491: caught SIGTERM, shutting down
+[Wed Jan 04 16:14:31.963370 2017] [ssl:info] [pid 1:tid 139844047857536] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 16:14:31.963766 2017] [ssl:info] [pid 1:tid 139844047857536] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 16:14:31.964301 2017] [ssl:debug] [pid 1:tid 139844047857536] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 16:14:31.969134 2017] [ssl:warn] [pid 1:tid 139844047857536] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jan 04 16:14:31.969706 2017] [ssl:debug] [pid 1:tid 139844047857536] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Wed Jan 04 16:14:31.969995 2017] [ssl:info] [pid 1:tid 139844047857536] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Wed Jan 04 16:14:31.977964 2017] [ssl:warn] [pid 1:tid 139844047857536] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Wed Jan 04 16:14:31.979035 2017] [ssl:info] [pid 1:tid 139844047857536] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+AH00112: Warning: DocumentRoot [/var/www/html] does not exist
+[Wed Jan 04 16:14:32.011316 2017] [ssl:warn] [pid 1:tid 139844047857536] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Wed Jan 04 16:14:32.011776 2017] [ssl:info] [pid 1:tid 139844047857536] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 16:14:32.012396 2017] [ssl:info] [pid 1:tid 139844047857536] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 16:14:32.013230 2017] [ssl:debug] [pid 1:tid 139844047857536] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 16:14:32.032511 2017] [ssl:warn] [pid 1:tid 139844047857536] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jan 04 16:14:32.033236 2017] [ssl:debug] [pid 1:tid 139844047857536] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Wed Jan 04 16:14:32.034644 2017] [ssl:info] [pid 1:tid 139844047857536] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Wed Jan 04 16:14:32.041100 2017] [ssl:warn] [pid 1:tid 139844047857536] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Wed Jan 04 16:14:32.041630 2017] [ssl:info] [pid 1:tid 139844047857536] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+[Wed Jan 04 16:14:32.043161 2017] [mpm_event:notice] [pid 1:tid 139844047857536] AH00489: Apache/2.4.23 (Unix) OpenSSL/1.0.1t configured -- resuming normal operations
+[Wed Jan 04 16:14:32.043523 2017] [mpm_event:info] [pid 1:tid 139844047857536] AH00490: Server built: Nov  8 2016 19:53:50
+[Wed Jan 04 16:14:32.043931 2017] [core:notice] [pid 1:tid 139844047857536] AH00094: Command line: 'httpd -D FOREGROUND'
+[Wed Jan 04 16:14:32.044362 2017] [core:debug] [pid 1:tid 139844047857536] log.c(1546): AH02639: Using SO_REUSEPORT: yes (1)
+[Wed Jan 04 16:14:32.043663 2017] [proxy:debug] [pid 7:tid 139844047857536] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:14:32.045067 2017] [proxy:debug] [pid 7:tid 139844047857536] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:14:32.045540 2017] [proxy:debug] [pid 7:tid 139844047857536] proxy_util.c(1856): AH00930: initialized pool in child 7 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:14:32.044084 2017] [proxy:debug] [pid 9:tid 139844047857536] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:14:32.046426 2017] [proxy:debug] [pid 9:tid 139844047857536] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:14:32.046873 2017] [proxy:debug] [pid 9:tid 139844047857536] proxy_util.c(1856): AH00930: initialized pool in child 9 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:14:32.044431 2017] [proxy:debug] [pid 8:tid 139844047857536] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:14:32.047770 2017] [proxy:debug] [pid 8:tid 139844047857536] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:14:32.046105 2017] [mpm_event:debug] [pid 7:tid 139843948750592] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:14:32.047427 2017] [mpm_event:debug] [pid 9:tid 139843948750592] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:14:32.048159 2017] [proxy:debug] [pid 8:tid 139844047857536] proxy_util.c(1856): AH00930: initialized pool in child 8 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:14:32.052211 2017] [mpm_event:debug] [pid 8:tid 139843948750592] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:25:05.803358 2017] [core:info] [pid 1:tid 139844047857536] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Wed Jan 04 16:25:05.803819 2017] [mpm_event:notice] [pid 1:tid 139844047857536] AH00491: caught SIGTERM, shutting down
+[Wed Jan 04 16:36:25.859119 2017] [ssl:info] [pid 1:tid 140057629779840] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 16:36:25.859972 2017] [ssl:info] [pid 1:tid 140057629779840] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 16:36:25.860367 2017] [ssl:debug] [pid 1:tid 140057629779840] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 16:36:25.864304 2017] [ssl:warn] [pid 1:tid 140057629779840] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jan 04 16:36:25.864739 2017] [ssl:debug] [pid 1:tid 140057629779840] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Wed Jan 04 16:36:25.865001 2017] [ssl:info] [pid 1:tid 140057629779840] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Wed Jan 04 16:36:25.868906 2017] [ssl:warn] [pid 1:tid 140057629779840] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Wed Jan 04 16:36:25.869209 2017] [ssl:info] [pid 1:tid 140057629779840] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+AH00112: Warning: DocumentRoot [/var/www/html] does not exist
+[Wed Jan 04 16:36:25.882029 2017] [ssl:warn] [pid 1:tid 140057629779840] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Wed Jan 04 16:36:25.882321 2017] [ssl:info] [pid 1:tid 140057629779840] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 16:36:25.882663 2017] [ssl:info] [pid 1:tid 140057629779840] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 16:36:25.883061 2017] [ssl:debug] [pid 1:tid 140057629779840] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 16:36:25.887944 2017] [ssl:warn] [pid 1:tid 140057629779840] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jan 04 16:36:25.888400 2017] [ssl:debug] [pid 1:tid 140057629779840] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Wed Jan 04 16:36:25.888651 2017] [ssl:info] [pid 1:tid 140057629779840] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Wed Jan 04 16:36:25.892428 2017] [ssl:warn] [pid 1:tid 140057629779840] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Wed Jan 04 16:36:25.892729 2017] [ssl:info] [pid 1:tid 140057629779840] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+[Wed Jan 04 16:36:25.893699 2017] [mpm_event:notice] [pid 1:tid 140057629779840] AH00489: Apache/2.4.23 (Unix) OpenSSL/1.0.1t configured -- resuming normal operations
+[Wed Jan 04 16:36:25.894000 2017] [mpm_event:info] [pid 1:tid 140057629779840] AH00490: Server built: Nov  8 2016 19:53:50
+[Wed Jan 04 16:36:25.894282 2017] [core:notice] [pid 1:tid 140057629779840] AH00094: Command line: 'httpd -D FOREGROUND'
+[Wed Jan 04 16:36:25.894514 2017] [core:debug] [pid 1:tid 140057629779840] log.c(1546): AH02639: Using SO_REUSEPORT: yes (1)
+[Wed Jan 04 16:36:25.893718 2017] [proxy:debug] [pid 8:tid 140057629779840] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:36:25.895042 2017] [proxy:debug] [pid 8:tid 140057629779840] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:36:25.895325 2017] [proxy:debug] [pid 8:tid 140057629779840] proxy_util.c(1856): AH00930: initialized pool in child 8 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:36:25.893956 2017] [proxy:debug] [pid 9:tid 140057629779840] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:36:25.895955 2017] [proxy:debug] [pid 9:tid 140057629779840] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:36:25.896277 2017] [proxy:debug] [pid 9:tid 140057629779840] proxy_util.c(1856): AH00930: initialized pool in child 9 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:36:25.894204 2017] [proxy:debug] [pid 10:tid 140057629779840] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:36:25.896922 2017] [proxy:debug] [pid 10:tid 140057629779840] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:36:25.895753 2017] [mpm_event:debug] [pid 8:tid 140057530672896] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:36:25.896690 2017] [mpm_event:debug] [pid 9:tid 140057530672896] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:36:25.897232 2017] [proxy:debug] [pid 10:tid 140057629779840] proxy_util.c(1856): AH00930: initialized pool in child 10 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:36:25.898987 2017] [mpm_event:debug] [pid 10:tid 140057530672896] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:37:32.515388 2017] [core:info] [pid 1:tid 140057629779840] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Wed Jan 04 16:37:32.515825 2017] [mpm_event:notice] [pid 1:tid 140057629779840] AH00491: caught SIGTERM, shutting down
+[Wed Jan 04 16:38:03.452656 2017] [ssl:info] [pid 1:tid 139703803668352] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 16:38:03.453087 2017] [ssl:info] [pid 1:tid 139703803668352] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 16:38:03.453461 2017] [ssl:debug] [pid 1:tid 139703803668352] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 16:38:03.457942 2017] [ssl:warn] [pid 1:tid 139703803668352] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jan 04 16:38:03.458524 2017] [ssl:debug] [pid 1:tid 139703803668352] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Wed Jan 04 16:38:03.458868 2017] [ssl:info] [pid 1:tid 139703803668352] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Wed Jan 04 16:38:03.465632 2017] [ssl:warn] [pid 1:tid 139703803668352] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Wed Jan 04 16:38:03.466117 2017] [ssl:info] [pid 1:tid 139703803668352] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+AH00112: Warning: DocumentRoot [/var/www/html] does not exist
+[Wed Jan 04 16:38:03.481517 2017] [ssl:warn] [pid 1:tid 139703803668352] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Wed Jan 04 16:38:03.481981 2017] [ssl:info] [pid 1:tid 139703803668352] AH01887: Init: Initializing (virtual) servers for SSL
+[Wed Jan 04 16:38:03.482360 2017] [ssl:info] [pid 1:tid 139703803668352] AH01914: Configuring server localhost:80 for SSL protocol
+[Wed Jan 04 16:38:03.482895 2017] [ssl:debug] [pid 1:tid 139703803668352] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Wed Jan 04 16:38:03.488743 2017] [ssl:warn] [pid 1:tid 139703803668352] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Wed Jan 04 16:38:03.489237 2017] [ssl:debug] [pid 1:tid 139703803668352] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Wed Jan 04 16:38:03.489615 2017] [ssl:info] [pid 1:tid 139703803668352] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Wed Jan 04 16:38:03.494710 2017] [ssl:warn] [pid 1:tid 139703803668352] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Wed Jan 04 16:38:03.495120 2017] [ssl:info] [pid 1:tid 139703803668352] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+[Wed Jan 04 16:38:03.497306 2017] [mpm_event:notice] [pid 1:tid 139703803668352] AH00489: Apache/2.4.23 (Unix) OpenSSL/1.0.1t configured -- resuming normal operations
+[Wed Jan 04 16:38:03.498400 2017] [mpm_event:info] [pid 1:tid 139703803668352] AH00490: Server built: Nov  8 2016 19:53:50
+[Wed Jan 04 16:38:03.499060 2017] [core:notice] [pid 1:tid 139703803668352] AH00094: Command line: 'httpd -D FOREGROUND'
+[Wed Jan 04 16:38:03.499449 2017] [core:debug] [pid 1:tid 139703803668352] log.c(1546): AH02639: Using SO_REUSEPORT: yes (1)
+[Wed Jan 04 16:38:03.497667 2017] [proxy:debug] [pid 10:tid 139703803668352] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:38:03.500230 2017] [proxy:debug] [pid 10:tid 139703803668352] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:38:03.500622 2017] [proxy:debug] [pid 10:tid 139703803668352] proxy_util.c(1856): AH00930: initialized pool in child 10 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:38:03.497992 2017] [proxy:debug] [pid 9:tid 139703803668352] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:38:03.501587 2017] [proxy:debug] [pid 9:tid 139703803668352] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:38:03.498005 2017] [proxy:debug] [pid 8:tid 139703803668352] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Wed Jan 04 16:38:03.502327 2017] [proxy:debug] [pid 8:tid 139703803668352] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Wed Jan 04 16:38:03.501306 2017] [mpm_event:debug] [pid 10:tid 139703704561408] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:38:03.501980 2017] [proxy:debug] [pid 9:tid 139703803668352] proxy_util.c(1856): AH00930: initialized pool in child 9 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:38:03.503598 2017] [proxy:debug] [pid 8:tid 139703803668352] proxy_util.c(1856): AH00930: initialized pool in child 8 for (*) min=0 max=25 smax=25
+[Wed Jan 04 16:38:03.504122 2017] [mpm_event:debug] [pid 9:tid 139703704561408] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:38:03.504164 2017] [mpm_event:debug] [pid 8:tid 139703704561408] event.c(2095): AH02471: start_threads: Using epoll
+[Wed Jan 04 16:38:18.611885 2017] [ssl:info] [pid 8:tid 139703687776000] [client 172.21.0.1:50612] AH01964: Connection to child 1 established (server localhost:80)
+[Wed Jan 04 16:38:18.612613 2017] [ssl:debug] [pid 8:tid 139703687776000] ssl_engine_kernel.c(2122): [client 172.21.0.1:50612] AH02044: No matching SSL virtual host for servername stream.watsonplatform.net found (using default/first virtual host)
+[Wed Jan 04 16:38:18.616833 2017] [ssl:debug] [pid 8:tid 139703687776000] ssl_engine_kernel.c(2042): [client 172.21.0.1:50612] AH02041: Protocol: TLSv1.2, Cipher: ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits)
+[Wed Jan 04 16:38:18.617965 2017] [ssl:info] [pid 8:tid 139703687776000] (70014)End of file found: [client 172.21.0.1:50612] AH01991: SSL input filter read failed.
+[Wed Jan 04 16:38:18.618289 2017] [ssl:debug] [pid 8:tid 139703687776000] ssl_engine_io.c(1033): [client 172.21.0.1:50612] AH02001: Connection closed to child 1 with standard shutdown (server localhost:443)
+[Mon Jan 16 15:57:20.482320 2017] [core:info] [pid 1:tid 139703803668352] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Mon Jan 16 15:57:20.490083 2017] [mpm_event:notice] [pid 1:tid 139703803668352] AH00491: caught SIGTERM, shutting down
+[Mon Jan 16 15:58:11.636633 2017] [ssl:info] [pid 1:tid 139696500963200] AH01887: Init: Initializing (virtual) servers for SSL
+[Mon Jan 16 15:58:11.637775 2017] [ssl:info] [pid 1:tid 139696500963200] AH01914: Configuring server localhost:80 for SSL protocol
+[Mon Jan 16 15:58:11.638446 2017] [ssl:debug] [pid 1:tid 139696500963200] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Mon Jan 16 15:58:11.647364 2017] [ssl:warn] [pid 1:tid 139696500963200] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 16 15:58:11.647942 2017] [ssl:debug] [pid 1:tid 139696500963200] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Mon Jan 16 15:58:11.648284 2017] [ssl:info] [pid 1:tid 139696500963200] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Mon Jan 16 15:58:11.654808 2017] [ssl:warn] [pid 1:tid 139696500963200] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Mon Jan 16 15:58:11.655252 2017] [ssl:info] [pid 1:tid 139696500963200] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+AH00112: Warning: DocumentRoot [/var/www/html] does not exist
+[Mon Jan 16 15:58:11.672973 2017] [ssl:warn] [pid 1:tid 139696500963200] AH01873: Init: Session Cache is not configured [hint: SSLSessionCache]
+[Mon Jan 16 15:58:11.673489 2017] [ssl:info] [pid 1:tid 139696500963200] AH01887: Init: Initializing (virtual) servers for SSL
+[Mon Jan 16 15:58:11.673890 2017] [ssl:info] [pid 1:tid 139696500963200] AH01914: Configuring server localhost:80 for SSL protocol
+[Mon Jan 16 15:58:11.674686 2017] [ssl:debug] [pid 1:tid 139696500963200] ssl_engine_init.c(413): AH01893: Configuring TLS extension handling
+[Mon Jan 16 15:58:11.682070 2017] [ssl:warn] [pid 1:tid 139696500963200] AH01906: localhost:80:0 server certificate is a CA certificate (BasicConstraints: CA == TRUE !?)
+[Mon Jan 16 15:58:11.682675 2017] [ssl:debug] [pid 1:tid 139696500963200] ssl_util_ssl.c(443): AH02412: [localhost:80] Cert matches for name 'localhost' [subject: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / issuer: emailAddress=brian_pulito@us.ibm.com,CN=localhost,OU=dev,O=IBM,L=Lexington,ST=Kentucky,C=US / serial: D1FDA525DAE41B99 / notbefore: Jan  4 14:47:59 2017 GMT / notafter: Jan  4 14:47:59 2018 GMT]
+[Mon Jan 16 15:58:11.683116 2017] [ssl:info] [pid 1:tid 139696500963200] AH02568: Certificate and private key localhost:80:0 configured from /usr/local/apache2/conf/mysitename.crt and /usr/local/apache2/conf/mysitename.key
+[Mon Jan 16 15:58:11.691413 2017] [ssl:warn] [pid 1:tid 139696500963200] AH01916: Init: (localhost:443) You configured HTTP(80) on the standard HTTPS(443) port!
+[Mon Jan 16 15:58:11.691799 2017] [ssl:info] [pid 1:tid 139696500963200] AH01876: mod_ssl/2.4.23 compiled against Server: Apache/2.4.23, Library: OpenSSL/1.0.1t
+[Mon Jan 16 15:58:11.695225 2017] [proxy:debug] [pid 8:tid 139696500963200] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Mon Jan 16 15:58:11.695783 2017] [proxy:debug] [pid 8:tid 139696500963200] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Mon Jan 16 15:58:11.696274 2017] [proxy:debug] [pid 8:tid 139696500963200] proxy_util.c(1856): AH00930: initialized pool in child 8 for (*) min=0 max=25 smax=25
+[Mon Jan 16 15:58:11.695676 2017] [proxy:debug] [pid 9:tid 139696500963200] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Mon Jan 16 15:58:11.697186 2017] [proxy:debug] [pid 9:tid 139696500963200] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Mon Jan 16 15:58:11.696020 2017] [mpm_event:notice] [pid 1:tid 139696500963200] AH00489: Apache/2.4.23 (Unix) OpenSSL/1.0.1t configured -- resuming normal operations
+[Mon Jan 16 15:58:11.703110 2017] [mpm_event:info] [pid 1:tid 139696500963200] AH00490: Server built: Nov  8 2016 19:53:50
+[Mon Jan 16 15:58:11.702518 2017] [mpm_event:debug] [pid 8:tid 139696401856256] event.c(2095): AH02471: start_threads: Using epoll
+[Mon Jan 16 15:58:11.702629 2017] [proxy:debug] [pid 9:tid 139696500963200] proxy_util.c(1856): AH00930: initialized pool in child 9 for (*) min=0 max=25 smax=25
+[Mon Jan 16 15:58:11.703052 2017] [proxy:debug] [pid 10:tid 139696500963200] proxy_util.c(1779): AH00925: initializing worker proxy:reverse shared
+[Mon Jan 16 15:58:11.703656 2017] [core:notice] [pid 1:tid 139696500963200] AH00094: Command line: 'httpd -D FOREGROUND'
+[Mon Jan 16 15:58:11.709549 2017] [core:debug] [pid 1:tid 139696500963200] log.c(1546): AH02639: Using SO_REUSEPORT: yes (1)
+[Mon Jan 16 15:58:11.709124 2017] [proxy:debug] [pid 10:tid 139696500963200] proxy_util.c(1821): AH00927: initializing worker proxy:reverse local
+[Mon Jan 16 15:58:11.710339 2017] [proxy:debug] [pid 10:tid 139696500963200] proxy_util.c(1856): AH00930: initialized pool in child 10 for (*) min=0 max=25 smax=25
+[Mon Jan 16 15:58:11.709214 2017] [mpm_event:debug] [pid 9:tid 139696401856256] event.c(2095): AH02471: start_threads: Using epoll
+[Mon Jan 16 15:58:11.711571 2017] [mpm_event:debug] [pid 10:tid 139696401856256] event.c(2095): AH02471: start_threads: Using epoll
+[Mon Jan 16 16:04:44.510370 2017] [core:info] [pid 1:tid 139696500963200] AH00096: removed PID file /usr/local/apache2/logs/httpd.pid (pid=1)
+[Mon Jan 16 16:04:44.511375 2017] [mpm_event:notice] [pid 1:tid 139696500963200] AH00491: caught SIGTERM, shutting down
