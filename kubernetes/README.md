@@ -3,7 +3,7 @@ Running the IBM Voice Gateway in a Kubernetes environment requires special consi
 
 In Kubernetes terminology, a single voice gateway instance equates to a single Pod which contains both a SIP Orchestrator container and a Media Relay container. Only one POD should be deployed per node and the POD should be deploy with hostNetwork set to true. This will ensure that the SIP and media ports would be opened on the host VM and visible by the SIP Load Balancer.  
 
-A sample JSON kubectrl configuration file can be found here: [sample.voice.gateway.for.watson GitHub repository](https://github.com/WASdev/sample.voice.gateway.for.watson/kubernetes)
+A sample JSON kubectrl configuration file can be found here: [sample.voice.gateway.for.watson GitHub repository](https://github.com/WASdev/sample.voice.gateway.for.watson/tree/master/kubernetes)
 
 Some of what's enabled by this kuectrl config file include:
 
