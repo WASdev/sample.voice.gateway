@@ -2,7 +2,7 @@
 
 This repository contains various samples and scripts to help you get started with the **BETA** release of the IBM&reg; Voice Gateway&trade;.
 
-IBM&reg; WebSphere&reg; Connect Voice Gateway for Watson&trade; provides a Session Initiation Protocol (SIP) gateway into a set of orchestrated Watson services to automate or assist customer interactions. The voice gateway makes it possible to integrate a public or enterprise telephony system with Watson enabling direct voice interactions with a cognitive self-service agent or the ability to run real-time analytics on a phone call between two people (e.g.  a customer and a contact center agent).
+IBM&reg; Voice Gateway&trade; provides a Session Initiation Protocol (SIP) gateway into a set of orchestrated Watson services to automate or assist customer interactions. The voice gateway makes it possible to integrate a public or enterprise telephony system with Watson enabling direct voice interactions with a cognitive self-service agent or the ability to run real-time analytics on a phone call between two people (e.g.  a customer and a contact center agent).
 
 Within this repository you will find the following directories:
 
