@@ -1,0 +1,39 @@
+version: '2'
+services:
+  sip.orchestrator:
+    image: ibmcom/voice-gateway-so:beta.latest
+    container_name: voice-gateway-so
+    ports:
+      - "5060:5060"
+      - "5060:5060/udp"
+    environment:
+      # Host name of the CMR.
+      - RTP_RELAY_HOST=media.relay:8080
+      - SIP_HOST=${EXTERNAL_IP}
+      - SIP_PORT=5060
+
+      # Set to true to enable the MQTT transcription plugin
+      - MQTT_PLUGIN_ENABLE=true
+      - MQTT_BROKER_ADDRESS=
+
+      # Logging related variables
+      - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
+      - LOG_LEVEL=finest
+
+  media.relay:
+    image: ibmcom/voice-gateway-mr:beta.latest
+    container_name: voice-gateway-mr
+    ports:
+      - "16384-16394:16384-16394/udp"
+    environment:
+      - WATSON_RELAY_SDP_ADDRESS=${EXTERNAL_IP}
+      - RTP_UDP_PORT_RANGE=16384-16394
+      - RTP_RELAY_LOGLEVEL=DEBUG
+      - RTP_PORT=8080
+
+      # Creds for Bluemix STT
+      - WATSON_STT_USER=
+      - WATSON_STT_PASSWORD=
+      - WATSON_STT_ENDPOINT=
+
+      - RTP_RELAY_LOGLEVEL=DEBUG

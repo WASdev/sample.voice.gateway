@@ -1,0 +1,161 @@
+{
+	"kind" : "Deployment",
+	"apiVersion" : "extensions/v1beta1",
+	"metadata" : {
+		"name" : "vgw",
+		"creationTimestamp" : null,
+		"labels" : {
+			"service" : "vgw"
+		}
+	},
+	"spec" : {
+		"replicas" : 3,
+		"selector" : {
+			"matchLabels" : {
+				"service" : "vgw"
+			}
+		},
+		"template" : {
+			"metadata" : {
+				"creationTimestamp" : null,
+				"labels" : {
+					"service" : "vgw"
+				}
+			},
+			"spec" : {
+				"hostNetwork" : true,
+				"imagePullSecrets" : [{
+						"name" : "admin.registrykey"
+					}
+				],
+				"containers" : [{
+						"name" : "vgw-media-relay",
+						"image" : "master.cfc:8500/admin/voice-gateway-mr:latest",
+						"ports" : [{
+								"containerPort" : 8080,
+								"hostPort" : 8080,
+								"protocol" : "TCP"
+							}
+						],
+						"env" : [{
+								"name" : "WATSON_RELAY_SDP_ADDRESS",
+								"valueFrom" : {
+									"fieldRef" : {
+										"apiVersion" : "v1",
+										"fieldPath" : "spec.nodeName"
+									}
+								}
+							}, {
+								"name" : "RTP_UDP_PORT_RANGE",
+								"value" : "16384-16394"
+							}, {
+								"name" : "CLUSTER_WORKERS",
+								"value" : "4"
+							}, {
+								"name" : "RTP_RELAY_LOGLEVEL",
+								"value" : "DEBUG"
+							}, {
+								"name" : "RTP_RELAY_RECORD",
+								"value" : "false"
+							}, {
+								"name" : "RTP_PORT",
+								"value" : "8080"
+							}, {
+								"name" : "WATSON_STT_USER",
+								"value" : "xxxxxxx"
+							}, {
+								"name" : "WATSON_STT_PASSWORD",
+								"value" : "xxxxxxx"
+							}, {
+								"name" : "WATSON_STT_ENDPOINT",
+								"value" : "https://stream.watsonplatform.net/speech-to-text/api"
+							}, {
+								"name" : "WATSON_TTS_USER",
+								"value" : "xxxxxxx"
+							}, {
+								"name" : "WATSON_TTS_PASSWORD",
+								"value" : "xxxxxxx"
+							}, {
+								"name" : "WATSON_TTS_VOICE",
+								"value" : "en-US_MichaelVoice"
+							}, {
+								"name" : "WATSON_TTS_ENDPOINT",
+								"value" : "https://stream.watsonplatform.net/text-to-speech/api"
+							}
+						],
+						"resources" : {},
+						"terminationMessagePath" : "/dev/termination-log",
+						"imagePullPolicy" : "IfNotPresent"
+					}, {
+						"name" : "vgw-sip-orchestrator",
+						"image" : "master.cfc:8500/admin/voice-gateway-so:latest",
+						"ports" : [{
+								"containerPort" : 5060,
+								"hostPort" : 5060,
+								"protocol" : "TCP"
+							}, {
+								"containerPort" : 5060,
+								"hostPort" : 5060,
+								"protocol" : "UDP"
+							}
+						],
+						"env" : [{
+								"name" : "SIP_HOST",
+								"valueFrom" : {
+									"fieldRef" : {
+										"apiVersion" : "v1",
+										"fieldPath" : "spec.nodeName"
+									}
+								}
+							}, {
+								"name" : "RTP_RELAY_HOST",
+								"value" : "localhost:8080"
+							}, {
+								"name" : "SIP_PORT",
+								"value" : "5060"
+							}, {
+								"name" : "CONV_WORKSPACE_ID",
+								"value" : "xxxxxxx"
+							}, {
+								"name" : "CONV_USERNAME",
+								"value" : "xxxxxxx"
+							}, {
+								"name" : "CONV_PASSWORD",
+								"value" : "xxxxxxx"
+							}, {
+								"name" : "CONV_ENDPOINT",
+								"value" : "https://gateway.watsonplatform.net/conversation/api"
+							}, {
+								"name" : "NUMCONV_PLUGIN_ENABLE",
+								"value" : "false"
+							}, {
+								"name" : "TAGS_PLUGIN_ENABLE",
+								"value" : "false"
+							}, {
+								"name" : "MQTT_PLUGIN_ENABLE",
+								"value" : "false"
+							}, {
+								"name" : "ENABLE_AUDIT_MESSAGES",
+								"value" : "true"
+							}, {
+								"name" : "ENABLE_TRANSCRIPTION_AUDIT_MESSAGES",
+								"value" : "true"
+							}, {
+								"name" : "LOG_LEVEL",
+								"value" : "all"
+							}
+						],
+						"resources" : {},
+						"terminationMessagePath" : "/dev/termination-log",
+						"imagePullPolicy" : "IfNotPresent"
+					}
+				],
+				"restartPolicy" : "Always",
+				"terminationGracePeriodSeconds" : 30,
+				"dnsPolicy" : "ClusterFirst",
+				"securityContext" : {}
+			}
+		}
+	},
+	"status" : {}
+}
