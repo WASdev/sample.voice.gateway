@@ -43,8 +43,6 @@ services:
       - WATSON_TTS_URL=
       - WATSON_TTS_VOICE=en-US_MichaelVoice
 
-      - MEDIA_RELAY_LOG_LEVEL=DEBUG
-
       # Uncomment the following three lines to enable call recording
       #- ENABLE_RECORDING=true
     #volumes:
