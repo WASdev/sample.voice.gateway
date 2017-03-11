@@ -4,7 +4,7 @@
 
 This repository contains various samples and scripts to help you get started with the IBM&reg; Voice Gateway&trade;.
 
-IBM&reg; Voice Gateway&trade; provides a Session Initiation Protocol (SIP) endpoint that orchestrates IBM&reg; Watson speech and Conversation services to enable a cognitive agent that can communicate with a caller using natural language. The voice gateway makes it possible to integrate a public or enterprise telephony system with Watson, enabling direct voice interactions with a cognitive self-service agent or the ability to run real-time analytics on a phone call between two people (e.g.  a customer and a contact center agent).
+IBM&reg; Voice Gateway&trade; provides a Session Initiation Protocol (SIP) endpoint that orchestrates IBM&reg; Watson&trade; speech and conversation services to enable a cognitive agent that communicates with a caller using natural language. The voice gateway makes it possible to integrate a public or enterprise telephony system with Watson, enabling direct voice interactions with a cognitive self-service agent or the ability to access real-time transcriptions of a phone call between two people (e.g.  a customer and a contact center agent).
 
 ![](https://raw.githubusercontent.com/WASdev/sample.voice.gateway.for.watson/master/images/vgw-flow.png)
 
@@ -20,11 +20,17 @@ Within this repository you will find the following directories:
 ### Pulling the IBM Voice Gateway Docker images
 The voice gateway is made up of two separate Docker images that can be pulled using the following command:
 
- ```
+```
  docker pull ibmcom/voice-gateway-so:latest
 
  docker pull ibmcom/voice-gateway-mr:latest
-  ```
+```
+  
+Read more about these images here:
+  
+[voice-gateway-so](https://hub.docker.com/r/ibmcom/voice-gateway-so/)
+
+[voice-gateway-mr](https://hub.docker.com/r/ibmcom/voice-gateway-mr/)
 
 ### Usage
 All the documentation related to the Voice Gateway for Watson and the use of the files in this GitHub repository can be found here:
