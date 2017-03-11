@@ -5,8 +5,8 @@ SO=voice-gateway-so
 MR=voice-gateway-mr
 
 #Image versions
-SO_V="latest"
-MR_V="latest"
+SO_V="0.3.1-rc-1"
+MR_V="0.3.1-rc-1"
 
 #Container names
 SO_NAME=voice-gateway-so
@@ -103,7 +103,7 @@ echo "---------------------------------------------------"
 #=======================================
 # Deal with volumes
 #=======================================
-VOLUME_MOUNT="/cgw-media-relay/recordings"
+VOLUME_MOUNT="/vgw-media-relay/recordings"
 VOLUME_ARG=""
 VOLUME_NAME=""
 echo "Currently in directory ${PWD}"
@@ -138,7 +138,7 @@ echo "** Deploying the ${SO_NAME}"
 echo "** Starting up ${SO_NAME}"
 cf ic run -p 8080:8080 -p 5060:5060 -p 5060:5060/udp -m 512 --name ${SO_NAME} \
 --env SIP_HOST=${SO_IP} \
---env MEDIA_RELAY_WS_HOST=${MR_IP}:8080 \
+--env MEDIA_RELAY_HOST=${MR_IP}:8080 \
 --env-file docker.env ${REPO}/${SO}:${SO_V}
 cf ic wait-status ${MR_NAME}
 cf ic wait-status ${SO_NAME}
