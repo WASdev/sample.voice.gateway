@@ -1,11 +1,6 @@
-# IBM WebSphere Connect Voice Gateway for Watson
-## Quick start docker-compose.yml
+# IBM&reg; Voice Gateway quick start for Docker Engine
 -------------------
-This directory contains a docker-compose.yml file that you can use with the latest Voice Gateway for Watson images pulled from the following repositories:
+This directory contains docker-compose files needed to help you quickly deploy a voice gateway to a Docker Engine. To see instructions on how to use these files go here:
 
-   ```
-   ibmcom/voice-gateway-so
-   ibmcom/voice-gateway-mr
-   ```
+[Deploying to Docker Engine](https://www.ibm.com/support/knowledgecenter/SS4U29/deploydocker.html)
 
-See this GitBook for details:

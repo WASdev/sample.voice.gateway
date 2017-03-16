@@ -1,52 +1,49 @@
 version: '2'
 services:
   sip.orchestrator:
-    image: ibmcom/voice-gateway-so:beta.latest
+    image: ibmcom/voice-gateway-so:latest
     container_name: voice-gateway-so
     ports:
       - "5060:5060"
       - "5060:5060/udp"
     environment:
       # Host name of the CMR.
-      - RTP_RELAY_HOST=media.relay:8080
+      - MEDIA_RELAY_HOST=media.relay:8080
       - SIP_HOST=${EXTERNAL_IP}
-      - SIP_PORT=5060
 
       # Uncomment and specify when the Conversation API is used
-      - CONV_WORKSPACE_ID=
-      - CONV_USERNAME=
-      - CONV_PASSWORD=
-      - CONV_ENDPOINT=
+      - WATSON_CONVERSATION_WORKSPACE_ID=
+      - WATSON_CONVERSATION_USERNAME=
+      - WATSON_CONVERSATION_PASSWORD=
+      - WATSON_CONVERSATION_URL=
 
       # Logging related variables
       - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
       - LOG_LEVEL=finest
 
   media.relay:
-    image: ibmcom/voice-gateway-mr:beta.latest
+    image: ibmcom/voice-gateway-mr:latest
     container_name: voice-gateway-mr
     ports:
       - "16384-16394:16384-16394/udp"
     environment:
-      - WATSON_RELAY_SDP_ADDRESS=${EXTERNAL_IP}
+      - SDP_ADDRESS=${EXTERNAL_IP}
       - RTP_UDP_PORT_RANGE=16384-16394
-      - RTP_RELAY_LOGLEVEL=DEBUG
-      - RTP_PORT=8080
+      - MEDIA_RELAY_LOG_LEVEL=DEBUG
+      - MEDIA_RELAY_WS_PORT=8080
 
       # Creds for Bluemix STT
-      - WATSON_STT_USER=
+      - WATSON_STT_USERNAME=
       - WATSON_STT_PASSWORD=
-      - WATSON_STT_ENDPOINT=
+      - WATSON_STT_URL=
 
       # Creds for Bluemix TTS
-      - WATSON_TTS_USER=
+      - WATSON_TTS_USERNAME=
       - WATSON_TTS_PASSWORD=
-      - WATSON_TTS_ENDPOINT=
+      - WATSON_TTS_URL=
       - WATSON_TTS_VOICE=en-US_MichaelVoice
 
-      - RTP_RELAY_LOGLEVEL=DEBUG
-
       # Uncomment the following three lines to enable call recording
-      #- RTP_RELAY_RECORD=true
+      #- ENABLE_RECORDING=true
     #volumes:
-      #- $PWD/recordings:/cgw-media-relay/recordings
+      #- $PWD/recordings:/vgw-media-relay/recordings

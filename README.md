@@ -1,35 +1,61 @@
-# sample.voice.gateway.for.watson
+![](https://raw.githubusercontent.com/WASdev/sample.voice.gateway/master/images/VoiceGateway_WebLogo_Color-2.png)
 
-This repository contains various samples and scripts to help you get started with the **BETA** release of the IBM&reg; Voice Gateway&trade;.
+# sample.voice.gateway
 
-IBM&reg; Voice Gateway&trade; provides a Session Initiation Protocol (SIP) gateway into a set of orchestrated Watson services to automate or assist customer interactions. The voice gateway makes it possible to integrate a public or enterprise telephony system with Watson enabling direct voice interactions with a cognitive self-service agent or the ability to run real-time analytics on a phone call between two people (e.g.  a customer and a contact center agent).
+This repository contains various samples and scripts to help you get started with the IBM&reg; Voice Gateway&trade;.
+
+IBM&reg; Voice Gateway provides a Session Initiation Protocol (SIP) endpoint that orchestrates IBM&reg; Watson&trade; speech and conversation services to enable a cognitive agent that communicates with a caller using natural language. The voice gateway makes it possible to integrate a public or enterprise telephony system with Watson, enabling direct voice interactions with a cognitive self-service agent or the ability to access real-time transcriptions of a phone call between two people (e.g.  a customer and a contact center agent).
+
+![](https://raw.githubusercontent.com/WASdev/sample.voice.gateway/master/images/vgw-flow.png)
 
 Within this repository you will find the following directories:
 
+| Directory | Description |
+| -------------- | --------------------------------------------------------------- |
+| **\docker** | Contains sample **docker-compose.yml** files that can be used to launch the voice gateway docker images in your own docker environment.| 
+| **\bluemix** | Contains scripts and **docker.env** files that can be used to deploy the voice gateway to the IBM&reg; Containers for Bluemix&reg; service.| 
+| **\conversation** | Contains sample **docker-compose.yml** files that can be used to launch the voice gateway docker images in your own docker environment.| 
+| **\kubernetes** | Contains contains scripts to help you get started with deployments of the voice gateway into a k8s environment.| 
+| **\security** | Files to help customize security of the voice gateway.| 
+| **\audio** | Audio files used in the sample conversation.| 
+
+### Pulling the IBM Voice Gateway Docker images
+The voice gateway is made up of two separate Docker images that can be pulled using the following command:
+
 ```
-\docker
-\bluemix
-\conversation
-\kubernetes
+ docker pull ibmcom/voice-gateway-so:beta.latest
+
+ docker pull ibmcom/voice-gateway-mr:beta.latest
 ```
-The **docker** directory contains sample **docker-compose.yml** files that can be used to launch the voice gateway docker images in your own docker environment.
+  
+Read more about these images here:
+  
+[voice-gateway-so](https://hub.docker.com/r/ibmcom/voice-gateway-so/)
 
-The **bluemix** directory contains scripts and docker.env files that can be used to deploy the voice gateway to the IBM&reg; Containers for Bluemix&reg; service.
-
-The **conversation** directory contains a sample of a Watson Conversation JSON file that can be used to create a new Conversation workspace for testing with the voice gateway.
-
-The **kubernetes** directory contains scripts to help you get started with deployments of the voice gateway into a k8s environment.
+[voice-gateway-mr](https://hub.docker.com/r/ibmcom/voice-gateway-mr/)
 
 ### Usage
-All the documentation related to the Voice Gateway for Watson and the use of the files in this GitHub repository can be found in the following GitBook:
+All the documentation related to the Voice Gateway and the use of the samples in this GitHub repository can be found here:
 
-[Voice Gateway for Watson Documentation](https://cjcarpen.gitbooks.io/voice-gateway-for-watson/content/)
+[IBM Voice Gateway Documentation](https://www.ibm.com/support/knowledgecenter/SS4U29/welcome_voicegateway.html)
+
+If you want to deploy the voice gateway to IBM Containers on Bluemix, go here:
+
+[Deploying to IBM Containers on Bluemix](https://www.ibm.com/support/knowledgecenter/SS4U29/deploybmix.html)
+
+If you want to deploy the voice gateway to a Docker engine, go here:
+
+[Deploying to Docker Engine](https://www.ibm.com/support/knowledgecenter/SS4U29/deploydocker.html)
+
+If you're interested in setting up the voice gateway behind a Twilio SIP trunk, go here:
+
+[Twilio integration](https://www.ibm.com/support/knowledgecenter/SS4U29/twilio.html)
 
 ### Licenses
 The license related to the files found in this GitHub repository:
 
 [Apache 2.0 License](https://github.com/WASdev/sample.voice.gateway.for.watson/blob/master/LICENSE)
 
-The license for the products installed within the IBM&reg; WebSphere&reg; Connect Voice Gateway for Watson&trade; Docker images can be found here:
+The license for the IBM&reg; Voice Gateway Docker images can be found here:
 
-[Voice Gateway for Watson License](https://raw.githubusercontent.com/WASdev/gitbook.voice.gateway.for.watson/master/la-license/LA_en.txt)
+[IBM Voice Gateway License](https://raw.githubusercontent.com/WASdev/gitbook.voice.gateway.for.watson/master/la-license/LA_en.txt)
