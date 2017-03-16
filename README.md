@@ -35,9 +35,21 @@ Read more about these images here:
 [voice-gateway-mr](https://hub.docker.com/r/ibmcom/voice-gateway-mr/)
 
 ### Usage
-All the documentation related to the Voice Gateway and the use of the files in this GitHub repository can be found here:
+All the documentation related to the Voice Gateway and the use of the samples in this GitHub repository can be found here:
 
-[IBM Voice Gateway Documentation](https://cjcarpen.gitbooks.io/voice-gateway-for-watson/content/)
+[IBM Voice Gateway Documentation](https://www.ibm.com/support/knowledgecenter/SS4U29/welcome_voicegateway.html)
+
+If you want to deploy the voice gateway to IBM Containers on Bluemix, go here:
+
+[Deploying to IBM Containers on Bluemix](https://www.ibm.com/support/knowledgecenter/SS4U29/deploybmix.html)
+
+If you want to deploy the voice gateway to a Docker engine, go here:
+
+[Deploying to Docker Engine](https://www.ibm.com/support/knowledgecenter/SS4U29/deploydocker.html)
+
+If you're interested in setting up the voice gateway behind a Twilio SIP trunk, go here:
+
+[Twilio integration](https://www.ibm.com/support/knowledgecenter/SS4U29/twilio.html)
 
 ### Licenses
 The license related to the files found in this GitHub repository:
