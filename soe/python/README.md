@@ -3,27 +3,25 @@ Python based Voice Proxy for integrating Voice Gateway for Watson, Watson Conver
 
 ## Purpose
 The purpose of this project is to show how a developer can integrate the Watson Conversation service with the voice gateway
-in a more realistic way. A way that is more common in a a clients environment either for a proof of concept or a production
+in a more realistic way. A way that is more common in a clients environment either for a proof of concept or a production
 implementation. 
 
-## Some Specifics
-By default the WebSphere Voice Gateway for Watson (VGW) can communicate with the Watson Conversation Service (WCS) by using the REST
+## Some Background
+By default the IBM Voice Gateway (VGW) can communicate with the Watson Conversation Service (WCS) by using the REST
 services provided by the WCS. The service uses a single REST API for all conversation interactions. VGW exploits this API by
 creating the appropriate JSON payload when transcribing the spoken words from the caller and invoking the API. The challenge with
 VGW communicating directly with WCS is that there is no way to personalize the conversation interactions. WCS only maintains static
 information based on any one particular question being asked. If there is a desire to have dynamic responses, there needs to be
 a way for the runtime to make API calls to other services to lookup the additional information and provide it as part the response
 to either WCS or to VGW. This is where the voice proxy idea comes in. 
+
 Since WCS only has one API for the conversation, it is very easy to impersonate (proxy) that API. Also since the JSON format
 used in WCS is well documented, it is easy to ensure that the proxy can make updates and communicate with WCS on behalf of any
 invoker. VGW being the most interesting.
 
 ## Goal
-Our goal is for the user to get an understanding of how to create a Proxy that connects to both VGW and WCS. Additionally for
-the user to get an appreciation for some of the common aspects that exists (patterns) when the proxy is being used. These patterns
-are based on several client implementations. In essence lessons learned. I am providing an implementation, you can leverage this
-code or you can see the high level flow and create your own if python isn't your thing. Some might prefer Node.JS, Java or even
-Node-Red.
+The goal of this sample is for the user to get an understanding of how to create a Proxy that communicates with both VGW and WCS. Additionally for the user to get an appreciation for some of the common aspects that exists (patterns) when the proxy is being used. These patterns
+are based on several client implementations. In essence lessons learned. You can leverage this code or you can see the high level flow and create your own if python isn't your thing. Some might prefer Node.JS, Java or even Node-Red.
 
 ## Sample Watson Conversation Workspace
 We have provided a sample Conversation Workspace as a part of the tutorial. The JSON is in the workspace folder. The sample 
@@ -44,14 +42,14 @@ following intents are available:
 
 ## Getting Started
 Getting started is very simple. Once the code has be cloned, you can deploy the code locally or on IBM's BlueMix. 
-We have instructions for both approaches below.
+Instructions for both approaches are provided below.
 
 
 ### Architecture Overview
 
 ### Pre-requisites
-The base assumption is you are using the Voice Gateway for Watson and want to add dynamic responses based on the dialog
-from Watson Conversation Service. Also, we will assume you already have the Voice Gateway installed and are ready to connect
+The base assumption is you are using the IBM Voice Gateway and want to add dynamic responses based on the dialog
+from Watson Conversation Service. Also, we will assume you already have the IBM Voice Gateway installed and are ready to connect
 it to a WCS instance. There are several pieces of information needed for this tutorial.
 
 1. Conversation Workspace ID (You get this from your BlueMix Dashboard for the Conversation Service)
@@ -88,7 +86,7 @@ export CONVERSATION_PASSWORD=LijmsdkjmTKN
 ````
 
 
-4. If you want to use the WebLogger to keep track of the conversation flows between the Voice Gateway and WCS
+4. If you want to use the WebLogger to keep track of the conversation flows between the IBM Voice Gateway and WCS
 you need to provision a cloudantDB instance. By default the WebLogger is turned off. But you might want to enable it
 for debugging purposes. You can install cloudantDB  on BlueMix for free. If you want to use the WebLogger you need to
 do the following
@@ -132,7 +130,7 @@ do the following
 			```
 			```
 			
-5. Now you need to change the docker-compose.yml file from the Voice Gateway for Watson. Since the default with the Voice
+5. Now you need to change the docker-compose.yml file from the IBM Voice Gateway. Since the default with the Voice
 Gateway is to talk directly to the Conversation Service, you need to change the parameter WATSON_CONVERSATION_URL to point
 to the voiceProxyServer IP address. You need to change it to the IP of where the voiceProxyServer is running. In addition you
 need to specify the port the server is listening on. The default is 5000. Example is below.
@@ -191,7 +189,7 @@ BlueMix will use the configuration defined and add all the appropriate dependenc
 Sometimes, the application will not start the first time. This seems to be a bug in Bluemix. I recommend
 issuing the push command again. It seems to work the second time.
 
-7. Now you need to change the docker-compose.yml file from the Voice Gateway for Watson. Since the default with the Voice
+7. Now you need to change the docker-compose.yml file from the IBM Voice Gateway. Since the default with the Voice
 Gateway is to talk directly to the Conversation Service, you need to change the parameter WATSON_CONVERSATION_URL to point
 to the voiceProxyServer IP address. You need to change it to the IP of where the voiceProxyServer is running. In addition you
 need to specify the port the server is listening on. The default is 5000. Example is below.
@@ -200,7 +198,7 @@ need to specify the port the server is listening on. The default is 5000. Exampl
 
 In this example the machines IP address is 10.2.2.31 and the port the VoiceProxyServer is listening on is 5000
 
-8. If you want to use the WebLogger to keep track of the conversation flows between the Voice Gateway and WCS
+8. If you want to use the WebLogger to keep track of the conversation flows between the IBM Voice Gateway and WCS
 you need to provision a cloudantDB instance. By default the WebLogger is turned off. But you might want to enable it
 for debugging purposes. You can install cloudantDB  on BlueMix for free. If you want to use the WebLogger you need to
 do the following
