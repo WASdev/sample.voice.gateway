@@ -1,4 +1,4 @@
-# VoiceGatewayWatson-VoiceProxy
+# Python based Service Orchestration Engine sample (VoiceProxy)
 Python based Voice Proxy for integrating Voice Gateway for Watson, Watson Conversation Service and a clients backend APIs.
 
 ## Purpose
