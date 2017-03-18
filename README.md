@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/WASdev/sample.voice.gateway/master/images/VoiceGateway_WebLogo_Color-2.png)
+![](./images/VoiceGateway_WebLogo_Color-2.png)
 
 # sample.voice.gateway
 
@@ -6,7 +6,7 @@ This repository contains various samples and scripts to help you get started wit
 
 IBM&reg; Voice Gateway provides a Session Initiation Protocol (SIP) endpoint that orchestrates IBM&reg; Watson&trade; speech and conversation services to enable a cognitive agent that communicates with a caller using natural language. The voice gateway makes it possible to integrate a public or enterprise telephony system with Watson, enabling direct voice interactions with a cognitive self-service agent or the ability to access real-time transcriptions of a phone call between two people (e.g.  a customer and a contact center agent).
 
-![](https://raw.githubusercontent.com/WASdev/sample.voice.gateway/master/images/vgw-flow.png)
+![](./images/vgw-flow.png)
 
 Within this repository you will find the following directories:
 
@@ -50,6 +50,11 @@ If you want to deploy the voice gateway to a Docker engine, go here:
 If you're interested in setting up the voice gateway behind a Twilio SIP trunk, go here:
 
 [Twilio integration](https://www.ibm.com/support/knowledgecenter/SS4U29/twilio.html)
+
+### Become part of our community!
+
+[<img src="./images/slack.png">](https://ibm-cloud-tech.slack.com/messages/ibmvoicegateway)
+[Need an account on ibm-cloud-tech.slack.com? Click here to sign up.](http://ibm.co/2mblgXr)
 
 ### Licenses
 The license related to the files found in this GitHub repository:

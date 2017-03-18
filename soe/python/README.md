@@ -125,7 +125,7 @@ If you want to deploy the application to BlueMix the steps are very straight for
 	
 	![Image of Create Bluemix app](./images/python-flask-create-app.png)
 	
-2. Download the starter code for you newly created application and copy it into a temporary directory
+2. Download the starter code for your newly created application and copy it into a temporary directory
 
 	![Image of starter code](./images/python-flask-download-code.png)
 	
