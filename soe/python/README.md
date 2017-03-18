@@ -158,7 +158,7 @@ you will be connecting to from the VoiceProxy Server.
 Then in the center of the screen there is an option for **Environment Variables**. 
 Click on that and then add a **User Defined** values by clickin on the **Add** button.   
 Your screen should look like below:   
-![Image of Python add Env Vars  ](/images/python-flask-environment-vars.png)   
+![Image of Python add Env Vars  ](./images/python-flask-environment-vars.png)   
 make sure you use the appropriate values from your newly created WCS conversation.   
 Click **Save** when completed.   
 6. Login to BlueMix from the command line, from within the voiceProxyServer directory
@@ -168,7 +168,7 @@ Once you are logged on to Bluemix, issue the following command to push the voice
 BlueMix will use the configuration defined and add all the appropriate dependencies. 
 Sometimes, the application will not start the first time. This seems to be a bug in Bluemix. I recommend
 issuing the push command again. It seems to work the second time.
-![command line](/images/bluemix-command-line.png)
+![command line](./images/bluemix-command-line.png)
 7. Now you need to change the docker-compose.yml file from the IBM Voice Gateway. Since the default with the Voice
 Gateway is to talk directly to the Conversation Service, you need to change the following parameter:   
 
