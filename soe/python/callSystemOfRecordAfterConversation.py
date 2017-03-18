@@ -49,14 +49,15 @@ def callSystemOfRecordAfterConversation(message):
 		logging.info("Calling API to make a payment")
 		if doMakePayment(message):
 			message = doGetProfile(message)
-			del message['context']['payment']
+			if 'payment' in message['context']:
+				del message['context']['payment']
 	
 	if check_wcsActionSignal(message,'checkBalanceAskAgain'):
 		logging.info("Checking balance and Calling Conversation again based on signal")
 		message['input']['text'] = message['context']['origInput']
 		del message['output']
 		del message['intents']
-		del message['context']['payment']
+		
 		
 		message = doGetProfile(message)
 		message = callConversationService(message)
