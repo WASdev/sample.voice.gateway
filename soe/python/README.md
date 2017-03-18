@@ -77,19 +77,19 @@ import a new workspace. In the workspace folder in the voiceProxy project, you w
 Import this file into your workspace. This will create a new Conversation called VoiceProxy-Demo. This is the convesation
 you will be connecting to from the VoiceProxy Server.   
 
-	![Image of conversation tile](/images/Watson-Conversation-tile.png)   
+	![Image of conversation tile](./images/Watson-Conversation-tile.png)   
 	
 	Create your new conversation service. 
    
-   ![Image of conversation service ](/images/Watson-conversation-create-service.png)
+   ![Image of conversation service ](./images/Watson-conversation-create-service.png)
 	
 	Now we need to get access to the credentials for later use. Click on view credentials
 	
-	![Image of conversation credentials ](/images/Watson-conversation-credentials.png)
+	![Image of conversation credentials ](./images/Watson-conversation-credentials.png)
 	
 	Next we need to copy the workspace_id for use later
 	
-	![Image of conversation workspace  ](/images/Watson-conversation-wks-id.png)
+	![Image of conversation workspace  ](./images/Watson-conversation-wks-id.png)
 	
    You are going to use the workspace ID above in the next step, along with the userid and password from the credentials page.   
    
@@ -121,13 +121,13 @@ If you want to deploy the application to BlueMix the steps are very straight for
 
 1. Create a new Python Flask application on BlueMix. Keep track of you application name, you will need it later.
 
-	![Image of Bluemix](/images/python-flask-tile.png)
+	![Image of Bluemix](./images/python-flask-tile.png)
 	
-	![Image of Create Bluemix app](/images/python-flask-create-app.png)
+	![Image of Create Bluemix app](./images/python-flask-create-app.png)
 	
 2. Download the starter code for you newly created application and copy it into a temporary directory
 
-	![Image of starter code](/images/python-flask-download-code.png)
+	![Image of starter code](./images/python-flask-download-code.png)
 	
 
 3. Copy the manifest.yml from the temporary directory into the directory that has the voiceProxyServer source code.
@@ -139,19 +139,19 @@ import a new workspace. In the workspace folder in the voiceProxy project, you w
 Import this file into your workspace. This will create a new Conversation called VoiceProxy-Demo. This is the convesation
 you will be connecting to from the VoiceProxy Server. 
 
-	![Image of conversation tile](/images/Watson-Conversation-tile.png)
+	![Image of conversation tile](./images/Watson-Conversation-tile.png)
 	
 	Create your new conversation service. 
 	
-	![Image of conversation service ](/images/Watson-conversation-create-service.png)
+	![Image of conversation service ](./images/Watson-conversation-create-service.png)
 	
 	Now we need to get access to the credentials for later use. Click on view credentials
 	
-	![Image of conversation credentials ](/images/Watson-conversation-credentials.png)
+	![Image of conversation credentials ](./images/Watson-conversation-credentials.png)
 	
 	Next we need to copy the workspace_id for use later
 	
-	![Image of conversation workspace  ](/images/Watson-conversation-wks-id.png)
+	![Image of conversation workspace  ](./images/Watson-conversation-wks-id.png)
 	
 
 5. On BlueMix, add the following environment variables to the application. These can be added by clicking on the **Runtime** menu item on the left. 
