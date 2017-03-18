@@ -53,7 +53,8 @@ If you're interested in setting up the voice gateway behind a Twilio SIP trunk, 
 
 ### Become part of our community!
 
-[<img src="./images/slack.png">](https://ibm-cloud-tech.slack.com/messages/ibmvoicegateway)
+[<img align="center" src="./images/slack.png">](https://ibm-cloud-tech.slack.com/messages/ibmvoicegateway)
+
 [Need an account on ibm-cloud-tech.slack.com? Click here to sign up.](http://ibm.co/2mblgXr)
 
 ### Licenses
