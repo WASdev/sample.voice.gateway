@@ -18,6 +18,7 @@ Within this repository you will find the following directories:
 | **\kubernetes** | Contains contains scripts to help you get started with deployments of the voice gateway into a k8s environment.| 
 | **\security** | Files to help customize security of the voice gateway.| 
 | **\audio** | Audio files used in the sample conversation.| 
+| **\soe** | Sample Service Orchestration Engine used to customize your voice conversation through the use of APIs.| 
 
 ### Pulling the IBM Voice Gateway Docker images
 The voice gateway is made up of two separate Docker images that can be pulled using the following command:
