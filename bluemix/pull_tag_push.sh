@@ -5,8 +5,8 @@ SO=voice-gateway-so
 MR=voice-gateway-mr
 
 #Image versions
-SO_V="beta.latest"
-MR_V="beta.latest"
+SO_V="latest"
+MR_V="latest"
 
 #DockerHub repositories for original images
 DOCKER_HUB_SO_REPO=ibmcom/voice-gateway-so

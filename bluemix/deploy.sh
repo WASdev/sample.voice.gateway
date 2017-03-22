@@ -5,8 +5,8 @@ SO=voice-gateway-so
 MR=voice-gateway-mr
 
 #Image versions
-SO_V="beta.latest"
-MR_V="beta.latest"
+SO_V="latest"
+MR_V="latest"
 
 #Container names
 SO_NAME=voice-gateway-so
