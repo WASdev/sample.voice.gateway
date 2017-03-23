@@ -18,10 +18,12 @@ Since CfC includes Kubernetes, the section above also applies when the IBM Voice
 Once the voice gateway images have been pulled locally, they can be pushed into the CfC master repository using these commands:
 
 ```bash
+docker pull ibmcom/voice-gateway-so:latest 
+docker pull ibmcom/voice-gateway-mr:latest
 docker login https://master.cfc:8500 --username admin --password admin
 docker tag ibmcom/voice-gateway-so:latest master.cfc:8500/admin/voice-gateway-so:latest
 docker push master.cfc:8500/admin/voice-gateway-so:latest
-docker tag ibmcom/voice-gateway-mr:latest master.cfc:8500/admin/ibmcom/voice-gateway-mr:latest
-docker push master.cfc:8500/admin/ibmcom/voice-gateway-mr:latest
+docker tag ibmcom/voice-gateway-mr:latest master.cfc:8500/admin/voice-gateway-mr:latest
+docker push master.cfc:8500/admin/voice-gateway-mr:latest
 ```  
 
