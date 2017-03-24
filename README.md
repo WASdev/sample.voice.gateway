@@ -65,4 +65,4 @@ The license related to the files found in this GitHub repository:
 
 The license for the IBM&reg; Voice Gateway Docker images can be found here:
 
-[IBM Voice Gateway License](http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?li_formnum=L-MCAO-AJTLXM&popup=n&title=IBM Voice Gateway)
+[IBM Voice Gateway License](http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?li_formnum=L-MCAO-AJTLXM&popup=n&title=IBM%20Voice%20Gateway)
