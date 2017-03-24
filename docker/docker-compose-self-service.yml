@@ -1,7 +1,7 @@
 version: '2'
 services:
   sip.orchestrator:
-    image: ibmcom/voice-gateway-so:beta.latest
+    image: ibmcom/voice-gateway-so:latest
     container_name: voice-gateway-so
     ports:
       - "5060:5060"
@@ -22,7 +22,7 @@ services:
       - LOG_LEVEL=finest
 
   media.relay:
-    image: ibmcom/voice-gateway-mr:beta.latest
+    image: ibmcom/voice-gateway-mr:latest
     container_name: voice-gateway-mr
     ports:
       - "16384-16394:16384-16394/udp"

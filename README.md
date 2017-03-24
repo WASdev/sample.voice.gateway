@@ -24,9 +24,9 @@ Within this repository you will find the following directories:
 The voice gateway is made up of two separate Docker images that can be pulled using the following command:
 
 ```
- docker pull ibmcom/voice-gateway-so:beta.latest
+ docker pull ibmcom/voice-gateway-so:latest
 
- docker pull ibmcom/voice-gateway-mr:beta.latest
+ docker pull ibmcom/voice-gateway-mr:latest
 ```
   
 Read more about these images here:
@@ -65,4 +65,4 @@ The license related to the files found in this GitHub repository:
 
 The license for the IBM&reg; Voice Gateway Docker images can be found here:
 
-[IBM Voice Gateway License](https://raw.githubusercontent.com/WASdev/gitbook.voice.gateway.for.watson/master/la-license/LA_en.txt)
+[IBM Voice Gateway License](http://www14.software.ibm.com/cgi-bin/weblap/lap.pl?li_formnum=L-MCAO-AJTLXM&popup=n&title=IBM%20Voice%20Gateway)
