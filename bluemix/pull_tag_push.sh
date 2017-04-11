@@ -70,7 +70,7 @@ cf target
 if [ $? -ne 0 ];then echo "Not logged into Bluemix"; exit 1;fi
 
 # Initialize the CaaS (and get the Repository name)  We have trim the spaces off it
-REPO=$(cf ic init | awk -F: '/Bluemix registry/ {print $2}'| tr -d '[[:space:]]')
+REPO=$(bx ic init | awk -F: '/Bluemix repository/ {print $2}'| tr -d '[[:space:]]')
 if [ $? -ne 0 ];then echo "Login to CAAS failed"; exit 1;fi
 
 if [ "$REPO" == "" ]; then

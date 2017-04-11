@@ -66,7 +66,7 @@ cf target
 if [ $? -ne 0 ];then echo "Not logged into Bluemix"; exit 1;fi
 
 # 2. Initialize the CaaS (and get the Repository name)  We have trim the spaces off it 
-REPO=$(cf ic init | awk -F: '/Bluemix registry/ {print $2}'| tr -d '[[:space:]]')
+REPO=$(bx ic init | awk -F: '/Bluemix repository/ {print $2}'| tr -d '[[:space:]]')
 if [ $? -ne 0 ];then echo "Login to CAAS failed"; exit 1;fi
 
 if [ "$REPO" == "" ]; then
@@ -80,11 +80,11 @@ echo "--------------------------------------------------------"
 # 3. get IP Addresses
 
 echo "----> Determining IP Addresses"
-IPS=$(cf ic ip list -q)
+IPS=$(bx ic ips -q)
 NUM_IPS=$(echo $IPS| wc -w);
 while [ $NUM_IPS -lt 2 ]; do
-  cf ic ip request
-  IPS=$(cf ic ip list -q)
+  bx ic ip request
+  IPS=$(bx ic ips -q)
   NUM_IPS=$(echo $IPS| wc -w)
 done
 MR_IP=$(echo $IPS| awk '{print $1}')
@@ -112,10 +112,10 @@ if [ -e docker.env ]; then
 fi
 
 if [ "$VOLUME_NAME" != "" ]; then
-  cf ic volume list | grep $VOLUME_NAME
+  bx ic volumes | grep $VOLUME_NAME
   if [ $? -ne 0 ]; then
     echo "** Creating a recording volume: ${VOLUME_NAME}, may take a while"
-    cf ic volume create $VOLUME_NAME
+    bx ic volume create $VOLUME_NAME
   else
     echo "** Recording volume already exist: ${VOLUME_NAME}:${VOLUME_MOUNT}"
   fi
@@ -124,29 +124,28 @@ if [ "$VOLUME_NAME" != "" ]; then
 fi
 
 echo "** Removing existing containers..."
-cf ic rm -f ${MR_NAME} >/dev/null
-cf ic rm -f ${SO_NAME} >/dev/null
+bx ic rm -f ${MR_NAME} >/dev/null
+bx ic rm -f ${SO_NAME} >/dev/null
 # Need to sleep so that we can wait for things to go away...
 sleep 10 
 echo "** Deploying the ${MR_NAME}"
 echo "** Starting up ${MR_NAME}"
-cf ic run -p 8080:8080 -p 16384-16484:16384-16484/udp -m 512 --name ${MR_NAME}\
+bx ic run -p 8080:8080 -p 16384-16484:16384-16484/udp -m 512 --name ${MR_NAME}\
   ${VOLUME_ARG} \
   --env SDP_ADDRESS=${MR_IP} \
   --env-file docker.env ${REPO}/${MR}:${MR_V}
 echo "** Deploying the ${SO_NAME}"
 echo "** Starting up ${SO_NAME}"
-cf ic run -p 8080:8080 -p 5060:5060 -p 5060:5060/udp -m 512 --name ${SO_NAME} \
+bx ic run -p 8080:8080 -p 5060:5060 -p 5060:5060/udp -m 512 --name ${SO_NAME} \
 --env SIP_HOST=${SO_IP} \
 --env MEDIA_RELAY_HOST=${MR_IP}:8080 \
 --env-file docker.env ${REPO}/${SO}:${SO_V}
-cf ic wait-status ${MR_NAME}
-cf ic wait-status ${SO_NAME}
-sleep 5
+sleep 15
 echo "** Binding IPS"
-cf ic ip bind ${MR_IP} ${MR_NAME}
-cf ic ip bind ${SO_IP} ${SO_NAME}
+bx ic ip bind ${MR_IP} ${MR_NAME}
+bx ic ip bind ${SO_IP} ${SO_NAME}
+sleep 5
 echo "** Showing IP Bindings"
-cf ic ip list
+bx ic ips
 echo "** Finished ** "
-cf ic ps -a
+bx ic ps -a
