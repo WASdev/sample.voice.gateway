@@ -62,7 +62,7 @@ shift "$((OPTIND-1))" # shift off the options...
 echo "--------------------------------------------------------"
 echo "  Deploying environment with version: ${version}"
 echo "  Using API: "
-cf target
+bx target
 if [ $? -ne 0 ];then echo "Not logged into Bluemix"; exit 1;fi
 
 # 2. Initialize the CaaS (and get the Repository name)  We have trim the spaces off it 
