@@ -66,7 +66,7 @@ done
 # 1. Confirm we are logged in
 echo "--------------------------------------------------------"
 echo "  Confirming you are logged in... "
-cf target
+bx target
 if [ $? -ne 0 ];then echo "Not logged into Bluemix"; exit 1;fi
 
 # Initialize the CaaS (and get the Repository name)  We have trim the spaces off it
