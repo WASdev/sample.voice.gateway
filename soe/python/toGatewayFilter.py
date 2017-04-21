@@ -106,11 +106,13 @@ def stuffEntitiesIntents(message):
 	if 'entities' in message:
 		if 'context' in message:
 			message['context']['soeEntities'] = message['entities']
-			del message['entities']
+			#causes NPE in Voice gateway - see issue 35
+			#del message['entities']
 	if 'intents' in message:
 		if 'context' in message:
 			message['context']['soeIntents'] = message['intents']	
-			del message['intents']	
+			#causes NPE in Voice gateway - see issue 35
+			#del message['intents']	
 	return message
 
 # -------------- End Bug in Gateway Fixer Method ----------------	
