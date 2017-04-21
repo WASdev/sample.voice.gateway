@@ -59,12 +59,12 @@ def init():
 		POLLING_PASSWORD = os.environ['POLLING_PASSWORD']
 
 	global REMOVE_ENTITIES
-	REMOVE_ENTITIES = True
+	REMOVE_ENTITIES = False
 	if 'REMOVE_ENTITIES' in os.environ:
 		REMOVE_ENTITIES = os.environ['REMOVE_ENTITIES']
 	
 	global REMOVE_INTENTS
-	REMOVE_INTENTS = True
+	REMOVE_INTENTS = False
 	if 'REMOVE_INTENTS' in os.environ:
 		REMOVE_INTENTS = os.environ['REMOVE_INTENTS']
 	
