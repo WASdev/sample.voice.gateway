@@ -22,3 +22,8 @@ related to the voice gateway.
 
 This portuguese based conversation provides details on the IBM Voice Gateway. It includes many Intents allowing you to ask many different questions
 related to the voice gateway.
+
+## voice-gateway-conversation-es.json
+
+This spanish based conversation provides details on the IBM Voice Gateway. It includes many Intents allowing you to ask many different questions
+related to the voice gateway.
