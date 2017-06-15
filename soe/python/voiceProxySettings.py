@@ -58,13 +58,15 @@ def init():
 	if 'POLLING_PASSWORD' in os.environ:
 		POLLING_PASSWORD = os.environ['POLLING_PASSWORD']
 
+# Default should be True. False for deprecated WCS behavior.
 	global REMOVE_ENTITIES
-	REMOVE_ENTITIES = False
+	REMOVE_ENTITIES = True
 	if 'REMOVE_ENTITIES' in os.environ:
 		REMOVE_ENTITIES = os.environ['REMOVE_ENTITIES']
 	
+# Default should be True. False for deprecated WCS behavior. 
 	global REMOVE_INTENTS
-	REMOVE_INTENTS = False
+	REMOVE_INTENTS = True
 	if 'REMOVE_INTENTS' in os.environ:
 		REMOVE_INTENTS = os.environ['REMOVE_INTENTS']
 	
