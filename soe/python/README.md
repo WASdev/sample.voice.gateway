@@ -96,7 +96,7 @@ you will be connecting to from the VoiceProxy Server.
 
 3. Export the following environment variables
   - CONVERSATION_WORKSPACE_ID=**workspaceid**
-  - CONVERSATION_VERSION=**2016-07-11**
+  - CONVERSATION_VERSION=**2017-05-26**
   - CONVERSATION_USERNAME=**username**
   - CONVERSATION_PASSWORD=**password**
   
@@ -161,13 +161,13 @@ Your screen should look like below:
 ![Image of Python add Env Vars  ](./images/python-flask-environment-vars.png)   
 make sure you use the appropriate values from your newly created WCS conversation.   
 Click **Save** when completed.   
-6. Login to BlueMix from the command line, from within the voiceProxyServer directory
-`cf login -a na.api.bluemix.net`   
+6. Login to BlueMix from the command line, from within the voiceProxyServer python directory )
+`bx login`   
 Once you are logged on to Bluemix, issue the following command to push the voiceProxyServer to BlueMix 
-`cf push YourApplication Name From Step 1`
+`bluemix app push YourApplication Name From Step 1`
 BlueMix will use the configuration defined and add all the appropriate dependencies. 
 Sometimes, the application will not start the first time. This seems to be a bug in Bluemix. I recommend
-issuing the push command again. It seems to work the second time.
+issuing the push command again. It seems to work the second time. Note: permissions should be 777 recursively or error may occur.
 ![command line](./images/bluemix-command-line.png)
 7. Now you need to change the docker-compose.yml file from the IBM Voice Gateway. Since the default with the Voice
 Gateway is to talk directly to the Conversation Service, you need to change the following parameter:   
@@ -192,7 +192,7 @@ questions. Remember, there is an API that keeps track of the balances, so if you
 3. Yes it is
 4. Baseball
 5. I want to use my checking account
-6. I wan to pay two hundred dollars
+6. I want to pay two hundred dollars
 7. Thank you
 8. What is the balance of my checking account
 9. Thank you.
