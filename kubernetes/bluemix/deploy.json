@@ -56,19 +56,19 @@
 								"value": "8080"
 							}, {
 								"name": "WATSON_STT_USERNAME",
-								"value": "ec88bebc-087e-4140-9de2-db0ff9d3015f"
+								"value": ""
 							}, {
 								"name": "WATSON_STT_PASSWORD",
-								"value": "CsmAk3nNmBov"
+								"value": ""
 							}, {
 								"name": "WATSON_STT_URL",
 								"value": "https://stream.watsonplatform.net/speech-to-text/api"
 							}, {
 								"name": "WATSON_TTS_USERNAME",
-								"value": "54048d8d-32a7-4474-9a56-a45e0900e3ed"
+								"value": ""
 							}, {
 								"name": "WATSON_TTS_PASSWORD",
-								"value": "5rHsfPk0PGds"
+								"value": ""
 							}, {
 								"name": "WATSON_TTS_VOICE",
 								"value": "en-US_MichaelVoice"
@@ -103,13 +103,13 @@
 								"value": "5060"
 							}, {
 								"name": "WATSON_CONVERSATION_WORKSPACE_ID",
-								"value": "7903e1f1-a666-4e5b-b1f7-175827b6d517"
+								"value": ""
 							}, {
 								"name": "WATSON_CONVERSATION_USERNAME",
-								"value": "0b1be27e-a9c4-4c31-a6f1-de33bf713497"
+								"value": ""
 							}, {
 								"name": "WATSON_CONVERSATION_PASSWORD",
-								"value": "6SF3vX0P426g"
+								"value": ""
 							}, {
 								"name": "WATSON_CONVERSATION_URL",
 								"value": "https://gateway.watsonplatform.net/conversation/api"
