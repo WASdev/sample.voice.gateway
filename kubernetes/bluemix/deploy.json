@@ -9,7 +9,7 @@
 		}
 	},
 	"spec": {
-		"replicas": 2,
+		"replicas": 1,
 		"selector": {
 			"matchLabels": {
 				"service": "vgw"
@@ -44,7 +44,7 @@
 								"value": "16384-16394"
 							}, {
 								"name": "CLUSTER_WORKERS",
-								"value": "4"
+								"value": "0"
 							}, {
 								"name": "RTP_RELAY_LOGLEVEL",
 								"value": "DEBUG"
