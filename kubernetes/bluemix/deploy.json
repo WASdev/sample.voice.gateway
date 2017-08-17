@@ -23,6 +23,12 @@
 				}
 			},
 			"spec": {
+                "volumes": [
+                  {
+                    "name": "recordings",
+                    "emptyDir" : {}
+                  }
+                ],
 				"hostNetwork": true,
 				"imagePullSecrets": [{
 						"name": "admin.registrykey"
@@ -40,6 +46,9 @@
 						"command": ["/bin/sh"],
 						"args": ["-c", "export WATSON_RELAY_SDP_ADDRESS=$(hostname -I | tr -s ' ' '\n' | grep -Ev '^10.*|^172.*' | head -1); exec /vgw-media-relay/bin/rtp-relay"],
 						"env": [{
+                                "name": "ENABLE_RECORDING",
+                                "value": "false"
+                              },{
 								"name": "RTP_UDP_PORT_RANGE",
 								"value": "16384-16394"
 							}, {
@@ -78,6 +87,12 @@
 							}
 						],
 						"resources": {},
+                        "volumeMounts": [
+                                      {
+                                        "name": "recordings",
+                                        "mountPath": "/vgw-media-relay/recordings"
+                                      }
+                                    ],
 						"terminationMessagePath": "/dev/termination-log",
 						"imagePullPolicy": "IfNotPresent"
 					}, {
