@@ -1,164 +1,154 @@
 {
-	"kind": "Deployment",
-	"apiVersion": "extensions/v1beta1",
-	"metadata": {
-		"name": "vgw",
-		"creationTimestamp": null,
-		"labels": {
-			"service": "vgw"
-		}
-	},
-	"spec": {
-		"replicas": 1,
-		"selector": {
-			"matchLabels": {
-				"service": "vgw"
-			}
-		},
-		"template": {
-			"metadata": {
-				"creationTimestamp": null,
-				"labels": {
-					"service": "vgw"
-				}
-			},
-			"spec": {
-                "volumes": [
-                  {
-                    "name": "recordings",
-                    "emptyDir" : {}
-                  }
-                ],
-				"hostNetwork": true,
-				"imagePullSecrets": [{
-						"name": "admin.registrykey"
-					}
-				],
-				"containers": [{
-						"name": "vgw-media-relay",
-						"image": "ibmcom/voice-gateway-mr:latest",
-						"ports": [{
-								"containerPort": 8080,
-								"hostPort": 8080,
-								"protocol": "TCP"
-							}
-						],
-						"command": ["/bin/sh"],
-						"args": ["-c", "export WATSON_RELAY_SDP_ADDRESS=$(hostname -I | tr -s ' ' '\n' | grep -Ev '^10.*|^172.*' | head -1); exec /vgw-media-relay/bin/rtp-relay"],
-						"env": [{
-                                "name": "ENABLE_RECORDING",
-                                "value": "false"
-                              },{
-								"name": "RTP_UDP_PORT_RANGE",
-								"value": "16384-16394"
-							}, {
-								"name": "CLUSTER_WORKERS",
-								"value": "0"
-							}, {
-								"name": "RTP_RELAY_LOGLEVEL",
-								"value": "DEBUG"
-							}, {
-								"name": "RTP_RELAY_RECORD",
-								"value": "false"
-							}, {
-								"name": "RTP_PORT",
-								"value": "8080"
-							}, {
-								"name": "WATSON_STT_USERNAME",
-								"value": ""
-							}, {
-								"name": "WATSON_STT_PASSWORD",
-								"value": ""
-							}, {
-								"name": "WATSON_STT_URL",
-								"value": "https://stream.watsonplatform.net/speech-to-text/api"
-							}, {
-								"name": "WATSON_TTS_USERNAME",
-								"value": ""
-							}, {
-								"name": "WATSON_TTS_PASSWORD",
-								"value": ""
-							}, {
-								"name": "WATSON_TTS_VOICE",
-								"value": "en-US_MichaelVoice"
-							}, {
-								"name": "WATSON_TTS_URL",
-								"value": "https://stream.watsonplatform.net/text-to-speech/api"
-							}
-						],
-						"resources": {},
-                        "volumeMounts": [
-                                      {
-                                        "name": "recordings",
-                                        "mountPath": "/vgw-media-relay/recordings"
-                                      }
-                                    ],
-						"terminationMessagePath": "/dev/termination-log",
-						"imagePullPolicy": "IfNotPresent"
-					}, {
-						"name": "vgw-sip-orchestrator",
-						"image": "ibmcom/voice-gateway-so:latest",
-						"ports": [{
-								"containerPort": 5060,
-								"hostPort": 5060,
-								"protocol": "TCP"
-							}, {
-								"containerPort": 5060,
-								"hostPort": 5060,
-								"protocol": "UDP"
-							}
-						],
-						"command": ["/bin/sh"],
-						"args": ["-c", "export SIP_HOST=$(hostname -I | tr -s ' ' '\n' | grep -Ev '^10.*|^172.*' | head -1); exec /opt/ibm/wlp/bin/server run defaultServer"],
-						"env": [{
-								"name": "MEDIA_RELAY_HOST",
-								"value": "localhost:8080"
-							}, {
-								"name": "SIP_PORT",
-								"value": "5060"
-							}, {
-								"name": "WATSON_CONVERSATION_WORKSPACE_ID",
-								"value": ""
-							}, {
-								"name": "WATSON_CONVERSATION_USERNAME",
-								"value": ""
-							}, {
-								"name": "WATSON_CONVERSATION_PASSWORD",
-								"value": ""
-							}, {
-								"name": "WATSON_CONVERSATION_URL",
-								"value": "https://gateway.watsonplatform.net/conversation/api"
-							}, {
-								"name": "NUMCONV_PLUGIN_ENABLE",
-								"value": "false"
-							}, {
-								"name": "TAGS_PLUGIN_ENABLE",
-								"value": "false"
-							}, {
-								"name": "MQTT_PLUGIN_ENABLE",
-								"value": "false"
-							}, {
-								"name": "ENABLE_AUDIT_MESSAGES",
-								"value": "true"
-							}, {
-								"name": "ENABLE_TRANSCRIPTION_AUDIT_MESSAGES",
-								"value": "true"
-							}, {
-								"name": "LOG_LEVEL",
-								"value": "all"
-							}
-						],
-						"resources": {},
-						"terminationMessagePath": "/dev/termination-log",
-						"imagePullPolicy": "IfNotPresent"
-					}
-				],
-				"restartPolicy": "Always",
-				"terminationGracePeriodSeconds": 30,
-				"dnsPolicy": "ClusterFirst",
-				"securityContext": {}
-			}
-		}
-	},
-	"status": {}
+  "kind": "Deployment",
+  "apiVersion": "extensions/v1beta1",
+  "metadata": {
+    "name": "vgw",
+    "creationTimestamp": null,
+    "labels": {
+      "service": "vgw"
+    }
+  },
+  "spec": {
+    "replicas": 1,
+    "selector": {
+      "matchLabels": {
+        "service": "vgw"
+      }
+    },
+    "template": {
+      "metadata": {
+        "creationTimestamp": null,
+        "labels": {
+          "service": "vgw"
+        }
+      },
+      "spec": {
+        "volumes": [{
+          "name": "recordings",
+          "emptyDir": {}
+        }],
+        "hostNetwork": true,
+        "imagePullSecrets": [{
+          "name": "admin.registrykey"
+        }],
+        "containers": [{
+          "name": "vgw-media-relay",
+          "image": "ibmcom/voice-gateway-mr:latest",
+          "ports": [{
+            "containerPort": 8080,
+            "hostPort": 8080,
+            "protocol": "TCP"
+          }],
+          "command": ["/bin/sh"],
+          "args": ["-c", "export WATSON_RELAY_SDP_ADDRESS=$(hostname -I | tr -s ' ' '\n' | grep -Ev '^10.*|^172.*' | head -1); exec /vgw-media-relay/bin/rtp-relay"],
+          "env": [{
+            "name": "ENABLE_RECORDING",
+            "value": "false"
+          }, {
+            "name": "RTP_UDP_PORT_RANGE",
+            "value": "16384-16394"
+          }, {
+            "name": "CLUSTER_WORKERS",
+            "value": "0"
+          }, {
+            "name": "RTP_RELAY_LOGLEVEL",
+            "value": "DEBUG"
+          }, {
+            "name": "RTP_RELAY_RECORD",
+            "value": "false"
+          }, {
+            "name": "RTP_PORT",
+            "value": "8080"
+          }, {
+            "name": "WATSON_STT_USERNAME",
+            "value": ""
+          }, {
+            "name": "WATSON_STT_PASSWORD",
+            "value": ""
+          }, {
+            "name": "WATSON_STT_URL",
+            "value": "https://stream.watsonplatform.net/speech-to-text/api"
+          }, {
+            "name": "WATSON_TTS_USERNAME",
+            "value": ""
+          }, {
+            "name": "WATSON_TTS_PASSWORD",
+            "value": ""
+          }, {
+            "name": "WATSON_TTS_VOICE",
+            "value": "en-US_MichaelVoice"
+          }, {
+            "name": "WATSON_TTS_URL",
+            "value": "https://stream.watsonplatform.net/text-to-speech/api"
+          }],
+          "resources": {},
+          "volumeMounts": [{
+            "name": "recordings",
+            "mountPath": "/vgw-media-relay/recordings"
+          }],
+          "terminationMessagePath": "/dev/termination-log",
+          "imagePullPolicy": "IfNotPresent"
+        }, {
+          "name": "vgw-sip-orchestrator",
+          "image": "ibmcom/voice-gateway-so:latest",
+          "ports": [{
+            "containerPort": 5060,
+            "hostPort": 5060,
+            "protocol": "TCP"
+          }, {
+            "containerPort": 5060,
+            "hostPort": 5060,
+            "protocol": "UDP"
+          }],
+          "command": ["/bin/sh"],
+          "args": ["-c", "export SIP_HOST=$(hostname -I | tr -s ' ' '\n' | grep -Ev '^10.*|^172.*' | head -1); exec /opt/ibm/wlp/bin/server run defaultServer"],
+          "env": [{
+            "name": "MEDIA_RELAY_HOST",
+            "value": "localhost:8080"
+          }, {
+            "name": "SIP_PORT",
+            "value": "5060"
+          }, {
+            "name": "WATSON_CONVERSATION_WORKSPACE_ID",
+            "value": ""
+          }, {
+            "name": "WATSON_CONVERSATION_USERNAME",
+            "value": ""
+          }, {
+            "name": "WATSON_CONVERSATION_PASSWORD",
+            "value": ""
+          }, {
+            "name": "WATSON_CONVERSATION_URL",
+            "value": "https://gateway.watsonplatform.net/conversation/api"
+          }, {
+            "name": "NUMCONV_PLUGIN_ENABLE",
+            "value": "false"
+          }, {
+            "name": "TAGS_PLUGIN_ENABLE",
+            "value": "false"
+          }, {
+            "name": "MQTT_PLUGIN_ENABLE",
+            "value": "false"
+          }, {
+            "name": "ENABLE_AUDIT_MESSAGES",
+            "value": "true"
+          }, {
+            "name": "ENABLE_TRANSCRIPTION_AUDIT_MESSAGES",
+            "value": "true"
+          }, {
+            "name": "LOG_LEVEL",
+            "value": "all"
+          }],
+          "resources": {},
+          "terminationMessagePath": "/dev/termination-log",
+          "imagePullPolicy": "IfNotPresent"
+        }],
+        "restartPolicy": "Always",
+        "terminationGracePeriodSeconds": 30,
+        "dnsPolicy": "ClusterFirst",
+        "securityContext": {}
+      }
+    }
+  },
+  "status": {}
 }
