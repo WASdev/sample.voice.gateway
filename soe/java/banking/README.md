@@ -1,43 +1,43 @@
-Java based Service Orchestration Engine sample (SOE)
+# Java based Service Orchestration Engine sample (SOE)
 
 Java based Voice Proxy for integrating Voice Gateway for Watson, Watson Conversation Service and a clients backend APIs.
 Banking Example
 
-Purpose
+## Purpose
 
 The purpose of this project is to show how a developer can integrate the Watson Conversation service with the voice gateway in a more realistic way. A way that is more common in a clients environment either for a proof of concept or a production implementation. This demo focuses on a banking example, where the caller can ask about account balances and perform basic credit card actions on a sample database of user profiles.
 
-Background
+## Background
 
 By default the IBM Voice Gateway (VGW) can communicate with the Watson Conversation Service (WCS) by using the REST services provided by the WCS. The service uses a single REST API for all conversation interactions. VGW exploits this API by creating the appropriate JSON payload when transcribing the spoken words from the caller and invoking the API. The challenge with VGW communicating directly with WCS is that there is no way to personalize the conversation interactions. WCS only maintains static information based on any one particular question being asked. If there is a desire to have dynamic responses, there needs to be a way for the runtime to make API calls to other services to lookup the additional information and provide it as part the response to either WCS or to VGW. This is where the voice proxy idea comes in.
 
 Since WCS only has one API for the conversation, it is very easy to impersonate (proxy) that API. Also since the JSON format used in WCS is well documented, it is easy to ensure that the proxy can make updates and communicate with WCS on behalf of any invoker. VGW being the most interesting.
 
-Goal
+## Goal
 
 The goal of this sample is for the user to get an understanding of how to create a Proxy that communicates with both VGW and WCS. You can leverage this code or you can see the high level flow and create your own if Java isn't your thing. Some might prefer Node.JS, Python or even Node-Red.
 
-Sample Watson Conversation Workspace
+## Sample Watson Conversation Workspace
 
 We have provided a sample Conversation Workspace as a part of the tutorial. The JSON is in the workspace folder. The sample workspace is a typical call center like scenario for banking.
 
 We have 3 Entities define as part of the tutorial.
 
-    Loans (Auto loan, Mortgage and Student Loan)
-    Accounts (Checking, Savings and Money Market)
-    Credit Card
+1. Loans (Auto loan, Mortgage and Student Loan)
+2. Accounts (Checking, Savings and Money Market)
+3. Credit Card
 
 We have defined four intents. When you open the workspace you can see what they are. But at a high level the following intents are available:
 
-    Information: General information on the loans or accounts
-    Balance: Check the balance of an account or a loan
-    Payment: Make a payment on a loan from one of the accounts
-    Activation: Activate a credit card
+1. Information: General information on the loans or accounts
+2. Balance: Check the balance of an account or a loan
+3. Payment: Make a payment on a loan from one of the accounts
+4. Activation: Activate a credit card
 
 
-How to get this project working
+## How to get this project working
 
-Pre-requisites
+### Pre-requisites
 
 The base assumption is you are using the IBM Voice Gateway and want to add dynamic responses based on the dialog from Watson Conversation Service. Also, we will assume you already have the IBM Voice Gateway installed and are ready to connect it to a WCS instance. There are several pieces of information needed for this tutorial.
 
@@ -66,7 +66,7 @@ Conversation Workspace ID (You get this from your BlueMix Dashboard for the Conv
 Userid to connect to the Conversation Service (You get this from your BlueMix Dashboard for the Conversation Service)
 Password to connect to the Conversation Service (You get this from your BlueMix Dashboard for the Conversation Service)
 
-Create a Liberty server definition:
+##Create a Liberty server definition:
 
 In the Servers view in Eclipse right-click -> New -> Server
 Select IBM -> WebSphere Application Server Liberty
@@ -107,7 +107,7 @@ You can now start the server by starting the server in eclipse. You should see s
 [AUDIT   ] CWWKZ0058I: Monitoring dropins for applications.
 [AUDIT   ] CWWKT0016I: Web application available (default_host): http://localhost:9147/SOE/
 
-Run your application locally on Liberty:
+##Run your application locally on Liberty:
 
 Create the war file by running:
 mvn package
@@ -122,7 +122,7 @@ In a few minutes, your application should be running at the URL you chose.
 
 7. The user can now call into Voice Gateway normally and the call will be sent through the SOE.
 
-Voice Script
+#Voice Script
 
 In an effort to help with using the demo it would be beneficial to know what questions to ask WCS. Below are the sample questions. Remember, there is an API that keeps track of the balances, so if you withdraw too much money you will get errors.
 
