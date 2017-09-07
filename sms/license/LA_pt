@@ -1,0 +1,285 @@
+INFORMAÇÕES DA LICENÇA
+
+Os Programas listados abaixo são licenciados sob os/ao abrigo dos termos e condições da seguinte Informação sobre a Licença a seguir, além dos termos de licença do Programa acordados anteriormente pelo Cliente e pela IBM. Se o Cliente não tiver acordado anteriormente com os termos de licença em vigor para o Programa, o Contrato de Licença Internacional para Release Antecipado de Programas (Z125-5544-05) será aplicável.
+
+Nome do Programa (Número do Programa):
+SMS feature for Voice Gateway (Early Release)
+
+Os termos padrão a seguir se aplicam o uso do Programa pelo Licenciado.
+
+Período de Teste
+
+O período de teste começa na data em que o Licenciado concorda com os termos deste Contrato/Acordo e termina em 2018-04-01.
+
+Confidencialidade
+
+O Licenciado concorda em tratar as informações a seguir como "Informações Confidenciais IBM" independentemente de conterem indicações restritivas apontando sua natureza confidencial ou de terem sido identificadas como Informações Confidenciais IBM anteriormente à divulgação: (a) o Programa, (b) qualquer informações fornecida para o Licenciado pela IBM com relação ao Programa, incluindo, mas não se limitando aos materiais relacionados do Programa, tais como especificações, planos, tendências, estratégias, benchmarks, características de desempenho, comparações e outras avaliações do Programa, (c) quaisquer informações relacionadas ao acesso do Licenciado ao Programa, incluindo, mas não se limitando a senhas ou outros códigos de acesso e (d) todos os dados, feedback, sugestões e/ou materiais escritos relacionados ao Programa que o Licenciado fornece à IBM. O Licenciado está autorizado a utilizar as Informações Confidenciais IBM com o propósito/fim para os quais foram divulgadas ou de qualquer outra forma, para o benefício da IBM. Não obstante quaisquer outros termos deste Contrato/Acordo, o Licenciado concorda em não comunicar, publicar, disseminar ou de qualquer outra forma, discutir com ou divulgar para qualquer terceiro as Informações Confidenciais IBM (incluindo, mas não se limitando aos artigos, documentos ou materiais escritos pertencentes às Informações Confidenciais IBM) antes que a IBM torne tais Informações Confidenciais IBM publicamente disponíveis sem um contrato de não-divulgação.
+
+O Licenciado concorda em utilizar o mesmo cuidado e discrição para evitar a divulgação das Informações Confidenciais IBM que o Licenciado utilizar com suas próprias informações semelhantes que não deseja divulgar, mas sob nenhuma circunstância, tal grau de cuidado deverá ser menor do que o cuidado razoável. As obrigações do Licenciado em relação às Informações Confidenciais IBM continuarão por um período de dois anos a partir do recebimento das Informações Confidenciais IBM do Licenciado. O Licenciado concorda em não divulgar à IBM quaisquer informações que sejam consideradas confidenciais ou proprietárias do Licenciado ou de qualquer terceiro, exceto/excepto sob um/ao abrigo de um contrato/acordo confidencial assinado, separado e por escrito.
+
+Não obstante a existência de qualquer acordo/contrato de confidencialidade ou qualquer outro acordo/contrato que o Licenciado possa ter com a IBM em relação às informações confidenciais, os parágrafos anteriores regularão o tratamento das Informações Confidenciais IBM.
+
+Usos Proibidos
+
+O Licenciado não pode usar ou autorizar terceiros a usarem o Programa de maneira independente ou em combinação com outros serviços ou produtos, em apoio a qualquer das seguintes atividades de alto risco: design, construção, controle ou manutenção de instalações nucleares, sistemas de transporte público, sistemas de controle de tráfego aéreo, sistemas de controle automotivo, sistemas de armas, navegação ou comunicação de aeronaves ou qualquer outra atividade em que a falha do programa possa causar uma ameaça de morte ou ferimento grave.
+
+L/N:  L-MCAO-AQKG6J
+D/N:  L-MCAO-AQKG6J
+P/N:  L-MCAO-AQKG6J
+
+
+Contrato de Licença Internacional para Release Antecipado de Programas
+
+Parte 1 - Termos Gerais
+
+AO FAZER O DOWNLOAD, INSTALAR, COPIAR, ACESSAR, CLICAR NO BOTÃO "ACEITAR" OU DE QUALQUER OUTRA FORMA UTILIZAR O PROGRAMA, O LICENCIADO ACEITA OS TERMOS DESTE CONTRATO. SE UM TERCEIRO ACEITAR ESTES TERMOS EM NOME DO LICENCIADO, O TERCEIRO DECLARA E GARANTE QUE POSSUI PLENOS PODERES PARA VINCULAR O LICENCIADO A ESTES TERMOS. CASO O CLIENTE NÃO CONCORDE COM ESTES TERMOS,
+
+* NÃO DEVERÁ FAZER DOWNLOAD, INSTALAR, COPIAR, ACESSAR, CLICAR NO BOTÃO "ACEITAR" NEM UTILIZAR O PROGRAMA; E
+
+* DEVERÁ DEVOLVER IMEDIATAMENTE À IBM A MÍDIA NÃO UTILIZADA E A DOCUMENTAÇÃO. SE O PROGRAMA FOI OBTIDO POR DOWNLOAD, O CLIENTE COMPROMETE-SE A DESTRUIR TODAS AS CÓPIAS DO PROGRAMA.
+
+1. Definições
+
+"Uso Autorizado" - o nível especificado no qual o Licenciado está autorizado a executar ou a operar o Programa. Tal nível pode ser medido pelo número de utilizadores, por milhões de unidades de serviços ("MSUs"), por Unidades de Valor do Processador ("PVUs") ou outro nível de uso especificado pela IBM.
+
+"Release Antecipado" - é um release de um Programa para propósitos de teste antes de torná-lo disponível para a comercialização, que pode ainda estar em desenvolvimento, sendo assim, potencialmente instável.
+
+"IBM" - é a International Business Machines Corporation ou uma das suas subsidiárias.
+
+"Informações sobre Licença" ("LI") - um documento que fornece informações e quaisquer termos adicionais específicos para um Programa. A LI do Programa também pode ser encontrada no diretório do Programa, através da utilização de um comando do sistema, ou como um folheto incluído com o Programa.
+
+"Programa" - os itens a seguir, incluindo o original e todas as cópias integrais ou parciais: 1) instruções e dados legíveis por máquinas; 2) componentes, arquivos e módulos; 3) conteúdo audiovisual (tais como imagens, texto, registros ou ilustrações) e 4) materiais licenciados relacionados (tais como chaves e documentação).
+
+"Período de Teste" - o período durante o qual o Licenciado testa um Programa que não foi disponibilizado para comercialização aos clientes.
+
+2. Estrutura do Contrato
+
+Este Contrato inclui a Parte 1 - Termos Gerais, a Parte 2 - Termos Exclusivos do País (caso haja) e a LI, e representa o acordo completo entre o Licenciado e a IBM relativo ao uso do Programa, e substitui qualquer comunicação prévia oral ou escrita entre o Licenciado e a IBM relativamente ao uso do Programa pelo Licenciado. Os termos da Parte 2 podem substituir ou modificar os termos da Parte 1. Em caso de conflito, a LI prevalece sobre ambas as Partes.
+
+3. Concessão de Licença
+
+O Programa é de propriedade da IBM ou de um fornecedor da IBM, sujeito a direitos autorais e é licenciado, e não vendido.
+
+A IBM concede ao Licenciado uma licença limitada, não exclusiva e intransferível para 1) fazer o download, instalar e usar o Programa durante o Período de Teste até o limite do Uso Autorizado especificado na LI, somente para fins de teste e para fornecer feedback à IBM e 2) fazer uma cópia de "backup", tudo isso desde que
+
+a. o Licenciado tenha obtido o Programa legalmente e cumpra com os termos deste Contrato;
+
+b. a cópia de backup não seja executada a menos que o Programa do qual foi feito backup não possa ser executado;
+
+c. o Licenciado reproduza todos os avisos de direitos autorais e todas as outras indicações de propriedade em cada cópia total ou parcial do Programa;
+
+d. o Licenciado garanta que qualquer pessoa que use o Programa (via acesso local ou remoto) 1) o faça apenas em nome do Licenciado e 2) cumpra com todos os termos deste Contrato;
+
+e. o Licenciado não 1) use o Programa para propósitos/fins produtivos ou, de outra forma, use, copie, modifique ou distribua o Programa exceto/excepto conforme expressamente permitido neste Contrato/Acordo; 2) faça engenharia reversa, compilação reversa ou, de outra forma, converta ou faça engenharia reversa no Programa, exceto/excepto conforme expressamente permitido por lei sem a possibilidade de renúncia contratual; 3) use qualquer um dos componentes, arquivos/ficheiros, módulos, conteúdo áudio-visual ou materiais licenciados relacionados do Programa separadamente desse Programa; 4) sublicencie, alugue ou arrende o Programa ou 5) use o Programa para hospedagem de aplicativo/aplicação comercial e
+
+f. caso o Licenciado obtenha este Programa como um Programa de Suporte, que o Licenciado use este Programa apenas para suportar o Programa Principal e sujeito a quaisquer limitações na licença para o Programa Principal, ou, caso o Licenciado obtenha este Programa como um Programa Principal, que o Licenciado use todos os Programas de Suporte apenas para suportar este Programa e sujeito a quaisquer limitações neste Contrato. Para fins deste Item "f," um "Programa de Suporte" é um Programa que faz parte de outro Programa IBM ("Programa Principal") e identificado como um Programa de Suporte na LI do Programa Principal. (Para obter uma licença separada para um Programa de Suporte sem essas restrições, o licenciado deve entrar em contato com a empresa de terceiros da qual ele obteve o Programa de Suporte).
+
+Esta licença é aplicável a cada cópia do Programa que o Licenciado fizer.
+
+3.1 Atualizações, Correções e Patches
+
+Quando o Licenciado recebe uma atualização, uma correção ou um patch para um Programa, aceita quaisquer termos adicionais ou diferentes que são aplicáveis a tal atualização, correção ou patch que são especificados em sua LI. Se nenhum termo adicional ou diferente for fornecido, então a atualização, a correção ou o patch estarão exclusivamente sujeitos a este Contrato. Se o Programa for substituído por uma atualização, o Licenciado concorda em interromper imediatamente o uso do Programa substituído.
+
+3.2 Termo e Rescisão
+
+O Período de Teste começa na data em que o Licenciado aceita os termos deste Contrato e termina com o que que ocorrer primeiro entre 1) o final da duração ou a data especificada pela IBM nas Informações sobre Licença ou em um documento de transação, 2) a data na qual o Programa automaticamente é desativado, ou 3) a data na qual a IBM disponibiliza comercialmente o Programa. A licença do Licenciado para o Programa termina no final do Período de Teste, e o Licenciado concorda prontamente em interromper o uso do Programa e destruir todas as cópias do Programa num prazo de 10 dias a partir do final do Período de Teste.
+
+A IBM pode rescindir a licença do Licenciado caso este não cumpra com os termos deste Contrato.Se a licença for rescindida por qualquer motivo por qualquer uma das partes, o Licenciado concorda em interromper imediatamente o uso do Programa e destruir todas as suas cópias.
+
+O PROGRAMA PODE CONTER UM DISPOSITIVO DE DESATIVAÇÃO QUE O IMPEDIRÁ DE SER UTILIZADO DEPOIS QUE O PERÍODO DE TESTE TERMINAR. O LICENCIADO CONCORDA EM NÃO INTERFERIR NO DISPOSITIVO DE DESATIVAÇÃO DO PROGRAMA. O LICENCIADO DEVE TOMAR TODAS AS PRECAUÇÕES PARA EVITAR QUALQUER PERDA DE DADOS QUE POSSA RESULTAR QUANDO O PROGRAMA NÃO PUDER MAIS SER UTILIZADO.
+
+4. Encargos
+
+Não há encargos para o uso do Programa durante o Período de Teste.
+
+5. Direitos sobre os Dados
+
+O Licenciado atribui a IBM todo direito, título e interesse (inclusive o direitos autorais/de autor) em quaisquer dados, sugestões ou materiais impressos que 1) estejam relacionados ao Programa e 2) o Licenciado fornece a IBM. Mediante solicitação da IBM, o Licenciado assinará documentos adicionais necessários à cessão de tais direitos. Além dos termos anteriores, o Licenciado concede à IBM um direito não exclusivo, irrevogável, irrestrito, mundial e pago para a) incluir em qualquer produto ou serviço quaisquer ideias, conhecimentos, conceitos, técnicas, invenções, descobertas ou melhorias, de patente ou não, que o Licenciado venha a fornecer à IBM com relação ao Programa b) usar, fabricar e comercializar tal produto ou serviço, e c) permitir que outros façam uso dessas ações descritas previamente.
+
+6. Sem Garantias
+
+SUJEITO A QUAISQUER GARANTIAS LEGAIS QUE NÃO POSSAM SER EXCLUÍDAS, A IBM NÃO DISPONIBILIZA GARANTIAS OU CONDIÇÕES, EXPRESSAS OU IMPLÍCITAS, A RESPEITO DO PROGRAMA OU SUPORTE, SE HOUVER, INCLUINDO MAS NÃO SE LIMITANDO A, QUAISQUER GARANTIAS OU CONDIÇÕES IMPLÍCITAS DE COMERCIALIZAÇÃO, QUALIDADE DE SATISFAÇÃO, ADEQUAÇÃO A UM DETERMINADO PROPÓSITO E DIREITO DE PROPRIEDADE E QUALQUER GARANTIA OU CONDIÇÃO DE NÃO-VIOLAÇÃO.
+
+ALGUNS ESTADOS OU JURISDIÇÕES NÃO PERMITEM A EXCLUSÃO DE GARANTIAS EXPRESSAS OU IMPLÍCITAS, PELO QUE, A EXCLUSÃO ACIMA PODE NÃO SE APLICAR AO LICENCIADO. NESTE CASO, TAIS GARANTIAS ESTÃO LIMITADAS À DURAÇÃO DO PERÍODO MÍNIMO EXIGIDO POR LEI. NENHUMA GARANTIA É APLICÁVEL APÓS TAL PERÍODO. ALGUNS ESTADOS OU JURISDIÇÕES NÃO PERMITEM LIMITAÇÕES RELATIVAS À DURAÇÃO DE UMA GARANTIA IMPLÍCITA, DE FORMA QUE, A LIMITAÇÃO ACIMA PODE NÃO SE APLICAR AO LICENCIADO. O LICENCIADO PODE TER OUTROS DIREITOS QUE VARIAM DE ESTADO PARA ESTADO OU DE JURISDIÇÃO PARA JURISDIÇÃO.
+
+AS RENÚNCIAS DE RESPONSABILIDADE OU EXCLUSÕES NESSA SEÇÃO 6 TAMBÉM SE APLICAM A QUAISQUER DESENVOLVEDORES DE PROGRAMA E FORNECEDORES DA IBM.
+
+FABRICANTES, FORNECEDORES OU EDITORES DE PROGRAMAS NÃO IBM PODEM FORNECER AS SUAS PRÓPRIAS GARANTIAS.
+
+A IBM NÃO FORNECE SUPORTE DE NENHUM TIPO, A MENOS QUE A IBM ESPECIFIQUE DE OUTRA FORMA. NESSE CASO, QUALQUER SUPORTE FORNECIDO PELA IBM ESTÁ SUJEITO ÀS RENÚNCIAS DE RESPONSABILIDADE E EXCLUSÕES DESTA SEÇÃO 6.
+
+7. Dados e Bancos de Dados do Licenciado
+
+Para auxiliar o Licenciado no isolamento da causa de um problema com o Programa, a IBM pode solicitar que o Licenciado 1) permita que a IBM acesse seu sistema remotamente ou 2) envie informações ou dados do seu sistema para a IBM. Contudo,a IBM não está obrigada a fornecer tal assistência, a menos que a IBM e o Licenciado celebrem um contrato por escrito separado ao abrigo do qual a IBM concorde em fornecer ao Licenciado tal tipo de suporte, que esteja para além das obrigações de garantia da IBM ao abrigo deste Contrato. Neste caso, a IBM utilizará informações sobre erros e problemas para melhorar os seus produtos e serviços, além de auxiliar com o fornecimento de ofertas de suporte relacionadas. Para esses fins, a IBM pode utilizar entidades e subcontratados da IBM (incluindo em um ou mais países que não aquele no qual o Licenciado está localizado) e o Licenciado autoriza a IBM a fazê-lo.
+
+O Licenciado permanece responsável por 1) quaisquer dados e pelo conteúdo de qualquer base de dados que disponibilize à IBM, 2) pela seleção e implementação de procedimentos e controles relativos ao acesso, à segurança, à encriptação, ao uso e à transmissão de dados (incluindo quaisquer dados pessoalmente identificáveis) e 3) pelo backup e pela recuperação de qualquer base de dados e quaisquer dados armazenados. O Licenciado não enviará ou fornecerá à IBM acesso a quaisquer informações pessoalmente identificáveis, seja no formato de dados ou em qualquer outro formato e será responsável por custas razoáveis e outros montantes em que a IBM possa incorrer em relação a qualquer uma destas informações erroneamente fornecidas à IBM ou pela perda ou divulgação de tais informações pela IBM, incluindo aqueles montantes que resultem de qualquer reclamação de terceiros.
+
+8. Limitação de Responsabilidade
+
+As limitações e exclusões nesta Seção 8 (Limitação de Responsabilidade) aplicam-se até o momento em que não sejam proibidas por lei aplicável sem possibilidade de renúncia contratual.
+
+8.1 Itens Sobre os Quais a IBM Pode Ter Responsabilidade
+
+Podem surgir circunstâncias em que o Licenciado tenha direito de exigir que a IBM o compense por danos sofridos. Independentemente do fundamento que faculta o Cliente a reivindicar ressarcimentos por danos causados pela IBM, a responsabilidade total da IBM pela soma de todas as demandas advindas de ou relacionadas a cada Programa, ou proveniente de outra maneira desse Contrato não excederá o valor de qualquer dano direto comprovadamente incorrido pelo Licenciado em até $10.000 dólares americanos equivalente em moeda local.
+
+Este limite também se aplica a qualquer entidade que desenvolva Programas e a fornecedores de Programas da IBM. Este é o valor máximo pelo qual a IBM, os seus fornecedores e as entidade que desenvolvem Programas são coletivamente responsáveis.
+
+8.2 Itens Sobre os Quais a IBM Não Tem Responsabilidade
+
+EM CASO ALGUM A IBM, OS SEUS FORNECEDORES OU ENTIDADES QUE DESENVOLVEM PROGRAMAS SÃO RESPONSÁVEIS PELOS SEGUINTES DANOS, AINDA QUE TENHAM SIDO INFORMADOS SOBRE A POSSIBILIDADE DA SUA OCORRÊNCIA:
+
+a. PERDA DE DADOS OU DANOS NOS DADOS;
+
+b. DANOS ESPECIAIS, INCIDENTAIS, EXEMPLARES OU DANOS INDIRETOS; OU QUAISQUER DANOS ECONÔMICOS CONSEQUENCIAIS; OU
+
+c. LUCROS CESSANTES, PERDA DE NEGÓCIOS, RECEITAS, CLIENTELA, OU POUPANÇAS PERDIDAS
+
+9. Verificação de Adequação
+
+Para fins desta Seção 9 (Verificação de Adequação), os "Termos de Release Antecipado de Programas" referem-se a 1) esse Contrato e emendas aplicáveis e documentos de transação fornecidos pela IBM, e 2) políticas de software IBM que possam ser encontradas no Web site IBM Software Policy (www.ibm.com/softwarepolicies), incluindo mas não se limitando àquelas políticas a respeito de backup, preço de sub-capacidade e migração.
+
+Os direitos e obrigações definidos nesta Seção 9 permanecem em efeito durante o período em que o Programa está licenciado ao Licenciado e por dois anos subsequentes.
+
+9.1 Processo de Verificação
+
+O Licenciado concorda em criar, manter e fornecer a IBM e a seus auditores registros exatos gravados, saídas de ferramenta do sistema e outras informações do sistema suficientes para fornecer verificação de auditoria sobre o que o Licenciado utiliza de todos os Programas de acordo com os Termos de Release Antecipado de Programas, incluindo mas não se limitando a todos os termos de licenciamento e qualificação de preço aplicáveis da IBM. O Licenciado é responsável por 1) assegurar que não exceda seu Uso Autorizado, e 2) permanecer em conformidade com os Termos de Release Antecipado de Programas.
+
+Mediante notificação com prazo razoável, a IBM pode verificar a conformidade do Licenciado sobre os Termos de Release Antecipado de Programas em todos os locais e para todos os ambientes nos quais o Licenciado utiliza os Programas (para quaisquer fins), sujeitos aos Termos de Release Antecipado de Programas. Esta verificação será realizada nas instalações do Cliente durante o seu horário de trabalho e de forma a minimizar o impacto no negócio do Licenciado. A IBM pode utilizar um auditor independente para auxiliar em tal verificação, desde que a IBM possua um acordo de confidencialidade por escrito em vigor com tal auditor.
+
+9.2 Resolução
+
+A IBM notificará o licenciado por escrito se qualquer verificação indicar que o Licenciado utilizou qualquer Programa excedendo seu Uso Autorizado ou se, de outra maneira, não cumpriu com os Termos de Release Antecipado de Programas. O Licenciado concorda em pagar imediatamente e diretamente à IBM pelos encargos que a IBM especificar em uma fatura por: 1) qualquer uso em excesso, 2) suporte para tal uso em excesso para o menor período entre a duração de tal uso em excesso ou dois anos e 3) quaisquer encargos adicionais e outras obrigações, apurados como resultado de tal verificação.
+
+10. Avisos de Terceiros
+
+O Programa pode incluir código de terceiros que a IBM, e não o terceiro, licencia ao Licenciado sob os termos deste Contrato. As Notificações, se houver algum, para o código de terceiros ("Notificações de Terceiros") são incluídos apenas para informação do Licenciado. Estas notificações podem ser encontrados no(s) arquivos(s) do Programa denominado(s) AVISOS ("NOTICES"). Informações sobre como obter o código fonte para determinado código de terceiros podem ser encontradas nos Notificações de Terceiros. Se nas Notificações de Terceiros, a IBM identificar o código de terceiros como "Código de Terceiros Modificável," a IBM autoriza o Licenciado a 1) modificar o Código de Terceiros Modificável e 2) inverter a engenharia dos módulos do Programa que estabelecem interface diretamente com o Código de Terceiros Modificável desde que seja apenas com o fim de "debugging" às modificações do Licenciado em tal código de terceiros. As obrigações de serviço e suporte da IBM, se houver, aplicam-se apenas ao Programa não modificado.
+
+11. Geral
+
+a. Nada neste Contrato afeta quaisquer direitos estabelecidos por lei dos consumidores que não sejam passíveis de renúncia ou limitação contratual.
+
+b. Caso alguma disposição deste Contrato venha a ser considerada inválida ou ineficaz, as restantes disposições deste Contrato manter-se-ão em vigor.
+
+c. O Licenciado está proibido de exportar o Programa
+
+d. O Licenciado autoriza a International Business Machines Corporation e as suas subsidiárias (e seus sucessores e cessionários, entidades contratadas e Parceiros de Negócios IBM) a armazenar e a usar informações de contato comercial do Licenciado em qualquer lugar em que façam negócios, com respeito a produtos e serviços IBM ou na promoção do relacionamento comercial da IBM com o Licenciado.
+
+e. Cada uma das partes concederá à outra oportunidade razoável para cumprir com as suas obrigações ao abrigo deste Contrato antes de reclamar que a outra parte está em falta quanto ao cumprimento das suas obrigações. As partes tentarão resolver de boa-fé todas as disputas, desacordos ou reclamações entre elas relativas a este Contrato.
+
+f. Excepto se de outra forma exigido pela lei aplicável sem possibilidade de renúncia ou limitação contratual, 1) nenhuma das partes intentará acção judicial, independentemente da forma, resultante ou relacionada com este Contrato decorridos que sejam mais de dois anos após a ocorrência da causa da acção; e 2) após tal limite temporal, qualquer acção judicial resultante deste Contrato e todos os respectivos direitos relacionados com essa acção, prescreverão.
+
+g. Nenhuma das partes é responsável por falhas no cumprimento de quaisquer obrigações devido a causas fora do seu controle.
+
+h. Nenhum direito ou causa de ação de terceiros é criado por esse Contrato, nem a IBM é responsável por qualquer reclamação de terceiros contra o Licenciado, exceto quando permitido na Subseção 8.1 (Itens Sobre os Quais a IBM Pode ser Responsável) acima quanto a danos pessoais (inclusive morte) ou danos materiais sobre os quais a IBM é legalmente responsável também a terceiros.
+
+i. À extensão desse Contrato, nenhuma empresa de terceiros se baseia em qualquer declaração não especificada nesse Contrato, incluindo mas não se limitando a qualquer declaração a respeito de: 1) desempenho ou função do Programa, além do que está expressamente garantido na Seção 6 (Nenhuma Garantia) acima; 2) as experiências ou recomendações de terceiros; ou 3) quaisquer resultados ou economias que o Licenciado possa obter.
+
+j. A IBM assinou contratos com determinadas organizações (denominadas "Parceiros de Negócios IBM") para promover, comercializar e prestar suporte a determinados Programas. Os Parceiros de Negócio IBM permanecem independentes e separados da IBM. A IBM não é responsável por ações ou declarações dos Parceiros de Negócios IBM ou por quaisquer obrigações destes com o Licenciado.
+
+k. Os termos da licença e da indenização da propriedade intelectual de outros acordos do Licenciado com a IBM (tal como o Contrato de Produtos e Serviços IBM) não se aplicam às licenças do Programa concedidas sob os termos deste Contrato.
+
+l. A IBM não garante que qualquer versão do Programa que seja formalmente liberada ou comercialmente disponibilizada (se houver), será semelhante ou compatível com as versões de Release Antecipado.
+
+m. O Licenciado não pode ceder esse Contrato, na íntegra ou em partes, sem prévio consentimento por escrito da IBM. Qualquer tentativa neste sentido será nula.
+
+n. Quaisquer termos deste Contrato que pela sua natureza produzam os seus efeitos para além da data da denúncia, resolução ou rescisão produzirão efeitos até ao total cumprimento, aplicando-se a ambas as partes respectivos sucessores e representantes e cessionários.
+
+o. Ambas as partes concordam que todas as informações trocadas entre elas não são consideradas confidenciais. Se qualquer uma das partes exigir a troca de informações comerciais, isso será feito sob Contrato de confiabilidade assinado.
+
+12. Âmbito Geográfico e Lei Aplicável
+
+12.1 Legislação Aplicável
+
+Ambas as partes concordam com a aplicação das leis do país no qual o Licenciado obteve a licença do Programa para regular, interpretar e fazer cumprir todos os direitos, deveres e obrigações do Licenciado e da IBM que surjam, ou que estejam de algum modo relacionados como objeto deste Contrato, independentemente dos princípios referentes a conflitos de Leis.
+
+A Convenção das Nações Unidas não se aplica nos Contratos para Venda Internacional de Bens.
+
+12.2 Jurisdição
+
+Todos os direitos, deveres e obrigações estão sujeitos aos tribunais do país no qual o Licenciado obteve a licença do Programa.
+
+Parte 2 - Termos de Países Exclusivos
+
+Para licenças concedidas nos países identificados abaixo, os seguintes termos substituem ou modificam os termos referidos na Parte 1. Todos os termos na Parte 1 que não forem alterados por esses aditamentos permanecem inalterados e em vigor. Esta Parte 2 é organizada da seguinte forma:
+
+* Aditamentos de vários países à Parte 1, Seção 12 (Legislação Aplicável e Jurisdição);
+
+* Aditamento de países das Américas a outros termos do Contrato; e
+
+* Aditamento de países da Europa, Médio Oriente e África a outros termos do Contrato.
+
+Aditamentos de vários países à Parte 1, Seção 12 (Legislação Aplicável e Jurisdição)
+
+12.1 Legislação Aplicável
+
+A frase "as leis do país no qual o Licenciado obteve a licença do Programa" no primeiro parágrafo de 12.1 Legislação Aplicável é substituída pelas seguintes frases nos países abaixo:
+
+EUROPA, MÉDIO ORIENTE E ÁFRICA
+
+(1) Na Guiné-Bissau: as leis da França; e
+
+(2) Em Angola e Moçambique: as leis da Inglaterra.
+
+12.2 Jurisdição
+
+O parágrafo a seguir pertence a jurisdição e substitui a Subseção 12.2 (Jurisdição) quando se aplica aos países identificados abaixo:
+
+Todos os direitos, deveres e obrigações estão sujeitos aos tribunais do país no qual o Licenciado obteve a licença do Programa, salvo, nos países identificados abaixo, em que todos os litígios provenientes de ou relacionados com este Contrato serão apreciados e os procedimentos iniciados exclusivamente no seguinte tribunal:
+
+AMÉRICAS
+
+(1) No Brasil: o tribunal do Rio de Janeiro, RJ;
+
+EUROPA, MÉDIO ORIENTE E ÁFRICA
+
+(2) Na Guiné-Bissau: o Tribunal Comercial de Paris;
+
+(3) Em Angola, Moçambique e São Tomé e Príncipe: os tribunais ingleses; e
+
+(4) Em Portugal: os tribunais de Lisboa.
+
+ADITAMENTOS DA EUROPA, MÉDIO ORIENTE E ÁFRICA (EMEA)
+
+ESTADOS MEMBROS DA UNIÃO EUROPEIA
+
+6. Sem Garantias
+
+O seguinte está adicionado à Seção 6 (Nenhuma Garantia):
+
+Na União Europeia ("UE"), os consumidores têm direitos legais ao abrigo da legislação nacional aplicável que regula a venda de mercadorias para o consumidor. Tais direitos não são afetados pelas provisões definidas nesta Seção 6 (Sem Garantia).
+
+ESTADOS MEMBROS DA UE E PAÍSES IDENTIFICADOS ABAIXO
+
+Qualquer país Europeu que tenha promulgado legislação local de proteção ou privacidade de dados semelhante ao modelo da UE.
+
+11. Geral
+
+O seguinte substitui o Item 11.d:
+
+(1) Definições - Para propósito/fim deste Item 11.d, as seguintes definições adicionais se aplicam:
+
+(a) Informação de Contato de Negócio, - significa a informação de contato de caráter comercial divulgada pelo Licenciado à IBM, incluindo nomes, títulos profissionais, endereços profissionais, números de telefone e endereços de e-mail dos empregados e subcontratados do Licenciado. Para Áustria, Itália e Suíça, Informações de Contato de Negócios também incluem informações sobre o Licenciado e seus contratantes como entidades legais (por exemplo, os dados de renda do Licenciado e outras informações transacionais)
+
+(b) Pessoal de Contato de Negócios, - significa os empregados e subcontratados do Licenciado a quem a Informação de Contato de Negócios diz respeito.
+
+(c) Autoridade de Proteção de Dados, - significa a autoridade estabelecida pela Legislação de Proteção de Dados e de Comunicações Eletrônicas aplicável no país da UE, a autoridade responsável por supervisionar a proteção de dados pessoais nesse país ou (para qualquer dos itens anteriores) qualquer entidade sucessora devidamente nomeada para o efeito.
+
+(d) Proteção de Dados & Legislação de Comunicação Eletrônica - (i) a legislação local aplicável e regulamentações em vigor implementam as requisições da Diretiva dos EUA 95/46/EC (em proteção a indivíduos com respeito ao processamento de dados pessoais e à livre movimentação de tais dados) e da Diretiva dos EUA 2002/58/EC (a respeito do processamento de dados pessoas e proteção da privacidade no setor de comunicação eletrônica); ou (ii) para países não USA, a legislação e/ou regulamentação transmitida no país em questão com referência à proteção de dados pessoais e sobre a regulamentação de comunicação eletrônica que envolva dados pessoais, incluindo (para quaisquer itens expostos anteriormente) qualquer substituição estatutária ou modificação disso.
+
+(e) Grupo IBM, - significa International Business Machines Corporation de Armonk, Nova Iorque, EUA, as suas subsidiárias e os Parceiros de Negócios e subcontratados destas.
+
+(2) O Licenciado autoriza a IBM:
+
+(a) a processar e a usar a Informação de Contato de Negócios Grupo IBM para suporte ao Licenciado, incluindo o fornecimento de serviços de suporte, e com a finalidade de assegurar a gestão da relação comercial entre o Licenciado e o Grupo IBM, incluindo, sem limitação, entrar em contato com o Pessoal de Contato de Negócios (por e-mail ou de alguma outra forma) e realizar de ações de marketing de produtos e serviços do Grupo IBM (a Finalidade Especificada"); e
+
+(b) a divulgar a Informação de Contato de Negócio a outros membros do Grupo IBM visando alcançar a Finalidade Especificada.
+
+(3) A IBM concorda que toda a Informação de Contato de Negócio será processada em conformidade com a Legislação de Proteção de Dados e de Comunicações Eletrônicas e será utilizada apenas para a Finalidade Especificada.
+
+(4) Na medida em que tal seja exigido pela Legislação de Proteção de Dados e de Comunicações Eletrônicas, o Licenciado declara que (a) obteve (ou irá obter) quaisquer consentimentos do (e que emitiu (ou irá emitir) quaisquer notificações ao) Pessoal de Contato de Negócio pertinente, de forma a permitir que o Grupo IBM processe e use a Informação de Contato de Negócio para a Finalidade Especificada.
+
+(5) O Licenciado autoriza a IBM a transferir a Informação de Contato de Negócio para fora do Espaço Econômica Europeu, desde que tal transferência seja feita nos termos contratuais aprovados pela Autoridade de Proteção de Dados ou que a transferência seja permitida de alguma outra forma ao abrigo da Legislação de Proteção de Dados e de Comunicações Eletrônicas.
+
+Z125-5544-05 (07/2011)
+
+
