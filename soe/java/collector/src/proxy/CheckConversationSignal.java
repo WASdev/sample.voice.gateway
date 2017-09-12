@@ -72,9 +72,6 @@ public class CheckConversationSignal {
             String name = (String) utilities.getValueFromContext(response, VoiceProxyUtilities.LAST_NAME);
             String lastName = "";
             lastName = name.substring(name.lastIndexOf(" ") + 1);
-            if (lastName == "") {
-                lastName = "nothing";
-            }
             System.out.println("text = " + text + "    lastName = " + lastName);
             text.set(0, ((String) text.get(0)).replaceAll(VoiceProxyUtilities.REPLACE_LAST_NAME_MARKER, lastName));
             System.out.println("text = " + text);

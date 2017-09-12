@@ -86,44 +86,6 @@ public class CheckGatewaySignal {
             utilities.setKeyValueInContext(request, VoiceProxyUtilities.LAST_NAME, lastName);
             utilities.removeKeyFromContext(request, VoiceProxyUtilities.GET_LAST_NAME);
         }
-        
-        if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.PARSE_NAME)) {
-            String firstNamePrefix = "my first name is ";
-            String lastNamePrefix = "my last name is ";
-            String name = (String) utilities.getInputValue(request, "text");
-            name = name.toLowerCase();
-            
-            // parse the first name
-            int index = name.indexOf(firstNamePrefix);
-            String firstName = "";
-            if (index != -1) {
-                firstName = name.substring(index + firstNamePrefix.length());
-                index = firstName.indexOf(" ");
-                if (index != -1) {
-                    firstName = firstName.substring(0, index);
-                    
-                    //edit the first name for proper reading
-                    firstName = utilities.formatName(firstName);
-                }
-            }
-            
-            // parse the last name
-            index = name.indexOf(lastNamePrefix);
-            String lastName = "";
-            if (index != -1) {
-                lastName = name.substring(index + lastNamePrefix.length());
-                index = lastName.indexOf(" ");
-                if (index != -1) {
-                    lastName = lastName.substring(0, index);
-                    
-                    //edit last name for proper formatting
-                    lastName = utilities.formatName(lastName);
-                }
-            }        
-            utilities.setKeyValueInContext(request, VoiceProxyUtilities.FIRST_NAME, firstName);
-            utilities.setKeyValueInContext(request, VoiceProxyUtilities.LAST_NAME, lastName);
-            utilities.removeKeyFromContext(request, VoiceProxyUtilities.PARSE_NAME);      
-        }
 
         
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_TELEPHONE_NUMBER)) {

@@ -41,7 +41,6 @@ public class VoiceProxyUtilities {
     public static String GET_NAME = "getName";
     public static String GET_FIRST_NAME = "getFirstName";
     public static String GET_LAST_NAME = "getLastName";
-    public static String PARSE_NAME = "parseName";
     public static String GET_TELEPHONE_NUMBER = "getTelephoneNumber";
     public static String GET_EMAIL_ADDRESS = "getEmailAddress";
     public static String REPLACE_FIRST_NAME = "replaceFirstName";
@@ -50,7 +49,7 @@ public class VoiceProxyUtilities {
     public static String REPLACE_TELEPHONE_NUMBER = "replaceTelephoneNumber";
     public static String REPLACE_EMAIL_ADDRESS = "replaceEmailAddress";
     public static String SEND_EMAIL_TO_REP = "sendEmailToRep";
-    public static String[] statefulActionTags = { GET_NAME, GET_FIRST_NAME, GET_LAST_NAME, PARSE_NAME,
+    public static String[] statefulActionTags = { GET_NAME, GET_FIRST_NAME, GET_LAST_NAME,
             GET_TELEPHONE_NUMBER, GET_EMAIL_ADDRESS };
 
     // markers
@@ -77,24 +76,6 @@ public class VoiceProxyUtilities {
     }
 
     /**
-     * Determine if early return has occured in a request
-     */
-    @SuppressWarnings("unchecked")
-    public boolean earlyReturn(MessageRequest request) {
-        if (request.getContext() != null) {
-            if (request.getContext().containsKey(SOE_CONTEXT)) {
-                Map<String, Object> soeContext = (Map<String, Object>) request.getContext().get(SOE_CONTEXT);
-                if (soeContext.containsKey("earlyReturn")) {
-                    if ((Boolean) soeContext.get("earlyReturn")) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    /**
      * Determine if early return has occured in a response
      */
     @SuppressWarnings("unchecked")
@@ -115,9 +96,6 @@ public class VoiceProxyUtilities {
     // End Polling Helper Methods
 
     // Start of Checking for Conversation Signals
-    // The two types of signals are:
-    // 1. Tell proxy and then the gateway we want to be in DTMF state
-    // 2. Tell proxy to take an action like do an API call and look something up
 
     /**
      * Determine if the action signal exists within the response
@@ -348,13 +326,10 @@ public class VoiceProxyUtilities {
             Transport.send(message);
             returnValue = true;
         } catch (AddressException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (javax.mail.MessagingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (NamingException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -386,6 +361,8 @@ public class VoiceProxyUtilities {
         String lastNames = (String) getValueFromContext(response, VoiceProxyUtilities.LAST_NAME);
         String phoneNumbers = (String) getValueFromContext(response, VoiceProxyUtilities.TELEPHONE_NUMBER);
         String emailAddress = (String) getValueFromContext(response, VoiceProxyUtilities.EMAIL_ADDRESS);
+        emailAddress = emailAddress.replace("dollarsign", "$");
+        emailAddress = emailAddress.replace("dollar sign", "$");
 
         email = "Customer Info:\n" + "First Names:    " + firstNames + "\n" + "Last Names:    " + lastNames + "\n"
                 + "Telephone Numbers:    " + phoneNumbers + "\n" + "Email Addresss:    " + emailAddress + "\n"
@@ -552,25 +529,38 @@ public class VoiceProxyUtilities {
     public String phoneticMapping(String str) {
 
         System.out.println("String before phonetic mapping: " + str);
+        
+        str = str.toLowerCase();
 
         // First replace words that should be symbols
         str = str.replace("hyphen", "-");
         str = str.replace("dash", "-");
         str = str.replace("underscore", "_");
         str = str.replace("exclamation point", "!");
-        str = str.replace("dollar sign", "$");
+        str = str.replace("exclamationpoint", "!");
+        str = str.replace("exclamation", "!");
+        str = str.replace("xclamation", "!");
+        str = str.replace("xclmation", "!");
+        str = str.replace("percentsign", "%");
         str = str.replace("percent sign", "%");
         str = str.replace("percent", "%");
         str = str.replace("ampersand", "&");
         str = str.replace("own person and", "&");
-        str = str.replace("star", "*");
         str = str.replace("asterisk", "*");
+        str = str.replace("asterix", "*");
         str = str.replace("hash tag", "#");
         str = str.replaceAll("hashtag", "#");
         str = str.replace("hash sign", "#");
+        str = str.replace("hashsign", "#");
+        str = str.replace("hash", "#");
         str = str.replace("number sign", "#");
+        str = str.replace("numbersign", "#");
+        str = str.replace("numbrsign", "#");
         str = str.replace("tilde", "~");
+        str = str.replace("tillday", "~");
         str = str.replace("question mark", "?");
+        str = str.replace("questionmark", "?");
+        str = str.replace("star", "*");
 
         // Replace common word issues
         str = str.replace("be", "b");
