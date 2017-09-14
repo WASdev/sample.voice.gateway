@@ -90,6 +90,7 @@ public class CheckGatewaySignal {
         
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_TELEPHONE_NUMBER)) {
             String telNumber = (String) utilities.getInputValue(request, "text");
+            System.out.println("Telephone number entering: " + telNumber);
             telNumber = utilities.convertNumbers(telNumber);
             telNumber = utilities.formatPhoneNumbers(telNumber);
             utilities.setKeyValueInContext(request, VoiceProxyUtilities.TELEPHONE_NUMBER, telNumber);

@@ -49,8 +49,8 @@ public class VoiceProxyUtilities {
     public static String REPLACE_TELEPHONE_NUMBER = "replaceTelephoneNumber";
     public static String REPLACE_EMAIL_ADDRESS = "replaceEmailAddress";
     public static String SEND_EMAIL_TO_REP = "sendEmailToRep";
-    public static String[] statefulActionTags = { GET_NAME, GET_FIRST_NAME, GET_LAST_NAME,
-            GET_TELEPHONE_NUMBER, GET_EMAIL_ADDRESS };
+    public static String[] statefulActionTags = { GET_NAME, GET_FIRST_NAME, GET_LAST_NAME, GET_TELEPHONE_NUMBER,
+            GET_EMAIL_ADDRESS };
 
     // markers
     public static String REPLACE_FIRST_NAME_MARKER = "<replaceFirstName>";
@@ -236,8 +236,8 @@ public class VoiceProxyUtilities {
     }
 
     /**
-     * Return the value at the given key of the input field of the
-     * message request
+     * Return the value at the given key of the input field of the message
+     * request
      */
     public Object getInputValue(MessageRequest request, String key) {
         Object returnValue = false;
@@ -277,7 +277,8 @@ public class VoiceProxyUtilities {
     }
 
     /**
-     * Get the value from the given key in the context field of the message response
+     * Get the value from the given key in the context field of the message
+     * response
      */
     public Object getValueFromContext(MessageResponse response, String key) {
         Object returnValue = null;
@@ -361,8 +362,6 @@ public class VoiceProxyUtilities {
         String lastNames = (String) getValueFromContext(response, VoiceProxyUtilities.LAST_NAME);
         String phoneNumbers = (String) getValueFromContext(response, VoiceProxyUtilities.TELEPHONE_NUMBER);
         String emailAddress = (String) getValueFromContext(response, VoiceProxyUtilities.EMAIL_ADDRESS);
-        emailAddress = emailAddress.replace("dollarsign", "$");
-        emailAddress = emailAddress.replace("dollar sign", "$");
 
         email = "Customer Info:\n" + "First Names:    " + firstNames + "\n" + "Last Names:    " + lastNames + "\n"
                 + "Telephone Numbers:    " + phoneNumbers + "\n" + "Email Addresss:    " + emailAddress + "\n"
@@ -394,7 +393,7 @@ public class VoiceProxyUtilities {
      */
     public String formatPhoneNumbers(String phoneNumbers) {
 
-        System.out.println("Number before edits: " + phoneNumbers);
+        System.out.println("Number before phonetics: " + phoneNumbers);
 
         if (phoneNumbers != "") {
             phoneNumbers = phoneNumbers.replace(" ", "");
@@ -406,7 +405,7 @@ public class VoiceProxyUtilities {
             phoneNumbers = phoneNumbers.replace("for", "4");
             phoneNumbers = phoneNumbers.replace("sex", "6");
         }
-        System.out.println("Number after replacements: " + phoneNumbers);
+        System.out.println("Number after phonetics: " + phoneNumbers);
 
         // Handle phrases for "double" and "triple" ex: double 0 = 00
 
@@ -447,26 +446,27 @@ public class VoiceProxyUtilities {
      * Format an email to follow proper email construction
      */
     public String formatEmailAddress(String emails) {
-
+        System.out.println("Email before basic format: " + emails);
+        
         if (emails != "") {
 
             // Translate act and at to @
-            emails = emails.replace(" ", "");
+            emails = emails.replace("at ", "@ ");
+            emails = emails.replace("act ", "@ ");
             emails = phoneticMapping(emails);
-            emails = convertNumbers(emails);
-            emails = emails.replace("at", "@");
-            emails = emails.replace("act", "@");
-
-            // Remove all periods from the string
+            emails = emails.replace(" ", "");
+            emails = emails.replace("..", "-_-");
+            emails = emails.replace(".us", "-_-us");
+            emails = emails.replace(".com", "-_-com");
             emails = emails.replace(".", "");
-
-            // Add the . for .com back
-            emails = new StringBuilder(emails).insert(emails.length() - 3, ".").toString();
+            emails = emails.replace("-_-", ".");
+            emails = convertNumbers(emails);
 
             // Make it all lowercase
             emails = emails.toLowerCase();
         }
-
+        System.out.println("Email after basic format: " + emails);
+        
         return emails;
     }
 
@@ -474,6 +474,7 @@ public class VoiceProxyUtilities {
      * Format the email to be spelled out properly by Watson when spoken
      */
     public String formatEmailForWatson(String emails) {
+        System.out.println("Email before formatting for Speech: " + emails);
 
         String name = "";
         String domain = "";
@@ -481,32 +482,39 @@ public class VoiceProxyUtilities {
         if (emails != "") {
 
             if (emails.contains("@")) {
+                
+                // Seperate each character for proper pronunciation
                 name = emails.split("@")[0];
                 name = name.toUpperCase();
                 domain = emails.split("@")[1];
-                name = name.replaceAll(".(?=.)", "$0.");
-                name = name.concat("...at...");
+                name = name.replaceAll(".(?=.)", "$0 ");
+                
             }
+            else {
+                name = emails;
+            }
+            
 
             // First replace words that should be symbols
-            emails = emails.replace("-", "hyphen");
-            emails = emails.replace("-", "dash");
-            emails = emails.replace("_", "underscore");
-            emails = emails.replace("!", "exclamation point");
-            emails = emails.replace("$", "dollar sign");
-            emails = emails.replace("%", "percent sign");
-            emails = emails.replace("&", "ampersand");
-            emails = emails.replace("&", "own person and");
-            emails = emails.replace("*", "star");
-            emails = emails.replace("*", "asterisk");
-            emails = emails.replace("#", "hash tag");
-            emails = emails.replace("#", "hash sign");
-            emails = emails.replace("~", "tilde");
-            emails = emails.replace("?", "question mark");
+            name = name.replace("-", "dash ");
+            name = name.replace("_", "underscore ");
+            name = name.replace("!", "exclamation point ");
+            name = name.replace("$", "dollar sign ");
+            name = name.replace("%", "percent sign ");
+            name = name.replace("&", "ampersand ");
+            name = name.replace("*", "star ");
+            name = name.replace("#", "hash ");
+            name = name.replace("~", "till day ");
+            name = name.replace("?", "question mark ");
+            
+            //Append the @ to sounds natural
+            name = name.concat("...at...");
 
         }
 
         String nameDomain = name.concat(domain);
+
+        System.out.println("Email after formatted for Speech: " + nameDomain);
 
         return nameDomain;
     }
@@ -528,14 +536,13 @@ public class VoiceProxyUtilities {
      */
     public String phoneticMapping(String str) {
 
-        System.out.println("String before phonetic mapping: " + str);
-        
         str = str.toLowerCase();
 
         // First replace words that should be symbols
         str = str.replace("hyphen", "-");
         str = str.replace("dash", "-");
         str = str.replace("underscore", "_");
+        str = str.replace("exclamation mark", "!");
         str = str.replace("exclamation point", "!");
         str = str.replace("exclamationpoint", "!");
         str = str.replace("exclamation", "!");
@@ -546,6 +553,7 @@ public class VoiceProxyUtilities {
         str = str.replace("percent", "%");
         str = str.replace("ampersand", "&");
         str = str.replace("own person and", "&");
+        str = str.replace("dollarsign", "$");
         str = str.replace("asterisk", "*");
         str = str.replace("asterix", "*");
         str = str.replace("hash tag", "#");
@@ -577,16 +585,16 @@ public class VoiceProxyUtilities {
         str = str.replace("pee", "p");
         str = str.replace("queue", "q");
         str = str.replace("are", "r");
+        str = str.replace("our", "r");
         str = str.replace("is", "s");
         str = str.replace("ass", "s");
         str = str.replace("yes", "s");
         str = str.replace("tea", "t");
         str = str.replace("you", "y");
+        str = str.replace("why", "y");
         str = str.replace("ex", "x");
         str = str.replace("why", "y");
         str = str.replace("zed", "z");
-
-        System.out.println("String after phonetic mapping: " + str);
 
         return str;
     }
@@ -595,9 +603,12 @@ public class VoiceProxyUtilities {
      * Convert spoken words into digits in a String
      */
     String convertNumbers(String telNumber) {
+        System.out.println("Number before conversion: " + telNumber);
+        
         String returnValue = null;
 
         returnValue = telNumber.replace("zero", "0");
+        returnValue = telNumber.replace("oh", "0");
         returnValue = returnValue.replaceAll("one", "1");
         returnValue = returnValue.replaceAll("two", "2");
         returnValue = returnValue.replaceAll("three", "3");
@@ -607,6 +618,9 @@ public class VoiceProxyUtilities {
         returnValue = returnValue.replaceAll("seven", "7");
         returnValue = returnValue.replaceAll("eight", "8");
         returnValue = returnValue.replaceAll("nine", "9");
+        returnValue = returnValue.replace("hundred", "00");
+        
+        System.out.println("Number after conversion: " + telNumber);
         return returnValue;
     }
 }
