@@ -7,12 +7,11 @@
 import os, requests, json, string, datetime, sys, logging, time
 import xmltodict
 from HTMLParser import HTMLParser
-from dtmfService import decode
 import voiceProxySettings
 # ------------------------------------------------
 # GLOBAL VARIABLES -------------------------------
 # ------------------------------------------------
-#logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 
@@ -149,6 +148,7 @@ def check_ssml_number(str):
 	else:
 		return str
 
+
 # Checks to see if there is a number that needs to be spoken as a sequence
 def check_str_num(phrase):
 	nphrase = phrase.split()
@@ -172,146 +172,18 @@ def set_context_state_var():
 
 		
 def swap_phrase(ssml_dict,phrase):
-	nphrase = phrase
+	nphrase = phrase.split()
 	for ssml_key in ssml_dict:
-		nphrase = nphrase.replace(ssml_key,ssml_dict[ssml_key])
-	
-	logging.debug("Swap returning " + nphrase)
-	return nphrase
-
-
-def check_utterance(message):
-	logging.debug("Checking Utterance")
-	#logging.debug(message['input']['text'])
-	#need to check if one of the required values is being asked
-	#Lets assume it is the connexusID which is code "AB"
-	if need_connexusID(message):
-		message = filter_for_connexusID(message)
-		if 'context' in message:
-			if 'cisDTMF' in message['context']['cisContext']:
-				if message['context']['cisContext']['cisDTMF']['Error']:
-					return message
-		
-	else:
-		logging.debug("Have a connexusID")
-	
-		
-	check_numbers(message)	
-	
-	return message
-	
-def need_connexusID(message):
-	logging.debug("Checking for ConnexusID")
-	if 'needConnexusID' in message['context']:
-		if 'connexusID' in message['context']:
-			if len(message['context']['connexusID']) < 3:
-				return message['context']['needConnexusID']
-	else:
-		return False
-
-def filter_for_connexusID(message):
-	logging.debug("Need to filter for ConnexusID")
-	logging.debug("############\n")
-	logging.debug(message['input']['text'])
-	
-	if voiceProxySettings.DTMF_ENABLED:
-		if not 'cisDTMF' in message['context']['cisContext']:
-			message['context']['cisContext']['cisDTMF']={}
-		
-		dtmf = dtmfCheck(message)
-		message['context']['cisContext']['cisDTMF'] = dtmf
-		if dtmf['Error']:
-			logging.debug("DTMF Error: " + dtmf['Error_Message'])	
-		else:
-			if len(message['context']['connexusID']) == 0:
-				if dtmf['captureComplete']: 
-					logging.debug('Changing text to ConnexusID: ' +  dtmf['Words'][0])
-					message['input']['text'] = dtmf['Words'][0]
+		#nphrase = nphrase.replace(ssml_key,ssml_dict[ssml_key])
+		for i, word in enumerate(nphrase):
+			if '$' in word:
+				continue
+			if word.isdigit():
+				continue
 			
-	return message
-	
-def dtmfCheck(message):
-	
-	dtmf = createDefaultDTMFObject()
-	# Looking for # to signal done collecting digits
-	if message['input']['text'] == '#':
-		digits = dtmfList(message)
-		dtmf['Words'] = decode(digits)
-		if len(dtmf['Words']) == 1:
-			dtmf['digits'] = ''
-			dtmf['captureComplete'] = True
-		if len(dtmf['Words']) > 1:
-			dtmf['Error'] = True
-			dtmf['Error_Code'] = 1
-			dtmf['Error_Message'] = 'More than one result'
-
-		if len(dtmf['Words']) == 0:
-			dtmf['Error'] = True
-			dtmf['Error_Code'] = 2
-			dtmf['Error_Message'] = 'No results'
-	else:
-		# Since we are in DTMF mode, we need to get rid of any words spoken
-		if message['input']['text'].isdigit():
-			check_numbers(message)
-			digits = dtmfList(message) + message['input']['text']
-			dtmf['digits'] = digits
-		else:
-			logging.debug("Message has a word instead of a digit")
-			dtmf['Error_Code'] = 3
-			dtmf['Error_Message'] = 'Spoken Text when expecting DTMF digit'
-			dtmf['Error'] = True
-			
-			if 'cisDTMF' in message['context']['cisContext']:
-				if 'digits' in message['context']['cisContext']['cisDTMF']:
-					dtmf['digits'] = message['context']['cisContext']['cisDTMF']['digits']
+			nphrase[i] = word.replace(ssml_key,ssml_dict[ssml_key])
 			
 			
-	return dtmf
-
-def createDefaultDTMFObject():
-	dtmf = {}
-	dtmf['captureComplete'] = False 
-	dtmf['digits'] = ''
-	dtmf['Error'] = False
-	dtmf['Error_Code'] = 0
-	dtmf['Error_Message'] =''
-	dtmf['Words'] = []
-	return dtmf
-
-def dtmfList(message):
-	if 'context' in message:
-		if 'cisDTMF' in message['context']['cisContext']:
-			if 'digits' in message['context']['cisContext']['cisDTMF']:
-				return message['context']['cisContext']['cisDTMF']['digits']
-	return ""		
-	
-def check_numbers(message):
-	#look at the input and convert the number words to digits
-	num_digit ={}
-	num_digit["one"] = "1"
-	num_digit["two"] = "2"
-	num_digit["to"] = "2"
-	num_digit["too"] = "2"
-	
-	num_digit["three"] = "3"
-	num_digit["four"] = "4"
-	num_digit["for"] = "4"
-	
-	num_digit["zero"] = "0"
-	num_digit["five"] = "5"
-	num_digit["six"] = "6"
-	num_digit["seven"] = "7"
-	num_digit["eight"] = "8"
-	num_digit["nine"] = "9"
-	
-	logging.debug("Looking to check for numbers\n\n")
-	
-	
-	phrase = message['input']['text']
-	logging.debug("Spoken Message: " + phrase)
-	nphrase = swap_phrase(num_digit,phrase)
-#	nphrase = nphrase.replace(" ","")
-#	nphrase = nphrase.lower()
-	nphrase = nphrase.rstrip()
-	logging.debug("Cleansed Message: " + nphrase)
-	message['input']['text'] = nphrase
+	result = " ".join(nphrase)		
+	logging.debug("Swap returning " + result)
+	return result

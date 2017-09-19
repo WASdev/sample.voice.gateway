@@ -7,22 +7,18 @@
 import os, requests, json, string, datetime, logging, time
 
 from os.path import join, dirname
-from flask import Flask, request, render_template, redirect, url_for, Response
-from voicefilters import response_filter, check_utterance, need_connexusID, check_ssml_number, cleanResponseForGateway
-from weblogger import addLogEntry
+from flask import Flask, request, render_template, redirect, url_for, Response, send_from_directory
+#from weblogger import addLogEntry
 from fromGatewayFilter import inputFilters
 from checkGatewaySignal import signals
-from checkClientWaitState import waitState
 from checkDTMF import dtmf
-from checkUtterance import utterance
-from callSystemOfRecordBeforeConversation import callSORBeforeConv
 from callConversation import callConversationService
-from checkPollingBackend import pollBackend
 from callSystemOfRecordAfterConversation import callSORAfterConv
 from checkConversationSignal import wcsSignals
 from toGatewayFilter import outputFilter
 import voiceProxyUtilities
 import voiceProxySettings
+import weblogger
 
 voiceProxySettings.init()
 
@@ -34,7 +30,7 @@ app = Flask(__name__)
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-
+logging.info("starting")
 logging_comp_name = "Voice Proxy Main Loop"
 
 @app.route('/docs/CognitiveIntegrationServiceServer')
@@ -42,9 +38,14 @@ def documentPage():
       return app.send_static_file('docs/CognitiveIntegrationServiceServer.html')
 
 
+        
 @app.route('/docs/images/image00.png')
 def documentImage():
       return app.send_static_file('docs/images/image00.png')
+
+
+
+
       	
 # ------------- Main loop for CIS ----------------
 
@@ -57,81 +58,28 @@ def voiceGatewayEntry(spaceid,msg):
 	#Get data from post -- should be in the form of a conversation message	
 	message = json.loads(request.data)
 
-	##### First Check to see if the message passed to the Server is valid format #######
-	if not checkGatewayMessage(message):
-		# Need to know how to signal the Gateway something is wrong
-		message = returningEarlyCleanup(message,'Gateway Message Check Failed -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
-
-	addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'New API Call', message)
+	weblogger.addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'New API Call', message)
 	message = inputFilters(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'inputFilters -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
 
 	message = signals(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'signals -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
-	
-	message = waitState(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'waitState -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
-	
-	message = dtmf(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'dtmf -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
-	
-	message = utterance(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'utterance -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
-		
-	message = pollBackend(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'pollbackend -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
-		
-	message = callSORBeforeConv(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'callBackend1 -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
 		
 	message = callConversationService(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'callConversation -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
 	
-	message = wcsSignals(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'callWcsSignal -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
-	
+	message = wcsSignals(message)	
 	
 	message = callSORAfterConv(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'callBackend2 -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
 	
 	message = outputFilter(message)
-	if earlyReturn(message):
-		message = returningEarlyCleanup(message,'outputFilters -> Returning to Gateway')
-		return json.dumps(message, separators=(',',':'))
 	
 	
 	# Finally Returning to Gateway
-	addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'Normal Return to Gateway', message)
+	#weblogger.addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'Normal Return to Gateway', message)
 	return json.dumps(message, separators=(',',':'))
 	
 
 
 
 #-------------- Gateway Utility Methods ----------------------
-# First method calldd 
-def checkGatewayMessage(message):
-	return True
 
 
 def earlyReturn(message):
@@ -140,11 +88,11 @@ def earlyReturn(message):
 def returningEarlyCleanup(message, logmessage):
 	earlyMsg = voiceProxyUtilities.getCisAttribute('earlyReturnMsg',message)
 	if earlyMsg and len(earlyMsg)>0:
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, earlyMsg, message)
+		weblogger.addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, earlyMsg, message)
 		message = voiceProxyUtilities.clearCisAttribute('earlyReturn',message)
 		message = voiceProxyUtilities.clearCisAttribute('earlyReturnMsg',message)
 	else:
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, logmessage, message)
+		weblogger.addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, logmessage, message)
 		message = voiceProxyUtilities.clearCisAttribute('earlyReturn',message)
 		message = voiceProxyUtilities.clearCisAttribute('earlyReturnMsg',message)	
 	
@@ -299,10 +247,66 @@ def apiPolling():
 #-------------- End API Methods ------------------------------
 
 
+#--------------- Web Test Client ----------------------------
+@app.route('/webclient/')
+def hello(name=None):
+    return render_template('index.html', name=name)
+
+@app.route('/js/<path:path>')
+def send_js(path):
+    return send_from_directory('static/js', path)
+    
+@app.route('/img/<path:path>')
+def send_img(path):
+    return send_from_directory('static/img', path)
+
+@app.route('/css/<path:path>')
+def send_css(path):
+    return send_from_directory('static/css', path)
+
+@app.route('/fonts/<path:path>')
+def send_fonts(path):
+    return send_from_directory('static/fonts', path)
+    
+@app.route('/api/message', methods=['POST'])
+def restWebClientVoiceGatewayEntry():
+	msg = json.loads(request.data)
+	resp_data = voiceGatewayEntry('webclient',msg)
+	return Response(resp_data, mimetype='application/json',status=200)
+
+#-------------END Web Test Client------------------------
+
+@app.route('/soeLogging/', methods=['GET'])
+def logginghello(name=None):
+    return render_template('weblogger.html', name=name)
+
+@app.route('/jjsonviewer/<path:path>')
+def send_jf(path):
+    return send_from_directory('jjsonviewer/js', path)
+    
+@app.route('/stylesheets/<path:path>')
+def send_ss(path):
+    return send_from_directory('stylesheets/img', path)
+
+
+@app.route('/soeLogging/sessionLog', methods=['GET','POST'] )
+def getSessionLog():
+	return weblogger.getSessionLog(request)
+
+@app.route('/soeLogging/getLogEntry', methods=['GET','POST'] )
+def getLogEntry():
+	return weblogger.getLogEntry(request)
+	
 
 
 
 
+
+
+#-------------Web Logger Client -------------------------
+
+
+#-------------End Web Logger Client----------------------
 
 port = os.getenv('PORT', '5000')
 if __name__ == "__main__":

@@ -1,0 +1,20 @@
+<html>
+<head>
+	<title>jJsonViewer</title>
+
+	<link rel="stylesheet" href="css/jjsonviewer.css">
+</head>
+<body>
+	<div id="jjson" class="jjson"></div>
+
+	<script type="text/javascript" src="js/lib/jquery.js"></script>
+	<script type="text/javascript" src="js/jjsonviewer.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			var jjson = '{ "name": "jJsonViewer","author": { "name": "Shridhar Deshmukh", "email": "shridhar.deshmukh3@gmail.com", "contact": [{"location": "<span>office</span>", "number": 123456}, {"location": "home", "number": 987654}] } }';
+
+			$("#jjson").jJsonViewer(jjson, {expanded: false});
+		});
+	</script>
+</body>
+</html>

@@ -8,47 +8,45 @@ import os, requests, json, string, datetime, logging, time
 from os.path import join, dirname
 from weblogger import addLogEntry
 import voiceProxySettings
-from voiceProxyUtilities import setEarlyReturn, earlyReturn, check_wcsActionSignal
-from callerProfileAPI.callerProfileAPI import getProfileByName, makePayment, updateProfile
+from voiceProxyUtilities import check_wcsActionSignal, replaceOutputTagValue
+from callerProfileAPI.callerProfileAPI import getCustomerByName, makeLoanPayment, updateCustomer, getLoanByID, getAccountByID, getCardByID, getCustomerByID
 from callConversation import callConversationService
 from checkConversationSignal import  wcsSignals
 
 logging_comp_name = "callSystemOfRecordAfterConversation"
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-
+balanceEntityTypeList = ['Accounts','Loans','Credit-Card']
+balanceEntityValueList = ['Money Market','Checking','Savings','Credit Card','Auto Loan','Mortgage','Student Loan','Discover Card']
 
 #------- Check SOR After Conversation Methods -----------------
 def callSORAfterConv(message):
 
-	message = preCallSystemOfRecordAfterConversation(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'preCallSystemOfRecordAfterConversation -> Returning to Gateway', message)
-		return message
-
 	message = callSystemOfRecordAfterConversation(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'callSystemOfRecordAfterConversation -> Returning to Gateway', message)
-		return message
-		
-	message = postCallSystemOfRecordAfterConversation(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'postCallSystemOfRecordAfterConversation -> Returning to Gateway', message)
-		return message
 		
 	return message	
-
-def preCallSystemOfRecordAfterConversation(message):
-	return message
 
 def callSystemOfRecordAfterConversation(message):
 	if check_wcsActionSignal(message,'getProfile'):
 		logging.info("Grabing the user profile")
-		message = doGetProfile(message)
+		message = doGetCustomer(message)
+	
+	if check_wcsActionSignal(message,'lookupAccountBalanceTag'):
+		message = doGetCustomer(message)
+		tag = '<accountBalance>'
+		id = message['context']['profile']['customer']['id']
+		customer = getCustomerByID(id)
+		acctID =message['context']['paymentAccount']
+		account = getID(customer,acctID,'accounts')
+		message = replaceOutputTagValue(message,tag,account['balance'])
+		return message
+	
+	
 	
 	if check_wcsActionSignal(message,'makePayment'):
 		logging.info("Calling API to make a payment")
 		if doMakePayment(message):
-			message = doGetProfile(message)
+			message = doGetCustomer(message)
 			if 'payment' in message['context']:
 				del message['context']['payment']
 	
@@ -59,7 +57,8 @@ def callSystemOfRecordAfterConversation(message):
 		del message['intents']
 		
 		
-		message = doGetProfile(message)
+		message = doGetCustomer(message)
+		message = populateBalances(message)
 		message = callConversationService(message)
 		message = wcsSignals(message)
 		message = callSORAfterConv(message)
@@ -70,29 +69,115 @@ def callSystemOfRecordAfterConversation(message):
 		
 	return message
 
-def postCallSystemOfRecordAfterConversation(message):
-	return message
-
 #------ End Check SOR After Conversation Methods ---------------
 
 def doMakePayment(message):
-	name = message['context']['callerProfile']['firstname']
-	profile = getProfileByName(name)
+	id = message['context']['profile']['Firstname']
+	customer = getCustomerByName(id)
 	loan = message['context']['payment']['type']
 	account =message['context']['payment']['account']
 	amount = message['context']['payment']['amount']
+	
+	loanID = getID(customer,loan,'loans')
+	acctID = getID(customer,account,'accounts')
+	
 	 
-	if makePayment(profile,loan,account,amount):
-		updateProfile(profile)
+	if makeLoanPayment(customer,loanID,acctID,amount):
+		updateCustomer(customer)
 		return True
 		
 	else:
 		return False
 
-def doGetProfile(message):
+def doGetCustomer(message):
 	name = message['context']['callerProfile']['firstname']
-	profile = getProfileByName(name)
-	message['context']['profile'] = profile
+	profile = getCustomerByName(name.strip())
+	logging.info(profile['customer'])
+	logging.info(profile['customer']['passcode'])
+	message['context']['profile'] = profile['customer']
 	return message
 
+def getLoanID(customer, loan):
+	return getID(customer,loan,'loans')
+	
+def getAccountID(customer, acct):
+	return getID(customer,acct,'accounts')
 
+def getCardID(customer, acct):
+	return getID(customer,acct,'creditcards')
+	
+def getID(customer, type, list):
+	if list in customer and len(customer[list])>0:
+		for x in customer[list]:
+			if x['name'] == type:
+				return x
+	
+	return None	
+	
+def populateBalances(message):
+	# need to get the name and the balances and add them to the callerProfile in the balance array
+	# this is because the Watson Dialog service doesn't allow for looping through JSON arrays.
+	entityBalance = loopBalanceEntities(message)
+	message['context']['callerProfile']['balanceAmount'] =  entityBalance[0]['balance']
+	message['context']['callerProfile']['balanceName'] =  entityBalance[0]['name']
+	
+	return message
+	
+
+def loopBalanceEntities(message):
+	entityBalance = []
+	if 'entities' in message and len(message['entities'])>0:
+		for entity in message['entities']:
+			if isValidBalanceEntity(entity):
+				entityBalance.append(getBalanceForEntity(message,entity))
+		return entityBalance
+			
+	return None
+
+def isValidBalanceEntity(entity):
+	if entity and entity['entity'] in balanceEntityTypeList:
+		return True
+	else:
+		return False
+	
+	
+def getBalanceForEntity(message,entity):
+	# Need to return a list with the Entity Value and the Balance
+	if entity['value'] in balanceEntityValueList:
+		entityBalance = {}
+		entityBalance['name'] = entity['value']
+		entityBalance['balance'] = getBalanceAmount(message,entity['value'])
+		return entityBalance
+	return None
+		
+def getBalanceAmount(message,value):
+	logging.info(value)
+	if value == 'Money Market':
+		return getBalanceFromList(message,'accounts','moneymarket')
+		
+	if value == 'Checking':
+		return getBalanceFromList(message,'accounts','checking')
+	
+	if value == 'Savings':
+		return getBalanceFromList(message,'accounts','savings')
+	
+	if value == 'Student Loan':
+		return getBalanceFromList(message,'loans','studentloan')
+	
+	if value == 'Auto Loan':
+		return getBalanceFromList(message,'loans','autoloan')
+	
+	if value == 'Mortgage':
+		return getBalanceFromList(message,'loans','mortgage')
+		
+	if value == 'Discover Card':
+		return getBalanceFromList(message,'creditcards','Discover')
+	
+	return 0
+		
+def getBalanceFromList(message,listname,type):
+	for account in message['context']['profile'][listname]:
+		if account['name'] == type:
+			return account['balance']
+	return None
+		

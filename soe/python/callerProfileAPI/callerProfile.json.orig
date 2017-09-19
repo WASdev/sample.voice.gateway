@@ -1,0 +1,137 @@
+[
+	{
+		"customer": {
+			"city": "Chicago",
+			"Firstname": "Olivia",
+			"Lastname": "Smith",
+			"zipcode": "60606",
+			"address": "123 Main Street",
+			"passcode": "gymnastics",
+			"id": "Olivia"
+		},
+		"accounts": [
+			{
+				"balance": 1230.2,
+				"name": "checking",
+				"id": 1
+			},
+			{
+				"balance": 23990,
+				"name": "savings",
+				"id": 2
+			},
+			{
+				"balance": 50340,
+				"name": "moneymarket",
+				"id": 3
+			}
+		],
+		"loans": [
+			{
+				"balance": 133000,
+				"nextPayment": {
+					"amount": 285,
+					"dayofmonth": 5
+				},
+				"name": "studentloan",
+				"id": 4
+			},
+			{
+				"balance": 14500,
+				"nextPayment": {
+					"amount": 170,
+					"dayofmonth": 16
+				},
+				"name": "autoloan",
+				"id": 5
+			},
+			{
+				"balance": 326780,
+				"nextPayment": {
+					"amount": 2699,
+					"dayofmonth": 20
+				},
+				"name": "mortgage",
+				"id": 6
+			}
+		],
+		"creditcards": [
+			{
+				"id":"1234",
+				"cardnum": "1234",
+				"name": "Discover",
+				"activated": false,
+				"balance": 0,
+				"activatecode": "1234"
+			},
+			{
+				"id":"5678",
+				"cardnum": "5678",
+				"name": "it",
+				"activated": true,
+				"balance": 1250
+			}
+		]
+	},
+	{
+		"customer": {
+			"city": "Chicago",
+			"Firstname": "Brian",
+			"Lastname": "Johnson",
+			"zipcode": "60606",
+			"address": "72 South Wacker Drive",
+			"passcode": "gymnastics",
+			"id": "Brian"
+		},
+		"accounts": [
+			{
+				"balance": 3459,
+				"name": "checking",
+				"id": 10
+			},
+			{
+				"balance": 41500,
+				"name": "moneymarket",
+				"id": 30
+			}
+		],
+		"loans": [
+			{
+				"balance": 31000,
+				"nextPayment": {
+					"amount": 585,
+					"dayofmonth": 7
+				},
+				"name": "studentloan",
+				"id": 40
+			},
+			{
+				"balance": 43500,
+				"nextPayment": {
+					"amount": 470,
+					"dayofmonth": 24
+				},
+				"name": "autoloan",
+				"id": 50
+			}
+		],
+		
+		"creditcards": [
+			{
+				"id":"1234",
+				"cardnum": "1234",
+				"name": "Discover",
+				"activated": false,
+				"balance": 0,
+				"activatecode": "1234"
+			},
+			{
+				"id":"5678",
+				"cardnum": "5678",
+				"name": "it",
+				"activated": true,
+				"balance": 1250
+			}
+		]
+	}
+]
