@@ -39,8 +39,8 @@
             "hostPort": 8080,
             "protocol": "TCP"
           }],
-          "command": ["/bin/sh"],
-          "args": ["-c", "export WATSON_RELAY_SDP_ADDRESS=$(hostname -I | tr -s ' ' '\n' | grep -Ev '^10.*|^172.*' | head -1); exec /vgw-media-relay/bin/rtp-relay"],
+          "command": ["/bin/sh", "-c"],
+          "args": ["export WATSON_RELAY_SDP_ADDRESS=$(hostname -i); (/vgw-media-relay/bin/rtp-relay) | (node lib/RotatingLoggerStream.js)"],
           "env": [{
             "name": "ENABLE_RECORDING",
             "value": "false"
@@ -51,11 +51,8 @@
             "name": "CLUSTER_WORKERS",
             "value": "0"
           }, {
-            "name": "RTP_RELAY_LOGLEVEL",
+            "name": "MEDIA_RELAY_LOG_LEVEL",
             "value": "DEBUG"
-          }, {
-            "name": "RTP_RELAY_RECORD",
-            "value": "false"
           }, {
             "name": "RTP_PORT",
             "value": "8080"
@@ -100,8 +97,8 @@
             "hostPort": 5060,
             "protocol": "UDP"
           }],
-          "command": ["/bin/sh"],
-          "args": ["-c", "export SIP_HOST=$(hostname -I | tr -s ' ' '\n' | grep -Ev '^10.*|^172.*' | head -1); exec /opt/ibm/wlp/bin/server run defaultServer"],
+          "command": ["/bin/sh", "-c"],
+          "args": ["export SIP_HOST=$(hostname -i); exec /opt/ibm/wlp/bin/server run defaultServer"],
           "env": [{
             "name": "MEDIA_RELAY_HOST",
             "value": "localhost:8080"
@@ -120,15 +117,6 @@
           }, {
             "name": "WATSON_CONVERSATION_URL",
             "value": "https://gateway.watsonplatform.net/conversation/api"
-          }, {
-            "name": "NUMCONV_PLUGIN_ENABLE",
-            "value": "false"
-          }, {
-            "name": "TAGS_PLUGIN_ENABLE",
-            "value": "false"
-          }, {
-            "name": "MQTT_PLUGIN_ENABLE",
-            "value": "false"
           }, {
             "name": "ENABLE_AUDIT_MESSAGES",
             "value": "true"
