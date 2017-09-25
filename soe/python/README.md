@@ -217,17 +217,25 @@ questions. Remember, there is an API that keeps track of the balances, so if you
 You can try the questions by calling into the voice gateway or try with a simple web client special for the voiceProxyServer, 
 which is included in the voiceProxyServer runtime. See next sections.
 
-
+Conversation script for Accessing User Profile Data
 1. I would like to pay my mortgage
 2. My name is Brian
 3. Yes it is
 4. baseball
 5. I want to use my checking account
-6. I wan to pay two hundred dollars
+6. I want to pay two hundred dollars
 7. Thank you
 8. What is the balance of my checking account
 9. Thank you.
 10. Good-bye
+
+Conversation script for using DTMF collection
+1. I would like to add a credit card
+2. My name is Olivia
+3. yes
+4. gymnastics
+5. mastercard
+6. [type in card number]
 
 ### Simple Web Client Testing
 Once the Proxy has been deployed, you can test it by using the a built in Web Client. You can access the web client by using the following url: ***https://url-of-proxy/webclient***   

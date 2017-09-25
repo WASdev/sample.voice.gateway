@@ -198,11 +198,12 @@ def getCardBalanceByNum(customer, num):
 	
 	return 0
 
-def setCreditCard(customer, incard):
+def setCreditCard(customer, incard, num):
 	if 'creditcards' in customer:
-		for ix, card in enumerate(customer['accounts']):
-			if 'id' in card and card['id'] == incard['id']:
-				customer['creditcards'][ix] = incard
+		for card in customer['creditcards']:
+			if 'name' in card:
+				if card['name'] == incard:
+					card['cardnum'] = num
 
 	return customer
 

@@ -25,19 +25,20 @@ def signals(message):
 
 def checkGatewaySignal(message):
 	
-	if check_vgwPostResponseTimeout(message):
-		logging.debug("RespTimeout")
-		
-	return message
-	
-	
-def postCheckGatewaySignal(message):
+
 	return message
 
 
 #--------------- Signals from the SIP Gateway --------------	
 def check_vgwPostResponseTimeout(message):
 	return check_vgwSignal(message,'vgwPostResponseTimeout')
+
+def checkCardName(message):
+	if 'context' in message:
+		if 'profile' in message['context']:
+			if 'cardname' in message['context']['profile']:
+				logging.info(message['input']['text'])
+				message['context']['profile']['cardname'] = message['input']['text']
 	
 def check_vgwSignal(message, signal):
 	if 'input' in message:
@@ -54,6 +55,3 @@ def check_vgwSignalInString(message, signal):
 				return True
 	
 	return False
-#------------- End Signals from Help Gateway -----------------
-
-

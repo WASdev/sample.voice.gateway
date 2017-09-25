@@ -62,6 +62,8 @@ def voiceGatewayEntry(spaceid,msg):
 	message = inputFilters(message)
 
 	message = signals(message)
+
+	message = dtmf(message)
 		
 	message = callConversationService(message)
 	

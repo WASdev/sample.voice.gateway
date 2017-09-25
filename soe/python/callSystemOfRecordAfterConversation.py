@@ -93,7 +93,6 @@ def doGetCustomer(message):
 	name = message['context']['callerProfile']['firstname']
 	profile = getCustomerByName(name.strip())
 	logging.info(profile['customer'])
-	logging.info(profile['customer']['passcode'])
 	message['context']['profile'] = profile['customer']
 	return message
 

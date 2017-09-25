@@ -7,7 +7,7 @@
 import os, requests, json, string, datetime, logging, time
 from os.path import join, dirname
 from weblogger import addLogEntry
-from callerProfileAPI.callerProfileAPI import getCardByName
+from callerProfileAPI.callerProfileAPI import getCardByName, getCustomerByName, setCreditCard, updateCustomer
 import voiceProxySettings
 
 
@@ -25,5 +25,22 @@ def dtmf(message):
 	return message
 
 def checkDTMF(message):
-				
+	if 'context' in message:
+		if 'collectedDTMF' in message['context']:
+			del message['context']['collectedDTMF']
+
+			if 'input' in message:
+				cardNumber = message['input']['text']
+				message['input']['text'] = 'dtmfSuccess'
+			else:
+				return message
+
+			#Add the credit card number to the user
+			name = message['context']['callerProfile']['firstname']
+			cardType = message['context']['profile']['cardname']
+			customer = getCustomerByName(name.strip())
+			setCreditCard(customer, cardType, cardNumber)
+			updateCustomer(customer)
+			return message
+			
 	return message
