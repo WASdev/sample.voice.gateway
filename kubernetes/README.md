@@ -7,7 +7,7 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 
 * [bluemix](https://github.com/WASdev/sample.voice.gateway/tree/master/kubernetes/bluemix) - Contains scripts for deploying Voice Gateway on Bluemix Kubernetes Cluster
 
-* [single-tenane](https://github.com/WASdev/sample.voice.gateway/tree/master/kubernetes/single-tenant) - Contains scripts for deploying Voice Gateway in single-tenant mode on kubernetes in VM or ICp
+* [single-tenant](https://github.com/WASdev/sample.voice.gateway/tree/master/kubernetes/single-tenant) - Contains scripts for deploying Voice Gateway in single-tenant mode on kubernetes in VM or ICp
 
 * [multi-tenant](https://github.com/WASdev/sample.voice.gateway/tree/master/kubernetes/multi-tenant) - Contains scripts for deploying Voice Gateway in multi-tenant mode on kubernetes in VM or ICp
 
