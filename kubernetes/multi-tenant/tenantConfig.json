@@ -1,0 +1,26 @@
+{
+  "tenants": [
+    {
+      "tenantURI": "watson",
+      "description": "Voice Gateway Demo US",
+      "conversation": {
+        "url": "https://gateway.watsonplatform.net/conversation/api",
+        "workspaceID": "",
+        "password": "",
+        "username": ""
+      },
+      "stt": {
+        "credentials": {
+          "username": "",
+          "password": ""
+        }
+      },
+      "tts": {
+        "credentials": {
+          "username": "",
+          "password": ""
+        }
+      }
+    }
+  ]
+}
