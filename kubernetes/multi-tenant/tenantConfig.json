@@ -1,7 +1,7 @@
 {
   "tenants": [
     {
-      "tenantURI": "watson",
+      "tenantURI": "1234567890",
       "description": "Voice Gateway Demo US",
       "conversation": {
         "url": "https://gateway.watsonplatform.net/conversation/api",

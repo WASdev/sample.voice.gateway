@@ -125,7 +125,7 @@
             "protocol": "TCP"
           }],
           "env": [{
-                "name" : "WATSON_RELAY_SDP_ADDRESS",
+                "name" : "SDP_ADDRESS",
                 "valueFrom" : {
                     "fieldRef" : {
                         "apiVersion" : "v1",
@@ -145,7 +145,7 @@
             "name": "MEDIA_RELAY_LOG_LEVEL",
             "value": "DEBUG"
           }, {
-            "name": "RTP_PORT",
+            "name": "MEDIA_RELAY_WS_PORT",
             "value": "8080"
           }, {
             "name": "WATSON_TTS_VOICE",
