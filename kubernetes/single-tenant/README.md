@@ -3,17 +3,10 @@ Running the IBM Voice Gateway in a Kubernetes environment requires special consi
 
 In Kubernetes terminology, a single voice gateway instance equates to a single Pod which contains both a SIP Orchestrator container and a Media Relay container. Only one POD should be deployed per node and the POD should be deploy with hostNetwork set to true. This will ensure that the SIP and media ports would be opened on the host VM and visible by the SIP Load Balancer.  
 
-## In this repository
-
-* [bluemix](https://github.com/WASdev/sample.voice.gateway/tree/master/kubernetes/bluemix) - Contains scripts for deploying Voice Gateway on Bluemix Kubernetes Cluster
-
-* [single-tenant](https://github.com/WASdev/sample.voice.gateway/tree/master/kubernetes/single-tenant) - Contains scripts for deploying Voice Gateway in single-tenant mode on Kubernetes on a VM or on IBM Cloud private
-
-* [multi-tenant](https://github.com/WASdev/sample.voice.gateway/tree/master/kubernetes/multi-tenant) - Contains scripts for deploying Voice Gateway in multi-tenant mode on Kubernetes on a VM or on IBM Cloud private
-
-
 ## Script defaults:
 
 * Enforces one POD per node. If replicas (PODs > #nodes, the extra replica to be scheduled will remain in a waiting state)
 * Exposes SIP and media relay ports on the associated VM by setting hostNetwork to true
 * Auto restart of any failed containers
+* Creates a 2 GB persistent volume called recordings to store call recordings
+* Recording is disabled by default. To enable recording set the value of ENABLE_RECORDING variable to true

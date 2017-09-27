@@ -1,4 +1,82 @@
 {
+  "kind": "PersistentVolume",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "tenantconfig",
+    "labels": {}
+  },
+  "spec": {
+    "capacity": {
+      "storage": "10Mi"
+    },
+    "accessModes": [
+      "ReadWriteMany"
+    ],
+    "persistentVolumeReclaimPolicy": "Retain",
+    "hostPath": {
+      "path": "/root/tenantConfig"
+    }
+  }
+}
+
+{
+  "kind": "PersistentVolumeClaim",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "tenantconfig"
+  },
+  "spec": {
+    "resources": {
+      "requests": {
+        "storage": "10Mi"
+      }
+    },
+    "accessModes": [
+      "ReadWriteMany"
+    ]
+  }
+}
+
+{
+  "kind": "PersistentVolume",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "recordings",
+    "labels": {}
+  },
+  "spec": {
+    "capacity": {
+      "storage": "2Gi"
+    },
+    "accessModes": [
+      "ReadWriteMany"
+    ],
+    "persistentVolumeReclaimPolicy": "Retain",
+    "hostPath": {
+      "path": "/root/recordings"
+    }
+  }
+}
+
+{
+  "kind": "PersistentVolumeClaim",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "recordings"
+  },
+  "spec": {
+    "resources": {
+      "requests": {
+        "storage": "2Gi"
+      }
+    },
+    "accessModes": [
+      "ReadWriteMany"
+    ]
+  }
+}
+
+{
   "kind": "Deployment",
   "apiVersion": "extensions/v1beta1",
   "metadata": {
@@ -24,9 +102,16 @@
       },
       "spec": {
         "volumes": [{
-          "name": "recordings",
-          "emptyDir": {}
-        }],
+            "persistentVolumeClaim": {
+              "claimName": "recordings"
+            },
+            "name": "recordings"
+          }, {
+            "persistentVolumeClaim": {
+              "claimName": "tenantconfig"
+            },
+            "name": "multi-tenant-config-file"
+          }],
         "hostNetwork": true,
         "imagePullSecrets": [{
           "name": "admin.registrykey"
@@ -39,9 +124,15 @@
             "hostPort": 8080,
             "protocol": "TCP"
           }],
-          "command": ["/bin/sh", "-c"],
-          "args": ["export SDP_ADDRESS=$(hostname -i); (/vgw-media-relay/bin/rtp-relay) | (node lib/RotatingLoggerStream.js)"],
           "env": [{
+                "name" : "SDP_ADDRESS",
+                "valueFrom" : {
+                    "fieldRef" : {
+                        "apiVersion" : "v1",
+                        "fieldPath" : "spec.nodeName"
+                    }
+                }
+            },{
             "name": "ENABLE_RECORDING",
             "value": "false"
           }, {
@@ -57,21 +148,6 @@
             "name": "MEDIA_RELAY_WS_PORT",
             "value": "8080"
           }, {
-            "name": "WATSON_STT_USERNAME",
-            "value": ""
-          }, {
-            "name": "WATSON_STT_PASSWORD",
-            "value": ""
-          }, {
-            "name": "WATSON_STT_URL",
-            "value": "https://stream.watsonplatform.net/speech-to-text/api"
-          }, {
-            "name": "WATSON_TTS_USERNAME",
-            "value": ""
-          }, {
-            "name": "WATSON_TTS_PASSWORD",
-            "value": ""
-          }, {
             "name": "WATSON_TTS_VOICE",
             "value": "en-US_MichaelVoice"
           }, {
@@ -80,9 +156,9 @@
           }],
           "resources": {},
           "volumeMounts": [{
-            "name": "recordings",
-            "mountPath": "/vgw-media-relay/recordings"
-          }],
+                "name": "recordings",
+                "mountPath": "/vgw-media-relay/recordings"
+              }],
           "terminationMessagePath": "/dev/termination-log",
           "imagePullPolicy": "IfNotPresent"
         }, {
@@ -97,26 +173,20 @@
             "hostPort": 5060,
             "protocol": "UDP"
           }],
-          "command": ["/bin/sh", "-c"],
-          "args": ["export SIP_HOST=$(hostname -i); exec /opt/ibm/wlp/bin/server run defaultServer"],
           "env": [{
+                "name" : "SIP_HOST",
+                "valueFrom" : {
+                    "fieldRef" : {
+                        "apiVersion" : "v1",
+                        "fieldPath" : "spec.nodeName"
+                    }
+                }
+            },{
             "name": "MEDIA_RELAY_HOST",
             "value": "localhost:8080"
           }, {
             "name": "SIP_PORT",
             "value": "5060"
-          }, {
-            "name": "WATSON_CONVERSATION_WORKSPACE_ID",
-            "value": ""
-          }, {
-            "name": "WATSON_CONVERSATION_USERNAME",
-            "value": ""
-          }, {
-            "name": "WATSON_CONVERSATION_PASSWORD",
-            "value": ""
-          }, {
-            "name": "WATSON_CONVERSATION_URL",
-            "value": "https://gateway.watsonplatform.net/conversation/api"
           }, {
             "name": "ENABLE_AUDIT_MESSAGES",
             "value": "true"
@@ -126,8 +196,17 @@
           }, {
             "name": "LOG_LEVEL",
             "value": "all"
+          },{
+            "name": "MULTI_TENANT_CONFIG_FILE",
+            "value": "/tenantconfig/tenantConfig.json"
           }],
           "resources": {},
+            "volumeMounts": [
+              {
+                "name": "multi-tenant-config-file",
+                "mountPath": "/tenantconfig"
+              }
+            ],
           "terminationMessagePath": "/dev/termination-log",
           "imagePullPolicy": "IfNotPresent"
         }],

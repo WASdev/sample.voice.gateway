@@ -1,4 +1,43 @@
 {
+  "kind": "PersistentVolume",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "recordings",
+    "labels": {}
+  },
+  "spec": {
+    "capacity": {
+      "storage": "2Gi"
+    },
+    "accessModes": [
+      "ReadWriteMany"
+    ],
+    "persistentVolumeReclaimPolicy": "Retain",
+    "hostPath": {
+      "path": "/root/recordings"
+    }
+  }
+}
+
+{
+  "kind": "PersistentVolumeClaim",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "recordings"
+  },
+  "spec": {
+    "resources": {
+      "requests": {
+        "storage": "2Gi"
+      }
+    },
+    "accessModes": [
+      "ReadWriteMany"
+    ]
+  }
+}
+
+{
   "kind": "Deployment",
   "apiVersion": "extensions/v1beta1",
   "metadata": {
@@ -24,9 +63,11 @@
       },
       "spec": {
         "volumes": [{
-          "name": "recordings",
-          "emptyDir": {}
-        }],
+            "persistentVolumeClaim": {
+              "claimName": "recordings"
+            },
+            "name": "recordings"
+          }],
         "hostNetwork": true,
         "imagePullSecrets": [{
           "name": "admin.registrykey"
@@ -39,9 +80,15 @@
             "hostPort": 8080,
             "protocol": "TCP"
           }],
-          "command": ["/bin/sh", "-c"],
-          "args": ["export SDP_ADDRESS=$(hostname -i); (/vgw-media-relay/bin/rtp-relay) | (node lib/RotatingLoggerStream.js)"],
           "env": [{
+                "name" : "SDP_ADDRESS",
+                "valueFrom" : {
+                    "fieldRef" : {
+                        "apiVersion" : "v1",
+                        "fieldPath" : "spec.nodeName"
+                    }
+                }
+            },{
             "name": "ENABLE_RECORDING",
             "value": "false"
           }, {
@@ -80,9 +127,9 @@
           }],
           "resources": {},
           "volumeMounts": [{
-            "name": "recordings",
-            "mountPath": "/vgw-media-relay/recordings"
-          }],
+                "name": "recordings",
+                "mountPath": "/vgw-media-relay/recordings"
+              }],
           "terminationMessagePath": "/dev/termination-log",
           "imagePullPolicy": "IfNotPresent"
         }, {
@@ -97,9 +144,15 @@
             "hostPort": 5060,
             "protocol": "UDP"
           }],
-          "command": ["/bin/sh", "-c"],
-          "args": ["export SIP_HOST=$(hostname -i); exec /opt/ibm/wlp/bin/server run defaultServer"],
           "env": [{
+                "name" : "SIP_HOST",
+                "valueFrom" : {
+                    "fieldRef" : {
+                        "apiVersion" : "v1",
+                        "fieldPath" : "spec.nodeName"
+                    }
+                }
+            },{
             "name": "MEDIA_RELAY_HOST",
             "value": "localhost:8080"
           }, {
