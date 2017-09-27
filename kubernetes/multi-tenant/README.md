@@ -11,4 +11,4 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 * Creates a 10 MB persistent volume to load the multi tenant config file
 * Creates a 2 GB persistent volume called recordings to store call recordings
 * Recording is disabled by default. To enable recording set the value of ENABLE_RECORDING variable to true
-* Need to add credentials to tenantConfig.json and copy it to /root/tenantConfig folder on worker node
+* Need to add credentials to tenantConfig.json and copy it to /root/tenantConfig folder on each worker node
