@@ -1,0 +1,47 @@
+<server description="jsonp-1.0 usage sample configuration">
+
+ <!-- Enable features -->
+ <featureManager>
+        <feature>javaMail-1.5</feature>
+        <feature>jaxrs-2.0</feature>
+        <feature>jndi-1.0</feature>
+        <feature>jsonp-1.0</feature>
+        <feature>localConnector-1.0</feature>
+        <feature>servlet-3.1</feature>
+    </featureManager>
+
+ <!-- Specify the Watson Conversation URL -->
+ <jndiEntry jndiName="CONVERSATION_URL" value="${env.CONVERSATION_URL}"/>
+
+ <!-- Specify the Watson Conversation Version -->
+ <jndiEntry jndiName="CONVERSATION_VERSION" value="${env.CONVERSATION_VERSION}"/>
+
+ <!-- Specify the Watson Conversation Workspace ID -->
+ <jndiEntry jndiName="WORKSPACE_ID" value="${env.WORKSPACE_ID}"/>
+
+ <!-- Specify the Watson Conversation Username -->
+ <jndiEntry jndiName="CONVERSATION_USERNAME" value="${env.CONVERSATION_USERNAME}"/>
+
+ <!-- Specify the Watson Conversation Password -->
+ <jndiEntry jndiName="CONVERSATION_PASSWORD" value="${env.CONVERSATION_PASSWORD}"/>
+
+ <!-- Specify the Sales Rep email addresses.   When a customer wants more info about the VGW,   -->
+ <!-- we'll send their contact info to the configured email addresses  -->
+ <jndiEntry jndiName="EMAIL_ADDRESSES" value="${env.EMAIL_ADDRESSES}"/>
+ 
+ <httpEndpoint host="*" httpPort="9147" id="defaultHttpEndpoint"/>
+
+
+ <applicationMonitor updateTrigger="mbean"/>
+
+     <mailSession mailSessionID="ibmSMTPSession"
+         jndiName="mail/ibmSMTPSession"
+         storeProtocol="imap" host="smtp.gmail.com"
+         user="mjdeasy21@gmail.com" password="agcaabcaxmdunrzi"
+         from="mjdeasy21@gmail.com" description="Test App">
+        <property name="mail.imap.host" value="imap.gmail.com" />
+        <property name="mail.smtp.port" value="587" />
+        <property name="mail.smtp.auth" value="true" />
+        <property name="mail.smtp.starttls.enable" value="true" />
+     </mailSession>
+</server>
