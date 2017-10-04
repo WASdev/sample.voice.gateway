@@ -459,6 +459,10 @@ public class VoiceProxyUtilities {
             emails = emails.replace("..", "-_-");
             emails = emails.replace(".us", "-_-us");
             emails = emails.replace(".com", "-_-com");
+            emails = emails.replace(".gov", "-_-gov");
+            emails = emails.replace(".edu", "-_-edu");
+            emails = emails.replace(".org", "-_-org");
+            emails = emails.replace(".net", "-_-net");
             emails = emails.replace(".", "");
             emails = emails.replace("-_-", ".");
             emails = emails.replace("vgwpostresponsetimeout", "");
@@ -490,6 +494,9 @@ public class VoiceProxyUtilities {
                 name = emails.split("@")[0];
                 name = name.toUpperCase();
                 domain = emails.split("@")[1];
+                domain = domain.replace("us", "U.S.");
+                domain = domain.replace("ibm", "I.B.M.");
+                domain = domain.replace("ggmail", "gmail");
                 name = name.replaceAll(".(?=.)", "$0 ");
                 
             }
@@ -499,6 +506,8 @@ public class VoiceProxyUtilities {
             
 
             // First replace words that should be symbols
+            name = name.toUpperCase();
+            name = name.replaceAll("([a-z][A-Z])", "\1.");
             name = name.replace("-", "dash ");
             name = name.replace("_", "underscore ");
             name = name.replace("!", "exclamation point ");
@@ -506,9 +515,15 @@ public class VoiceProxyUtilities {
             name = name.replace("%", "percent sign ");
             name = name.replace("&", "ampersand ");
             name = name.replace("*", "star ");
-            name = name.replace("#", "hash ");
+            name = name.replace("#", "number sign ");
             name = name.replace("~", "till day ");
             name = name.replace("?", "question mark ");
+            name = name.replace("{", "left curly bracket ");
+            name = name.replace("}", "right curly bracket ");
+            name = name.replace("/", "slash ");
+            name = name.replace("\\", "forward slash ");
+            name = name.replace("|", "vertical line ");
+            name = name.replace("'", "apostrophe ");
             
             //Append the @ to sounds natural
             name = name.concat("...at...");
@@ -542,6 +557,15 @@ public class VoiceProxyUtilities {
         str = str.toLowerCase();
 
         // First replace words that should be symbols
+        str = str.replace("equals sign", "=");
+        str = str.replace("equalssign", "=");
+        str = str.replace("equal sign", "=");
+        str = str.replace("equalsign", "=");
+        str = str.replace("apostrophe", "'");
+        str = str.replace("vertical line", "|");
+        str = str.replace("forward slash", "\\");
+        str = str.replace("forwardslash", "\\");
+        str = str.replace("slash", "/");
         str = str.replace("hyphen", "-");
         str = str.replace("dash", "-");
         str = str.replace("underscore", "_");
@@ -560,6 +584,7 @@ public class VoiceProxyUtilities {
         str = str.replace("percent", "%");
         str = str.replace("ampersand", "&");
         str = str.replace("own person and", "&");
+        str = str.replace("dollar sign", "$");
         str = str.replace("dollarsign", "$");
         str = str.replace("asterisk", "*");
         str = str.replace("asterix", "*");
@@ -580,12 +605,15 @@ public class VoiceProxyUtilities {
         str = str.replace("right bracket", "}");
         str = str.replace("left curly bracket", "{");
         str = str.replace("right bracket", "{");
-        str = str.replace("plus", "+");
         str = str.replace("plus sign", "+");
+        str = str.replace("plus", "+");
         str = str.replace("addition sign", "+");
         str = str.replace("slash", "/");
         str = str.replace("star", "*");
-        str = str.replace("sign", "");
+        str = str.replace("+sign", "+");
+        str = str.replace("=sign", "=");
+        str = str.replace("%sign", "%");
+        str = str.replace("#sign", "#");
         str = str.replace("mark", "");
         str = str.replace("point", "");
 
@@ -614,6 +642,7 @@ public class VoiceProxyUtilities {
         str = str.replace("ex", "x");
         str = str.replace("why", "y");
         str = str.replace("zed", "z");
+        str = str.replace("ggmail", "gmail");
 
         return str;
     }
