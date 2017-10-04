@@ -59,6 +59,7 @@ public class CheckConversationSignal {
             ArrayList<String> text = (ArrayList<String>) utilities.getOutputValue(response, "text");
             String name = (String) utilities.getValueFromContext(response, VoiceProxyUtilities.FIRST_NAME);
             String firstName = name.substring(name.lastIndexOf(" ") + 1);
+            firstName = utilities.formatName(firstName);
             System.out.println("text = " + text + "    firstName = " + firstName);
             text.set(0, ((String) text.get(0)).replaceAll(VoiceProxyUtilities.REPLACE_FIRST_NAME_MARKER, firstName));
             System.out.println("text = " + text);
@@ -72,6 +73,7 @@ public class CheckConversationSignal {
             String name = (String) utilities.getValueFromContext(response, VoiceProxyUtilities.LAST_NAME);
             String lastName = "";
             lastName = name.substring(name.lastIndexOf(" ") + 1);
+            lastName = utilities.formatName(lastName);
             System.out.println("text = " + text + "    lastName = " + lastName);
             text.set(0, ((String) text.get(0)).replaceAll(VoiceProxyUtilities.REPLACE_LAST_NAME_MARKER, lastName));
             System.out.println("text = " + text);

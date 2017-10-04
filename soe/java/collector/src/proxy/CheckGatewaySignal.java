@@ -71,8 +71,6 @@ public class CheckGatewaySignal {
         
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_FIRST_NAME)) {
             String firstName = (String) utilities.getInputValue(request, "text");
-            firstName = firstName.replaceAll(" ", "");
-            firstName = firstName.replaceAll("\\.", "");
             firstName = utilities.formatName(firstName);
             utilities.setKeyValueInContext(request, VoiceProxyUtilities.FIRST_NAME, firstName);
             utilities.removeKeyFromContext(request, VoiceProxyUtilities.GET_FIRST_NAME);
@@ -80,8 +78,6 @@ public class CheckGatewaySignal {
         
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_LAST_NAME)) {
             String lastName = (String) utilities.getInputValue(request, "text");
-            lastName = lastName.replaceAll(" ", "");
-            lastName = lastName.replaceAll("\\.", "");
             lastName = utilities.formatName(lastName);
             utilities.setKeyValueInContext(request, VoiceProxyUtilities.LAST_NAME, lastName);
             utilities.removeKeyFromContext(request, VoiceProxyUtilities.GET_LAST_NAME);

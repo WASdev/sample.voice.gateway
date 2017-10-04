@@ -105,6 +105,7 @@ public class VoiceProxyUtilities {
             if (response.getOutput().containsKey("action")) {
                 String action = (String) response.getOutput().get("action");
                 if (action.contains(signal)) {
+                    System.out.println("Action signal detected: " + signal + "   Output: " + response.getOutput());
                     return true;
                 }
             }
@@ -374,17 +375,17 @@ public class VoiceProxyUtilities {
      * Format a name to follow proper capitalization and format
      */
     public String formatName(String name) {
-
         if (name != "") {
 
             // Ensure only first letter is capitalized and that spacing is
             // removed
-            name = name.replace(".", "");
-            name = name.replace(" ", "");
             name = name.toLowerCase();
+            name = name.replace(" ", "");
+            name = name.replace("\\.", "");
+            name = name.replace(".", "");
+            name = convertSoundsLike(name);
             name = name.substring(0, 1).toUpperCase() + name.substring(1);
         }
-
         return name;
     }
 
@@ -460,7 +461,9 @@ public class VoiceProxyUtilities {
             emails = emails.replace(".com", "-_-com");
             emails = emails.replace(".", "");
             emails = emails.replace("-_-", ".");
+            emails = emails.replace("vgwpostresponsetimeout", "");
             emails = convertNumbers(emails);
+            emails = convertSoundsLike(emails);
 
             // Make it all lowercase
             emails = emails.toLowerCase();
@@ -544,12 +547,16 @@ public class VoiceProxyUtilities {
         str = str.replace("underscore", "_");
         str = str.replace("exclamation mark", "!");
         str = str.replace("exclamation point", "!");
+        str = str.replace("exclamation sign", "!");
+        str = str.replace("exclamationsign", "!");
         str = str.replace("exclamationpoint", "!");
         str = str.replace("exclamation", "!");
         str = str.replace("xclamation", "!");
         str = str.replace("xclmation", "!");
         str = str.replace("percentsign", "%");
         str = str.replace("percent sign", "%");
+        str = str.replace("percentage sign", "%");
+        str = str.replace("percentage", "%");
         str = str.replace("percent", "%");
         str = str.replace("ampersand", "&");
         str = str.replace("own person and", "&");
@@ -568,7 +575,19 @@ public class VoiceProxyUtilities {
         str = str.replace("tillday", "~");
         str = str.replace("question mark", "?");
         str = str.replace("questionmark", "?");
+        str = str.replace("vertical line", "|");
+        str = str.replace("right curly bracket", "}");
+        str = str.replace("right bracket", "}");
+        str = str.replace("left curly bracket", "{");
+        str = str.replace("right bracket", "{");
+        str = str.replace("plus", "+");
+        str = str.replace("plus sign", "+");
+        str = str.replace("addition sign", "+");
+        str = str.replace("slash", "/");
         str = str.replace("star", "*");
+        str = str.replace("sign", "");
+        str = str.replace("mark", "");
+        str = str.replace("point", "");
 
         // Replace common word issues
         str = str.replace("be", "b");
@@ -622,5 +641,21 @@ public class VoiceProxyUtilities {
         
         System.out.println("Number after conversion: " + telNumber);
         return returnValue;
+    }
+    
+    /**
+     * Convert "sounds like" phrases into their corresponding letter, i.e F as in fox becomes F,
+     */
+    public String convertSoundsLike(String str){
+        str = str.replace(" ", "");
+        str = str.replace("iasinindia", "i");
+        str = str.replace("fasinfox", "f");
+        str = str.replace("dasindelta", "d");
+        str = str.replace("easinecho", "e");
+        str = str.replace("sasinsam", "s");
+        str = str.replace("sasinsm", "s");
+        str = str.replace("vasinvictor", "v");
+        
+        return str;
     }
 }
