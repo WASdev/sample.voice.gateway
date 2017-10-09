@@ -394,20 +394,14 @@ public class VoiceProxyUtilities {
      */
     public String formatPhoneNumbers(String phoneNumbers) {
 
-        System.out.println("Number before phonetics: " + phoneNumbers);
+        System.out.println("Number before Edits: " + phoneNumbers);
 
         if (phoneNumbers != "") {
             phoneNumbers = phoneNumbers.replace(" ", "");
             phoneNumbers = phoneNumbers.replace("OO", "0");
             phoneNumbers = phoneNumbers.replace("oh", "0");
-//            phoneNumbers = phoneNumbers.replace("too", "2");
-//            phoneNumbers = phoneNumbers.replace("tree", "3");
-//            phoneNumbers = phoneNumbers.replace("to", "2");
-//            phoneNumbers = phoneNumbers.replace("so", "0");
-//            phoneNumbers = phoneNumbers.replace("for", "4");
-//            phoneNumbers = phoneNumbers.replace("sex", "6");
+            phoneNumbers = phoneNumbers.replaceAll(".*?(\\d\\s?\\d\\s?\\d\\s?(\\d\\s?)*)", "$1");
         }
-        System.out.println("Number after phonetics: " + phoneNumbers);
 
         // Handle phrases for "double" and "triple" ex: double 0 = 00
 
@@ -439,7 +433,7 @@ public class VoiceProxyUtilities {
             phoneNumbers = newString;
         }
 
-        System.out.println("Number after edits " + phoneNumbers);
+        System.out.println("Number after Edits: " + phoneNumbers);
 
         return phoneNumbers;
     }
