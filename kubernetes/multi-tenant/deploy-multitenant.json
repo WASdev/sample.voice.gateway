@@ -115,9 +115,6 @@
           }, {
             "name": "WATSON_TTS_VOICE",
             "value": "en-US_MichaelVoice"
-          }, {
-            "name": "WATSON_TTS_URL",
-            "value": "https://stream.watsonplatform.net/text-to-speech/api"
           }],
           "resources": {},
           "volumeMounts": [{
