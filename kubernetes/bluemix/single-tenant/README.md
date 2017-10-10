@@ -8,11 +8,7 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 * Enforces one POD per node. If replicas (PODs > #nodes, the extra replica to be scheduled will remain in a waiting state)
 * Exposes SIP and media relay ports on the associated VM by setting hostNetwork to true
 * Auto restart of any failed containers
-* Creates a 2 GB persistent volume called recordings to store call recordings
-* Recording is disabled by default. To enable recording set the value of ENABLE_RECORDING variable to true
 
-## To deploy Voice Gateway in multi-tenant mode:
+## Instructions to deploy Voice Gateway on Bluemix Kubernetes cluster
 
-* Configure properties in tenantConfig.json before deployment. For more information - [Configuring multi-tenancy](https://www.ibm.com/support/knowledgecenter/SS4U29/multitenancy.html)
-* Create configmap called tenantconfig from the file tenantConfig.json (kubectl create configmap tenantconfig --from-file=tenantConfig.json)
-* Deploy the Voice Gateway (kubectl create -f deploy-multitenant.json)
+https://www.ibm.com/support/knowledgecenter/SS4U29/deploybmix.html
