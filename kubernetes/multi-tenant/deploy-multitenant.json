@@ -112,9 +112,6 @@
           }, {
             "name": "MEDIA_RELAY_WS_PORT",
             "value": "8080"
-          }, {
-            "name": "WATSON_TTS_VOICE",
-            "value": "en-US_MichaelVoice"
           }],
           "resources": {},
           "volumeMounts": [{

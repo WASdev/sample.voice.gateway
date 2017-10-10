@@ -20,7 +20,10 @@
           "url": "",
           "username": "",
           "password": ""
-        }
+        },
+        "config": {
+          "voice": ""
+       }
       }
     },
     {
@@ -42,7 +45,10 @@
         "credentials": {
           "username": "",
           "password": ""
-        }
+        },
+        "config": {
+          "voice": ""
+       }
       }
     }
   ]
