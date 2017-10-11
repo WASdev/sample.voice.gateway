@@ -37,12 +37,14 @@
       },
       "stt": {
         "credentials": {
+          "url": "",
           "username": "",
           "password": ""
         }
       },
       "tts": {
         "credentials": {
+          "url": "",
           "username": "",
           "password": ""
         },
