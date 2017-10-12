@@ -375,15 +375,17 @@ public class VoiceProxyUtilities {
      * Format a name to follow proper capitalization and format
      */
     public String formatName(String name) {
+        System.out.println("Name before Edits: " + name);
+        
         if (name != "") {
 
             // Ensure only first letter is capitalized and that spacing is
             // removed
             name = name.toLowerCase();
-            name = name.replace(" ", "");
             name = name.replace("\\.", "");
             name = name.replace(".", "");
             name = convertSoundsLike(name);
+            name = name.replace(" ", "");
             name = name.substring(0, 1).toUpperCase() + name.substring(1);
         }
         return name;
@@ -393,8 +395,6 @@ public class VoiceProxyUtilities {
      * Format a phone number to handle common phonetic issues
      */
     public String formatPhoneNumbers(String phoneNumbers) {
-
-        System.out.println("Number before Edits: " + phoneNumbers);
 
         if (phoneNumbers != "") {
             phoneNumbers = phoneNumbers.replace(" ", "");
@@ -433,8 +433,6 @@ public class VoiceProxyUtilities {
             phoneNumbers = newString;
         }
 
-        System.out.println("Number after Edits: " + phoneNumbers);
-
         return phoneNumbers;
     }
 
@@ -442,19 +440,21 @@ public class VoiceProxyUtilities {
      * Format an email to follow proper email construction
      */
     public String formatEmailAddress(String emails) {
-        System.out.println("Email before basic format: " + emails);
-
         if (emails != "") {
+
+            System.out.println("Email before edits: " + emails);
 
             // Translate act and at to @
             emails = emails.replace(" at ", " @ ");
             emails = emails.replace(" dot ", " . ");
             emails = emails.replaceAll("([A-Z])\\.", "$1");
             emails = phoneticMapping(emails);
+            
+            //emails = convertNumbers(emails);
+            emails = convertSoundsLike(emails);
             emails = emails.replace(" ", "");
             emails = emails.replace("vgwpostresponsetimeout", "");
-            emails = convertNumbers(emails);
-            emails = convertSoundsLike(emails);
+
             
             //Solve X issue
             emails = emails.replace("xyahoo", "@yahoo");
@@ -467,7 +467,6 @@ public class VoiceProxyUtilities {
             emails = emails.replace("xapple", "@apple");
             emails = emails.replace("xus", "@us");
         }
-        System.out.println("Email after basic format: " + emails);
 
         return emails;
     }
@@ -476,7 +475,6 @@ public class VoiceProxyUtilities {
      * Format the email to be spelled out properly by Watson when spoken
      */
     public String formatEmailForWatson(String email) {
-        System.out.println("Email before formatting for Speech: " + email);
 
         email = email.replace(".", " . ");
 
@@ -588,7 +586,6 @@ public class VoiceProxyUtilities {
      * Convert spoken words into digits in a String
      */
     String convertNumbers(String telNumber) {
-        System.out.println("Number before conversion: " + telNumber);
 
         telNumber = telNumber.replace("zero", "0");
         telNumber = telNumber.replace("oh", "0");
@@ -603,7 +600,6 @@ public class VoiceProxyUtilities {
         telNumber = telNumber.replaceAll("nine", "9");
         telNumber = telNumber.replace("hundred", "00");
 
-        System.out.println("Number after conversion: " + telNumber);
         return telNumber;
     }
 
@@ -612,21 +608,7 @@ public class VoiceProxyUtilities {
      * in fox becomes F,
      */
     public String convertSoundsLike(String str) {
-        str = str.replace(" ", "");
-        str = str.replace("aasinalfa", "a");
-        str = str.replaceAll("asinalfa", "");
-        str = str.replace("iasinindia", "i");
-        str = str.replace("asinindia", "");
-        str = str.replace("fasinfox", "f");
-        str = str.replace("asinfox", "");
-        str = str.replace("dasindelta", "d");
-        str = str.replace("asindelta", "");
-        str = str.replace("easinecho", "e");
-        str = str.replace("asinecho", "e");
-        str = str.replace("vasinvictor", "v");
-        str = str.replace("asinvictor", "v");
-
-
+        str = str.replaceAll("[a-z|A-Z]*\\s(as|an|has|is)\\s?(in|an)?((in|an|)?\\s?(the|an|to|(a\\s)?)?\\s?([a-z|A-Z]))[a-z|A-Z]*", "$7");
         return str;
     }
 }
