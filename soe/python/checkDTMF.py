@@ -41,6 +41,5 @@ def checkDTMF(message):
 			customer = getCustomerByName(name.strip())
 			setCreditCard(customer, cardType, cardNumber)
 			updateCustomer(customer)
-			return message
 			
 	return message

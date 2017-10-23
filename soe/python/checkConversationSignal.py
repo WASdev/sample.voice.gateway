@@ -27,6 +27,7 @@ def wcsSignals(message):
 	
 	return message
 
+#Find signals within the message response from conversation and respond accordingly
 def checkConversationSignal(message):
 	
 	if check_wcsActionSignal(message,'askoriginal'):
@@ -41,6 +42,7 @@ def checkConversationSignal(message):
 		
 	return message
 
+#Check for a DTMF collection signal in the message response from conversation
 def checkdtmfSignal(message):
 	if 'output' in message:
 		if 'vgwAction' in message['output']:
@@ -50,10 +52,10 @@ def checkdtmfSignal(message):
 				if message['output']['vgwAction']['command'] == 'vgwActCollectDtmf':
 					logging.info("DTMF Collection detected")
 					message['context']['collectedDTMF'] = True
-					return message
 
 	return message
 
+#Check for an action signal for gathering the name of a credit card
 def checkCardNameAction(message):
 	if 'output' in message:
 		if 'action' in message['output']:
