@@ -9,9 +9,9 @@ applications:
   buildpack: python_buildpack
   env:
     CONVERSATION_URL: 'https://gateway.watsonplatform.net/conversation/api'
-    CONVERSATION_USERNAME: '8e90dd20-ad71-4580-a281-f37588cc0856'
-    CONVERSATION_PASSWORD: 'm1ksKiMMGOzS'
-    CONVERSATION_WORKSPACE_ID: '434bb8b5-cfa0-44b3-b071-c1965214bc2d'
+    CONVERSATION_USERNAME: #CONVERSATION USERNAME 
+    CONVERSATION_PASSWORD: #CONVERSATION PASSWORD
+    CONVERSATION_WORKSPACE_ID: #WORKSPACE ID
     CONVERSATION_VERSION: '2016-07-11'
 # URL for cloudant should look like https://3f99fb1a-f7b9-4007-929d-3d4dcd810d0b-bluemix:2cb3a3b43950fd9c28d3bca97a1ed052456b75794363caced80f566ee43fc582@3f99fb1a-f7b9-4007-929d-3d4dcd810d0b-bluemix.cloudant.com
     CLOUDANT_URL: ''
