@@ -324,7 +324,15 @@ public class VoiceProxyUtilities {
             Message message = new MimeMessage(session);
             message.setRecipients(Message.RecipientType.TO, addressList);
             message.setSubject("IBM VGW:   Customer followup requested");
-            message.setText(formatEmail(response));
+            //System.out.println((String)getValueFromContext(response, "multiple-Names"));
+            if(getValueFromContext(response, "multiple-Names") != null)
+            {
+                System.out.println("Multiple names detected. Email Formatted for multiple name attempts");
+                message.setText(formatEmailComplex(response));
+            }
+            else {
+                message.setText(formatEmail(response));
+            }
             Transport.send(message);
             returnValue = true;
         } catch (AddressException e) {
@@ -356,7 +364,7 @@ public class VoiceProxyUtilities {
      * Construct an email with information in the SOE_Context, formatted
      * properly
      */
-    private String formatEmail(MessageResponse response) {
+    private String formatEmailComplex(MessageResponse response) {
         String email = "";
 
         String firstNames = (String) getValueFromContext(response, VoiceProxyUtilities.FIRST_NAME);
@@ -370,12 +378,30 @@ public class VoiceProxyUtilities {
 
         return email;
     }
+    
+    /**
+     * Construct an email with information in the SOE_Context, formatted
+     * properly
+     */
+    private String formatEmail(MessageResponse response) {
+        String email = "";
+
+        String firstNames = (String) getValueFromContext(response, VoiceProxyUtilities.FIRST_NAME);
+        String lastNames = (String) getValueFromContext(response, VoiceProxyUtilities.LAST_NAME);
+        String phoneNumbers = (String) getValueFromContext(response, VoiceProxyUtilities.TELEPHONE_NUMBER);
+        String emailAddress = (String) getValueFromContext(response, VoiceProxyUtilities.EMAIL_ADDRESS);
+
+        email = "Customer Info:\n" + "Full Names:    " + firstNames + " " + lastNames + "\n"
+                + "Telephone Numbers:    " + phoneNumbers + "\n" + "Email Addresss:    " + emailAddress + "\n"
+                + "Session ID:    " + getSessionID(response) + "\n\n" + "Thanks\n";
+
+        return email;
+    }
 
     /**
      * Format a name to follow proper capitalization and format
      */
     public String formatName(String name) {
-        System.out.println("Name before Edits: " + name);
         
         if (name != "") {
 
@@ -385,6 +411,7 @@ public class VoiceProxyUtilities {
             name = name.replace("\\.", "");
             name = name.replace(".", "");
             name = convertSoundsLike(name);
+            System.out.println("Name after conversion: " + name);
             name = name.replace(" ", "");
             name = name.substring(0, 1).toUpperCase() + name.substring(1);
         }
@@ -442,16 +469,14 @@ public class VoiceProxyUtilities {
     public String formatEmailAddress(String emails) {
         if (emails != "") {
 
-            System.out.println("Email before edits: " + emails);
-
             // Translate act and at to @
             emails = emails.replace(" at ", " @ ");
             emails = emails.replace(" dot ", " . ");
-            emails = emails.replaceAll("([A-Z])\\.", "$1");
+            emails = emails.replaceAll("(\\s|^)([A-Z])\\.", "$2");
             emails = phoneticMapping(emails);
             
             //emails = convertNumbers(emails);
-            emails = convertSoundsLike(emails);
+            //emails = convertSoundsLike(emails);
             emails = emails.replace(" ", "");
             emails = emails.replace("vgwpostresponsetimeout", "");
 
@@ -468,6 +493,7 @@ public class VoiceProxyUtilities {
             emails = emails.replace("xus", "@us");
         }
 
+        System.out.println("Email after conversion: " + emails);
         return emails;
     }
 
@@ -520,6 +546,8 @@ public class VoiceProxyUtilities {
         email = email.replace("=", "equals sign ...");
         email = email.replace("@", "at ...");
         email = email.replace("'", "apostrophe");
+        
+        System.out.println("Email address after edits: " + email);
         
         return email;
            
@@ -608,7 +636,34 @@ public class VoiceProxyUtilities {
      * in fox becomes F,
      */
     public String convertSoundsLike(String str) {
-        str = str.replaceAll("[a-z|A-Z]*\\s(as|an|has|is)\\s?(in|an)?((in|an|)?\\s?(the|an|to|(a\\s)?)?\\s?([a-z|A-Z]))[a-z|A-Z]*", "$7");
+        str = str.replaceAll("\\S+\\sas\\sin\\s*((the|a|an)\\s)*([a-z]|[A-Z])\\S*", "$3");
+        //System.out.println("String after first edits: " + str);
+        str = str.replaceAll("\\S+\\s(as|an|has|s)\\s(as|in|an|the|n|m|a)\\s*([a-z]|[A-Z])\\S*", "$3");
+        //System.out.println("String after second edits: " + str);
+        str = str.replaceAll("\\S+\\s(hasn't|doesn't|isn't)\\s([a-z]|[A-Z])\\S*", "$2");
+        //System.out.println("String after third edits: " + str);
+        str = str.replaceAll("artisan\\s([a-z]|[A-Z])\\S*", "$1");
+        //System.out.println("String after fourth edits: " + str);
+        if(!str.matches("\\S+\\s\\S+") && !str.matches("(\\S\\s)+\\S") && !str.matches("\\S+")) {
+            str = str.replaceAll("\\S\\S+", "");
+        }
+        return str;
+    }
+    
+    /**
+     * Convert "sounds like" phrases into their corresponding letter, i.e F as
+     * in fox becomes F,
+     */
+    public String convertSoundsLikeForEmail(String str) {
+        str = str.replaceAll("\\S+\\sas\\sin\\s*((the|a|an)\\s)*([a-z]|[A-Z])\\S*", "$3");
+        //System.out.println("String after first edits: " + str);
+        str = str.replaceAll("\\S+\\s(as|an|has|s)\\s(as|in|an|the|n|m|a)\\s*([a-z]|[A-Z])\\S*", "$3");
+        //System.out.println("String after second edits: " + str);
+        str = str.replaceAll("\\S+\\s(hasn't|doesn't|isn't)\\s([a-z]|[A-Z])\\S*", "$2");
+        //System.out.println("String after third edits: " + str);
+        str = str.replaceAll("artisan\\s([a-z]|[A-Z])\\S*", "$1");
+        //System.out.println("String after fourth edits: " + str);
+
         return str;
     }
 }
