@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='jjsonviewer/css/jjsonviewer.css') }}">
+
+<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+
+<script src="{{url_for('static', filename='jjsonviewer/js/jjsonviewer.js')}}"></script>
+
+<script>
+    
+    
+ $( document ).ready(function() {
+    	console.log( "ready!" );
+var lastLI = null;	
+
+$('#listview').on('click', '.listitem', function (e){
+  	var url = '/soeLogging/getLogEntry?_id='+e.target.id;
+  	if(lastLI != null){
+  		$(lastLI).css("background-color", "#33b5e5");
+  	}
+  	lastLI = this;
+  	$(this).css("background-color", "#115971")
+	$("#titleheader").text($(this).text())
+	 $.ajax({
+           type: "GET",
+     		url: url,
+     		success: function(response) {
+     			if(response){
+          			$("#entryview").jJsonViewer(response);
+          		}
+          		else{
+          			console.log("No Response: ")
+          		}
+     		}
+         });
+});
+
+$("#registerSubmit").submit(function(e) {
+
+ 	var url = '/soeLogging/sessionLog';
+ 	
+   	 $.ajax({
+           type: "POST",
+     		url: url,
+     		data: $("#registerSubmit").serialize(),
+     		success: function(response) {
+     			if(response){
+          			var list = $("#docList");
+          			var data = jQuery.parseJSON(response);
+          			$.each(data.docs, (function(key,value){
+    					$(list).append('<li class="listitem" id="' + value._id  + '">' + value.logtime + " at " + value.comment + '</li>');
+    				
+					}));
+          		}
+          		else{
+          			console.log("No Response: ")
+          		}
+     		}
+         });
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+	});
+	
+	
+});
+
+
+</script>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+#mainbody{
+	background-color: #0f041d;
+}
+.header, .footer {
+    background-color: #383D3E;
+    color: white;
+    padding: 0px;
+}
+.column {
+    float: left;
+    padding: 15px;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.menu {
+    width: 30%;
+}
+.content {
+    width: 70%;
+}
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.menu li {
+    padding: 8px;
+    margin-bottom: 8px;
+    background-color: #33b5e5;
+    color: #ffffff;
+}
+.menu li:hover {
+    background-color: #0099cc;
+}
+#titleheader {
+background-color: #44354c;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    color: #e8e8e8;
+}
+.jjson-container {
+	margin-left: 0px;
+	margin-top: 0px;
+}
+</style>
+<meta charset="UTF-8">
+<title>Log Viewer</title>
+</head>
+
+
+
+<body id="mainbody">
+<div class="header">
+<h1 id="header">Log Data</h1>
+<div >
+	<form  action="/" id="registerSubmit">
+    <div id="sessionError"></div>
+      Session ID: <input type="text" name="sessionID" id="sessionID" size="20"/><br>
+      <div id="conversationError" ></div>
+     
+      
+      <input id="btnSubmit" type="submit" name="submit" value="Search" />
+  </form>
+</div>
+</div>
+<div class="clearfix">
+<div id="listview" class="jjson column menu" >
+<ul id="docList">
+</ul>
+</div>
+<div class="column content">
+<h3 id="titleheader">WebLogging Log Entry</h3>
+<div id="entryview" class="jjson" ></div>
+</div>
+</div>
+</body>
+
+</html>
+

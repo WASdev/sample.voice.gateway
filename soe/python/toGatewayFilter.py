@@ -9,53 +9,22 @@ from os.path import join, dirname
 from weblogger import addLogEntry
 import voiceProxySettings
 from voicefilters import response_filter
-from checkGatewaySignal import check_vgwHangUp
-from checkDTMF import DTMFwaitState
-from voiceProxyUtilities import setEarlyReturn, earlyReturn
+from voiceProxyUtilities import remove_wcsActionSignal
 
 logging_comp_name = "toGatewayFilter"
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 #------- To Gateway Filter Methods -----------------
 
 
 
 def outputFilter(message):
-	message = preToGatewayFilter(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'preToGatewayFilter -> Returning to Gateway', message)
-		return message
 
 	message = toGatewayFilter(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'toGatewayFilter -> Returning to Gateway', message)
-		return message
 
-	message = postToGatewayFilter(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'postToGatewayFilter -> Returning to Gateway', message)
-		return message
-
-	return message
-
-def preToGatewayFilter(message):
-	
 	return message
 
 def toGatewayFilter(message):
-
-	if check_vgwHangUp(message):
-		return message
-
-	if DTMFwaitState(message):
-		if 'output' in message:
-			if 'text' in message['output']:
-				message = response_filter(message)
-		return message
-		
-		
-	# Time to hang up
-	if endOfSession(message):
-		if 'context' in message:
-			message['context']['vgwHangUp'] = 'Yes'
 	
 	# This is a good time to check if words need to be replace
 	# For example the RX should be Prescription. We only do this when the TTS engine can not be trained.
@@ -71,16 +40,10 @@ def toGatewayFilter(message):
 
 	else:
 		logging.critical("\n\n\nOutput node is not in the JSON object. Something serious is wrong\n\n\n")
-
-		
 	
-	# Temp Fix for Gateway	
-	message = stuffEntitiesIntents(message)
-	message = removeInput(message)
+	# Removing the action signal from the Conversation Service
+	remove_wcsActionSignal(message)
 
-	return message
-
-def postToGatewayFilter(message):
 	return message
 
 
@@ -88,32 +51,6 @@ def postToGatewayFilter(message):
 	
 #------ End To Gateway Filter Methods ---------------------
 
-
-
-
-# -------------- Bug in Gateway Fixer Method ----------------
-def removeInput(message):
-	if 'input' in message:
-		logging.debug("Removing input node of JSON")
-		del message['input']
-		logging.debug(message)
-		
-	return message
-
-#Short term fix for Gateway issue with Entities and Intents not being preserved
-
-def stuffEntitiesIntents(message):
-	if 'entities' in message:
-		if 'context' in message:
-			message['context']['soeEntities'] = message['entities']
-			#causes NPE in Voice gateway - see issue 35
-			#del message['entities']
-	if 'intents' in message:
-		if 'context' in message:
-			message['context']['soeIntents'] = message['intents']	
-			#causes NPE in Voice gateway - see issue 35
-			#del message['intents']	
-	return message
 
 # -------------- End Bug in Gateway Fixer Method ----------------	
 
@@ -124,12 +61,5 @@ def endOfSession(message):
 		if 'endSession' in message['context']:
 			return message['context']['endSession']
 	return False
-	
-
-def filter_response_line_level(message):
-	return message
-	
-def filter_response_message_level(message):
-	return message
 
 #----------------- End Internal Utility Method --------------

@@ -1,0 +1,50 @@
+version: '2'
+services:
+  sip.orchestrator:
+    image: ibmcom/voice-gateway-so:latest
+    container_name: voice-gateway-so
+    ports:
+      - "5060:5060"
+      - "5060:5060/udp"
+    environment:
+      # Host name of the CMR.
+      - MEDIA_RELAY_HOST=media.relay:8080
+      - SIP_HOST=${EXTERNAL_IP}
+
+      # Uncomment and specify when the Conversation API is used
+      - WATSON_CONVERSATION_WORKSPACE_ID=434bb8b5-cfa0-44b3-b071-c1965214bc2d
+      - WATSON_CONVERSATION_USERNAME=8e90dd20-ad71-4580-a281-f37588cc0856
+      - WATSON_CONVERSATION_PASSWORD=m1ksKiMMGOzS
+      - WATSON_CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api
+      #- WATSON_CONVERSATION_URL=https://pythonsoe.mybluemix.net/
+
+      # Logging related variables
+      - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
+      - LOG_LEVEL=finest
+
+  media.relay:
+    image: ibmcom/voice-gateway-mr:latest
+    container_name: voice-gateway-mr
+    ports:
+      - "16384-16394:16384-16394/udp"
+    environment:
+      - SDP_ADDRESS=${EXTERNAL_IP}
+      - RTP_UDP_PORT_RANGE=16384-16394
+      - MEDIA_RELAY_LOG_LEVEL=DEBUG
+      - MEDIA_RELAY_WS_PORT=8080
+
+      # Creds for Bluemix STT
+      - WATSON_STT_USERNAME=13466a36-bd9a-4e3e-a7d8-1a0a1b3cdfc4
+      - WATSON_STT_PASSWORD=52GMZxZsF8JD
+      - WATSON_STT_URL=https://stream.watsonplatform.net/speech-to-text/api
+
+      # Creds for Bluemix TTS
+      - WATSON_TTS_USERNAME=03790ac9-335e-4fdc-a9d0-1244b318b100
+      - WATSON_TTS_PASSWORD=lMhcJG83mvaB
+      - WATSON_TTS_URL=https://stream.watsonplatform.net/text-to-speech/api
+      - WATSON_TTS_VOICE=en-US_MichaelVoice
+
+      # Uncomment the following three lines to enable call recording
+      #- ENABLE_RECORDING=true
+    #volumes:
+      #- $PWD/recordings:/vgw-media-relay/recordings
