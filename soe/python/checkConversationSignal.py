@@ -38,7 +38,6 @@ def checkConversationSignal(message):
 		del message['entities']
 		message = callConversationService(message)
 		message = wcsSignals(message)
-		return message
 		
 	return message
 
