@@ -1,25 +1,25 @@
 # Java based Service Orchestration Engine sample (SOE)
 
-Java based Voice Proxy for integrating Voice Gateway for Watson, Watson Conversation Service and a clients backend APIs.
+Java based Voice Proxy for integrating Voice Gateway/Voice Agent with Watson, Watson Conversation Service and a clients backend APIs.
 Banking Example
 
 ## Purpose
 
-The purpose of this project is to show how a developer can integrate the Watson Conversation service with the voice gateway in a more realistic way. A way that is more common in a clients environment either for a proof of concept or a production implementation. This demo focuses on a banking example, where the caller can ask about account balances and perform basic credit card actions on a sample database of user profiles.
+The purpose of this project is to show how a developer can integrate the Watson Conversation service with the voice gateway/voice agent with Watson in a more realistic way. A way that is more common in a clients environment either for a proof of concept or a production implementation. This demo focuses on a banking example, where the caller can ask about account balances and perform basic credit card actions on a sample database of user profiles.
 
 ## Background
 
-By default the IBM Voice Gateway (VGW) can communicate with the Watson Conversation Service (WCS) by using the REST services provided by the WCS. The service uses a single REST API for all conversation interactions. VGW exploits this API by creating the appropriate JSON payload when transcribing the spoken words from the caller and invoking the API. The challenge with VGW communicating directly with WCS is that there is no way to personalize the conversation interactions. WCS only maintains static information based on any one particular question being asked. If there is a desire to have dynamic responses, there needs to be a way for the runtime to make API calls to other services to lookup the additional information and provide it as part the response to either WCS or to VGW. This is where the voice proxy idea comes in.
+By default the IBM Voice Gateway (VGW)/Voice Agent with Watson (VAW) can communicate with the Watson Conversation Service (WCS) by using the REST services provided by the WCS. The service uses a single REST API for all conversation interactions. VGW/VAW exploits this API by creating the appropriate JSON payload when transcribing the spoken words from the caller and invoking the API. The challenge with VGW/VAW communicating directly with WCS is that there is no way to personalize the conversation interactions. WCS only maintains static information based on any one particular question being asked. If there is a desire to have dynamic responses, there needs to be a way for the runtime to make API calls to other services to lookup the additional information and provide it as part the response to either WCS or to VGW/VAW. This is where the voice proxy idea comes in.
 
 Since WCS only has one API for the conversation, it is very easy to impersonate (proxy) that API. Also since the JSON format used in WCS is well documented, it is easy to ensure that the proxy can make updates and communicate with WCS on behalf of any invoker. VGW being the most interesting.
 
 ## Goal
 
-The goal of this sample is for the user to get an understanding of how to create a Proxy that communicates with both VGW and WCS. You can leverage this code or you can see the high level flow and create your own if Java isn't your thing. Some might prefer Node.JS, Python or even Node-Red.
+The goal of this sample is for the user to get an understanding of how to create a Proxy that communicates with both VGW/VAW and WCS. You can leverage this code or you can see the high level flow and create your own if Java isn't your thing. Some might prefer Node.JS, Python or even Node-Red.
 
 ## Sample Watson Conversation Workspace
 
-We have provided a sample Conversation Workspace as a part of the tutorial. The JSON is in the workspace folder. The sample workspace is a typical call center like scenario for banking.
+We have provided a sample Conversation Workspace as a part of the tutorial. The JSON is in the workspace folder. The sample workspace is a typical call center like scenario for a banking service.
 
 We have 3 Entities define as part of the tutorial.
 
@@ -39,7 +39,7 @@ We have defined four intents. When you open the workspace you can see what they 
 
 ### Pre-requisites
 
-The base assumption is you are using the IBM Voice Gateway and want to add dynamic responses based on the dialog from Watson Conversation Service. Also, we will assume you already have the IBM Voice Gateway installed and are ready to connect it to a WCS instance. There are several pieces of information needed for this tutorial.
+The base assumption is you are using the IBM Voice Gateway or Voice Agent with Watson and want to add dynamic responses based on the dialog from Watson Conversation Service. Also, we will assume you already have the IBM Voice Gateway installed (or a Voice Agent with Watson setup) and are ready to connect it to a WCS instance. There are several pieces of information needed for this tutorial.
 
 1. Clone the repo
 When pulling this project using eclipse, make sure to check the "Import Existing Projects" button during the clone
@@ -93,8 +93,8 @@ Place the following environment variables in the server.env file for the Liberty
     CONVERSATION_USERNAME=[CONVERSATION SERVICE USERNAME FROM BLUEMIX]
     CONVERSATION_PASSWORD=[CONVERSTAION SERVICE PASSWORD FROM BLUEMIX]
 
-5. Update Docker-Compose
-Now you need to change the docker-compose.yml file from the IBM Voice Gateway. Since the default with the Voice Gateway is to talk directly to the Conversation Service, you need to change the parameter WATSON_CONVERSATION_URL to point to the voiceProxyServer IP address. You need to change it to the IP of where the voiceProxyServer is running. In addition you need to specify the port the server is listening on. The default is 5000. The url will be the one provided when the liberty server is started. However the /rest must be added to the end of the liberty server url.
+5. Update Docker-Compose (Voice Gateway deployments)
+Now you need to change the docker-compose.yml file from the IBM Voice Gateway. Since the default with the Voice Gateway/Voice Agent is to talk directly to the Conversation Service, you need to change the parameter WATSON_CONVERSATION_URL to point to the voiceProxyServer IP address. You need to change it to the IP of where the voiceProxyServer is running. In addition you need to specify the port the server is listening on. The default is 5000. The url will be the one provided when the liberty server is started. However the /rest must be added to the end of the liberty server url.
     WATSON_CONVERSATION_URL=http://localhost:9147/SOE/rest
     **Note the /rest is necessary at the end of the liberty server url
 
@@ -120,7 +120,7 @@ Find and select the IBM Bluemix and press Finish
 A wizard will guide you with the deployment options. Be sure to choose a unique Name for your application
 In a few minutes, your application should be running at the URL you chose.
 
-7. The user can now call into Voice Gateway normally and the call will be sent through the SOE.
+7. The user can now call into Voice Gateway/Voice Agent normally and the call will be sent through the SOE.
 
 #Voice Script
 

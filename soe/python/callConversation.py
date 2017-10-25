@@ -8,8 +8,6 @@ import os, requests, json, string, datetime, logging, time
 from os.path import join, dirname
 from weblogger import addLogEntry
 import voiceProxySettings
-from voiceProxyUtilities import setEarlyReturn, earlyReturn
-import checkPollingBackend 
 
 logging_comp_name = "callConversation"
 
@@ -39,42 +37,9 @@ if 'CONVERSATION_SOE_URL' in os.environ:
 #------- Check SOR Before Conversation Methods -----------------
 
 def callConversationService(message):
-	message = preCallConversation(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'preCallConversation -> Returning to Gateway', message)
-		return message
 	
 	message = callConversation(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'callConversation -> Returning to Gateway', message)
-		return message
-	
-	
-	
-	# $$$$$$$ 
-	message = fromConversation(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'fromConversation -> Returning to Gateway', message)
-		return message
 		
-	message = postCallConversation(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'postCallConversation -> Returning to Gateway', message)
-		return message
-	
-	message = checkPollingAfterConversation(message)
-	if earlyReturn(message):
-		addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, 'checkPollingAfterConversation -> Returning to Gateway', message)
-		return message
-		
-	return message
-
-
-
-def preCallConversation(message):
-	return message
-
-def fromConversation(message):
 	return message
 	
 def callConversation(message):
@@ -84,13 +49,6 @@ def callConversation(message):
 	addLogEntry(voiceProxySettings.APP_NAME_LOGGING, logging_comp_name, "Back from Conversation", message)
 
 	return message
-
-def postCallConversation(message):
-	return message
-
-
-def checkPollingAfterConversation(message):
-	return checkPollingBackend.checkPollingAfterConversation(message)
 	
 #------ End Check SOR Before Conversation Methods ---------------
 
