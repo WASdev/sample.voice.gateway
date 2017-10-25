@@ -13,4 +13,4 @@ Most production deployments of the IBM Voice Gateway will need an SOE for the fo
  - Exploit Voice Gateway features using state variables 
  - Voice security integration using DTMF or biometrics
 
-In this directory you will find samples for the SOE written in various languages. Currently, there is a Python example but we hope to follow it up with samples written in JavaScript for Nodejs and Java.
+In this directory you will find samples for the SOE written in various languages. Currently, there is a Python, Java (on WebSphere Liberty) and Javascript (on Node-RED for Node.js).
