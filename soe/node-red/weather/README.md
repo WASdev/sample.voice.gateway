@@ -16,5 +16,11 @@ To quickly setup this sample follow these steps:
 6. Setup a Voice Agent in the IBM Voice Agent with Watson service with the phone number provisioned in step 1. 
 7. You'll also need to point your voice agent at your SOE.
 
+In terms of the Voice Gateway interactions, this SOE demo is extremely simple. The only complexity comes from the fact that two request to The Weather Service are 
+required to get the daily forecast. The first request converts the city and state names into a longitude and latitude which is required to get the daily forecast. 
+The second request to The Weather Service retrieves the daily forecast. Note that during these request to The Weather Service, the Voice Gateway payload is 
+preserved in a msg variable called **vgwPayload**. This must be preserved so that the response that goes back to the VGW has all the payload from Conversation plus any 
+changes made by the SOE to the output text.
 
+Please comment on the public Slack channel if you run into any issues or feel these instructions are somehow lacking.
 
