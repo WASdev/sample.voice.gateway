@@ -47,8 +47,6 @@ public class CheckGatewaySignal {
      * 
      */
     private MessageRequest checkGatewaySignal(MessageRequest request) {
-
-
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_NAME)) {
             String name = (String) utilities.getInputValue(request, "text");
             System.out.println("STT Transcription for Full Name: " + name);
@@ -101,6 +99,13 @@ public class CheckGatewaySignal {
             String emailAddress = (String) utilities.getInputValue(request, "text");
             System.out.println("STT Transcription for Email Address: " + emailAddress);
             emailAddress = utilities.formatEmailAddress(emailAddress);
+            utilities.setKeyValueInContext(request, VoiceProxyUtilities.EMAIL_ADDRESS, emailAddress);
+            utilities.removeKeyFromContext(request, VoiceProxyUtilities.GET_EMAIL_ADDRESS);
+        } 
+        if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_EMAIL_ADDRESS_COMPLEX)) {
+            String emailAddress = (String) utilities.getInputValue(request, "text");
+            System.out.println("STT Transcription for Email Address Complex: " + emailAddress);
+            emailAddress = utilities.formatEmailAddressComplex(emailAddress);
             utilities.setKeyValueInContext(request, VoiceProxyUtilities.EMAIL_ADDRESS, emailAddress);
             utilities.removeKeyFromContext(request, VoiceProxyUtilities.GET_EMAIL_ADDRESS);
         }  
