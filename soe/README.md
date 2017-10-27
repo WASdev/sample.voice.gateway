@@ -2,7 +2,7 @@
 -------------------
 The Service Orchestration Engine (SOE) provides a simple way to customize the behavior of the IBM Voice Gateway / Voice Agent with Watson. It acts as a Watson Conversation proxy that sits between the IBM Voice Gateway/Voice Agent and the Watson Conversation service, modifying request sent from the voice gateway to Watson and modifying responses sent back to the voice gateway/Voice Agent from Watson:
 
-![](https://raw.githubusercontent.com/WASdev/sample.voice.gateway/develop/images/soe.png)
+![](https://raw.githubusercontent.com/WASdev/sample.voice.gateway/master/images/soe.png)
 
 Most production deployments of the IBM Voice Gateway/Voice Agent will need an SOE for the following reasons:
 
