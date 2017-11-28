@@ -47,10 +47,9 @@ public class CheckGatewaySignal {
      * 
      */
     private MessageRequest checkGatewaySignal(MessageRequest request) {
-
-
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_NAME)) {
             String name = (String) utilities.getInputValue(request, "text");
+            System.out.println("STT Transcription for Full Name: " + name);
             name = name.trim();
             int index = name.indexOf(" ");
             String firstName = name;
@@ -71,17 +70,16 @@ public class CheckGatewaySignal {
         
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_FIRST_NAME)) {
             String firstName = (String) utilities.getInputValue(request, "text");
-            firstName = firstName.replaceAll(" ", "");
-            firstName = firstName.replaceAll("\\.", "");
+            System.out.println("STT Transcription for First Name: " + firstName);
             firstName = utilities.formatName(firstName);
+            utilities.setKeyValueInContext(request, "multiple-Names", "true");
             utilities.setKeyValueInContext(request, VoiceProxyUtilities.FIRST_NAME, firstName);
             utilities.removeKeyFromContext(request, VoiceProxyUtilities.GET_FIRST_NAME);
         }
         
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_LAST_NAME)) {
             String lastName = (String) utilities.getInputValue(request, "text");
-            lastName = lastName.replaceAll(" ", "");
-            lastName = lastName.replaceAll("\\.", "");
+            System.out.println("STT Transcription for Last Name: " + lastName);
             lastName = utilities.formatName(lastName);
             utilities.setKeyValueInContext(request, VoiceProxyUtilities.LAST_NAME, lastName);
             utilities.removeKeyFromContext(request, VoiceProxyUtilities.GET_LAST_NAME);
@@ -90,7 +88,7 @@ public class CheckGatewaySignal {
         
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_TELEPHONE_NUMBER)) {
             String telNumber = (String) utilities.getInputValue(request, "text");
-            System.out.println("Telephone number entering: " + telNumber);
+            System.out.println("STT Transcription for Phone Number: " + telNumber);
             telNumber = utilities.convertNumbers(telNumber);
             telNumber = utilities.formatPhoneNumbers(telNumber);
             utilities.setKeyValueInContext(request, VoiceProxyUtilities.TELEPHONE_NUMBER, telNumber);
@@ -99,7 +97,15 @@ public class CheckGatewaySignal {
         
         if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_EMAIL_ADDRESS)) {
             String emailAddress = (String) utilities.getInputValue(request, "text");
+            System.out.println("STT Transcription for Email Address: " + emailAddress);
             emailAddress = utilities.formatEmailAddress(emailAddress);
+            utilities.setKeyValueInContext(request, VoiceProxyUtilities.EMAIL_ADDRESS, emailAddress);
+            utilities.removeKeyFromContext(request, VoiceProxyUtilities.GET_EMAIL_ADDRESS);
+        } 
+        if (utilities.containsKeyFromContext(request, VoiceProxyUtilities.GET_EMAIL_ADDRESS_COMPLEX)) {
+            String emailAddress = (String) utilities.getInputValue(request, "text");
+            System.out.println("STT Transcription for Email Address Complex: " + emailAddress);
+            emailAddress = utilities.formatEmailAddressComplex(emailAddress);
             utilities.setKeyValueInContext(request, VoiceProxyUtilities.EMAIL_ADDRESS, emailAddress);
             utilities.removeKeyFromContext(request, VoiceProxyUtilities.GET_EMAIL_ADDRESS);
         }  
