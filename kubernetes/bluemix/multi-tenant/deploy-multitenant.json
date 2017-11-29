@@ -28,8 +28,8 @@
           "emptyDir": {}
         }, {
           "name": "tenantconfig",
-          "configMap": {
-            "name": "tenantconfig",
+          "secret": {
+            "secretName": "tenantconfig",
             "items": [{
               "key": "tenantConfig.json",
               "path": "tenantConfig.json"
