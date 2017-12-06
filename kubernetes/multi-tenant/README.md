@@ -14,10 +14,10 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 ## To deploy Voice Gateway in multi-tenant mode:
 
 * Configure properties in tenantConfig.json before deployment. For more information - [Configuring multi-tenancy](https://www.ibm.com/support/knowledgecenter/SS4U29/multitenancy.html)
-* Create configmap called tenantconfig from the file tenantConfig.json:
+* Create secret called tenantconfig from the file tenantConfig.json:
 
 ```bash
-kubectl create configmap tenantconfig --from-file=tenantConfig.json
+kubectl create secret generic tenantconfig --from-file=tenantConfig.json
 ```
 
 * Deploy the Voice Gateway:
