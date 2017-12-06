@@ -9,7 +9,8 @@ Table of Contents:
 	- [Creating Custom Acoustic Models](creating-custom-acoustic-models.md)
 	
 + Text To Speech
-        - [TTS for Foreign Words](tts-customization-foreign-words.md)
+	- [TTS for Foreign Words](tts-customization-foreign-words.md)
+	- [Use Different Voice](use-different-voice-than-default-conversation.md)
 
 + General
 	- [Tracking Latencies](tracking-latencies.md)
