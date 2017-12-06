@@ -1,28 +1,28 @@
-apiVersion:      v1
-kind:            policy
+apiVersion: v1
+kind: policy
 metadata:
-  name:          allow-9080-9443
+  name: allow-9080-9443
 spec:
-  selector:      ibm.role in { 'worker_public', 'master_public' }
+  selector: ibm.role in { 'worker_public', 'master_public' }
   ingress:
-  - action:      allow
-    protocol:    tcp
+  - action: allow
+    protocol: tcp
     destination:
       ports:
       - 9080
-  - action:      allow
-    protocol:    udp
+  - action: allow
+    protocol: udp
     destination:
       ports:
       - 9080
-  - action:      allow
-    protocol:    tcp
+  - action: allow
+    protocol: tcp
     destination:
       ports:
       - 9443
-  - action:      allow
-    protocol:    udp
+  - action: allow
+    protocol: udp
     destination:
       ports:
       - 9443
-  order:         1500
+  order: 1500

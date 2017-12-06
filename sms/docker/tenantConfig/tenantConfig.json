@@ -16,7 +16,6 @@
         "password": "InWtiUpYhF1Z"
       },
       "smsProvider": {
-        "explicitURL": "https://api.twilio.com/2010-04-01/Accounts/23de67h0236e5e7c7f1ead4499h7f54cb/Messages.json",
         "url": "https://api.twilio.com",
         "username": "23de67h0236e5e7c7f1ead4499h7f54cb",
         "password": "9h7f54cb3b1d3736e19ac64aa23de67h"
