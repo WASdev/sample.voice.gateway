@@ -1,12 +1,8 @@
 version: '2'
 services:
   sms.gateway:
-    # Uncomment to use artifactory image
     image: ibmcom/voice-gateway-sms:beta.latest
-
-
-    # Uncomment to build from current directory
-    # image: ./
+    
     container_name: vgw-sms-gateway
     ports:
       - "9080:9080"
