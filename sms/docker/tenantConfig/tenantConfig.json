@@ -1,0 +1,67 @@
+{
+  "tenants": [{
+      "tenantPhoneNumber": "+12345556789",
+      "description": "Tenant1",
+      "allowSessionCreateViaSMS": "true",
+      "timeoutForSession": "86400",
+      "conversationFailedReplyMessage": "Unable to connect to conversation",
+      "convReadTimeout": "30000",
+      "convConnectTimeout": "30000",
+      "smsProviderConnectTimeout": "30000",
+      "smsProviderReadTimeout": "30000",
+      "conversation": {
+        "workspaceID": "a23de67h-e527-40d5-a867-5c0ce9e72d0d",
+        "url": "https://gateway.watsonplatform.net/conversation/api/",
+        "username": "9h7f54cb-d9ed-46b3-8492-e9a9bf555021",
+        "password": "InWtiUpYhF1Z"
+      },
+      "smsProvider": {
+        "url": "https://api.twilio.com",
+        "username": "23de67h0236e5e7c7f1ead4499h7f54cb",
+        "password": "9h7f54cb3b1d3736e19ac64aa23de67h"
+      },
+      "webHookCredentials": {
+        "username": "myUserName",
+        "password": "p4ssw0rd"
+      },
+      "controlCredentials": {
+        "username": "control",
+        "password": "developer"
+      }
+    },
+    {
+      "tenantPhoneNumber": "15555566666",
+      "description": "Tenant2 uses restcomm",
+      "allowSessionCreateViaSMS": "false",
+      "timeoutForSession": "86400",
+      "conversationFailedReplyMessage": "Unable to connect to conversation",
+      "conversation": {
+        "workspaceID": "a23de67h-e527-40d5-a867-5c0ce9e72d0d",
+        "url": "https://gateway.watsonplatform.net/conversation/api/",
+        "username": "9h7f54cb-d9ed-46b3-8492-e9a9bf555021",
+        "password": "InWtiUpYhF1Z"
+      },
+      "smsProvider": {
+        "explicitURL": "https://cloud.restcomm.com/restcomm/2012-04-24/Accounts/23de67h0236e5e7c7f1ead4499h7f54cb/SMS/Messages.json",
+        "username": "23de67h0236e5e7c7f1ead4499h7f54cb",
+        "password": "9h7f54cb3b1d3736e19ac64aa23de67h"
+      }
+    },
+    {
+      "tenantPhoneNumber": "+19999988888",
+      "description": "Tenant3 with workspace id in url",
+      "conversationFailedReplyMessage": "Unable to connect to conversation",
+      "conversation": {
+        "url": "https://gateway.watsonplatform.net/conversation/api/v1/workspaces/a23de67h-e527-40d5-a867-5c0ce9e72d0d/message?version=2016-09-20",
+        "username": "9h7f54cb-d9ed-46b3-8492-e9a9bf555021",
+        "password": "InWtiUpYhF1Z"
+      },
+      "smsProvider": {
+        "explicitURL": "https://api.twilio.com/2010-04-01/Accounts/23de67h0236e5e7c7f1ead4499h7f54cb/Messages.json",
+        "username": "23de67h0236e5e7c7f1ead4499h7f54cb",
+        "password": "9h7f54cb3b1d3736e19ac64aa23de67h"
+      }
+    },
+
+  ]
+}
