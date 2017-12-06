@@ -33,7 +33,7 @@
           "name": "admin.registrykey"
         }],
         "containers": [{
-          "name": "sms-gateway",
+          "name": "vgw-sms-gateway",
           "image": "ibmcom/voice-gateway-sms:beta.latest",
           "imagePullPolicy": "Always",
           "ports": [{
