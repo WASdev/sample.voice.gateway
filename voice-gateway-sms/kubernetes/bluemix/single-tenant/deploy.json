@@ -1,0 +1,139 @@
+{
+  "kind": "Deployment",
+  "apiVersion": "extensions/v1beta1",
+  "metadata": {
+    "name": "sms-gateway",
+    "creationTimestamp": null,
+    "labels": {
+      "io.kompose.service": "sms-gateway"
+    }
+  },
+  "spec": {
+    "replicas": 1,
+    "template": {
+      "metadata": {
+        "creationTimestamp": null,
+        "labels": {
+          "io.kompose.service": "sms-gateway"
+        }
+      },
+      "spec": {
+        "volumes": [{
+          "name": "secret-tenantconfig",
+          "secret": {
+            "secretName": "secret-tenantconfig",
+            "items": [{
+                "key": "tenantConfig.json",
+                "path": "tenantConfig.json"
+              }]
+          }
+        }
+                   ],
+        "hostNetwork": true,
+        "imagePullSecrets": [{
+          "name": "admin.registrykey"
+        }],
+        "containers": [{
+          "name": "sms-gateway",
+          "image": "ibmcom/voice-gateway-sms:beta.latest",
+          "imagePullPolicy": "Always",
+          "ports": [{
+              "containerPort": 9080,
+              "hostPort": 9080,
+              "protocol": "TCP"
+            },
+            {
+              "containerPort": 9443,
+              "hostPort": 9443,
+              "protocol": "TCP"
+            }
+          ],
+          "env": [{
+              "name": "ALLOW_SESSION_CREATE_VIA_SMS",
+              "value": "true"
+            },
+            {
+              "name": "CTRL_TENANT_PASSWORD",
+              "value": "passw0rd"
+            },
+            {
+              "name": "CTRL_TENANT_USERNAME",
+              "value": "testctrl"
+            },
+            {
+              "name": "LATENCY_REPORTING_THRESHOLD",
+              "value": "1000"
+            },
+            {
+              "name": "LOG_LEVEL",
+              "value": "all"
+            },
+            {
+              "name": "SMS_PROVIDER_PASSWORD",
+              "value": "9h7f54cb3b1d3736e19ac64aa23de67h"
+            },
+            {
+              "name": "SMS_PROVIDER_URL",
+              "value": "https://api.twilio.com"
+            },
+            {
+              "name": "SMS_PROVIDER_USERNAME",
+              "value": "A23de67h0236e5e7c7f1ead4499h7f54cb"
+            },
+            {
+              "name": "SMS_PROXY_PASSWORD",
+              "value": "Password17"
+            },
+            {
+              "name": "SMS_PROXY_PORT",
+              "value": "81"
+            },
+            {
+              "name": "SMS_PROXY_TYPE",
+              "value": "HTTP"
+            },
+            {
+              "name": "SMS_PROXY_USERNAME",
+              "value": "xyz@somecompany.com"
+            },
+            {
+              "name": "TENANT_PHONE_NUMBER",
+              "value": "+19999999999"
+            },
+            {
+              "name": "TIMEOUT_FOR_SESSION",
+              "value": "3600"
+            },
+            {
+              "name": "WATSON_CONVERSATION_PASSWORD",
+              "value": "InWtiUpYhF1Z"
+            },
+            {
+              "name": "WATSON_CONVERSATION_URL",
+              "value": "https://gateway.watsonplatform.net/conversation/api/"
+            },
+            {
+              "name": "WATSON_CONVERSATION_USERNAME",
+              "value": "9h7f54cb-d9ed-46b3-8492-e9a9bf555021"
+            },
+            {
+              "name": "WATSON_CONVERSATION_WORKSPACE_ID",
+              "value": "9h7f54cb-d9ed-46b3-8492-e9a9bf555021"
+            }
+          ],
+          "resources": {},
+          "volumeMounts": [{
+            "name": "secret-tenantconfig",
+            "mountPath": "/resources/multiTenantFile/tenantConfig.json",
+            "subPath": "tenantConfig.json"
+          }]
+        }],
+        "restartPolicy": "Always"
+      }
+    },
+    "strategy": {
+      "type": "Recreate"
+    }
+  },
+  "status": {}
+}
