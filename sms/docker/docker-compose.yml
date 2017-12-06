@@ -10,7 +10,7 @@ services:
 
     environment:
 
-      # Uncomment and specify if MultiTenant configuration is set
+      # Uncomment and specify multi-tenant configuration file path if the file is configured
       #- MULTI_TENANT_CONFIG_FILE=
 
       # Uncomment and specify the Conversation related variables.
@@ -20,7 +20,7 @@ services:
       #- WATSON_CONVERSATION_PASSWORD=
       #- WATSON_CONVERSATION_URL=
 
-      # Uncomment and specify to override the "default" of these Conversation related variables
+      # Uncomment and specify to override the default of these Conversation related variables
       #- WATSON_CONVERSATION_READ_TIMEOUT=30000
       #- WATSON_CONVERSATION_CONNECT_TIMEOUT=30000
       #- WATSON_CONVERSATION_MAX_RETRY_NUM=2
@@ -32,7 +32,7 @@ services:
       #- SMS_PROVIDER_URL=
       #- SMS_PROVIDER_EXPLICIT_URL=
 
-      # Uncomment and specify to override the "default" of these SMS Provider related variables
+      # Uncomment and specify to override the default of these SMS Provider related variables
       #- SMS_PROVIDER_READ_TIMEOUT=30000
       #- SMS_PROVIDER_CONNECT_TIMEOUT=30000
       #- SMS_PROVIDER_MAX_RETRY_NUM=2
@@ -92,6 +92,6 @@ services:
       # Example: Uncomment to mount a local directory with truststore/keystore onto the container
       #- "./sslconf/:/resources/security"
 
-      # Example: Uncomment to mount a local directory with multiTenantFile onto the container
+      # Example: Uncomment to mount a local directory with multi-tenant config file onto the container
       # REQUIRED when MULTI_TENANT_CONFIG_FILE is set
       #- "./tenantConfig/:/resources/tenantConfig"
