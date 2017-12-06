@@ -94,4 +94,4 @@ services:
 
       # Example: Uncomment to mount a local directory with multi-tenant config file onto the container
       # REQUIRED when MULTI_TENANT_CONFIG_FILE is set
-      #- "./tenantConfig/:/resources/tenantConfig"
+      #- "./tenantconfig/:/resources/tenantconfig"
