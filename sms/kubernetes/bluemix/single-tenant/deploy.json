@@ -18,16 +18,6 @@
         }
       },
       "spec": {
-        "volumes": [{
-          "name": "secret-tenantconfig",
-          "secret": {
-            "secretName": "secret-tenantconfig",
-            "items": [{
-              "key": "tenantConfig.json",
-              "path": "tenantConfig.json"
-            }]
-          }
-        }],
         "hostNetwork": true,
         "imagePullSecrets": [{
           "name": "admin.registrykey"
@@ -48,26 +38,6 @@
             }
           ],
           "env": [{
-              "name": "ALLOW_SESSION_CREATE_VIA_SMS",
-              "value": "true"
-            },
-            {
-              "name": "CTRL_TENANT_PASSWORD",
-              "value": "passw0rd"
-            },
-            {
-              "name": "CTRL_TENANT_USERNAME",
-              "value": "testctrl"
-            },
-            {
-              "name": "LATENCY_REPORTING_THRESHOLD",
-              "value": "1000"
-            },
-            {
-              "name": "LOG_LEVEL",
-              "value": "all"
-            },
-            {
               "name": "SMS_PROVIDER_PASSWORD",
               "value": "9h7f54cb3b1d3736e19ac64aa23de67h"
             },
@@ -120,12 +90,7 @@
               "value": "9h7f54cb-d9ed-46b3-8492-e9a9bf555021"
             }
           ],
-          "resources": {},
-          "volumeMounts": [{
-            "name": "secret-tenantconfig",
-            "mountPath": "/resources/multiTenantFile/tenantConfig.json",
-            "subPath": "tenantConfig.json"
-          }]
+          "resources": {}
         }],
         "restartPolicy": "Always"
       }
