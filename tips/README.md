@@ -7,6 +7,9 @@ Table of Contents:
 + Speech To Text
 	- [Creating Custom Language Models](creating-custom-language-models.md)
 	- [Creating Custom Acoustic Models](creating-custom-acoustic-models.md)
+	
++ Text To Speech
+        - [TTS for Foreign Words](tts-customization-foreign-words.md)
 
 + General
 	- [Tracking Latencies](tracking-latencies.md)
