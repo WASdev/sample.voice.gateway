@@ -1,0 +1,101 @@
+version:               '2'
+services:
+  sms.gateway:
+    # Uncomment to use artifactory image
+    image:             ibmcom/voice-gateway-sms:beta.latest
+
+
+    # Uncomment to build from current directory
+    # image:           ./
+    container_name:    vgw-sms-gateway
+    ports:
+      - "9080:9080"
+      - "9443:9443"
+
+    environment:
+
+      # Uncomment and specify if MultiTenant configuration is set
+      #- MULTI_TENANT_CONFIG_FILE=
+
+      # Uncomment and specify the Conversation related variables. 
+      # REQUIRED when MULTI_TENANT_CONFIG_FILE is not set, no defaults are set
+      #- WATSON_CONVERSATION_WORKSPACE_ID=
+      #- WATSON_CONVERSATION_USERNAME=
+      #- WATSON_CONVERSATION_PASSWORD=
+      #- WATSON_CONVERSATION_URL=
+
+      # Uncomment and specify to override the "default" of these Conversation related variables
+      #- WATSON_CONVERSATION_READ_TIMEOUT=30000
+      #- WATSON_CONVERSATION_CONNECT_TIMEOUT=30000
+      #- WATSON_CONVERSATION_MAX_RETRY_NUM=2
+
+      # Uncomment and specify SMS Provider related variables
+      # REQUIRED when MULTI_TENANT_CONFIG_FILE is not set, no defaults are set
+      #- SMS_PROVIDER_USERNAME=
+      #- SMS_PROVIDER_PASSWORD=
+      #- SMS_PROVIDER_URL=
+      #- SMS_PROVIDER_EXPLICIT_URL=
+
+      # Uncomment and specify to override the "default" of these SMS Provider related variables
+      #- SMS_PROVIDER_READ_TIMEOUT=30000
+      #- SMS_PROVIDER_CONNECT_TIMEOUT=30000
+      #- SMS_PROVIDER_MAX_RETRY_NUM=2
+
+      # Uncomment this section and provide values to provide security for SMS Webhook
+      #- SMS_WEBHOOK_USERNAME=
+      #- SMS_WEBHOOK_PASSWORD=
+
+      # Uncomment this section and provide values to provide security for Tenant Control Rest API
+      #- CTRL_TENANT_USERNAME=
+      #- CTRL_TENANT_PASSWORD=
+
+      # Tenant related configuration
+      # REQUIRED when MULTI_TENANT_CONFIG_FILE is not set, no defaults are set
+      #- TENANT_PHONE_NUMBER=
+
+      # Uncomment and specify to override the default of these
+      #- ALLOW_SESSION_CREATE_VIA_SMS=false
+      #- TIMEOUT_FOR_SESSION=3600
+      #- LATENCY_REPORTING_THRESHOLD=10000
+
+      # Uncomment and specify to override the default of these Logging related variables
+      #- LOG_LEVEL=info
+      #- LOG_MAX_FILE_SIZE=100
+      #- LOG_MAX_FILES=5
+
+      #Uncomment and specify your message to override the default
+      #- CONVERSATION_FAILED_REPLY_MESSAGE=
+
+      # Uncomment this section to provide SMS proxy server related variables
+      #- SMS_PROXY_TYPE=HTTP
+      #- SMS_PROXY_HOST=
+      #- SMS_PROXY_PORT=
+      #- SMS_PROXY_USERNAME=
+      #- SMS_PROXY_PASSWORD=
+
+      # Uncomment this section to provide WCS proxy server related variables
+      #- WCS_PROXY_TYPE=HTTP
+      #- WCS_PROXY_HOST=
+      #- WCS_PROXY_PORT=
+      #- WCS_PROXY_USERNAME=
+      #- WCS_PROXY_PASSWORD=
+
+      # Uncomment this section to use your own keystore
+      # SSL KeyStore related variables
+      #- SSL_KEY_PASSPHRASE=
+      #- SSL_KEY_STORE_FILE=/sslconf/key.jks
+      #- SSL_KEY_FILE_TYPE=JKS
+
+      # Uncomment this section to specify your own truststore
+      # Override the default of these default settings
+      #- SSL_TRUST_PASSPHRASE=
+      #- SSL_TRUST_STORE_FILE=/sslconf/cacerts
+      #- SSL_TRUST_FILE_TYPE=JKS
+
+    #volumes:
+      # Example:       Uncomment to mount a local directory with truststore/keystore onto the container
+      #- "./sslconf/:/resources/security"
+      
+      # Example:       Uncomment to mount a local directory with multiTenantFile onto the container
+      # REQUIRED when MULTI_TENANT_CONFIG_FILE is set
+      #- "./tenantConfig/:/resources/tenantConfig"

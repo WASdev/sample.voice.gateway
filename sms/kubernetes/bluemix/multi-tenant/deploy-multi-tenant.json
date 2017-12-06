@@ -23,12 +23,11 @@
           "secret": {
             "secretName": "secret-tenantconfig",
             "items": [{
-                "key": "tenantConfig.json",
-                "path": "tenantConfig.json"
-              }]
+              "key": "tenantConfig.json",
+              "path": "tenantConfig.json"
+            }]
           }
-        }
-                   ],
+        }],
         "hostNetwork": true,
         "imagePullSecrets": [{
           "name": "admin.registrykey"
@@ -50,7 +49,7 @@
           ],
           "env": [{
               "name": "MULTI_TENANT_CONFIG_FILE",
-              "value": "/resources/multiTenantFile/tenantConfig.json"
+              "value": "/resources/tenantConfig/tenantConfig.json"
             },
             {
               "name": "LATENCY_REPORTING_THRESHOLD",
@@ -59,11 +58,12 @@
             {
               "name": "LOG_LEVEL",
               "value": "all"
-            }],
+            }
+          ],
           "resources": {},
           "volumeMounts": [{
             "name": "secret-tenantconfig",
-            "mountPath": "/resources/multiTenantFile/tenantConfig.json",
+            "mountPath": "/resources/tenantConfig/tenantConfig.json",
             "subPath": "tenantConfig.json"
           }]
         }],

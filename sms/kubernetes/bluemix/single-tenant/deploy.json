@@ -23,12 +23,11 @@
           "secret": {
             "secretName": "secret-tenantconfig",
             "items": [{
-                "key": "tenantConfig.json",
-                "path": "tenantConfig.json"
-              }]
+              "key": "tenantConfig.json",
+              "path": "tenantConfig.json"
+            }]
           }
-        }
-                   ],
+        }],
         "hostNetwork": true,
         "imagePullSecrets": [{
           "name": "admin.registrykey"
