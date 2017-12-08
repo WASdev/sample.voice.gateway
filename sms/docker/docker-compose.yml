@@ -50,7 +50,10 @@ services:
       #- TENANT_PHONE_NUMBER=
 
       # Uncomment and specify to override the default of these
+      # REQUIRED when MULTI_TENANT_CONFIG_FILE is not set
       #- ALLOW_SESSION_CREATE_VIA_SMS=false
+      
+      # Uncomment and specify to override the default of these
       #- TIMEOUT_FOR_SESSION=3600
       #- LATENCY_REPORTING_THRESHOLD=10000
 
