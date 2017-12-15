@@ -1,0 +1,76 @@
+version: '2'
+services:
+  sip.orchestrator:
+    image: ibmcom/voice-gateway-so:latest
+    container_name: voice-gateway-so
+    ports:
+      - "5060:5060"
+      - "5060:5060/udp"
+    environment:
+      # Host name of the CMR.
+      - MEDIA_RELAY_HOST=media.relay:8080
+      - SIP_HOST=${EXTERNAL_IP}
+
+      # Uncomment and specify when the Conversation API is used
+      - WATSON_CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api/
+      - WATSON_CONVERSATION_USERNAME=
+      - WATSON_CONVERSATION_PASSWORD=
+      - WATSON_CONVERSATION_WORKSPACE_ID=
+
+      # Logging related variables
+      - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
+      - LOG_LEVEL=finest
+
+  media.relay:
+    image: ibmcom/voice-gateway-mr:latest
+    container_name: voice-gateway-mr
+    ports:
+      - "16384-16394:16384-16394/udp"
+    environment:
+      - SDP_ADDRESS=${EXTERNAL_IP}
+      - RTP_UDP_PORT_RANGE=16384-16394
+      - MEDIA_RELAY_LOG_LEVEL=DEBUG
+      - MEDIA_RELAY_WS_PORT=8080
+
+      # Points to the STT Adapter Container
+      - WATSON_STT_URL=http://stt.adapter:4000
+
+      # Creds for Bluemix TTS
+      - WATSON_TTS_USERNAME=
+      - WATSON_TTS_PASSWORD=
+      - WATSON_TTS_URL=
+      - WATSON_TTS_VOICE=en-US_AllisonVoice
+
+    #   Uncomment the following three lines to enable call recording
+    #   - ENABLE_RECORDING=true
+    # volumes:
+    #   - $PWD/recordings:/vgw-media-relay/recordings
+
+  # Voice Gateway STT Adapter
+  stt.adapter:
+    image: ibmcom/voice-gateway-stt-adapter:beta.latest
+    container_name: voice-gateway-stt-adapter
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - LOG_LEVEL=debug
+
+      # Google Service Credentials
+      - GOOGLE_APPLICATION_CREDENTIALS=/stt-adapter/credentials/google-service-account.json
+
+      # Language Code to use, ex: es-ES, en-GB, etc.
+      - GOOGLE_SPEECH_LANGUAGE_CODE=en-US
+
+      # Extra config parameters
+      # - GOOGLE_SPEECH_PROFANITY_FILTER=true
+      # - GOOGLE_SPEECH_MAX_ALTERNATIVES=3
+
+      # Uncomment to use a JSON config file for the Google speech recognition config
+      # - GOOGLE_SPEECH_RECOGNITION_CONFIG=/stt-adapter/recognitionConfig.json
+    volumes:
+      # Mount the Google service account json to the container,
+      - /path/to/credentials/google-service-account.json:/stt-adapter/credentials/google-service-account.json
+
+      # Uncomment to use a JSON config file for the Google speech recognition config
+      # - $PWD/recognitionConfig.json:/stt-adapter/recognitionConfig.json
