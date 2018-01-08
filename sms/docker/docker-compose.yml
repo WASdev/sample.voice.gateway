@@ -27,6 +27,8 @@ services:
 
       # Uncomment and specify SMS Provider related variables
       # REQUIRED when MULTI_TENANT_CONFIG_FILE is not set, no default value set
+      # Either provide SMS_PROVIDER_EXPLICIT_URL or SMS_PROVIDER_URL 
+      # SMS_PROVIDER_EXPLICIT_URL value supersedes SMS_PROVIDER_URL when provided
       #- SMS_PROVIDER_USERNAME=
       #- SMS_PROVIDER_PASSWORD=
       #- SMS_PROVIDER_URL=
