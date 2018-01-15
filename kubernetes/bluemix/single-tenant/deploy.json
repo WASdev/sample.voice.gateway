@@ -98,7 +98,7 @@
             "protocol": "UDP"
           }],
           "command": ["/bin/sh", "-c"],
-          "args": ["export SIP_HOST=$(hostname -i); exec /opt/ibm/wlp/bin/server run defaultServer"],
+          "args": ["export SIP_HOST=$(hostname -i); exec /opt/startup.sh"],
           "env": [{
             "name": "MEDIA_RELAY_HOST",
             "value": "localhost:8080"
