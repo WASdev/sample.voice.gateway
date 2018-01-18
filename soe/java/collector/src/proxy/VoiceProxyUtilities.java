@@ -43,6 +43,7 @@ public class VoiceProxyUtilities {
     public static String GET_LAST_NAME = "getLastName";
     public static String GET_TELEPHONE_NUMBER = "getTelephoneNumber";
     public static String GET_EMAIL_ADDRESS = "getEmailAddress";
+    public static String GET_EMAIL_ADDRESS_COMPLEX = "getEmailAddressComplex";
     public static String REPLACE_FIRST_NAME = "replaceFirstName";
     public static String REPLACE_LAST_NAME = "replaceLastName";
     public static String REPLACE_NAME = "replaceName";
@@ -105,6 +106,7 @@ public class VoiceProxyUtilities {
             if (response.getOutput().containsKey("action")) {
                 String action = (String) response.getOutput().get("action");
                 if (action.contains(signal)) {
+                    System.out.println("Action signal detected: " + signal + "   Output: " + response.getOutput());
                     return true;
                 }
             }
@@ -323,7 +325,14 @@ public class VoiceProxyUtilities {
             Message message = new MimeMessage(session);
             message.setRecipients(Message.RecipientType.TO, addressList);
             message.setSubject("IBM VGW:   Customer followup requested");
-            message.setText(formatEmail(response));
+            // System.out.println((String)getValueFromContext(response,
+            // "multiple-Names"));
+            if (getValueFromContext(response, "multiple-Names") != null) {
+                System.out.println("Multiple names detected. Email Formatted for multiple name attempts");
+                message.setText(formatEmailComplex(response));
+            } else {
+                message.setText(formatEmail(response));
+            }
             Transport.send(message);
             returnValue = true;
         } catch (AddressException e) {
@@ -355,7 +364,7 @@ public class VoiceProxyUtilities {
      * Construct an email with information in the SOE_Context, formatted
      * properly
      */
-    private String formatEmail(MessageResponse response) {
+    private String formatEmailComplex(MessageResponse response) {
         String email = "";
 
         String firstNames = (String) getValueFromContext(response, VoiceProxyUtilities.FIRST_NAME);
@@ -371,19 +380,49 @@ public class VoiceProxyUtilities {
     }
 
     /**
-     * Format a name to follow proper capitalization and format
+     * Construct an email with information in the SOE_Context, formatted
+     * properly
+     */
+    private String formatEmail(MessageResponse response) {
+        String email = "";
+
+        String firstNames = (String) getValueFromContext(response, VoiceProxyUtilities.FIRST_NAME);
+        String lastNames = (String) getValueFromContext(response, VoiceProxyUtilities.LAST_NAME);
+        String phoneNumbers = (String) getValueFromContext(response, VoiceProxyUtilities.TELEPHONE_NUMBER);
+        String emailAddress = (String) getValueFromContext(response, VoiceProxyUtilities.EMAIL_ADDRESS);
+
+        email = "Customer Info:\n" + "Full Names:    " + firstNames + " " + lastNames + "\n" + "Telephone Numbers:    "
+                + phoneNumbers + "\n" + "Email Addresss:    " + emailAddress + "\n" + "Session ID:    "
+                + getSessionID(response) + "\n\n" + "Thanks\n";
+
+        return email;
+    }
+
+    /**
+     * Convert a transcription representing a name into the proper form
      */
     public String formatName(String name) {
 
+        // System.out.println("String entering FormatName: " + name);
+
         if (name != "") {
 
-            // Ensure only first letter is capitalized and that spacing is
-            // removed
-            name = name.replace(".", "");
-            name = name.replace(" ", "");
+            // Resolve transcription issues, remove spacing
             name = name.toLowerCase();
-            name = name.substring(0, 1).toUpperCase() + name.substring(1);
+            name = name.replace("\\.", "");
+            name = name.replace(".", "");
+            name = convertSoundsLike(name);
+            name = name.replace(" ", "");
+            name = name.replace("vgwpostresponsetimeout", "");
+            name = name.replace("vgwhangup", "");
+
+            // Capitalize the first letter
+            if (name.length() >= 2) {
+                name = name.substring(0, 1).toUpperCase() + name.substring(1);
+            }
         }
+
+        // System.out.println("String leaving FormatName: " + name);
 
         return name;
     }
@@ -393,19 +432,12 @@ public class VoiceProxyUtilities {
      */
     public String formatPhoneNumbers(String phoneNumbers) {
 
-        System.out.println("Number before phonetics: " + phoneNumbers);
-
         if (phoneNumbers != "") {
             phoneNumbers = phoneNumbers.replace(" ", "");
             phoneNumbers = phoneNumbers.replace("OO", "0");
-            phoneNumbers = phoneNumbers.replace("too", "2");
-            phoneNumbers = phoneNumbers.replace("tree", "3");
-            phoneNumbers = phoneNumbers.replace("to", "2");
-            phoneNumbers = phoneNumbers.replace("so", "0");
-            phoneNumbers = phoneNumbers.replace("for", "4");
-            phoneNumbers = phoneNumbers.replace("sex", "6");
+            phoneNumbers = phoneNumbers.replace("oh", "0");
+            phoneNumbers = phoneNumbers.replaceAll(".*?(\\d\\s?\\d\\s?\\d\\s?(\\d\\s?)*)", "$1");
         }
-        System.out.println("Number after phonetics: " + phoneNumbers);
 
         // Handle phrases for "double" and "triple" ex: double 0 = 00
 
@@ -437,8 +469,6 @@ public class VoiceProxyUtilities {
             phoneNumbers = newString;
         }
 
-        System.out.println("Number after edits " + phoneNumbers);
-
         return phoneNumbers;
     }
 
@@ -446,77 +476,114 @@ public class VoiceProxyUtilities {
      * Format an email to follow proper email construction
      */
     public String formatEmailAddress(String emails) {
-        System.out.println("Email before basic format: " + emails);
-        
         if (emails != "") {
 
             // Translate act and at to @
-            emails = emails.replace("at ", "@ ");
-            emails = emails.replace("act ", "@ ");
+            emails = emails.replace(" at ", " @ ");
+            emails = emails.replace(" dot ", " . ");
+            emails = emails.replaceAll("(\\s|^)([A-Z])\\.", "$2");
             emails = phoneticMapping(emails);
-            emails = emails.replace(" ", "");
-            emails = emails.replace("..", "-_-");
-            emails = emails.replace(".us", "-_-us");
-            emails = emails.replace(".com", "-_-com");
-            emails = emails.replace(".", "");
-            emails = emails.replace("-_-", ".");
-            emails = convertNumbers(emails);
 
-            // Make it all lowercase
-            emails = emails.toLowerCase();
+            // emails = convertNumbers(emails);
+            // emails = convertSoundsLike(emails);
+            emails = emails.replace(" ", "");
+            emails = emails.replace("vgwpostresponsetimeout", "");
+
+            // Solve X issue
+            emails = emails.replace("xyahoo", "@yahoo");
+            emails = emails.replace("xgmail", "@gmail");
+            emails = emails.replace("xaol", "@aol");
+            emails = emails.replace("xibm", "@ibm");
+            emails = emails.replace("xoutlook", "@outlook");
+            emails = emails.replace("xmicrosoft", "@microsoft");
+            emails = emails.replace("xicloud", "@icloud");
+            emails = emails.replace("xapple", "@apple");
+            emails = emails.replace("xus", "@us");
         }
-        System.out.println("Email after basic format: " + emails);
-        
+
+        System.out.println("Email after conversion: " + emails);
         return emails;
     }
 
     /**
-     * Format the email to be spelled out properly by Watson when spoken
+     * Convert a transcription representing a email into the relevant email
      */
-    public String formatEmailForWatson(String emails) {
-        System.out.println("Email before formatting for Speech: " + emails);
+    public String formatEmailAddressComplex(String emails) {
 
-        String name = "";
-        String domain = "";
+        // System.out.println("String entering FormatEmailAddress: " + emails);
 
         if (emails != "") {
 
-            if (emails.contains("@")) {
-                
-                // Seperate each character for proper pronunciation
-                name = emails.split("@")[0];
-                name = name.toUpperCase();
-                domain = emails.split("@")[1];
-                name = name.replaceAll(".(?=.)", "$0 ");
-                
-            }
-            else {
-                name = emails;
-            }
-            
-
-            // First replace words that should be symbols
-            name = name.replace("-", "dash ");
-            name = name.replace("_", "underscore ");
-            name = name.replace("!", "exclamation point ");
-            name = name.replace("$", "dollar sign ");
-            name = name.replace("%", "percent sign ");
-            name = name.replace("&", "ampersand ");
-            name = name.replace("*", "star ");
-            name = name.replace("#", "hash ");
-            name = name.replace("~", "till day ");
-            name = name.replace("?", "question mark ");
-            
-            //Append the @ to sounds natural
-            name = name.concat("...at...");
-
+            /// Remove spacing, resolve transcription issues, format properly
+            emails = emails.replace(" act ", " @ ");
+            emails = emails.replace(" at ", " @ ");
+            emails = emails.replace(" dot ", " . ");
+            emails = emails.replaceAll("([A-Z])\\.", "$1");
+            emails = emails.toLowerCase();
+            emails = phoneticMapping(emails);
+            emails = convertSoundsLikeForEmail(emails);
+            emails = emails.replace(" ", "");
         }
 
-        String nameDomain = name.concat(domain);
+        // System.out.println("String leaving FormatEmailAddress: " + emails);
 
-        System.out.println("Email after formatted for Speech: " + nameDomain);
+        return emails;
+    }
 
-        return nameDomain;
+    /**
+     * Format the string to be spoken properly when read by Watson
+     */
+    public String formatEmailForWatson(String email) {
+
+        // System.out.println("String entering FormatEmailForWatson: " + email);
+
+        // . should be read as "dot" which only happens if it is isolated
+        email = email.replace(".", " . ");
+
+        // Create space between all letters and numbers to slow down the reading
+        email = email.replaceAll("([a-z])", "$1. ...");
+        email = email.replaceAll("([0-9])", "$1 ...");
+        email = email.toUpperCase();
+
+        // Readback common domains the way they should be read
+        email = email.replace(".  G. ...O. ...V. ...", ". gov");
+        email = email.replace(".  C. ...O. ...M. ...", ". com");
+        email = email.replace(".  O. ...R. ...G. ...", ". org");
+        email = email.replace("Y. ...A. ...H. ...O. ...O. ...", "yahoo ...");
+        email = email.replace("G. ...M. ...A. ...I. ...L. ...", "G. mail ...");
+        email = email.replace("M. ...I. ...C. ...R. ...O. ...S. ...O. ...F. ...T. ...", "microsoft ...");
+        email = email.replace("I. ...C. ...L. ...O. ...U. ...D. ...", "I. cloud ...");
+        email = email.replace("A. ...P. ...P. ...L. ...E. ...", "apple ...");
+        email = email.replace("H. ...O. ...T. ...M. ...A. ...I. ...L. ...", "hot mail ... ");
+        email = email.replace("O. ...U. ...T. ...L. ...O. ...O. ...K. ...", "out look ...");
+        email = email.replace("I. ...N. ...B. ...O. ...X. ...", "inbox ...");
+        email = email.replace("C. ...O. ...M. ...C. ...A. ...S. ...T. ...", "comcast ...");
+
+        // Ensure that symbols are read back consistently
+        email = email.replace("-", "dash ...");
+        email = email.replace("_", "underscore ...");
+        email = email.replace("!", "exclamation point ...");
+        email = email.replace("$", "dollar sign ...");
+        email = email.replace("%", "percent sign ...");
+        email = email.replace("&", "ampersand ...");
+        email = email.replace("*", "star ...");
+        email = email.replace("#", "number sign ...");
+        email = email.replace("~", "tilde ...");
+        email = email.replace("?", "question mark ...");
+        email = email.replace("{", "left curly bracket ...");
+        email = email.replace("}", "right curly bracket ...");
+        email = email.replace("/", "slash ...");
+        email = email.replace("\\", "forward slash ...");
+        email = email.replace("|", "vertical line ...");
+        email = email.replace("'", "apostrophe ...");
+        email = email.replace("+", "plus sign ...");
+        email = email.replace("=", "equals sign ...");
+        email = email.replace("@", "at ...");
+        email = email.replace("'", "apostrophe");
+
+        // System.out.println("String leaving FormatEmailForWatson: " + email);
+
+        return email;
     }
 
     /**
@@ -532,95 +599,197 @@ public class VoiceProxyUtilities {
     }
 
     /**
-     * Change common phonetic issues in a string, e.g. hyphen becomes -
+     * Edit a string to change symbols transcribed as words into the relevant
+     * symbol. Accommodates common errors E.G. "cash" = "dash"
      */
     public String phoneticMapping(String str) {
 
-        str = str.toLowerCase();
+        // System.out.println("String entering PhoneticMapping: " + str);
 
-        // First replace words that should be symbols
-        str = str.replace("hyphen", "-");
-        str = str.replace("dash", "-");
+        // Replace words for symbols with the relevant symbol
         str = str.replace("underscore", "_");
+        str = str.replace("hyphen", "-");
+        str = str.replace(" cash ", " dash ");
+        str = str.replace("dash", "-");
         str = str.replace("exclamation mark", "!");
         str = str.replace("exclamation point", "!");
-        str = str.replace("exclamationpoint", "!");
+        str = str.replace("exclamation sign", "!");
         str = str.replace("exclamation", "!");
-        str = str.replace("xclamation", "!");
-        str = str.replace("xclmation", "!");
-        str = str.replace("percentsign", "%");
+        str = str.replace("question mark", "?");
+        str = str.replace("dollar sign", "$");
         str = str.replace("percent sign", "%");
-        str = str.replace("percent", "%");
+        str = str.replace("percentage sign", "%");
+        str = str.replace("empress and", "&");
         str = str.replace("ampersand", "&");
-        str = str.replace("own person and", "&");
-        str = str.replace("dollarsign", "$");
         str = str.replace("asterisk", "*");
-        str = str.replace("asterix", "*");
-        str = str.replace("hash tag", "#");
-        str = str.replaceAll("hashtag", "#");
+        str = str.replace("star", "*");
         str = str.replace("hash sign", "#");
-        str = str.replace("hashsign", "#");
+        str = str.replace("hash tag", "#");
         str = str.replace("hash", "#");
         str = str.replace("number sign", "#");
-        str = str.replace("numbersign", "#");
-        str = str.replace("numbrsign", "#");
+        str = str.replace("till date", "~");
+        str = str.replace("tell day", "~");
+        str = str.replace("till day", "~");
         str = str.replace("tilde", "~");
-        str = str.replace("tillday", "~");
-        str = str.replace("question mark", "?");
-        str = str.replace("questionmark", "?");
-        str = str.replace("star", "*");
+        str = str.replace("vertical line", "|");
+        str = str.replace("less curly bracket", "{");
+        str = str.replace("left curly bracket", "{");
+        str = str.replace("right curly bracket", "}");
+        str = str.replace("regularly bracket", "}");
+        str = str.replace("forward slash", "/");
+        str = str.replace("slash", "/");
+        str = str.replace("plus sign", "+");
+        str = str.replace("equals sign", "=");
+        str = str.replace("apostrophe", "'");
 
-        // Replace common word issues
-        str = str.replace("be", "b");
-        str = str.replace("see", "c");
-        str = str.replace("gee", "g");
-        str = str.replace("jim", "gm");
-        str = str.replace("jean", "g");
-        str = str.replace("she", "g");
-        str = str.replace("jay", "j");
-        str = str.replace("kay", "k");
-        str = str.replace("am", "m");
-        str = str.replace("an", "n");
-        str = str.replace("pea", "p");
-        str = str.replace("pee", "p");
-        str = str.replace("queue", "q");
-        str = str.replace("are", "r");
-        str = str.replace("our", "r");
-        str = str.replace("is", "s");
-        str = str.replace("ass", "s");
-        str = str.replace("yes", "s");
-        str = str.replace("tea", "t");
-        str = str.replace("you", "y");
-        str = str.replace("why", "y");
-        str = str.replace("ex", "x");
-        str = str.replace("why", "y");
-        str = str.replace("zed", "z");
+        // Replace common domain errors with relevant domain names
+        str = str.replace("jeanelle", "gmail");
+        str = str.replace("g gmail", "gmail");
+        str = str.replace("ggmail", "gmail");
+        str = str.replace("i icloud", "icloud");
+        str = str.replace("iicloud", "icloud");
+
+        // System.out.println("String leaving PhoneticMapping: " + str);
 
         return str;
     }
 
     /**
-     * Convert spoken words into digits in a String
+     * Convert digits transcribed as words into proper digits including common
+     * ways to say numbers E.G. two hundred becomes 200
      */
     String convertNumbers(String telNumber) {
-        System.out.println("Number before conversion: " + telNumber);
-        
-        String returnValue = null;
 
-        returnValue = telNumber.replace("zero", "0");
-        returnValue = telNumber.replace("oh", "0");
-        returnValue = returnValue.replaceAll("one", "1");
-        returnValue = returnValue.replaceAll("two", "2");
-        returnValue = returnValue.replaceAll("three", "3");
-        returnValue = returnValue.replaceAll("four", "4");
-        returnValue = returnValue.replaceAll("five", "5");
-        returnValue = returnValue.replaceAll("six", "6");
-        returnValue = returnValue.replaceAll("seven", "7");
-        returnValue = returnValue.replaceAll("eight", "8");
-        returnValue = returnValue.replaceAll("nine", "9");
-        returnValue = returnValue.replace("hundred", "00");
-        
-        System.out.println("Number after conversion: " + telNumber);
-        return returnValue;
+        // System.out.println("String entering ConvertNumbers: " + telNumber);
+
+        telNumber = telNumber.replace("zero", "0");
+        telNumber = telNumber.replace("oh", "0");
+        telNumber = telNumber.replaceAll("one", "1");
+        telNumber = telNumber.replaceAll("two", "2");
+        telNumber = telNumber.replaceAll("three", "3");
+        telNumber = telNumber.replaceAll("four", "4");
+        telNumber = telNumber.replaceAll("five", "5");
+        telNumber = telNumber.replaceAll("six", "6");
+        telNumber = telNumber.replaceAll("seven", "7");
+        telNumber = telNumber.replaceAll("eight", "8");
+        telNumber = telNumber.replaceAll("nine", "9");
+        telNumber = telNumber.replace("hundred", "00");
+
+        // System.out.println("String leaving ConvertNumbers: " + telNumber);
+
+        return telNumber;
+    }
+
+    /**
+     * Edits a string to accommodate spelling names using the NATO standard.
+     * E.G. "A as in apple" becomes A
+     */
+    public String convertSoundsLike(String str) {
+        // System.out.println("String entering ConvertSoundsLike: " + str);
+
+        str = str.replaceAll("\\S+\\s(as|an|has|s|is)\\s(and)\\s*([a-z]|[A-Z])\\S*", "$3");
+        // System.out.println("String after and edits: " + str);
+        str = str.replaceAll("\\S+\\sas\\sin\\s*((the|a|an)\\s)*([a-z]|[A-Z])\\S*", "$3");
+        // System.out.println("String after first edits: " + str);
+        str = str.replaceAll("\\S+\\s(as|an|has|s|n)\\s(as|in|an|the|n|m|a|and)\\s*([a-z]|[A-Z])\\S*", "$3");
+        // System.out.println("String after second edits: " + str);
+        str = str.replaceAll("\\S+\\s(hasn't|doesn't|isn't)\\s([a-z]|[A-Z])\\S*", "$2");
+        // System.out.println("String after third edits: " + str);
+        str = str.replaceAll("artisan\\s([a-z]|[A-Z])\\S*", "$1");
+        // System.out.println("String after fourth edits: " + str);
+        if (!str.matches("\\S+\\s\\S+") && !str.matches("(\\S\\s)+\\S")) {
+            str = str.replaceAll("\\S\\S+", "");
+        }
+
+        // System.out.println("String leaving ConvertSoundsLike: " + str);
+
+        return str;
+    }
+
+    /**
+     * Edits a string to accommodate spelling an email address using the NATO
+     * standard. E.G. "A as in apple" becomes A
+     */
+    public String convertSoundsLikeForEmail(String str) {
+        System.out.println("Email entering ConvertSoundsLikeForEmail: " + str);
+
+        // Replace phrases containing and as a conjunction word E.G. "R s and
+        // apple" = "A"
+        str = str.replaceAll("^|\\S+\\s(as|an|has|s|is)\\s(and)\\s*([a-z]|[A-Z])\\S*", "$3");
+        // System.out.println("String after first edits: " + str);
+
+        // Replace phrases with excess words or misleading prefixes E.G. "T as
+        // in the time" = "T"
+        // "E as indoor" = "I" "R as in a pie" = "P"
+        str = str.replaceAll("\\S+\\sas\\sin\\s*((the|a|an)\\s)*([a-z]|[A-Z])\\S*", "$3");
+        // System.out.println("String after second edits: " + str);
+
+        // Replace phrases with any two conjunction words E.G. "B as in boy" =
+        // "B" "C has the yarn" = "Y"
+        str = str.replaceAll("\\S+\\s(as|an|has|s|a)\\s(as|in|an|the|n|m|a|and)\\s*([a-z]|[A-Z])\\S*", "$3");
+        // System.out.println("String after third edits: " + str);
+
+        // Replace phrases containing conjunctions E.G. "I hasn't igloo" = "I"
+        str = str.replaceAll("\\S+\\s(hasn't|doesn't|isn't)\\s([a-z]|[A-Z])\\S*", "$2");
+        // System.out.println("String after fourth edits: " + str);
+
+        // Replace phrases with single letter intermediates. E.G. "s s faster" =
+        // "f" "A n apple" = "A"
+        str = str.replaceAll("\\S+\\s(n|s)\\s([a-z]|[A-Z])([a-z]+|[A-Z]+)\\S*", "$2");
+        // System.out.println("String after fifth edits: " + str);
+
+        // Replace phrases with artisan E.G. "artisan run" = "R"
+        str = str.replaceAll("artisan\\s([a-z]|[A-Z])\\S*", "$1");
+        // System.out.println("String after sixth edits: " + str);
+
+        // System.out.println("String before domain edits: " + str);
+
+        // At this point, the only phrases that are not a single character or a
+        // number string are either a domain name, or it should be removed
+
+        // List of defined domains to search for, including common transcription
+        // errors
+        String[] domains = new String[] { "gmail", "yahoo", "ibm", "icloud", "microsoft", "outlook" };
+
+        // Break up the transcription into chunks
+        String[] tok = str.split(" ");
+
+        // Check each chunk of the transcription
+        for (int i = 0; i < tok.length; i++) {
+            // System.out.println("cur token: " + tok[i]);
+
+            // Look for chunks that are not single characters or number
+            // sequences
+            if (!tok[i].matches("\\s") && !tok[i].matches("[0-9]+") && !tok[i].matches("\\$[0-9]+")) {
+
+                boolean matchesDomain = false;
+
+                // Compare these large chunks to domain names
+                for (int j = 0; j < domains.length; j++) {
+
+                    // Remove chunks that do not match any domain names
+                    if (tok[i].contains(domains[j])) {
+                        // System.out.println("Found domain match: " + tok[i]);
+                        matchesDomain = true;
+                    }
+                }
+                if (!matchesDomain) {
+                    tok[i] = tok[i].replaceAll("\\S\\S+", "");
+                }
+            }
+        }
+
+        // System.out.println(" Token at tok.length: "+ tok[tok.length - 1]);
+        // for(int k = 0; k <= tok.length; k++) {
+        // System.out.println("toks to be joined: " + tok[k]);
+        // }
+
+        // Bring the chunks back into a single string with chunks separated by
+        // whitespaces
+        str = String.join(" ", tok);
+
+        System.out.println("Email after ConvertSoundsLikeForEmail: " + str);
+
+        return str;
     }
 }

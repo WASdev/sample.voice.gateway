@@ -59,7 +59,8 @@ public class CheckConversationSignal {
             ArrayList<String> text = (ArrayList<String>) utilities.getOutputValue(response, "text");
             String name = (String) utilities.getValueFromContext(response, VoiceProxyUtilities.FIRST_NAME);
             String firstName = name.substring(name.lastIndexOf(" ") + 1);
-            System.out.println("text = " + text + "    firstName = " + firstName);
+            firstName = utilities.formatName(firstName);
+            //System.out.println("text = " + text + "    firstName = " + firstName);
             text.set(0, ((String) text.get(0)).replaceAll(VoiceProxyUtilities.REPLACE_FIRST_NAME_MARKER, firstName));
             System.out.println("text = " + text);
         }
@@ -72,7 +73,8 @@ public class CheckConversationSignal {
             String name = (String) utilities.getValueFromContext(response, VoiceProxyUtilities.LAST_NAME);
             String lastName = "";
             lastName = name.substring(name.lastIndexOf(" ") + 1);
-            System.out.println("text = " + text + "    lastName = " + lastName);
+            lastName = utilities.formatName(lastName);
+            //System.out.println("text = " + text + "    lastName = " + lastName);
             text.set(0, ((String) text.get(0)).replaceAll(VoiceProxyUtilities.REPLACE_LAST_NAME_MARKER, lastName));
             System.out.println("text = " + text);
         }
@@ -85,7 +87,7 @@ public class CheckConversationSignal {
             String name = (String) utilities.getValueFromContext(response, VoiceProxyUtilities.FIRST_NAME);
             name = name.split(",")[0];
             name += " ... " + (String) utilities.getValueFromContext(response, VoiceProxyUtilities.LAST_NAME);
-            System.out.println("text = " + text + "    name = " + name);
+            //System.out.println("text = " + text + "    name = " + name);
             text.set(0, ((String) text.get(0)).replaceAll(VoiceProxyUtilities.REPLACE_NAME_MARKER, name));
             System.out.println("text = " + text);
         }
@@ -98,7 +100,7 @@ public class CheckConversationSignal {
             String telNumber = (String) utilities.getValueFromContext(response, VoiceProxyUtilities.TELEPHONE_NUMBER);
             String tempTelNumber = "";
             tempTelNumber = telNumber.substring(telNumber.lastIndexOf(" ") + 1);
-            System.out.println("text = " + text + "    telNumber = " + tempTelNumber);
+            //System.out.println("text = " + text + "    telNumber = " + tempTelNumber);
             String formattedTelNumber = "";
 
             for (int i = 0; i < tempTelNumber.length(); i++) {
@@ -122,7 +124,7 @@ public class CheckConversationSignal {
             String emailAddress = "";
             emailAddress = emailIn.substring(emailIn.lastIndexOf(" ") + 1);
             emailAddress = utilities.formatEmailForWatson(emailAddress);
-            System.out.println("text = " + text + "    emailAddress = " + emailAddress);
+            //System.out.println("text = " + text + "    emailAddress = " + emailAddress);
             text.set(0,
                     ((String) text.get(0)).replaceAll(VoiceProxyUtilities.REPLACE_EMAIL_ADDRESS_MARKER, emailAddress));
             System.out.println("text = " + text);
