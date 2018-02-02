@@ -46,7 +46,9 @@ class WatsonSpeechToTextEngine extends SpeechToTextEngine {
     const params = Object.assign(config, { objectMode: true });
     logger.debug('sending recognize request');
 
-    // Watson Node-SDK supports NodeJS streams, we can return this as our stream
+    // Watson Node-SDK supports NodeJS streams, its open source you can
+    // see the implementation of the recognize stream here: https://github.com/watson-developer-cloud/node-sdk/blob/master/lib/recognize-stream.ts
+    // As a result, we can return recognize stream as our stream for the adapter
     // The idea is your implementation must emit 'data' events that are formatted as Watson results
     // See the WatsonSpeechToText API https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/#recognize_sessionless_nonmp12
     this.recognizeStream = speechToText.createRecognizeStream(params);
