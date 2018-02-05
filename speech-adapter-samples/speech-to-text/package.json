@@ -1,0 +1,29 @@
+{
+  "name": "sample.stt.adapter",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./app.js | pino",
+    "start": "node app.js | pino",
+    "lint": "eslint .",
+    "test": "eslint . && LOG_LEVEL=error mocha test/"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "config": "^1.29.2",
+    "pino": "^4.10.2",
+    "watson-developer-cloud": "^3.0.3",
+    "ws": "^3.3.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.14.0",
+    "tern": "^0.21.0"
+  }
+}

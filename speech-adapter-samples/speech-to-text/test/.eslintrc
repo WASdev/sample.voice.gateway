@@ -1,0 +1,11 @@
+{
+    "extends": "../.eslintrc",
+    "rules": {
+        "max-len": "off",
+        "no-unused-expressions": "off",
+        "func-names": "off",
+        "prefer-arrow-callback": "off",
+        "global-require": "off",
+        "no-console": "warn"
+    }
+}

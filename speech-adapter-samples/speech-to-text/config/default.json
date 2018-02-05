@@ -1,0 +1,12 @@
+{
+    "Server": {
+        "port": 8020
+    },
+    "WatsonSpeechToText": {
+        "credentials": {
+            "username": "<username>",
+            "password": "<password>"
+        }
+    },
+    "LogLevel": "debug"
+}
