@@ -61,7 +61,12 @@
             "value": ""
           }, {
             "name": "WATSON_STT_PASSWORD",
-            "value": ""
+            "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "secret-creds",
+                    "key": "WATSON_STT_PASSWORD"
+                  }
+                }
           }, {
             "name": "WATSON_STT_URL",
             "value": "https://stream.watsonplatform.net/speech-to-text/api"
@@ -70,7 +75,12 @@
             "value": ""
           }, {
             "name": "WATSON_TTS_PASSWORD",
-            "value": ""
+            "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "secret-creds",
+                    "key": "WATSON_TTS_PASSWORD"
+                  }
+                }
           }, {
             "name": "WATSON_TTS_VOICE",
             "value": "en-US_MichaelVoice"
@@ -113,7 +123,12 @@
             "value": ""
           }, {
             "name": "WATSON_CONVERSATION_PASSWORD",
-            "value": ""
+            "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "secret-creds",
+                    "key": "WATSON_CONVERSATION_PASSWORD"
+                  }
+                }
           }, {
             "name": "WATSON_CONVERSATION_URL",
             "value": "https://gateway.watsonplatform.net/conversation/api"
