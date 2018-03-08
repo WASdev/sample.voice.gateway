@@ -1,7 +1,7 @@
 version: '2'
 services:
   sms.gateway:
-    image: ibmcom/voice-gateway-sms:beta.latest
+    image: ibmcom/voice-gateway-sms:latest
 
     container_name: vgw-sms-gateway
     ports:
@@ -63,10 +63,11 @@ services:
       #- LOG_LEVEL=info
       #- LOG_MAX_FILE_SIZE=100
       #- LOG_MAX_FILES=5
+      #- ENABLE_TRANSCRIPTION_MESSAGES=false
+
 
       # Uncomment and specify your message to override the default
       #- CONVERSATION_FAILED_REPLY_MESSAGE=
-      #- ENABLE_TRANSCRIPTION_MESSAGES=true
 
       # Uncomment this section to provide SMS proxy server related variables
       #- SMS_PROXY_TYPE=HTTP
@@ -86,7 +87,7 @@ services:
       #- XS_ENABLED=false
       #- XS_CATALOG_ENDPOINTS=
       #- XS_USERNAME=xsadmin
-      #- XS_PASSWORD=vgwAdmin4Me!
+      #- XS_PASSWORD=
       #- XS_TRANSPORT_TYPE=TCP/IP
 
       # Uncomment this section to use your own keystore
