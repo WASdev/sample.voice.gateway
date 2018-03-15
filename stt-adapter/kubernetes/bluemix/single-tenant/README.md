@@ -11,4 +11,4 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 
 ## Instructions to deploy Voice Gateway on Bluemix Kubernetes cluster
 
-// TODO
+https://www.ibm.com/support/knowledgecenter/SS4U29/speechadapter_deploybmix.html

@@ -42,7 +42,7 @@
 		  }],
 		  "containers": [{
 			"name": "vgw-stt-adapter",
-			"image": "ibmcom/voice-gateway-stt-adapter:beta.latest",
+			"image": "ibmcom/voice-gateway-stt-adapter:latest",
 			"env": [
 					{
 					  "name": "GOOGLE_APPLICATION_CREDENTIALS",
