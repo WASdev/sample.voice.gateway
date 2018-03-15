@@ -1,0 +1,130 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: sms-gateway
+  creationTimestamp:
+  labels:
+    io.kompose.service: sms-gateway
+spec:
+  replicas: 2
+  template:
+    metadata:
+      creationTimestamp:
+      labels:
+        io.kompose.service: sms-gateway
+    spec:
+      containers:
+      - name: vgw-sms-gateway
+        image: ibmcom/voice-gateway-sms:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 9080
+            protocol: TCP
+          - containerPort: 9443
+            protocol: TCP
+
+        env:
+        - name: WATSON_CONVERSATION_WORKSPACE_ID
+          value:
+        - name: WATSON_CONVERSATION_USERNAME
+          value:
+        - name: WATSON_CONVERSATION_PASSWORD
+          value:
+        - name: WATSON_CONVERSATION_URL
+          value:
+        # - name: MULTI_TENANT_CONFIG_FILE
+        #   value: "/resources/multiTenantFile/smsgwConfig.json"
+        - name: LOG_LEVEL
+          value: info
+        - name: ENABLE_TRANSCRIPTION_MESSAGES
+          value: 'false'
+
+        # Specify SMS Provider related variables
+        # REQUIRED when MULTI_TENANT_CONFIG_FILE is not set, no default value set
+        - name: SMS_PROVIDER_USERNAME
+          value:
+        - name: SMS_PROVIDER_PASSWORD
+          value:
+        - name: SMS_PROVIDER_URL
+          value:
+
+        - name: TENANT_PHONE_NUMBER
+          value: ""
+
+        - name: ALLOW_SESSION_CREATE_VIA_SMS
+          value: 'true'
+
+        # Uncomment this section to provide SMS proxy server related variables
+        # - name: SMS_PROXY_TYPE
+        #   value: HTTP
+        # - name: SMS_PROXY_HOST
+        #   value: ''
+        # - name: SMS_PROXY_PORT
+        #   value: ''
+        # - name: SMS_PROXY_USERNAME
+        #   value: ''
+        # - name: SMS_PROXY_PASSWORD
+        #   value: ''
+
+        # Uncomment this section to provide WCS proxy server related variables
+        # - name: WCS_PROXY_TYPE
+        #   value: HTTP
+        # - name: WCS_PROXY_HOST
+        #   value: ''
+        # - name: WCS_PROXY_PORT
+        #   value: ''
+        # - name: WCS_PROXY_USERNAME
+        #   value: ''
+        # - name: WCS_PROXY_PASSWORD
+        #   value:
+
+        - name: XS_ENABLED
+          value: 'true'
+        - name: XS_CATALOG_ENDPOINTS
+          value: ''
+        - name: XS_USERNAME
+          value: xsadmin
+        - name: XS_PASSWORD
+          value: vgwAdmin4xs!
+        - name: XS_TRANSPORT_TYPE
+          value: TCP/IP
+
+
+        # - name: SSL_KEY_PASSPHRASE
+        #   value: changeit
+        # - name: SSL_KEY_STORE_FILE
+        #   value: "/resources/security/keystore.jks"
+        # - name: SSL_KEY_FILE_TYPE
+        #   value: JKS
+
+        # Create a secret for truststore if that is separate file
+        # - name: SSL_TRUST_PASSPHRASE
+        #   value: changeit
+        # - name: SSL_TRUST_STORE_FILE
+        #   value: "/resources/security/truststore.jks"
+        # - name: SSL_TRUST_FILE_TYPE
+        #   value: JKS
+        # resources: {}
+        # volumeMounts:
+        # - name: secret-certs
+        #   mountPath: "/resources/security/"
+        # - name: secret-tenantconfig
+        #   mountPath: "/resources/multiTenantFile/smsgwConfig.json"
+        #   subPath: smsgwConfig.json
+      restartPolicy: Always
+      # volumes:
+      # - name: secret-certs
+      #   secret:
+      #     secretName: secret-certs
+      #     items:
+      #     - key: keystore.jks
+      #       path: keystore.jks
+      # - name: secret-tenantconfig
+      #   secret:
+      #     secretName: secret-tenantconfig
+      #     items:
+      #     - key: smsgwConfig.json
+      #       path: smsgwConfig.json
+  strategy:
+    type: Recreate
+status: {}
