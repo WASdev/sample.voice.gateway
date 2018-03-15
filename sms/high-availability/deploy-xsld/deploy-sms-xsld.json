@@ -1,0 +1,106 @@
+{
+	"kind" : "Deployment",
+	"apiVersion" : "extensions/v1beta1",
+	"metadata" : {
+	    "name" : "vgw-xsld",
+	    "creationTimestamp" : null,
+	    "labels" : {
+            "service" : "vgw-xsld"
+	    }
+	},
+	"spec" : {
+		"replicas" : 1,
+		"template" : {
+        	"metadata" : {
+                "creationTimestamp" : null,
+                "labels" : {
+                    "service" : "vgw-xsld"
+                }
+	        },
+	        "spec" : {
+	            "hostNetwork" : true,
+	            "containers" : [{
+	                "name" : "vgw-xsld",
+	                "image" : "ibmcom/voice-gateway-xsld:latest",
+	                "env" : [{
+	                        "name" : "LICENSE",
+	                        "value" : "accept"
+	                    },
+	                    {
+	                        "name" : "MEMBER_NAME",
+	                        "valueFrom" : {
+                                "fieldRef" : {
+                                    "apiVersion" : "v1",
+                                    "fieldPath" : "spec.nodeName"
+                                }
+	                        }
+	                    },
+	                    {
+	                        "name" : "CACHE_GROUP",
+	                        "value" : "vgw-xsld"
+	                    },
+	                    {
+                            "name" : "MEMBER_CAP",
+                            "value" : "4"
+	                    },
+                        {
+	                        "name" : "SECRET_KEY",
+	                        "valueFrom" : {
+                                "secretKeyRef": {
+                                    "name": "vgw-xsld-secret",
+                                    "key": "secretKey"
+                                }
+                            }
+	                    },{
+                            "name": "XSADMIN_PWD",
+                            "valueFrom" : {
+                                "secretKeyRef": {
+                                    "name": "vgw-xsld-secret",
+                                    "key": "xsadminPass"
+                                }
+                            }
+                        }
+	                ],
+	                "ports" : [{
+	                        "containerPort" : 9443,
+	                        "hostPort" : 9443,
+	                        "protocol" : "TCP"
+	                    },
+	                    {
+	                        "containerPort" : 9444,
+	                        "hostPort" : 9444,
+	                        "protocol" : "TCP"
+	                    },
+	                    {
+	                        "containerPort" : 9445,
+	                        "hostPort" : 9445,
+	                        "protocol" : "TCP"
+	                    }
+	                ],
+	                "terminationMessagePath" : "/dev/termination-log",
+	                "imagePullPolicy" : "Always",
+	                "volumeMounts": [
+	                {
+	                    "name": "vgw-xsld-volume",
+	                    "mountPath": "/vol"
+	                }
+	                ]
+	        	}
+	            ],
+	            "restartPolicy" : "Always",
+	            "terminationGracePeriodSeconds" : 30,
+	            "dnsPolicy" : "ClusterFirst",
+	            "securityContext" : {},
+	            "volumes": [
+	            {
+	                "name": "vgw-xsld-volume",
+	                "hostPath": {
+	                      "path": "/vgw-xsld-data"
+	                }
+	            }
+	            ]
+	        }
+		}
+	},
+	"status" : {}
+}
