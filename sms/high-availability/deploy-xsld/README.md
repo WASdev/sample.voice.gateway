@@ -1,5 +1,7 @@
-# Deployment Scripts for a high available environment for SMS Gateway
-This repository contains scripts to deploy the SMS Gateway feature of IBM Voice Gateway to run in a highly available environment. For the complete documentation see [Setting up high availability for SMS Gateway](https://www.ibm.com/support/knowledgecenter/SS4U29/sms_ha.html)
+# Deployment Scripts for setting up XSLD for SMS Gateway in IBM Cloud Private
+This directory contains scripts to deploy IBM® WebSphere® eXtreme Scale Liberty Deployment (XSLD) caching server to run in a highly available environment to be used with SMS Gateway. For more information see:
+- [Setting up high availability for SMS Gateway](https://www.ibm.com/support/knowledgecenter/SS4U29/sms_ha.html)
+- [Setting up the XSLD caching server](https://www.ibm.com/support/knowledgecenter/SS4U29/sms_hadeployxsld.html).
 
 ## Explanation and steps
 
