@@ -1,8 +1,8 @@
 version: '2'
 services:
   sms.gateway:
-    image: ibmcom/voice-gateway-sms:beta.latest
-    
+    image: ibmcom/voice-gateway-sms:latest
+
     container_name: vgw-sms-gateway
     ports:
       - "9080:9080"
@@ -27,7 +27,7 @@ services:
 
       # Uncomment and specify SMS Provider related variables
       # REQUIRED when MULTI_TENANT_CONFIG_FILE is not set, no default value set
-      # Either provide SMS_PROVIDER_EXPLICIT_URL or SMS_PROVIDER_URL 
+      # Either provide SMS_PROVIDER_EXPLICIT_URL or SMS_PROVIDER_URL
       # SMS_PROVIDER_EXPLICIT_URL value supersedes SMS_PROVIDER_URL when provided
       #- SMS_PROVIDER_USERNAME=
       #- SMS_PROVIDER_PASSWORD=
@@ -54,7 +54,7 @@ services:
       # Uncomment and specify to override the default of these
       # REQUIRED when MULTI_TENANT_CONFIG_FILE is not set
       #- ALLOW_SESSION_CREATE_VIA_SMS=false
-      
+
       # Uncomment and specify to override the default of these
       #- TIMEOUT_FOR_SESSION=3600
       #- LATENCY_REPORTING_THRESHOLD=10000
@@ -63,6 +63,8 @@ services:
       #- LOG_LEVEL=info
       #- LOG_MAX_FILE_SIZE=100
       #- LOG_MAX_FILES=5
+      #- ENABLE_TRANSCRIPTION_MESSAGES=false
+
 
       # Uncomment and specify your message to override the default
       #- CONVERSATION_FAILED_REPLY_MESSAGE=
@@ -80,6 +82,13 @@ services:
       #- WCS_PROXY_PORT=
       #- WCS_PROXY_USERNAME=
       #- WCS_PROXY_PASSWORD=
+
+      # Uncomment this section to provide XS server related variables
+      #- XS_ENABLED=false
+      #- XS_CATALOG_ENDPOINTS=
+      #- XS_USERNAME=xsadmin
+      #- XS_PASSWORD=
+      #- XS_TRANSPORT_TYPE=TCP/IP
 
       # Uncomment this section to use your own keystore
       # SSL KeyStore related variables
