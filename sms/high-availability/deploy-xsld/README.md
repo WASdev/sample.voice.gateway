@@ -1,4 +1,8 @@
+# Deployment Scripts for a high available environment for SMS Gateway
+This repository contains scripts to deploy the SMS Gateway feature of IBM Voice Gateway to run in a highly available environment. For the complete documentation see [Setting up high availability for SMS Gateway](https://www.ibm.com/support/knowledgecenter/SS4U29/sms_ha.html)
+
 ## Explanation and steps
+
 1. Download or clone the samples repository if this has not performed previously
     ```
     git clone https://github.com/WASdev/sample.voice.gateway
