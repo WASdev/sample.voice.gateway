@@ -39,7 +39,7 @@
           ],
           "env": [{
               "name": "SMS_PROVIDER_PASSWORD",
-              "value": "9h7f54cb3b1d3736e19ac64aa23de67h"
+              "value": ""
             },
             {
               "name": "SMS_PROVIDER_URL",
@@ -47,11 +47,11 @@
             },
             {
               "name": "SMS_PROVIDER_USERNAME",
-              "value": "A23de67h0236e5e7c7f1ead4499h7f54cb"
+              "value": ""
             },
             {
               "name": "SMS_PROXY_PASSWORD",
-              "value": "Password17"
+              "value": ""
             },
             {
               "name": "SMS_PROXY_PORT",
@@ -67,7 +67,7 @@
             },
             {
               "name": "TENANT_PHONE_NUMBER",
-              "value": "+19999999999"
+              "value": ""
             },
             {
               "name": "TIMEOUT_FOR_SESSION",
@@ -75,7 +75,7 @@
             },
             {
               "name": "WATSON_CONVERSATION_PASSWORD",
-              "value": "InWtiUpYhF1Z"
+              "value": ""
             },
             {
               "name": "WATSON_CONVERSATION_URL",
@@ -83,11 +83,11 @@
             },
             {
               "name": "WATSON_CONVERSATION_USERNAME",
-              "value": "9h7f54cb-d9ed-46b3-8492-e9a9bf555021"
+              "value": ""
             },
             {
               "name": "WATSON_CONVERSATION_WORKSPACE_ID",
-              "value": "9h7f54cb-d9ed-46b3-8492-e9a9bf555021"
+              "value": ""
             }
           ],
           "resources": {}
