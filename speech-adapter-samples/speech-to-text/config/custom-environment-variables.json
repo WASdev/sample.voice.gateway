@@ -1,0 +1,12 @@
+{
+    "Server": {
+        "port": "PORT"
+    },
+    "WatsonSpeechToText": {
+        "credentials": {
+            "username": "WATSON_STT_USERNAME",
+            "password": "WATSON_STT_PASSWORD"
+        }
+    },
+    "LogLevel": "LOG_LEVEL"
+}

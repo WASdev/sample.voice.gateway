@@ -1,0 +1,188 @@
+{
+	"kind": "Deployment",
+	"apiVersion": "extensions/v1beta1",
+	"metadata": {
+	  "name": "vgw",
+	  "creationTimestamp": null,
+	  "labels": {
+		"service": "vgw"
+	  }
+	},
+	"spec": {
+	  "replicas": 1,
+	  "selector": {
+		"matchLabels": {
+		  "service": "vgw"
+		}
+	  },
+	  "template": {
+		"metadata": {
+		  "creationTimestamp": null,
+		  "labels": {
+			"service": "vgw"
+		  }
+		},
+		"spec": {
+		  "volumes": [{
+			"name": "recordings",
+			"emptyDir": {}
+		  }, {
+				"name": "google-credentials",
+				"secret": {
+					"secretName": "google-credentials",
+					"items": [{
+						"key": "<google-credentials-name.json>",
+						"path": "<google-credentials-name.json>"
+					}]
+				}
+			}],
+		  "hostNetwork": true,
+		  "imagePullSecrets": [{
+			"name": "admin.registrykey"
+		  }],
+		  "containers": [{
+			"name": "vgw-stt-adapter",
+			"image": "ibmcom/voice-gateway-stt-adapter:latest",
+			"env": [
+					{
+					  "name": "GOOGLE_APPLICATION_CREDENTIALS",
+					  "value": "/stt-adapter/credentials/<google-credentials-name.json>"
+					},
+					{
+					  "name": "GOOGLE_SPEECH_LANGUAGE_CODE",
+					  "value": "en-US"
+					},
+					{
+					  "name": "LOG_LEVEL",
+					  "value": "debug"
+					},
+					{
+					  "name": "PORT",
+					  "value": "4000"
+					}
+				  ],
+				  "resources": {},
+				  "volumeMounts": [{
+					  "name": "google-credentials",
+						"mountPath": "/stt-adapter/credentials/"
+				  }],
+				"imagePullPolicy": "Always"
+			  },{
+			"name": "vgw-media-relay",
+			"image": "ibmcom/voice-gateway-mr:latest",
+			"ports": [{
+			  "containerPort": 8080,
+			  "hostPort": 8080,
+			  "protocol": "TCP"
+			}],
+			"command": ["/bin/sh", "-c"],
+			"args": ["export SDP_ADDRESS=$(hostname -i); (/vgw-media-relay/bin/rtp-relay) | (node lib/RotatingLoggerStream.js)"],
+			"env": [{
+			  "name": "ENABLE_RECORDING",
+			  "value": "false"
+			}, {
+			  "name": "RTP_UDP_PORT_RANGE",
+			  "value": "16384-16484"
+			}, {
+			  "name": "CLUSTER_WORKERS",
+			  "value": "0"
+			}, {
+			  "name": "MEDIA_RELAY_LOG_LEVEL",
+			  "value": "DEBUG"
+			}, {
+			  "name": "MEDIA_RELAY_WS_PORT",
+			  "value": "8080"
+			}, {
+			  "name": "WATSON_STT_USERNAME",
+			  "value": ""
+			}, {
+			  "name": "WATSON_STT_PASSWORD",
+			  "value": ""
+			}, {
+			  "name": "WATSON_STT_URL",
+			  "value": "http://localhost:4000"
+			}, {
+			  "name": "WATSON_TTS_USERNAME",
+			  "value": ""
+			}, {
+			  "name": "WATSON_TTS_PASSWORD",
+				"valueFrom": {
+					"secretKeyRef": {
+						"name": "secret-creds",
+						"key": "WATSON_TTS_PASSWORD"
+					}
+				}
+			}, {
+			  "name": "WATSON_TTS_VOICE",
+			  "value": "en-US_MichaelVoice"
+			}, {
+			  "name": "WATSON_TTS_URL",
+			  "value": "https://stream.watsonplatform.net/text-to-speech/api"
+			}],
+			"resources": {},
+			"volumeMounts": [{
+			  "name": "recordings",
+			  "mountPath": "/vgw-media-relay/recordings"
+			}],
+			"terminationMessagePath": "/dev/termination-log",
+			"imagePullPolicy": "Always"
+		  }, {
+			"name": "vgw-sip-orchestrator",
+			"image": "ibmcom/voice-gateway-so:latest",
+			"ports": [{
+			  "containerPort": 5060,
+			  "hostPort": 5060,
+			  "protocol": "TCP"
+			}, {
+			  "containerPort": 5060,
+			  "hostPort": 5060,
+			  "protocol": "UDP"
+			}],
+			"command": ["/bin/sh", "-c"],
+			"args": ["export SIP_HOST=$(hostname -i); exec /opt/startup.sh"],
+			"env": [{
+			  "name": "MEDIA_RELAY_HOST",
+			  "value": "localhost:8080"
+			}, {
+			  "name": "SIP_PORT",
+			  "value": "5060"
+			}, {
+			  "name": "WATSON_CONVERSATION_WORKSPACE_ID",
+			  "value": ""
+			}, {
+			  "name": "WATSON_CONVERSATION_USERNAME",
+			  "value": ""
+			}, {
+			  "name": "WATSON_CONVERSATION_PASSWORD",
+				"valueFrom": {
+					"secretKeyRef": {
+						"name": "secret-creds",
+						"key": "WATSON_CONVERSATION_PASSWORD"
+					}
+				}
+			}, {
+			  "name": "WATSON_CONVERSATION_URL",
+			  "value": "https://gateway.watsonplatform.net/conversation/api"
+			}, {
+			  "name": "ENABLE_AUDIT_MESSAGES",
+			  "value": "true"
+			}, {
+			  "name": "ENABLE_TRANSCRIPTION_AUDIT_MESSAGES",
+			  "value": "true"
+			}, {
+			  "name": "LOG_LEVEL",
+			  "value": "all"
+			}],
+			"resources": {},
+			"terminationMessagePath": "/dev/termination-log",
+			"imagePullPolicy": "Always"
+		  }],
+		  "restartPolicy": "Always",
+		  "terminationGracePeriodSeconds": 30,
+		  "dnsPolicy": "ClusterFirst",
+		  "securityContext": {}
+		}
+	  }
+	},
+	"status": {}
+  }

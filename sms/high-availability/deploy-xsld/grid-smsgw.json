@@ -1,0 +1,14 @@
+{
+    "description": "smsgw grid",
+    "gridType": "Simple",
+    "ownerName": "xsadmin",
+    "useAuthentication": true,
+    "useAuthorization": true,
+    "useCapLRUEvictor": false,
+    "transactionTimeout": "30",
+    "numPartition": "29",
+    "numSyncReplicas": "0",
+    "numAsyncReplicas": "1",
+    "timeToLive": "0",
+    "lockTimeout": "15"
+}
