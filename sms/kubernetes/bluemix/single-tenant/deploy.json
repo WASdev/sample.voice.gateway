@@ -1,103 +1,149 @@
 {
-  "kind": "Deployment",
-  "apiVersion": "extensions/v1beta1",
-  "metadata": {
-    "name": "sms-gateway",
-    "creationTimestamp": null,
-    "labels": {
-      "io.kompose.service": "sms-gateway"
-    }
-  },
-  "spec": {
-    "replicas": 1,
-    "template": {
-      "metadata": {
+    "kind": "Deployment",
+    "apiVersion": "extensions/v1beta1",
+    "metadata": {
+        "name": "sms-gateway",
         "creationTimestamp": null,
         "labels": {
-          "io.kompose.service": "sms-gateway"
+            "io.kompose.service": "sms-gateway"
         }
-      },
-      "spec": {
-        "hostNetwork": true,
-        "imagePullSecrets": [{
-          "name": "admin.registrykey"
-        }],
-        "containers": [{
-          "name": "vgw-sms-gateway",
-          "image": "ibmcom/voice-gateway-sms:beta.latest",
-          "imagePullPolicy": "Always",
-          "ports": [{
-              "containerPort": 9080,
-              "hostPort": 9080,
-              "protocol": "TCP"
-            },
-            {
-              "containerPort": 9443,
-              "hostPort": 9443,
-              "protocol": "TCP"
-            }
-          ],
-          "env": [{
-              "name": "SMS_PROVIDER_PASSWORD",
-              "value": ""
-            },
-            {
-              "name": "SMS_PROVIDER_URL",
-              "value": "https://api.twilio.com"
-            },
-            {
-              "name": "SMS_PROVIDER_USERNAME",
-              "value": ""
-            },
-            {
-              "name": "SMS_PROXY_PASSWORD",
-              "value": ""
-            },
-            {
-              "name": "SMS_PROXY_PORT",
-              "value": "81"
-            },
-            {
-              "name": "SMS_PROXY_TYPE",
-              "value": "HTTP"
-            },
-            {
-              "name": "SMS_PROXY_USERNAME",
-              "value": "xyz@somecompany.com"
-            },
-            {
-              "name": "TENANT_PHONE_NUMBER",
-              "value": ""
-            },
-            {
-              "name": "TIMEOUT_FOR_SESSION",
-              "value": "3600"
-            },
-            {
-              "name": "WATSON_CONVERSATION_PASSWORD",
-              "value": ""
-            },
-            {
-              "name": "WATSON_CONVERSATION_URL",
-              "value": "https://gateway.watsonplatform.net/conversation/api/"
-            },
-            {
-              "name": "WATSON_CONVERSATION_USERNAME",
-              "value": ""
-            },
-            {
-              "name": "WATSON_CONVERSATION_WORKSPACE_ID",
-              "value": ""
-            }
-          ],
-          "resources": {}
-        }],
-        "restartPolicy": "Always"
-      }
     },
-    "strategy": {
-      "type": "Recreate"
-    }
-  },
-  "status": {}
+    "spec": {
+        "replicas": 1,
+        "template": {
+            "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                    "io.kompose.service": "sms-gateway"
+                }
+            },
+            "spec": {
+                "hostNetwork": true,
+                "volumes": [
+                    {
+                        "name": "secret-certs",
+                        "secret": {
+                            "secretName": "secret-certs"
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "vgw-sms-gateway",
+                        "image": "ibmcom/voice-gateway-sms:latest",
+                        "imagePullPolicy": "Always",
+                        "ports": [
+                            {
+                                "containerPort": 9080,
+                                "hostPort": 9080,
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 9443,
+                                "hostPort": 9443,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "env": [
+                            {
+                                "name": "SMS_PROVIDER_PASSWORD",
+                                "value": "mySMSProviderPassword"
+                            },
+                            {
+                                "name": "SMS_PROVIDER_URL",
+                                "value": "example :: https://api.twilio.com"
+                            },
+                            {
+                                "name": "SMS_PROVIDER_USERNAME",
+                                "value": "mySMSProviderUserName"
+                            },
+                            {
+                                "name": "TENANT_PHONE_NUMBER",
+                                "value": "Tenant Number"
+                            },
+                            {
+                                "name": "TIMEOUT_FOR_SESSION",
+                                "value": "3600"
+                            },
+                            {
+                                "name": "WATSON_CONVERSATION_PASSWORD",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "WATSON_CONVERSATION_URL",
+                                "value": "https://gateway.watsonplatform.net/conversation/api/"
+                            },
+                            {
+                                "name": "WATSON_CONVERSATION_USERNAME",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "WATSON_CONVERSATION_WORKSPACE_ID",
+                                "value": "When SOE used , remove this variable"
+                            },
+                            {
+                                "name": "SSL_KEY_PASSPHRASE",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "SSL_KEY_STORE_FILE",
+                                "value": "/resources/security/<filename>"
+                            },
+                            {
+                                "name": "SSL_KEY_FILE_TYPE",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "SSL_TRUST_PASSPHRASE",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "SSL_TRUST_STORE_FILE",
+                                "value": "/resources/security/<filename>"
+                            },
+                            {
+                                "name": "SSL_TRUST_FILE_TYPE",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "SMS_WEBHOOK_USERNAME",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "SMS_WEBHOOK_PASSWORD",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "CTRL_TENANT_USERNAME",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "CTRL_TENANT_PASSWORD",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "LOG_LEVEL",
+                                "value": "info"
+                            },
+                            {
+                                "name": "ENABLE_TRANSCRIPTION_MESSAGES",
+                                "value": "false"
+                            }
+                        ],
+                        "volumeMounts": [
+                            {
+                                "name": "secret-certs",
+                                "mountPath": "/resources/security/"
+                            }
+                        ]
+                    }
+                ],
+                "restartPolicy": "Always"
+            }
+        },
+        "strategy": {
+            "type": "Recreate"
+        }
+    },
+    "status": {}
 }
