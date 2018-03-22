@@ -1,78 +1,113 @@
 {
-  "kind": "Deployment",
-  "apiVersion": "extensions/v1beta1",
-  "metadata": {
-    "name": "sms-gateway",
-    "creationTimestamp": null,
-    "labels": {
-      "io.kompose.service": "sms-gateway"
-    }
-  },
-  "spec": {
-    "replicas": 1,
-    "template": {
-      "metadata": {
-        "creationTimestamp": null,
+    "kind": "Deployment",
+    "apiVersion": "extensions/v1beta1",
+    "metadata": {
+        "name": "sms-gateway",
         "labels": {
-          "io.kompose.service": "sms-gateway"
+            "io.kompose.service": "sms-gateway"
         }
-      },
-      "spec": {
-        "volumes": [{
-          "name": "secret-tenantconfig",
-          "secret": {
-            "secretName": "secret-tenantconfig",
-            "items": [{
-              "key": "tenantConfig.json",
-              "path": "tenantConfig.json"
-            }]
-          }
-        }],
-        "hostNetwork": true,
-        "imagePullSecrets": [{
-          "name": "admin.registrykey"
-        }],
-        "containers": [{
-          "name": "vgw-sms-gateway",
-          "image": "ibmcom/voice-gateway-sms:beta.latest",
-          "imagePullPolicy": "Always",
-          "ports": [{
-              "containerPort": 9080,
-              "hostPort": 9080,
-              "protocol": "TCP"
-            },
-            {
-              "containerPort": 9443,
-              "hostPort": 9443,
-              "protocol": "TCP"
-            }
-          ],
-          "env": [{
-              "name": "MULTI_TENANT_CONFIG_FILE",
-              "value": "/resources/tenantConfig/tenantConfig.json"
-            },
-            {
-              "name": "LATENCY_REPORTING_THRESHOLD",
-              "value": "1000"
-            },
-            {
-              "name": "LOG_LEVEL",
-              "value": "all"
-            }
-          ],
-          "resources": {},
-          "volumeMounts": [{
-            "name": "secret-tenantconfig",
-            "mountPath": "/resources/tenantConfig/tenantConfig.json",
-            "subPath": "tenantConfig.json"
-          }]
-        }],
-        "restartPolicy": "Always"
-      }
     },
-    "strategy": {
-      "type": "Recreate"
-    }
-  },
-  "status": {}
+    "spec": {
+        "replicas": 1,
+        "template": {
+            "metadata": {
+                "labels": {
+                    "io.kompose.service": "sms-gateway"
+                }
+            },
+            "spec": {
+                "hostNetwork": true,
+                "volumes": [
+                    {
+                        "name": "secret-tenantconfig",
+                        "secret": {
+                            "secretName": "secret-tenantconfig"
+                        }
+                    },
+                    {
+                        "name": "secret-certs",
+                        "secret": {
+                            "secretName": "secret-certs"
+                        }
+                    }
+                ],
+                "containers": [
+                    {
+                        "name": "vgw-sms-gateway",
+                        "image": "ibmcom/voice-gateway-sms:latest",
+                        "imagePullPolicy": "Always",
+                        "ports": [
+                            {
+                                "containerPort": 9080,
+                                "hostPort": 9080,
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 9443,
+                                "hostPort": 9443,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "env": [
+                            {
+                                "name": "MULTI_TENANT_CONFIG_FILE",
+                                "value": "/resources/tenantConfig/<multi-tenant-file>.json"
+                            },
+                            {
+                                "name": "LATENCY_REPORTING_THRESHOLD",
+                                "value": "1000"
+                            },
+                            {
+                                "name": "LOG_LEVEL",
+                                "value": "all"
+                            },
+                            {
+                                "name": "ENABLE_TRANSCRIPTION_MESSAGES",
+                                "value": "false"
+                            },
+                            {
+                                "name": "SSL_KEY_PASSPHRASE",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "SSL_KEY_STORE_FILE",
+                                "value": "/resources/security/<key-filename>"
+                            },
+                            {
+                                "name": "SSL_KEY_FILE_TYPE",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "SSL_TRUST_PASSPHRASE",
+                                "value": "remove this variable when not required"
+                            },
+                            {
+                                "name": "SSL_TRUST_STORE_FILE",
+                                "value": "/resources/security/<key-filename>"
+                            },
+                            {
+                                "name": "SSL_TRUST_FILE_TYPE",
+                                "value": "remove this variable when not required"
+                            }
+                        ],
+                        "volumeMounts": [
+                            {
+                                "name": "secret-tenantconfig",
+                                "mountPath": "/resources/tenantConfig/"
+                            },
+                            {
+                                "name": "secret-certs",
+                                "mountPath": "/resources/security/"
+                            }
+                        ]
+                    }
+                ],
+                "restartPolicy": "Always"
+            }
+        },
+        "strategy": {
+            "type": "Recreate"
+        }
+    },
+    "status": {}
 }
