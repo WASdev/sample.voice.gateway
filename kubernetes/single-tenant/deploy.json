@@ -84,7 +84,7 @@
                             "preStop": {
                                 "exec": {
                                     "command": [
-                                        "/quiesce.sh",
+                                        "/opt/quiesce.sh",
                                         "9080"
                                     ]
                                 }
@@ -194,7 +194,7 @@
                             "preStop": {
                                 "exec": {
                                     "command": [
-                                        "/quiesce.sh",
+                                        "/opt/quiesce.sh",
                                         "9080"
                                     ]
                                 }
