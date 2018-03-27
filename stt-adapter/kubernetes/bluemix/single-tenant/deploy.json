@@ -47,7 +47,7 @@
     			    "preStop": {
                                 "exec": {
         			    "command": [
-          			        "/downloads/quiesce.sh"
+          			        "/opt/quiesce.sh"
         			     ]
       				}
     			    }
@@ -88,7 +88,7 @@
     			    "preStop": {
                                 "exec": {
         			    "command": [
-          			        "/downloads/quiesce.sh"
+          			        "/opt/quiesce.sh"
         			     ]
       				}
     			    }
@@ -160,7 +160,7 @@
     			    "preStop": {
                                 "exec": {
         			    "command": [
-          			        "/downloads/quiesce.sh"
+          			        "/opt/quiesce.sh"
         			     ]
       				}
     			    }
