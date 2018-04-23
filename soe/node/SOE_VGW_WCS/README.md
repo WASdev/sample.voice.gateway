@@ -30,13 +30,13 @@ Combined, the above four services has to be running to demonstrate/run this appl
 
 Please set the following parameters in the manifest.yml file.
 
-1)wcs_username: This is the username for the Watson Assistant (former Watson Conversation) service
-2)wcs_password: This is the password for the Watson Assistant (former Watson Conversation) service
-3)wcs_workspace: This is the workspace identifier for the Watson Assistant (former Watson Conversation) service
-4)show_all_logs: Boolean, either true or false
-5)receiver_email_address: Some email address, comma separated multiple email addresses permitted
-6)sender_email_address: Some email address, only one permitted
-7)sender_email_password: Password for the sender email address
+1) wcs_username: This is the username for the Watson Assistant (former Watson Conversation) service
+2) wcs_password: This is the password for the Watson Assistant (former Watson Conversation) service
+3) wcs_workspace: This is the workspace identifier for the Watson Assistant (former Watson Conversation) service
+4) show_all_logs: Boolean, either true or false
+5) receiver_email_address: Some email address, comma separated multiple email addresses permitted
+6) sender_email_address: Some email address, only one permitted
+7) sender_email_password: Password for the sender email address
 
 These parameters would get uploaded as environment variables for the bluemix application.
 The parameters can also be modified at the runtime from the environment variables configuration page of the bluemix application.
@@ -54,8 +54,8 @@ Make sure either cloudfoundry command line interface (cf-cli) or bluemix command
 Connection to IBM cloud and login/authentication done through the CLI.
 From the project root directory, execute either of the following, depending on the CLI used.
 
-1)cf push
-2)bluemix app push <app_name> -m 512m
+1) cf push
+2) bluemix app push <app_name> -m 512m
 
 More references can be found at https://console.bluemix.net/docs/runtimes/nodejs/getting-started.html#getting-started-tutorial and https://console.bluemix.net/docs/starters/upload_app.html
 
