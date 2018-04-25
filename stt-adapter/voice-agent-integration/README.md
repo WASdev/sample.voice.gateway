@@ -12,6 +12,7 @@ You can run the Voice Gatway Speech To Text adapter with Google Speech by deploy
 
 
 ## Deploying the Voice Gateway Speech To Text Adapter on a Kubernetes cluster in IBM Cloud
+**Note**: This deploys an unsecure (non-TLS) websocket connection from Voice Agent to the Speech To Text adapter, if you need to secure the connection over TLS see [Setting up TLS](#setting-up-tls).
 
 1. Configure the following CLI tools so that you can access your Kubernetes cluster on IBM Cloud through the command line.
 
@@ -49,8 +50,8 @@ You can run the Voice Gatway Speech To Text adapter with Google Speech by deploy
               path: my-google-project-f4b426929b20.json
     ```
 
-1. Under the `stt-adapter` container, specify the Google credentials file location in the `GOOGLE_APPLICATION_CREDENTIALS environment variable.
-  2. For example:
+1. Under the `stt-adapter` container, specify the Google credentials file location in the `GOOGLE_APPLICATION_CREDENTIALS` environment variable.
+    For example:
       ```
       spec:
         containers:
@@ -92,31 +93,39 @@ You can run the Voice Gatway Speech To Text adapter with Google Speech by deploy
 1. Go to the `Speech To Text` section and under the `Service Type` specify an instance of a `Watson Speech To Text` service. Do note this is just a placeholder.
 1. Go to your Watson Assistant Workspace, on the first turn which is the "welcome" node and specify a Voice Gateway action to modify the `Speech To Text` configuration for the Voice Gateway, for example: (Note: replace the `<public-IP>` field, when copying and pasting)
 
-```json
-{
-  "output": {
-    "text": {
-      "values": [
-        "Welcome you are now using a Google Speech engine!"
-      ],
-      "selection_policy": "sequential"
-    },
-    "vgwAction": {
-      "command": "vgwActSetSTTConfig",
-      "parameters": {
-        "credentials": {
-          "url": "http://<public-IP>:30082"
+    ```json
+    {
+      "output": {
+        "text": {
+          "values": [
+            "Welcome you are now using a Google Speech engine!"
+          ],
+          "selection_policy": "sequential"
         },
-        "config": {
-          "languageCode": "en-US",
-          "profanityFilter": true,
-          "maxAlternatives": 2
+        "vgwAction": {
+          "command": "vgwActSetSTTConfig",
+          "parameters": {
+            "credentials": {
+              "url": "http://<public-IP>:30082"
+            },
+            "config": {
+              "languageCode": "en-US",
+              "profanityFilter": true,
+              "maxAlternatives": 2
+            }
+          }
         }
       }
     }
-  }
-}
 
-```
+    ```
 
 1. Attempt to make a call and you should now be using the Voice Gateway Speech To Text Adapter with Google Speech.
+
+
+## Setting up TLS
+You will need  IBM Cloud Kubernetes standard cluster in order for the connection to be secured.
+
+1. [Publicly expose apps using the IBM-provider domain with TLS](https://console-dal10.bluemix.net/docs/containers/cs_ingress.html#ibm_domain_cert), in the sample `myalbservice.yaml` the `port` field should be `4000`.
+1. Once the steps are completed, you can set the `url` in the vgwAction command to `https://<ibm_domain>/<service1_path>` instead of `http://<public-IP>:30082`
+
