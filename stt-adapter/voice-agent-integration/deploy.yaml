@@ -1,0 +1,60 @@
+apiVersion: extensions/v1beta1 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: stt-adapter
+  labels:
+    app: stt-adapter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stt-adapter
+  template:
+    metadata:
+      labels:
+        app: stt-adapter
+    spec:
+      containers:
+      - name: stt-adapter
+        image: ibmcom/voice-gateway-stt-adapter:latest
+        ports:
+        - containerPort: 4000
+          protocol: TCP
+        volumeMounts:
+        - name: google-credentials
+          mountPath: "/stt-adapter/credentials/"
+          readOnly: true
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /stt-adapter/credentials/<google-credentials-name.json>
+        - name: PORT
+          value: '4000'
+        - name: LOG_LEVEL
+          value: 'debug'
+
+      volumes:
+      - name: google-credentials
+        secret:
+          secretName: google-credentials
+          items:
+            - key: <google-credentials-name.json>
+              path: <google-credentials-name.json>
+
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stt-adapter
+spec:
+  type: NodePort
+  selector:
+    app: stt-adapter
+  ports:
+   - protocol: TCP
+     port: 4000
+     nodePort: 30082
+---
