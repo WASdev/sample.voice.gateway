@@ -20,26 +20,28 @@ spec:
         ports:
         - containerPort: 4000
           protocol: TCP
-        volumeMounts:
-        - name: google-credentials
-          mountPath: "/stt-adapter/credentials/"
-          readOnly: true
+        # Uncomment to mount credentials
+        # volumeMounts:
+        # - name: google-credentials
+        #   mountPath: "/stt-adapter/credentials/"
+        #   readOnly: true
         env:
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /stt-adapter/credentials/<google-credentials-name.json>
+        # Uncomment if you're mounting the Google Credentials
+        # - name: GOOGLE_APPLICATION_CREDENTIALS
+        #   value: /stt-adapter/credentials/<google-credentials-name.json>
         - name: PORT
           value: '4000'
         - name: LOG_LEVEL
           value: 'debug'
         imagePullPolicy: Always
-
-      volumes:
-      - name: google-credentials
-        secret:
-          secretName: google-credentials
-          items:
-            - key: <google-credentials-name.json>
-              path: <google-credentials-name.json>
+      # Uncomment if you're mounting the Google Credentials
+      # volumes:
+      # - name: google-credentials
+      #   secret:
+      #     secretName: google-credentials
+      #     items:
+      #       - key: <google-credentials-name.json>
+      #         path: <google-credentials-name.json>
 
       restartPolicy: Always
       terminationGracePeriodSeconds: 30
