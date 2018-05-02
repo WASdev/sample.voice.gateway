@@ -8,7 +8,7 @@ Since the Product Insights service is being deprecated, there needs to be an alt
 To add these views to your CDR database, please follow these instructions:
  1.  Go to the "Design Documents" section, and click "New Doc".
  2.  The dashboard creates the outline of a document that includes an id.    Remove that id.
- 3.  In the samples repo, open the "cdrViews.js" file.    Copy the code from this file and paste it into the Cloudant document.
+ 3.  In the samples repo, open the "cdrViews.txt" file.    Copy the code from this file and paste it into the Cloudant document.
  4.  Click "Create document"
  
  <br/>
