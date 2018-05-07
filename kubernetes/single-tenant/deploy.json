@@ -152,7 +152,16 @@
                         "fieldPath" : "spec.nodeName"
                     }
                 }
-            },{
+            },
+            {
+              "name": "HTTPS_PORT",
+              "value": "9443"
+            },
+            {
+              "name": "HTTP_HOST",
+              "value": "127.0.0.1"
+            },
+            {
             "name": "MEDIA_RELAY_HOST",
             "value": "localhost:8080"
           }, {
