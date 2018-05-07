@@ -73,6 +73,7 @@ For example: "Ok, I am back. What else would you like to learn more about the IB
 
 
 Example table filled using the steps above:
+
 |Timestamps | Actions | Delta |
 | -----------|---------|--------|
 | [10/26/17 18:30:59:604 UTC] | Finished playing audio to the caller | N/A |
