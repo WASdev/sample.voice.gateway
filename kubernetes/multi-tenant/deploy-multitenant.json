@@ -158,6 +158,12 @@
                         "name": "SIP_PORT",
                         "value": "5060"
                     }, {
+                         "name": "HTTPS_PORT",
+                         "value": "9443"
+                    }, {
+                         "name": "HTTP_HOST",
+                         "value": "127.0.0.1"
+                    },{
                         "name": "ENABLE_AUDIT_MESSAGES",
                         "value": "true"
                     }, {
