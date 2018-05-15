@@ -208,6 +208,14 @@
                                 "value": "5060"
                             },
                             {
+                                "name": "HTTPS_PORT",
+                                "value": "9443"
+                            },
+                            {
+                                 "name": "HTTP_HOST",
+                                 "value": "127.0.0.1"
+                            },
+                            {
                                 "name": "WATSON_CONVERSATION_WORKSPACE_ID",
                                 "value": ""
                             },
@@ -244,6 +252,7 @@
                         "terminationMessagePath": "/dev/termination-log",
                         "imagePullPolicy": "Always"
                     }
+
                 ],
                 "restartPolicy": "Always",
                 "terminationGracePeriodSeconds": 600,
