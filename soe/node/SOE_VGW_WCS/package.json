@@ -1,0 +1,23 @@
+{
+  "name": "SOE_VGW_WCS_Node_V1",
+  "version": "0.1.0",
+  "description": "SOE_VGW_WCS_Node_V1",
+  "dependencies": {
+    "cf-deployment-tracker-client": "*",
+    "commander": "^2.6.0",
+    "express": "^4.14.1",
+    "http-post": "^0.1.1",
+    "http-proxy": "^1.8.1",
+    "watson-developer-cloud": "*",
+    "body-parser": "*",
+    "nodemailer":"*"
+  },
+  "main": "app.js",
+  "scripts": {
+  	"start": "node app.js"
+  },
+  "repository": "",
+  "author": "Watson Delivery India",
+  "license": "",
+  "readmeFilename": "README.md"
+}
