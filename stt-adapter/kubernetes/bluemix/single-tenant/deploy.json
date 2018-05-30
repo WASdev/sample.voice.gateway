@@ -94,7 +94,7 @@
     			    }
   			},
 			"command": ["/bin/sh", "-c"],
-			"args": ["export SDP_ADDRESS=$(hostname -i); (/vgw-media-relay/bin/rtp-relay) | (node lib/RotatingLoggerStream.js)"],
+      "args": ["export SDP_ADDRESS=$(hostname -i); exec /vgw-media-relay/bin/media-relay"],
 			"env": [{
 			  "name": "ENABLE_RECORDING",
 			  "value": "false"
