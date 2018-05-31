@@ -53,13 +53,13 @@
                         }
                     },
                     "command": ["/bin/sh", "-c"],
-                    "args": ["export SDP_ADDRESS=$(hostname -i); (/vgw-media-relay/bin/rtp-relay) | (node lib/RotatingLoggerStream.js)"],
+                    "args": ["export SDP_ADDRESS=$(hostname -i); exec /vgw-media-relay/bin/media-relay"],
                     "env": [{
                         "name": "ENABLE_RECORDING",
                         "value": "false"
                     }, {
                         "name": "RTP_UDP_PORT_RANGE",
-                        "value": "16384-16394"
+                        "value": "16384-16584"
                     }, {
                         "name": "CLUSTER_WORKERS",
                         "value": "0"
@@ -111,7 +111,7 @@
                          "value": "9443"
                     }, {
                          "name": "HTTP_HOST",
-                         "value": "127.0.0.1"                        
+                         "value": "127.0.0.1"
                     }, {
                         "name": "ENABLE_AUDIT_MESSAGES",
                         "value": "true"
