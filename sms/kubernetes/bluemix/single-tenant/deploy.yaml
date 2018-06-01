@@ -2,18 +2,17 @@ kind: Deployment
 apiVersion: extensions/v1beta1
 metadata:
   name: sms-gateway
-  creationTimestamp: 
+  creationTimestamp:
   labels:
     io.kompose.service: sms-gateway
 spec:
   replicas: 1
   template:
     metadata:
-      creationTimestamp: 
+      creationTimestamp:
       labels:
         io.kompose.service: sms-gateway
     spec:
-      hostNetwork: true
       volumes:
       - name: secret-certs
         secret:
@@ -24,10 +23,8 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 9080
-          hostPort: 9080
           protocol: TCP
         - containerPort: 9443
-          hostPort: 9443
           protocol: TCP
         env:
         - name: SMS_PROVIDER_PASSWORD
