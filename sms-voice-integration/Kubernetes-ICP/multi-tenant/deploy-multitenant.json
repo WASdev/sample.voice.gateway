@@ -65,13 +65,24 @@
                         "claimName": "recordings"
                     },
                     "name": "recordings"
-                }, {
+                },
+				{
                     "name": "tenantconfig",
                     "secret": {
                         "secretName": "tenantconfig",
                         "items": [{
                             "key": "tenantConfig.json",
                             "path": "tenantConfig.json"
+                        }]
+                    }
+                },
+				{
+                    "name": "secret-certs",
+                    "secret": {
+                        "secretName": "secret-certs",
+                        "items": [{
+                            "key":"yourKeyFileNamewExtension",
+                            "path":"yourKeyFileNamewExtension"
                         }]
                     }
                 }],
@@ -130,11 +141,22 @@
                         "containerPort": 5060,
                         "hostPort": 5060,
                         "protocol": "TCP"
-                    }, {
+                    },
+					{
                         "containerPort": 5060,
                         "hostPort": 5060,
                         "protocol": "UDP"
-                    }],
+                    },
+					{
+                        "containerPort": 9443,
+                        "hostPort": 9443,
+                        "protocol": "TCP"
+                    },
+					{
+                        "containerPort": 9080,
+                        "hostPort": 9080,
+                        "protocol": "TCP"
+                    },],
                     "lifecycle": {
                         "preStop": {
                             "exec": {
@@ -161,8 +183,20 @@
                          "name": "HTTPS_PORT",
                          "value": "9443"
                     }, {
+                         "name": "HTTP_PORT",
+                         "value": "9080"
+                    }, {
                          "name": "HTTP_HOST",
-                         "value": "127.0.0.1"
+                         "value": "*"
+                    }, {
+                         "name": "SSL_KEY_STORE_FILE",
+                         "value": "/your-path/yourKeyFileNamewExtension"
+                    }, {
+                         "name": "SSL_KEY_FILE_TYPE",
+                         "value": ""
+                    }, {
+                         "name": "SSL_KEY_PASSPHRASE",
+                         "value": ""
                     },{
                         "name": "ENABLE_AUDIT_MESSAGES",
                         "value": "true"
@@ -181,13 +215,17 @@
                         "name": "tenantconfig",
                         "mountPath": "/tenantconfig/tenantConfig.json",
                         "subPath": "tenantConfig.json"
+                    }, {
+                        "name": "secret-certs",
+                        "mountPath": "/your-path/yourKeyFileNamewExtension",
+                        "subPath": "yourKeyFileNamewExtension"
                     }],
                     "terminationMessagePath": "/dev/termination-log",
                     "imagePullPolicy": "Always"
                 }],
                 "restartPolicy": "Always",
                 "terminationGracePeriodSeconds": 600,
-                "dnsPolicy": "ClusterFirst"
+                "dnsPolicy": "ClusterFirstWithHostNet"
             }
         }
     },
