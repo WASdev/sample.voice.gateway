@@ -1,0 +1,67 @@
+{
+  "tenants": [{
+      "tenantURI": "1234567890",
+      "description": "Voice Gateway Demo US 1",
+      "conversation": {
+        "url": "",
+        "workspaceID": "",
+        "password": "",
+        "username": ""
+      },
+      "smsPipe": {
+	    "url": "http://sms-gateway:9080/sms.gateway/smsPipe",
+        "username": "",
+        "password": "",
+        "tenantPhoneNumber": "",
+        "readTimeout": "",
+        "connectTimeout": "",
+		"expirationInterval": ,
+		"enableInboundSMS" : 
+      },
+      "stt": {
+        "credentials": {
+          "url": "",
+          "username": "",
+          "password": ""
+        }
+      },
+      "tts": {
+        "credentials": {
+          "url": "",
+          "username": "",
+          "password": ""
+        },
+        "config": {
+          "voice": ""
+       }
+      }
+    },
+    {
+      "tenantURI": "0987654321",
+      "description": "Voice Gateway Demo US 2",
+      "conversation": {
+        "url": "",
+        "workspaceID": "",
+        "password": "",
+        "username": ""
+      },
+      "stt": {
+        "credentials": {
+          "url": "",
+          "username": "",
+          "password": ""
+        }
+      },
+      "tts": {
+        "credentials": {
+          "url": "",
+          "username": "",
+          "password": ""
+        },
+        "config": {
+          "voice": ""
+       }
+      }
+    }
+  ]
+}

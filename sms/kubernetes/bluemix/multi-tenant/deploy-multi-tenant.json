@@ -16,7 +16,6 @@
                 }
             },
             "spec": {
-                "hostNetwork": true,
                 "volumes": [
                     {
                         "name": "secret-tenantconfig",
@@ -39,12 +38,10 @@
                         "ports": [
                             {
                                 "containerPort": 9080,
-                                "hostPort": 9080,
                                 "protocol": "TCP"
                             },
                             {
                                 "containerPort": 9443,
-                                "hostPort": 9443,
                                 "protocol": "TCP"
                             }
                         ],
