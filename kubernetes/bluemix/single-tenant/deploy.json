@@ -44,7 +44,7 @@
                         }
                     },
                     "command": ["/bin/sh", "-c"],
-                    "args": ["export SDP_ADDRESS=$(hostname -i); exec /vgw-media-relay/bin/media-relay"],
+                    "args": ["export SDP_ADDRESS=$(hostname -I | awk '{print $2}'); exec /vgw-media-relay/bin/media-relay"],
                     "env": [{
                         "name": "ENABLE_RECORDING",
                         "value": "false"
@@ -121,7 +121,7 @@
                         }
                     },
                     "command": ["/bin/sh", "-c"],
-                    "args": ["export SIP_HOST=$(hostname -i); exec /opt/startup.sh"],
+                    "args": ["export SIP_HOST=$(hostname -I | awk '{print $2}'); exec /opt/startup.sh"],
                     "env": [{
                         "name": "MEDIA_RELAY_HOST",
                         "value": "localhost:8080"
@@ -167,7 +167,7 @@
                 }],
                 "restartPolicy": "Always",
                 "terminationGracePeriodSeconds": 600,
-                "dnsPolicy": "ClusterFirst"
+                "dnsPolicy": "ClusterFirstWithHostNet"
             }
         }
     },
