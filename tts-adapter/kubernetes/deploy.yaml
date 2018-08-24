@@ -14,11 +14,9 @@ spec:
       labels:
         app: tts-adapter
     spec:
-      imagePullSecrets:
-      - name: artifactory-creds
       containers:
       - name: tts-adapter
-        image: watson-vg-docker-local.artifactory.swg-devops.com/vgw-pipeline/tts.adapter/master:latest
+        image: ibmcom/voice-gateway-tts-adapter:beta.latest
         ports:
         - containerPort: 4500
           protocol: TCP

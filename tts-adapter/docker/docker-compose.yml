@@ -12,10 +12,10 @@ services:
       - SIP_HOST=${EXTERNAL_IP}
 
       # Uncomment and specify when the Conversation API is used
-      # - WATSON_CONVERSATION_WORKSPACE_ID=
-      # - WATSON_CONVERSATION_USERNAME=
-      # - WATSON_CONVERSATION_PASSWORD=
-      # - WATSON_CONVERSATION_URL=
+      - WATSON_CONVERSATION_WORKSPACE_ID=
+      - WATSON_CONVERSATION_USERNAME=
+      - WATSON_CONVERSATION_PASSWORD=
+      - WATSON_CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api
 
 
       # Logging related variables
@@ -48,7 +48,7 @@ services:
 
   # Voice Gateway TTS Adapter
   tts.adapter:
-    image: jfmartinez/tts.adapter:latest
+    image: ibmcom/voice-gateway-tts-adapter:beta.latest
     container_name: voice-gateway-tts-adapter
     ports:
       - "4000:4000"
@@ -69,5 +69,3 @@ services:
       # Mount the Google service account json to the container,
       - /path/to/credentials/google-service-account.json:/tts-adapter/credentials/google-service-account.json
 
-      # Uncomment to use a JSON config file for the Google speech recognition config
-      # - $PWD/recognitionConfig.json:/stt-adapter/recognitionConfig.json
