@@ -1,0 +1,71 @@
+version: '2'
+services:
+  sip.orchestrator:
+    image: ibmcom/voice-gateway-so:latest
+    container_name: voice-gateway-so
+    ports:
+      - "5060:5060"
+      - "5060:5060/udp"
+    environment:
+      # Host name of the CMR.
+      - MEDIA_RELAY_HOST=media.relay:8080
+      - SIP_HOST=${EXTERNAL_IP}
+
+      # Uncomment and specify when the Conversation API is used
+      - WATSON_CONVERSATION_WORKSPACE_ID=
+      - WATSON_CONVERSATION_USERNAME=
+      - WATSON_CONVERSATION_PASSWORD=
+      - WATSON_CONVERSATION_URL=https://gateway.watsonplatform.net/conversation/api
+
+
+      # Logging related variables
+      - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
+      - LOG_LEVEL=finest
+
+  media.relay:
+    image: ibmcom/voice-gateway-mr:latest
+    container_name: voice-gateway-mr
+    ports:
+      - "16384-16394:16384-16394/udp"
+    environment:
+      - SDP_ADDRESS=${EXTERNAL_IP}
+      - RTP_UDP_PORT_RANGE=16384-16394
+      - MEDIA_RELAY_LOG_LEVEL=DEBUG
+      - MEDIA_RELAY_WS_PORT=8080
+
+      # Points to the TTS Adapter Container
+      - WATSON_TTS_URL=http://tts.adapter:4000
+
+      # Creds for Bluemix TTS
+      - WATSON_STT_USERNAME=
+      - WATSON_STT_PASSWORD=
+      - WATSON_STT_URL=https://stream.watsonplatform.net/speech-to-text/api
+
+    #   Uncomment the following three lines to enable call recording
+    #   - ENABLE_RECORDING=true
+    # volumes:
+    #   - $PWD/recordings:/vgw-media-relay/recordings
+
+  # Voice Gateway TTS Adapter
+  tts.adapter:
+    image: ibmcom/voice-gateway-tts-adapter:beta.latest
+    container_name: voice-gateway-tts-adapter
+    ports:
+      - "4000:4000"
+    environment:
+      - PORT=4000
+      - LOG_LEVEL=debug
+
+      # Google Service Credentials
+      - GOOGLE_APPLICATION_CREDENTIALS=/tts-adapter/credentials/google-service-account.json
+
+      # Voice selection parameters (https://cloud.google.com/text-to-speech/docs/reference/rpc/google.cloud.texttospeech.v1beta1#google.cloud.texttospeech.v1beta1.VoiceSelectionParams)
+      - GOOGLE_TTS_VOICE_LANGUAGE_CODE=en-US
+      # Optional
+      # - GOOGLE_TTS_VOICE_NAME=
+      - GOOGLE_TTS_VOICE_SSML_GENDER=FEMALE
+
+    volumes:
+      # Mount the Google service account json to the container,
+      - /path/to/credentials/google-service-account.json:/tts-adapter/credentials/google-service-account.json
+

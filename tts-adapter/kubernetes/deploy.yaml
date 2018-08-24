@@ -1,0 +1,74 @@
+apiVersion: extensions/v1beta1 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: tts-adapter
+  labels:
+    app: tts-adapter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tts-adapter
+  template:
+    metadata:
+      labels:
+        app: tts-adapter
+    spec:
+      containers:
+      - name: tts-adapter
+        image: ibmcom/voice-gateway-tts-adapter:beta.latest
+        ports:
+        - containerPort: 4500
+          protocol: TCP
+        # Uncomment to mount credentials
+        # volumeMounts:
+        # - name: google-credentials
+        #   mountPath: "/tts-adapter/credentials/"
+        #   readOnly: true
+        env:
+        # Uncomment if you're mounting the Google Credentials
+        # - name: GOOGLE_APPLICATION_CREDENTIALS
+        #   value: /tts-adapter/credentials/<google-credentials-name.json>
+        - name: PORT
+          value: '4500'
+        - name: LOG_LEVEL
+          value: 'debug'
+        # - name: 'TTS_ADAPTER_USERNAME'
+        #   value: 'VoiceGateway'
+        # - name: 'TTS_ADAPTER_PASSWORD'
+        #   value: 'defaultPassword'
+        - name: 'GOOGLE_TTS_VOICE_LANGUAGE_CODE'
+          value: 'en-US'
+        - name: 'GOOGLE_TTS_VOICE_SSML_GENDER'
+          value: 'FEMALE'
+
+        imagePullPolicy: Always
+      # Uncomment if you're mounting the Google Credentials
+      # volumes:
+      # - name: google-credentials
+      #   secret:
+      #     secretName: google-credentials
+      #     items:
+      #       - key: <google-credentials-name.json>
+      #         path: <google-credentials-name.json>
+
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tts-adapter
+spec:
+  # Uncomment to expose the service outside of your cluster
+  # type: NodePort
+  selector:
+    app: tts-adapter
+  ports:
+   - protocol: TCP
+     port: 4500
+     # Uncomment to expose the service outisde of the cluster
+     # nodePort: 30084
+---
