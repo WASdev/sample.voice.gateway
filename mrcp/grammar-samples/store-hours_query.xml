@@ -1,0 +1,22 @@
+<grammar root="root" version="1.0" xmlns="http://www.w3.org/2001/06/grammar"
+ xml:lang="en-US">
+    <rule id="root" scope="public">
+	    <one-of>
+			<item>Are you open on <ruleref uri="#days" /></item>
+        	<item>Are you closing early today</item>
+		</one-of>
+    </rule>
+
+
+   <rule id="days" scope="public">
+        <one-of>
+            <item>Sunday</item>
+            <item>Monday</item>
+            <item>Tuesday</item>
+			<item>Wednesday</item>
+            <item>Thursday</item>
+            <item>Friday</item>
+            <item>Saturday</item>
+        </one-of>
+    </rule>
+</grammar>
