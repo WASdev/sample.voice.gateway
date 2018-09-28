@@ -1,0 +1,12 @@
+<grammar root="hangup" version="1.0" xmlns="http://www.w3.org/2001/06/grammar"
+ xml:lang="en-US">
+    <rule id="hangup" scope="public">
+	    <one-of>
+			<item>goodbye</item>
+      <item>I'm done</item>
+			<item>see you later</item>
+			<item>bye</item>
+			<item>hangup</item>
+		</one-of>
+    </rule>
+</grammar>

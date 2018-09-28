@@ -1,0 +1,12 @@
+<grammar root="root" version="1.0" xmlns="http://www.w3.org/2001/06/grammar"
+ xml:lang="en-US">
+    <rule id="root" scope="public">
+	    <one-of>
+			<item>I want to talk with an agent</item>
+        	<item>Is an agent available?</item>
+			<item>agent</item>
+			<item>get me an agent</item>
+			<item>Talk to a person</item>
+		</one-of>
+    </rule>
+</grammar>

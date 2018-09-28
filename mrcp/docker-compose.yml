@@ -1,0 +1,39 @@
+version: '2'
+services:
+  sip.orchestrator:
+    image: ibmcom/voice-gateway-so:latest
+    container_name: voice-gateway-so
+    ports:
+      - "5060:5060"
+      - "5060:5060/udp"
+    environment:
+      # Host name of the CMR.
+      - MEDIA_RELAY_HOST=media.relay:8080
+      - SIP_HOST=${EXTERNAL_IP}
+      - MULTI_TENANT_CONFIG_FILE=/mnt/tenantConfiguration.json
+
+      # Logging related variables
+      - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
+      - LOG_LEVEL=all
+
+    volumes:
+      - $PWD/tenantConfiguration.json:/mnt/tenantConfiguration.json
+      - $PWD/logs:/logs/
+
+
+  media.relay:
+    image: ibmcom/voice-gateway-mr:latest
+    container_name: voice-gateway-mr
+    ports:
+      - "16384-16394:16384-16394/udp"
+      - "5555:5555/udp"
+    environment:
+      - SDP_ADDRESS=${EXTERNAL_IP}
+      - RTP_UDP_PORT_RANGE=16384-16394
+      - MEDIA_RELAY_LOG_LEVEL=DEBUG
+      - MEDIA_RELAY_WS_PORT=8080
+
+      # - TTS_CACHE_TIME_TO_LIVE=20
+    volumes:
+      - $PWD/unimrcpConfig/unimrcpclient.xml:/vgw-media-relay/config/unimrcpclient.xml
+      - $PWD/logs:/vgw-media-relay/logs/
