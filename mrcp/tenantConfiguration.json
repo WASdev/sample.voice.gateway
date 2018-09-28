@@ -1,0 +1,38 @@
+{
+	"tenants": [{
+		"tenantURI": "jfmartin",
+		"description": "Voice Gateway Demo US",
+		"conversation": {
+			"providerSectionPolicy": "sequential",
+			"providers": [{
+				"name": "us-south",
+				"url": "https://gateway.watsonplatform.net/conversation/api",
+				"workspaceID": "",
+				"password": "",
+				"username": ""
+			}]
+		},
+		"stt": {
+			"providerType": "mrcpv2",
+			"config": {
+				"mrcpv2ProfileId": "uni2",
+				"recognizeHeaders": {
+					"Confidence-Threshold": 0.2
+				}
+			},
+			"bargeInResume": true,
+			"echoSuppression": true
+		},
+		"tts": {
+			"providerType": "mrcpv2",
+			"config": {
+				"mrcpv2ProfileId": "uni2",
+				"speakHeaders": {
+					"Speech-Language": "en-US",
+					"Voice-gender": "neutral",
+					"Content-Type": "application/ssml+xml"
+				}
+			}
+		}
+	}]
+}
