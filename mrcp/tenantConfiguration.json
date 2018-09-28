@@ -1,16 +1,13 @@
 {
 	"tenants": [{
-		"tenantURI": "jfmartin",
+		"tenantURI": "1234567890",
 		"description": "Voice Gateway Demo US",
 		"conversation": {
-			"providerSectionPolicy": "sequential",
-			"providers": [{
-				"name": "us-south",
-				"url": "https://gateway.watsonplatform.net/conversation/api",
-				"workspaceID": "",
-				"password": "",
-				"username": ""
-			}]
+			"name": "us-south",
+			"url": "https://gateway.watsonplatform.net/conversation/api",
+			"workspaceID": "",
+			"password": "",
+			"username": ""
 		},
 		"stt": {
 			"providerType": "mrcpv2",
