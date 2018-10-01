@@ -26,6 +26,52 @@ const DEFAULT_PORT = 8010;
 const LOG_LEVEL = Config.get('LogLevel');
 const logger = require('pino')({ level: LOG_LEVEL, name: 'SpeechToTextAdapter' });
 
+
+function removeActiveSpeechEngine(speechToTextEngine) {
+  speechToTextEngine.removeAllListeners();
+  speechToTextEngine.on('error', () => {}); // no-op
+  speechToTextEngine.destroy();
+}
+
+function setActiveSpeechEngine(speechToTextEngine, webSocket) {
+  speechToTextEngine.on('listening', () => {
+    logger.debug('engine is listening');
+    const listeningMsg = {
+      state: 'listening',
+    };
+    webSocket.send(JSON.stringify(listeningMsg));
+  });
+  speechToTextEngine.on('data', (sttMessage) => {
+    logger.trace(sttMessage, 'result from engine:');
+    if (webSocket.readyState === WebSocket.OPEN) {
+      const { transcript } = sttMessage.results[0].alternatives[0];
+      const { final } = sttMessage.results[0];
+
+      if (final) {
+        logger.debug(`transcript: ${transcript}`);
+      }
+      webSocket.send(JSON.stringify(sttMessage));
+    }
+  });
+
+  speechToTextEngine.on('error', (error) => {
+    logger.error(error, 'SpeechToTextEngine encountered an error: ');
+    const errorMessage = {
+      error: error.message,
+    };
+
+    if (webSocket.readyState === WebSocket.OPEN) {
+      webSocket.send(JSON.stringify(errorMessage));
+    }
+  });
+
+  speechToTextEngine.on('end', (reason = 'No close reason defined') => {
+    logger.debug('SpeechToTextEngine closed');
+    if (webSocket.readyState === WebSocket.OPEN) {
+      webSocket.close(1000, reason);
+    }
+  });
+}
 function handleSpeechToTextConnection(webSocket, incomingMessage) {
   logger.debug('connection received');
 
@@ -46,51 +92,27 @@ function handleSpeechToTextConnection(webSocket, incomingMessage) {
     if (typeof data === 'string') {
       try {
         const message = JSON.parse(data);
-        // Message contains, text and accept
-        // Combine the start message with query parameters to generate a config
-        const config = Object.assign(queryParams, message);
-        logger.debug(config, 'config for engine: ');
 
-        // Create a speech to text engine instance, must implement the
-        // NodeJS Stream API
-        speechToTextEngine = new SpeechToTextEngine(config);
-        speechToTextEngine.on('listening', () => {
-          logger.debug('engine is listening');
+        if (message.action === 'start') {
+          logger.debug('received: start');
+
+          // Message contains, text and accept
+          // Combine the start message with query parameters to generate a config
+          const config = Object.assign(queryParams, message);
+          logger.debug(config, 'config for engine: ');
+
+          // Create a speech to text engine instance, must implement the
+          // NodeJS Stream API
+          speechToTextEngine = new SpeechToTextEngine(config);
+          setActiveSpeechEngine(speechToTextEngine, webSocket);
+        } else if (message.action === 'stop') {
+          logger.debug('received: stop');
+          removeActiveSpeechEngine(speechToTextEngine);
           const listeningMsg = {
             state: 'listening',
           };
           webSocket.send(JSON.stringify(listeningMsg));
-        });
-        speechToTextEngine.on('data', (sttMessage) => {
-          logger.trace(sttMessage, 'result from engine:');
-          if (webSocket.readyState === WebSocket.OPEN) {
-            const { transcript } = sttMessage.results[0].alternatives[0];
-            const { final } = sttMessage.results[0];
-
-            if (final) {
-              logger.debug(`transcript: ${transcript}`);
-            }
-            webSocket.send(JSON.stringify(sttMessage));
-          }
-        });
-
-        speechToTextEngine.on('error', (error) => {
-          logger.error(error, 'SpeechToTextEngine encountered an error: ');
-          const errorMessage = {
-            error: error.message,
-          };
-
-          if (webSocket.readyState === WebSocket.OPEN) {
-            webSocket.send(JSON.stringify(errorMessage));
-          }
-        });
-
-        speechToTextEngine.on('end', (reason = 'No close reason defined') => {
-          logger.debug('SpeechToTextEngine closed');
-          if (webSocket.readyState === WebSocket.OPEN) {
-            webSocket.close(1000, reason);
-          }
-        });
+        }
       } catch (e) {
         logger.error(e);
         webSocket.close(1000, 'Invalid start message');
@@ -109,7 +131,7 @@ function handleSpeechToTextConnection(webSocket, incomingMessage) {
   webSocket.on('close', (code, reason) => {
     logger.debug(`onClose, code = ${code}, reason = ${reason}`);
     if (speechToTextEngine) {
-      speechToTextEngine.destroy();
+      removeActiveSpeechEngine(speechToTextEngine);
     }
   });
 }
