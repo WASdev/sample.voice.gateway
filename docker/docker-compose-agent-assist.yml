@@ -1,4 +1,4 @@
-version: '2'
+https://www.ibm.com/support/knowledgecenter/SS4U29/reporting.htmlversion: '2'
 services:
   sip.orchestrator:
     image: ibmcom/voice-gateway-so:latest
@@ -11,13 +11,17 @@ services:
       - MEDIA_RELAY_HOST=media.relay:8080
       - SIP_HOST=${EXTERNAL_IP}
 
-      # Set to true to enable the MQTT transcription plugin
-      - MQTT_PLUGIN_ENABLE=true
-      - MQTT_BROKER_ADDRESS=
-
-      # Logging related variables
-      - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
-      - LOG_LEVEL=finest
+      # Configure either an SOE or reporting interface to receive the transcriptions (or both)
+      # SOE
+      - WATSON_CONVERSATION_USERNAME=
+      - WATSON_CONVERSATION_PASSWORD=
+      - WATSON_CONVERSATION_URL=
+       
+      # Reporting
+      - REPORTING_URL=
+      - REPORTING_USERNAME=
+      - REPORTING_PASSWORD=
+      - REPORTING_TRANSCRIPTION_EVENT_INDEX=
 
   media.relay:
     image: ibmcom/voice-gateway-mr:latest
