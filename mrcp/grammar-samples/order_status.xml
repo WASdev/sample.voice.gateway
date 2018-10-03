@@ -1,0 +1,10 @@
+<grammar root="root" version="1.0" xmlns="http://www.w3.org/2001/06/grammar"
+ xml:lang="en-US">
+    <rule id="root" scope="public">
+	    <one-of>
+			<item>Can I check on an order</item>
+      <item>What's my order status</item>
+			<item>where is my order</item>
+		</one-of>
+    </rule>
+</grammar>

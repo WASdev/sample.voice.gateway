@@ -17,12 +17,12 @@ In the dashboard, you will see that a new design document has been created calle
 
 ### calls_by_date view:
 If you access the "calls_by_date" view, it will return the number of calls that occurred over a given time period.   Here is an example of the URL which accesses the view.    The reduce function is set to "true", and the start and end keys are set to the dates  we are interested in:<br/>
-`https://XXX-bluemix.cloudant.com/vgw-svt/_design/cdrDesignDoc/_view/calls_by_date?reduce=true&startkey=%222018/4/18%2000:00:00%22&endkey=%222018/4/18%2023:59:59%22`
+`https://XXX-bluemix.cloudant.com/vgw-svt/_design/cdrDesignDoc/_view/calls_by_date?reduce=true&startkey=%222018/04/18%2000:00:00%22&endkey=%222018/04/18%2023:59:59%22`
 
 This view basically creates a map in the database where the key is the date string, and the value is the call length (in minutes).    Since the "reduce" parameter is set to "true", it runs a "_count" on the number of records listed between the "startkey" and "endkey".    This results in the number of calls that occurred between the start and end dates (inclusive).
 
 ### call_minutes_by_date view:
 Here is an example of the URL which accesses the "call_minutes_by_date" view:<br/>
-`https://XXX-bluemix.cloudant.com/vgw-svt/_design/cdrDesignDoc/_view/call_minutes_by_date?reduce=true&startkey=%222018/4/18%2000:00:00%22&endkey=%222018/4/18%2023:59:59%22`
+`https://XXX-bluemix.cloudant.com/vgw-svt/_design/cdrDesignDoc/_view/call_minutes_by_date?reduce=true&startkey=%222018/04/18%2000:00:00%22&endkey=%222018/04/18%2023:59:59%22`
 
 The "call_minutes_by_date" view uses the "startkey" and "endkey" to determine which records to examine.    Since the "reduce" parameter is set to "true", it runs a "_sum" on the map values listed between the "startkey" and "endkey".    This results in the number of call minutes that occurred between the start and end dates (inclusive).
