@@ -1,6 +1,6 @@
 # Integrating IBM® Voice Gateway with MRCPv2 Speech Recognizer and Synthesizers
 
-You can configure your IBM® Voice Gateway deployment to integrate with third-party speech to text and text to speech services by using Media Resource Control Protocol Version 2 (MRCPv2) connections. Version 1.0.0.7 and later. For more information click [here](https://www-03preprod.ibm.com/support/knowledgecenter/SS4U29/MRCP_stt.html
+You can configure your IBM® Voice Gateway deployment to integrate with third-party speech to text and text to speech services by using Media Resource Control Protocol Version 2 (MRCPv2) connections. Version 1.0.0.7 and later. For more information click [here](https://www.ibm.com/support/knowledgecenter/SS4U29/MRCP_stt.html
 )
 
 + [Connecting to an MRCPv2 recognizer](https://www-03preprod.ibm.com/support/knowledgecenter/SS4U29/MRCP_stt.html)
