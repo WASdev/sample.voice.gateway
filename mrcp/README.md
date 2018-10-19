@@ -6,7 +6,7 @@ You can configure your IBM® Voice Gateway deployment to integrate with third-pa
 + [Connecting to an MRCPv2 recognizer](https://www-03preprod.ibm.com/support/knowledgecenter/SS4U29/MRCP_stt.html)
 + [Connecting to an MRCPv2 synthesizer](https://www-03preprod.ibm.com/support/knowledgecenter/SS4U29/MRCP_tts.html)
 
-These directory contains the following items:
+This directory contains the following items:
 
 + `grammar-samples/`: Grammars defined in XML documents that are used by the MRCPv2 Speech recognizer to interpret the user's input.
 + `unimrcpConfig/`: Contains the MRCPv2 client (`unimrcp`) configuration, this defines configuration items such as the MRCPv2 server to connect to. For a full list of configuration item for the MRCPv2 client see the [UniMRCP Client Configuration Doc](http://www.unimrcp.org/manuals/html/ClientConfigurationManual.html).
