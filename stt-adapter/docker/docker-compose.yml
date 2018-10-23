@@ -48,7 +48,7 @@ services:
 
   # Voice Gateway STT Adapter
   stt.adapter:
-    image: ibmcom/voice-gateway-stt-adapter:beta.latest
+    image: ibmcom/voice-gateway-stt-adapter:latest
     container_name: voice-gateway-stt-adapter
     ports:
       - "4000:4000"
