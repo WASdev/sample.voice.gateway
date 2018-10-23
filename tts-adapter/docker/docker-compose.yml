@@ -51,9 +51,9 @@ services:
     image: ibmcom/voice-gateway-tts-adapter:beta.latest
     container_name: voice-gateway-tts-adapter
     ports:
-      - "4000:4000"
+      - "4100:4100"
     environment:
-      - PORT=4000
+      - PORT=4100
       - LOG_LEVEL=debug
 
       # Google Service Credentials
