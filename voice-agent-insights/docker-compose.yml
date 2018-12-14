@@ -1,0 +1,43 @@
+
+# Exit Command: 
+#     docker-compose down
+
+version: '3'
+
+services:
+  vgw.dashboard:
+    container_name: voice-agent-insights
+    image: ibmcom/voice-agent-insights:alpha.latest
+    
+    ports:
+      - "9080:9080"
+      - "9443:9443"
+      
+    environment:
+      
+      # REQURIED Specify the Multi-Agent Configuration JSON file that maps agent numbers to cloudant credentials
+      # Default file specified below. This can be reconfigured
+      - AGENT_CONFIG_FILE="config.json"
+    
+      # Uncomment and specify your own username and password to override the default
+      # Do not add whitespace or quotes around the username or password
+      #- BASIC_REGISTRY_USERNAME=
+      #- BASIC_REGISTRY_PASSWORD=
+
+      # Uncomment this section to use your own keystore
+      # SSL KeyStore related variables
+      #- SSL_KEY_PASSPHRASE=
+      #- SSL_KEY_STORE_FILE=/sslconf/key.jks
+      #- SSL_KEY_FILE_TYPE=JKS
+
+      # Uncomment this section to specify your own truststore
+      # Change values to override the default settings
+      #- SSL_TRUST_PASSPHRASE=
+      #- SSL_TRUST_STORE_FILE=/sslconf/cacerts
+      #- SSL_TRUST_FILE_TYPE=JKS
+      
+    # REQUIRED Mounts a local directory with multi-agent config json file onto the container
+    # Default directory specified below. This can be reconfigured
+    volumes:
+      - "./config/:/config/resources/security/credentials"
+      - "./logs/:/logs/" 
