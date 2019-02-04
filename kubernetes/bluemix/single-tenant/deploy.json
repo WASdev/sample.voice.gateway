@@ -47,7 +47,7 @@
                     "args": ["export SDP_ADDRESS=$(hostname -I | awk '{print $2}'); exec /vgw-media-relay/bin/media-relay"],
                     "env": [{
                         "name": "ENABLE_RECORDING",
-                        "value": "true"
+                        "value": "false"
                     }, {
                         "name": "RTP_UDP_PORT_RANGE",
                         "value": "16384-16584"
@@ -129,14 +129,28 @@
                         "name": "SIP_PORT",
                         "value": "5060"
                     }, {
-                         "name": "HTTPS_PORT",
-                         "value": "9443"
+                        "name": "HTTPS_PORT",
+                        "value": "9443"
                     }, {
-                         "name": "HTTP_HOST",
-                         "value": "127.0.0.1"
+                        "name": "HTTP_HOST",
+                        "value": "127.0.0.1"
+                    }, {
+                        "name": "WATSON_CONVERSATION_WORKSPACE_ID",
+                        "value": ""
+                    }, {
+                        "name": "WATSON_CONVERSATION_USERNAME",
+                        "value": ""
+                    }, {
+                        "name": "WATSON_CONVERSATION_PASSWORD",
+                        "valueFrom": {
+                            "secretKeyRef": {
+                                "name": "secret-creds",
+                                "key": "WATSON_CONVERSATION_PASSWORD"
+                            }
+                        }
                     }, {
                         "name": "WATSON_CONVERSATION_URL",
-                        "value": "https://watson-assist-test.mybluemix.net/names/v1/workspaces/message"
+                        "value": "https://gateway.watsonplatform.net/conversation/api"
                     }, {
                         "name": "ENABLE_AUDIT_MESSAGES",
                         "value": "true"
@@ -146,9 +160,6 @@
                     }, {
                         "name": "LOG_LEVEL",
                         "value": "all"
-                    }, {
-                        "name": "WHITELIST_TO_URI",
-                        "value": "16152059387"
                     }],
                     "resources": {},
                     "terminationMessagePath": "/dev/termination-log",
