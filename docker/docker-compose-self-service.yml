@@ -16,7 +16,7 @@ services:
       #If your account is associated with a username and password uncomment WATSON_CONVERSATION_USERNAME and WATSON_CONVERSATION_PASSWORD and fill out accordingly
       #- WATSON_CONVERSATION_USERNAME=
       #- WATSON_CONVERSATION_PASSWORD=
-      #If your account is associated with an apikey use these and comment WATSON_CONVERSATION_APIKEY and WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
+      #If your account is associated with an apikey uncomment WATSON_CONVERSATION_APIKEY and WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
       #- WATSON_CONVERSATION_APIKEY=
       #- WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
       - WATSON_CONVERSATION_URL=
@@ -40,7 +40,7 @@ services:
       #If your account is associated with a username and password uncomment WATSON_STT_USERNAME and WATSON_STT_PASSWORD and fill out accordingly
       #- WATSON_STT_USERNAME=
       #- WATSON_STT_PASSWORD=
-      #If your account is associated with an apikey unomment WATSON_STT_APIKEY and WATSON_STT_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
+      #If your account is associated with an apikey uncomment WATSON_STT_APIKEY and WATSON_STT_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
       #- WATSON_STT_APIKEY=
       #- WATSON_STT_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
       - WATSON_STT_URL=
@@ -49,7 +49,7 @@ services:
       #If your account is associated with a username and password uncomment WATSON_TTS_USERNAME and WATSON_TTS_PASSWORD and fill out accordingly
       #- WATSON_TTS_USERNAME=
       #- WATSON_TTS_PASSWORD=
-      #If your account is associated with an apikey use these and comment WATSON_TTS_APIKEY and WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
+      #If your account is associated with an apikey uncomment WATSON_TTS_APIKEY and WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
       #- WATSON_TTS_APIKEY=
       #- WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
       - WATSON_TTS_URL=
