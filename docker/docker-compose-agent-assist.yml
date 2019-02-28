@@ -1,4 +1,4 @@
-version: '2'
+https://www.ibm.com/support/knowledgecenter/SS4U29/reporting.htmlversion: '2'
 services:
   sip.orchestrator:
     image: ibmcom/voice-gateway-so:latest
@@ -11,13 +11,21 @@ services:
       - MEDIA_RELAY_HOST=media.relay:8080
       - SIP_HOST=${EXTERNAL_IP}
 
-      # Set to true to enable the MQTT transcription plugin
-      - MQTT_PLUGIN_ENABLE=true
-      - MQTT_BROKER_ADDRESS=
-
-      # Logging related variables
-      - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
-      - LOG_LEVEL=finest
+      # Configure either an SOE or reporting interface to receive the transcriptions (or both)
+      # SOE
+      #If your account is associated with a username and password uncomment WATSON_CONVERSATION_USERNAME and WATSON_CONVERSATION_PASSWORD
+      #- WATSON_CONVERSATION_USERNAME=
+      #- WATSON_CONVERSATION_PASSWORD=
+      #If your account is associated with an apikey uncomment WATSON_CONVERSATION_APIKEY and WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
+      #- WATSON_CONVERSATION_APIKEY=
+      #- WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
+      - WATSON_CONVERSATION_URL=
+       
+      # Reporting
+      - REPORTING_URL=
+      - REPORTING_USERNAME=
+      - REPORTING_PASSWORD=
+      - REPORTING_TRANSCRIPTION_EVENT_INDEX=
 
   media.relay:
     image: ibmcom/voice-gateway-mr:latest
@@ -31,7 +39,11 @@ services:
       - MEDIA_RELAY_WS_PORT=8080
 
       # Creds for Bluemix STT
-      - WATSON_STT_USERNAME=
-      - WATSON_STT_PASSWORD=
+      #If your account is associated with a username and password uncomment WATSON_STT_USERNAME and WATSON_STT_PASSWORD and fill accordingly
+      #- WATSON_STT_USERNAME=
+      #- WATSON_STT_PASSWORD=
+      #If your account is associated with an apikey uncomment WATSON_STT_APIKEY and WATSON_STT_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
+      #- WATSON_STT_APIKEY=
+      #- WATSON_STT_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
       - WATSON_STT_URL=
 

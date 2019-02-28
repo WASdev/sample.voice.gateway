@@ -1,0 +1,15 @@
+---
+applications:
+- name:    soe-vgw-wcs-node-v1
+  random-route: false
+  host: soe-vgw-wcs
+  memory:  256M
+  env:
+    wcs_username: <wcs_username>
+    wcs_password: <wcs_password>
+    wcs_workspace: <wcs_workspace>
+    show_all_logs: false
+    receiver_email_address: yourstruly@gmail.com
+    sender_email_address: abc@gmail.com
+    sender_email_password: xyz123
+    

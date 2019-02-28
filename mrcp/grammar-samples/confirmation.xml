@@ -1,0 +1,32 @@
+
+
+<grammar root="confirmation" version="1.0" xmlns="http://www.w3.org/2001/06/grammar"
+ xml:lang="en-US" >
+    <rule id="confirmation" scope="public">
+		<one-of>
+			<item><ruleref uri="#yes" /></item>
+			<item><ruleref uri="#no" /></item>
+		</one-of>
+    </rule>
+	<rule id="yes" scope="public">
+		<one-of>
+			<item>definitely</item>
+			<item>ok</item>
+			<item>yes</item>
+			<item>sure</item>
+			<item>yep</item>
+			<item>go for it</item>
+		</one-of>
+	</rule>
+	<rule id="no" scope="public">
+		<one-of>
+			<item>definitely not</item>
+			<item>no</item>
+			<item>not</item>
+			<item> i think not</item>
+			<item>nope</item>
+			<item>not at this time</item>
+			<item>not now</item>
+		</one-of>
+	</rule>
+</grammar>

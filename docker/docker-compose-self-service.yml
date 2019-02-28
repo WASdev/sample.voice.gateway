@@ -13,8 +13,12 @@ services:
 
       # Uncomment and specify when the Conversation API is used
       - WATSON_CONVERSATION_WORKSPACE_ID=
-      - WATSON_CONVERSATION_USERNAME=
-      - WATSON_CONVERSATION_PASSWORD=
+      #If your account is associated with a username and password uncomment WATSON_CONVERSATION_USERNAME and WATSON_CONVERSATION_PASSWORD and fill out accordingly
+      #- WATSON_CONVERSATION_USERNAME=
+      #- WATSON_CONVERSATION_PASSWORD=
+      #If your account is associated with an apikey uncomment WATSON_CONVERSATION_APIKEY and WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
+      #- WATSON_CONVERSATION_APIKEY=
+      #- WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
       - WATSON_CONVERSATION_URL=
 
       # Logging related variables
@@ -33,13 +37,21 @@ services:
       - MEDIA_RELAY_WS_PORT=8080
 
       # Creds for Bluemix STT
-      - WATSON_STT_USERNAME=
-      - WATSON_STT_PASSWORD=
+      #If your account is associated with a username and password uncomment WATSON_STT_USERNAME and WATSON_STT_PASSWORD and fill out accordingly
+      #- WATSON_STT_USERNAME=
+      #- WATSON_STT_PASSWORD=
+      #If your account is associated with an apikey uncomment WATSON_STT_APIKEY and WATSON_STT_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
+      #- WATSON_STT_APIKEY=
+      #- WATSON_STT_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
       - WATSON_STT_URL=
 
       # Creds for Bluemix TTS
-      - WATSON_TTS_USERNAME=
-      - WATSON_TTS_PASSWORD=
+      #If your account is associated with a username and password uncomment WATSON_TTS_USERNAME and WATSON_TTS_PASSWORD and fill out accordingly
+      #- WATSON_TTS_USERNAME=
+      #- WATSON_TTS_PASSWORD=
+      #If your account is associated with an apikey uncomment WATSON_TTS_APIKEY and WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL and fill apikey accordingly
+      #- WATSON_TTS_APIKEY=
+      #- WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
       - WATSON_TTS_URL=
       - WATSON_TTS_VOICE=en-US_MichaelVoice
 

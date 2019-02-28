@@ -1,0 +1,233 @@
+{
+    "kind": "PersistentVolume",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "recordings",
+        "labels": {}
+    },
+    "spec": {
+        "capacity": {
+            "storage": "2Gi"
+        },
+        "accessModes": [
+            "ReadWriteMany"
+        ],
+        "persistentVolumeReclaimPolicy": "Retain",
+        "hostPath": {
+            "path": "/root/recordings"
+        }
+    }
+}
+
+{
+    "kind": "PersistentVolumeClaim",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "recordings"
+    },
+    "spec": {
+        "resources": {
+            "requests": {
+                "storage": "2Gi"
+            }
+        },
+        "accessModes": [
+            "ReadWriteMany"
+        ]
+    }
+}
+
+{
+    "kind": "Deployment",
+    "apiVersion": "extensions/v1beta1",
+    "metadata": {
+        "name": "vgw",
+        "labels": {
+            "service": "vgw"
+        }
+    },
+    "spec": {
+        "replicas": 1,
+        "selector": {
+            "matchLabels": {
+                "service": "vgw"
+            }
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "service": "vgw"
+                }
+            },
+            "spec": {
+                "volumes": [{
+                    "persistentVolumeClaim": {
+                        "claimName": "recordings"
+                    },
+                    "name": "recordings"
+                },
+				{
+                    "name": "tenantconfig",
+                    "secret": {
+                        "secretName": "tenantconfig",
+                        "items": [{
+                            "key": "tenantConfig.json",
+                            "path": "tenantConfig.json"
+                        }]
+                    }
+                },
+				{
+                    "name": "secret-certs",
+                    "secret": {
+                        "secretName": "secret-certs",
+                        "items": [{
+                            "key":"yourKeyFileNamewExtension",
+                            "path":"yourKeyFileNamewExtension"
+                        }]
+                    }
+                }],
+                "hostNetwork": true,
+                "containers": [{
+                    "name": "vgw-media-relay",
+                    "image": "ibmcom/voice-gateway-mr:latest",
+                    "ports": [{
+                        "containerPort": 8080,
+                        "hostPort": 8080,
+                        "protocol": "TCP"
+                    }],
+                    "lifecycle": {
+                        "preStop": {
+                            "exec": {
+                                "command": [
+                                    "/opt/quiesce.sh"
+                                ]
+                            }
+                        }
+                    },
+                    "env": [{
+                        "name": "SDP_ADDRESS",
+                        "valueFrom": {
+                            "fieldRef": {
+                                "fieldPath": "status.podIP"
+                            }
+                        }
+                    }, {
+                        "name": "ENABLE_RECORDING",
+                        "value": "false"
+                    }, {
+                        "name": "RTP_UDP_PORT_RANGE",
+                        "value": "16384-16584"
+                    }, {
+                        "name": "CLUSTER_WORKERS",
+                        "value": "0"
+                    }, {
+                        "name": "MEDIA_RELAY_LOG_LEVEL",
+                        "value": "DEBUG"
+                    }, {
+                        "name": "MEDIA_RELAY_WS_PORT",
+                        "value": "8080"
+                    }],
+                    "resources": {},
+                    "volumeMounts": [{
+                        "name": "recordings",
+                        "mountPath": "/vgw-media-relay/recordings"
+                    }],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "Always"
+                }, {
+                    "name": "vgw-sip-orchestrator",
+                    "image": "ibmcom/voice-gateway-so:latest",
+                    "ports": [{
+                        "containerPort": 5060,
+                        "hostPort": 5060,
+                        "protocol": "TCP"
+                    },
+					{
+                        "containerPort": 5060,
+                        "hostPort": 5060,
+                        "protocol": "UDP"
+                    },
+					{
+                        "containerPort": 9443,
+                        "hostPort": 9443,
+                        "protocol": "TCP"
+                    },
+					{
+                        "containerPort": 9080,
+                        "hostPort": 9080,
+                        "protocol": "TCP"
+                    },],
+                    "lifecycle": {
+                        "preStop": {
+                            "exec": {
+                                "command": [
+                                    "/opt/quiesce.sh"
+                                ]
+                            }
+                        }
+                    },
+                    "env": [{
+                        "name": "SIP_HOST",
+                        "valueFrom": {
+                            "fieldRef": {
+                                "fieldPath": "status.podIP"
+                            }
+                        }
+                    }, {
+                        "name": "MEDIA_RELAY_HOST",
+                        "value": "localhost:8080"
+                    }, {
+                        "name": "SIP_PORT",
+                        "value": "5060"
+                    }, {
+                         "name": "HTTPS_PORT",
+                         "value": "9443"
+                    }, {
+                         "name": "HTTP_PORT",
+                         "value": "9080"
+                    }, {
+                         "name": "HTTP_HOST",
+                         "value": "*"
+                    }, {
+                         "name": "SSL_KEY_STORE_FILE",
+                         "value": "/your-path/yourKeyFileNamewExtension"
+                    }, {
+                         "name": "SSL_KEY_FILE_TYPE",
+                         "value": ""
+                    }, {
+                         "name": "SSL_KEY_PASSPHRASE",
+                         "value": ""
+                    },{
+                        "name": "ENABLE_AUDIT_MESSAGES",
+                        "value": "true"
+                    }, {
+                        "name": "ENABLE_TRANSCRIPTION_AUDIT_MESSAGES",
+                        "value": "true"
+                    }, {
+                        "name": "LOG_LEVEL",
+                        "value": "all"
+                    }, {
+                        "name": "MULTI_TENANT_CONFIG_FILE",
+                        "value": "/tenantconfig/tenantConfig.json"
+                    }],
+                    "resources": {},
+                    "volumeMounts": [{
+                        "name": "tenantconfig",
+                        "mountPath": "/tenantconfig/tenantConfig.json",
+                        "subPath": "tenantConfig.json"
+                    }, {
+                        "name": "secret-certs",
+                        "mountPath": "/your-path/yourKeyFileNamewExtension",
+                        "subPath": "yourKeyFileNamewExtension"
+                    }],
+                    "terminationMessagePath": "/dev/termination-log",
+                    "imagePullPolicy": "Always"
+                }],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 600,
+                "dnsPolicy": "ClusterFirstWithHostNet"
+            }
+        }
+    },
+    "status": {}
+}
