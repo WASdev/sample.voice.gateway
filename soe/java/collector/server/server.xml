@@ -37,8 +37,8 @@
      <mailSession mailSessionID="ibmSMTPSession"
          jndiName="mail/ibmSMTPSession"
          storeProtocol="imap" host="smtp.gmail.com"
-         user="mjdeasy21@gmail.com" password="agcaabcaxmdunrzi"
-         from="mjdeasy21@gmail.com" description="Test App">
+         user="xxxxx@xxxx.xxx" password="xxxxxxxxxxxxxxxxx"
+         from="xxxxx@xxxx.xxx" description="Test App">
         <property name="mail.imap.host" value="imap.gmail.com" />
         <property name="mail.smtp.port" value="587" />
         <property name="mail.smtp.auth" value="true" />
