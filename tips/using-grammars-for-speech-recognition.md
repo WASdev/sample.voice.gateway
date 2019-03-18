@@ -31,11 +31,11 @@ For example, in your Watson Assistant Dialog node, specify the `vgwActSetSTTConf
     "vgwAction": {
       "command": "vgwActSetSTTConfig",
       "parameters": {
-		  "updateMethod": "mergeOnce",
-		  "config": {
-			  "grammar_name": "{your_grammar_name}",
-			  "language_customization_id": "{your_language_customization_id}"
-		  }
+        "updateMethod": "mergeOnce",
+        "config": {
+          "grammar_name": "{your_grammar_name}",
+          "language_customization_id": "{your_language_customization_id}"
+        }
       }
     }
 }
@@ -53,30 +53,30 @@ You can specify it through the [Advanced JSON Configuration](https://www.ibm.com
 
 ```javascript
 {
-    "tenants": [{
-            "tenantURI": "2345556789",
-            "description": "Voice Gateway Demo",
-            "conversation": {
-				...
-            },
-            "stt": {
-                "credentials": {
-                    "url": "https://stream.watsonplatform.net/speech-to-text/api",
-                    "username": "9h7f54cb-f28f-4a64-91e1-a0657e1dd3f4",
-                    "password": "IAB5jfxls0Zt",
-                },
-                "config": {
-                    "model": "en-US_NarrowbandModel",
-					"language_customization_id": "{your_customization_id}",
-					"grammar_name": "{your_grammar_name}"
-                    "profanity_filter": true,
-                    "smart_formatting": true
-                }
-            },
-            "tts": {
-				...
-            }
-	}]
+  "tenants": [{
+    "tenantURI": "2345556789",
+    "description": "Voice Gateway Demo",
+    "conversation": {
+        ...
+    },
+    "stt": {
+      "credentials": {
+        "url": "https://stream.watsonplatform.net/speech-to-text/api",
+        "username": "9h7f54cb-f28f-4a64-91e1-a0657e1dd3f4",
+        "password": "IAB5jfxls0Zt"
+      },
+      "config": {
+        "model": "en-US_NarrowbandModel",
+        "language_customization_id": "{your_customization_id}",
+        "grammar_name": "{your_grammar_name}"
+        "profanity_filter": true,
+        "smart_formatting": true
+      }
+    },
+    "tts": {
+        ...
+    }
+  }]
 }
 ```
 
