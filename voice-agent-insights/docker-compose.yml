@@ -1,8 +1,6 @@
 
-# Exit Command: 
-#     docker-compose down
 
-version: '4'
+version: '3'
 
 services:
   va.insights:
@@ -16,7 +14,7 @@ services:
     environment:
       
       # REQURIED Specify the configuration JSON file that maps agent numbers to the cloudant credentials
-      #- CONFIG_FILE_PATH=/config/resources/agentConfig/vaInsights.json
+      - CONFIG_FILE_PATH=/config/resources/agentConfig/vaInsights.json
       
       # Variable required to replace existing basic Auth configuration
       #- SERVER_REGISTRY_INCLUDE_PATH=/config/resources/security/server-security-incl.xml
@@ -33,8 +31,8 @@ services:
     
       # Uncomment and specify your own username and password to override the default
       # Do not add whitespace or quotes around the username or password{hashed}
-      #- BASIC_REGISTRY_USERNAME=
-      #- BASIC_REGISTRY_PASSWORD=
+      - BASIC_REGISTRY_USERNAME=
+      - BASIC_REGISTRY_PASSWORD=
 
       # Uncomment this section to use your own keystore
       # SSL KeyStore related variables
