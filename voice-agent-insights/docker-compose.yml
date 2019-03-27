@@ -56,5 +56,5 @@ services:
     volumes:
       - "./config/:/config/resources/agentConfig/"
       - "./logs/:/logs/"
-      - "./config/registry/:/config/resources/registry/"
+      #- "./config/registry/:/config/resources/registry/"
       #- "./config/security/:/config/resources/security/"
