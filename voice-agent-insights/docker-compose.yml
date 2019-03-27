@@ -19,7 +19,7 @@ services:
       #- CONFIG_FILE_PATH=/config/resources/agentConfig/vaInsights.json
       
       # Variable required to replace existing basic Auth configuration
-      #- SERVER_REGISTRY_INCLUDE_PATH=/config/resources/includeConfig/server-security-incl.xml
+      #- SERVER_REGISTRY_INCLUDE_PATH=/config/resources/security/server-security-incl.xml
 
       # 
       - LICENSED_FOR_PRODUCTION_USE=false
@@ -56,6 +56,6 @@ services:
       # REQUIRED Mounts a local directory with agent config json file onto the container
       # Default directory specified below. This can be reconfigured
     volumes:
-      #- "./localconfig/:/config/resources/agentConfig/"
-      #- "./localConfig/includeConfig/:/config/resources/includeConfig/"
-      #- "./localConfig/logs/:/logs/"
+      #- "./config/:/config/resources/agentConfig/"
+      #- "./config/security/:/config/resources/security/"
+      #- "./config/logs/:/logs/"
