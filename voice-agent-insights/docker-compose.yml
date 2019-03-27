@@ -17,7 +17,7 @@ services:
       - CONFIG_FILE_PATH=/config/resources/agentConfig/vainsights.json
       
       # Variable required to replace existing basic Auth configuration
-      #- SERVER_REGISTRY_INCLUDE_PATH=/config/resources/security/server-security-incl.xml
+      #- SERVER_REGISTRY_INCLUDE_PATH=/config/resources/registry/server-security-incl.xml
 
       # 
       - LICENSED_FOR_PRODUCTION_USE=false
@@ -36,7 +36,7 @@ services:
 
       # Uncomment this section to use your own keystore
       # SSL KeyStore related variables
-      #- SSL_KEY_PASSPHRASE=
+      #- SSL_KEY_PASSPHRASE=/config/resources/security/file.jks
       #- SSL_KEY_STORE_FILE=
       #- SSL_KEY_FILE_TYPE=JKS
 
@@ -56,4 +56,5 @@ services:
     volumes:
       - "./config/:/config/resources/agentConfig/"
       - "./logs/:/logs/"
+      - "./config/registry/:/config/resources/registry/"
       #- "./config/security/:/config/resources/security/"
