@@ -55,5 +55,5 @@ services:
       # Default directory specified below. This can be reconfigured
     volumes:
       - "./config/:/config/resources/agentConfig/"
+      - "./logs/:/logs/"
       #- "./config/security/:/config/resources/security/"
-      #- "./config/logs/:/logs/"
