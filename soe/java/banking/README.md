@@ -61,8 +61,8 @@ Using the maven Open liberty plugin you can quickly start the application as is
 ```
 WORKSPACE_ID=Newly created workspace id
 CONVERSATION_VERSION=2016-07-11
-CONVERSATION_USERNAME=Username for connecting to watson assistant. If you're using an apikey fill this with "apikey"
-CONVERSATION_PASSWORD=Password for connecting to watson assistant. If you're using an apikey fill this with the value of the apikey
+CONVERSATION_USERNAME=Username for connecting to watson assistant
+CONVERSATION_PASSWORD=Password for connecting to watson assistant
 CONVERSATION_URL=Url for connecting to the Watson Assistant API
 ```
 
@@ -83,8 +83,8 @@ CONVERSATION_URL=Url for connecting to the Watson Assistant API
 ```
 WORKSPACE_ID=Newly created workspace id
 CONVERSATION_VERSION=2016-07-11
-CONVERSATION_USERNAME=Username for connecting to watson assistant. If you're using an apikey fill this with "apikey"
-CONVERSATION_PASSWORD=Password for connecting to watson assistant. If you're using an apikey fill this with the value of the apikey
+CONVERSATION_USERNAME=Username for connecting to watson assistant
+CONVERSATION_PASSWORD=Password for connecting to watson assistant
 CONVERSATION_URL=Url for connecting to the Watson Assistant API
 ```
 
