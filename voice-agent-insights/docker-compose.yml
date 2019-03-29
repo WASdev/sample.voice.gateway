@@ -1,12 +1,10 @@
 
-# Exit Command: 
-#     docker-compose down
 
 version: '3'
 
 services:
-  vgw.dashboard:
-    container_name: voice-agent-insights
+  va.insights:
+    container_name: va-insights
     image: ibmcom/voice-agent-insights:alpha.latest
     
     ports:
@@ -15,29 +13,48 @@ services:
       
     environment:
       
-      # REQURIED Specify the Multi-Agent Configuration JSON file that maps agent numbers to cloudant credentials
-      # Default file specified below. This can be reconfigured
-      - AGENT_CONFIG_FILE="config.json"
+      # REQURIED Specify the configuration JSON file that maps agent numbers to the cloudant credentials
+      - CONFIG_FILE_PATH=/config/resources/agentConfig/vainsights.json
+      
+      # Variable required to replace existing basic Auth configuration
+      #- SERVER_REGISTRY_INCLUDE_PATH=/config/resources/registry/server-security-incl.xml
+
+      # 
+      - LICENSED_FOR_PRODUCTION_USE=false
+
+      # Logging related variables
+      #- ENABLE_TRANSCRIPTION_MESSAGES=false
+      #- LOG_LEVEL=info
+      #- LOG_MAX_FILE_SIZE=100
+      #- LOG_MAX_FILES=10
+
     
       # Uncomment and specify your own username and password to override the default
-      # Do not add whitespace or quotes around the username or password
-      #- BASIC_REGISTRY_USERNAME=
-      #- BASIC_REGISTRY_PASSWORD=
+      # Do not add whitespace or quotes around the username or password{hashed}
+      - BASIC_REGISTRY_USERNAME=
+      - BASIC_REGISTRY_PASSWORD=
 
       # Uncomment this section to use your own keystore
       # SSL KeyStore related variables
-      #- SSL_KEY_PASSPHRASE=
-      #- SSL_KEY_STORE_FILE=/sslconf/key.jks
+      #- SSL_KEY_PASSPHRASE=/config/resources/security/file.jks
+      #- SSL_KEY_STORE_FILE=
       #- SSL_KEY_FILE_TYPE=JKS
 
       # Uncomment this section to specify your own truststore
-      # Change values to override the default settings
+      # Change values to override the default settings of Java certs
       #- SSL_TRUST_PASSPHRASE=
-      #- SSL_TRUST_STORE_FILE=/sslconf/cacerts
+      #- SSL_TRUST_STORE_FILE=
       #- SSL_TRUST_FILE_TYPE=JKS
       
-    # REQUIRED Mounts a local directory with multi-agent config json file onto the container
-    # Default directory specified below. This can be reconfigured
+      # Proxy variables for Cloudant
+      #- CLOUDANT_PROXY_URL=
+      #- CLOUDANT_PROXY_USERNAME=
+      #- CLOUDANT_PROXY_PASSWORD=
+      
+      # REQUIRED Mounts a local directory with agent config json file onto the container
+      # Default directory specified below. This can be reconfigured
     volumes:
-      - "./config/:/config/resources/security/credentials"
-      - "./logs/:/logs/" 
+      - "./config/:/config/resources/agentConfig/"
+      - "./logs/:/logs/"
+      #- "./config/registry/:/config/resources/registry/"
+      #- "./config/security/:/config/resources/security/"

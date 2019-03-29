@@ -1,0 +1,67 @@
+{
+  "tenants": [
+    {
+      "tenantURI": "1-xxx-xxx-xxxx",
+      "description": "Voice Gateway 1",
+      "reporting": {
+        "cdrCloudant": {
+          "username": "xxxx",
+          "password": "xxxx",
+          "url": "xxx-bluemix.cloudant.com",
+          "dbName": "cdr",
+          "eventInd": "cdr"
+        },
+        "transcriptionCloudant": {
+          "username": "xxx-bluemix",
+          "password": "xxxx",
+          "url": "xxx-bluemix.cloudant.com",
+          "dbName": "transcriptions",
+          "eventInd": "transcription"
+        }
+      }
+    },
+    {
+      "tenantURI": "1-xxx-xxx-0xxx",
+      "description": "Voice Gateway 2",
+      "reporting": {
+        "cdrCloudant": {
+          "apikey": "xxxx",
+          "url": "xxx-bluemix.cloudant.com",
+          "dbName": "cdr",
+          "eventInd": "cdr"
+        },
+        "transcriptionCloudant": {
+          "username": "xxx-bluemix",
+          "password": "xxxx",
+          "url": "xxx-bluemix.cloudant.com",
+          "dbName": "transcriptions",
+          "eventInd": "transcription"
+        }
+      }
+    },
+    {
+      "tenantURI": "1-800-xxx-xxxx",
+      "description": "Voice Gateway 3",
+      "reporting": {
+        "cdrCloudant": {
+          "apikey": "xxxx",
+          "url": "xxx-bluemix.cloudant.com",
+          "dbName": "cdr",
+          "eventInd": "cdr"
+        },
+        "transcriptionCloudant": {
+          "apikey": "xxx-bluemix",
+          "url": "xxx-bluemix.cloudant.com",
+          "dbName": "transcriptions",
+          "eventInd": "transcription"
+        },
+        "convCloudant": {
+          "apikey": "xxx-bluemix",
+          "url": "xxx-bluemix.cloudant.com",
+          "dbName": "turn",
+          "eventInd": "conversation"
+        }
+      }
+    }
+  ]
+}
