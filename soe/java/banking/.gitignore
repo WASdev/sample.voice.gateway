@@ -2,3 +2,7 @@
 .classpath
 .project
 .settings
+.factorypath
+/.apt_generated/
+/.apt_generated_tests/
+/src/main/wlp/server.env

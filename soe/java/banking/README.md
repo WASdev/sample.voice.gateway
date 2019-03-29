@@ -5,21 +5,21 @@ Banking Example
 
 ## Purpose
 
-The purpose of this project is to show how a developer can integrate the Watson Conversation service with the voice gateway/voice agent with Watson in a more realistic way. A way that is more common in a clients environment either for a proof of concept or a production implementation. This demo focuses on a banking example, where the caller can ask about account balances and perform basic credit card actions on a sample database of user profiles.
+The purpose of this project is to show how a developer can integrate the Watson Conversation service with the Voice Gateway/Voice Agent with Watson in a more realistic way. A way that is more common in a clients environment either for a proof of concept or a production implementation. This demo focuses on a banking example, where the caller can ask about account balances and perform basic credit card actions on a sample database of user profiles.
 
 ## Background
 
-By default the IBM Voice Gateway (VGW)/Voice Agent with Watson (VAW) can communicate with the Watson Conversation Service (WCS) by using the REST services provided by the WCS. The service uses a single REST API for all conversation interactions. VGW/VAW exploits this API by creating the appropriate JSON payload when transcribing the spoken words from the caller and invoking the API. The challenge with VGW/VAW communicating directly with WCS is that there is no way to personalize the conversation interactions. WCS only maintains static information based on any one particular question being asked. If there is a desire to have dynamic responses, there needs to be a way for the runtime to make API calls to other services to lookup the additional information and provide it as part the response to either WCS or to VGW/VAW. This is where the voice proxy idea comes in.
+By default the IBM Voice Gateway (VGW)/Voice Agent with Watson (VAW) can communicate with the Watson Conversation Service (WCS) by using the REST services provided by the WCS. The service uses a single REST API for all conversation interactions. VGW/VAW exploits this API by creating the appropriate JSON payload when transcribing the spoken words from the caller and invoking the API. The challenge with VGW/VAW communicating directly with WCS is that there is no way to personalize the conversation interactions. WCS only maintains static information based on any one particular question being asked. If there is a desire to have dynamic responses, there needs to be a way for the runtime to make API calls to other services to lookup the additional information and provide it as part the response to either WCS or to VGW/VAW. This is where the service orchestration engine (SOE) comes in.
 
 Since WCS only has one API for the conversation, it is very easy to impersonate (proxy) that API. Also since the JSON format used in WCS is well documented, it is easy to ensure that the proxy can make updates and communicate with WCS on behalf of any invoker. VGW being the most interesting.
 
 ## Goal
 
-The goal of this sample is for the user to get an understanding of how to create a Proxy that communicates with both VGW/VAW and WCS. You can leverage this code or you can see the high level flow and create your own if Java isn't your thing. Some might prefer Node.JS, Python or even Node-Red.
+The goal of this sample is for the user to get an understanding of how to create an SOE that communicates with both VGW/VAW and WCS. You can leverage this code or you can see the high level flow and create your own if Java isn't your thing. Some might prefer Node.JS, Python or even Node-Red.
 
 ## Sample Watson Conversation Workspace
 
-We have provided a sample Conversation Workspace as a part of the tutorial. The JSON is in the workspace folder. The sample workspace is a typical call center like scenario for a banking service.
+We have provided a sample Conversation Workspace as a part of the tutorial. The JSON is in the conversation_skill folder. The sample workspace is a typical call center like scenario for a banking service.
 
 We have 3 Entities define as part of the tutorial.
 
@@ -35,98 +35,79 @@ We have defined four intents. When you open the workspace you can see what they 
 4. Activation: Activate a credit card
 
 
-## How to get this project working
+## How to start the sample
 
 ### Pre-requisites
 
-The base assumption is you are using the IBM Voice Gateway or Voice Agent with Watson and want to add dynamic responses based on the dialog from Watson Conversation Service. Also, we will assume you already have the IBM Voice Gateway installed (or a Voice Agent with Watson setup) and are ready to connect it to a WCS instance. There are several pieces of information needed for this tutorial.
+* For running this SOE sample you must first have either an IBM Voice Gateway or Voice Agent with Watson deployment set up with all the credentials for Text, Speech and Speech to Text.
 
-1. Clone the repo
-When pulling this project using eclipse, make sure to check the "Import Existing Projects" button during the clone
-In order to get the maven dependencies. Right click on the Project and click Maven->Update Project. Inside the wizard, leave the defaults and hit OK. If maven still gives errors, try deleting the .m2 folder under your user profile on your machine and running Maven->Update Project while making sure to check the box for "Update Snapshots/releases"
+* In your Watson Assistant workspace create an agent or use an existing agent and create a new skill with the json configuration in the conversation_skill folder
 
-2. A Liberty Server (Either locally or running on Bluemix)
-Developing and Deploying using Eclipse
+* If you're using Voice Agent fill in the credentials used in Watson Assistant with the values for the skill created in the previous step except the conversation url which will point to our SOE. If you're using Voice Gateway you only need to specify the conversation url which will point to our SOE
 
-IBM® Eclipse Tools for Bluemix® provides plug-ins that can be installed into an existing Eclipse environment to assist in integrating the developer's integrated development environment (IDE) with Bluemix.
-Download and install  IBM Eclipse Tools for Bluemix.
-Import this sample into Eclipse using File -> Import -> Maven -> Existing Maven Projects option.
-This project contains a simple servlet application.
+* You're ready to start running the sample!
 
-3. Watson Conversation Credentials
+### Starting SOE
 
-Create an instance of Watson Conversation Service. Once the workspace has been created you need to import a new workspace. In the webcontent/workspace folder in the voiceProxy project, you will see a file voiceProxy-demo.json. Import this file into your workspace. This will create a new Conversation called VoiceProxy-Demo. This is the conversation you will be connecting to from the VoiceProxy Server.
+**For running this sample you need java and maven installed on your machine**
 
-Now we need to get access to the credentials for later use. Click on view credentials
-Next we need to copy the workspace_id for use later
+#### Quick deployment
 
-You are going to use the workspace ID above in the next step, along with the userid and password from the credentials page.
+Using the maven Open liberty plugin you can quickly start the application as is
+1. Clone the project to your machine and in a teminal window change directory to this sample
 
-Conversation Workspace ID (You get this from your BlueMix Dashboard for the Conversation Service)
-Userid to connect to the Conversation Service (You get this from your BlueMix Dashboard for the Conversation Service)
-Password to connect to the Conversation Service (You get this from your BlueMix Dashboard for the Conversation Service)
+2. In the src/main/wlp directory modify the server.env to include the credentials needed for connecting to Watson Assistant
 
-##Create a Liberty server definition:
+```
+WORKSPACE_ID=Newly created workspace id
+CONVERSATION_VERSION=2016-07-11
+CONVERSATION_USERNAME=Username for connecting to watson assistant
+CONVERSATION_PASSWORD=Password for connecting to watson assistant
+CONVERSATION_URL=Url for connecting to the Watson Assistant API
+```
 
-In the Servers view in Eclipse right-click -> New -> Server
-Select IBM -> WebSphere Application Server Liberty
-Choose Install from an archive or a repository
-Enter a destination path (/Users/username/liberty)
-Choose WAS Liberty with Java EE 7 Web Profile
-Continue the wizard with default options to Finish
+3. On the terminal window run `mvn clean package liberty:run` and this will start the SOE. It has an http port of 9080 and an https port of 9443 by default. You can change these in the pom.xml of the project in the properties section `testServerHttpPort` and `testServerHttpsPort`.
+
+4. Your SOE sample should be running now! 
+
+**Important:** In Voice Gateway configuration set the WATSON_CONVERSATION_URL to the URL of the sample that just started. In Voice Agent setup your agent to use a Service Ochestration Engine and set the URL to the URL of the sample that just started. The URL is: `{protocol}://{host}:{port}/banking/rest/bankWebhook` change the placeholders to fit your sample but remember to end the URL with **/banking/rest/bankWebhook**
+
+#### Build this project from source and play around with it
+
+1. Clone the project to your machine and in a teminal window change directory to this sample.
+
+2. You can import this project as a maven project in eclipse for modifying the sample
+
+3. Create a Liberty server with the server.xml included in the src/main/wlp directory and in the server.env of that server include and fill the credentials necessary for connecting to Watson Assistant
+
+```
+WORKSPACE_ID=Newly created workspace id
+CONVERSATION_VERSION=2016-07-11
+CONVERSATION_USERNAME=Username for connecting to watson assistant
+CONVERSATION_PASSWORD=Password for connecting to watson assistant
+CONVERSATION_URL=Url for connecting to the Watson Assistant API
+```
+
+4. Package the app running in a terminal window `mvn clean package`
+
+5. Move the packaged war app to the dropins of the server and start the server
+
+6. Your SOE sample should be running now!
 
 
-Running the application using the command-line
-This project can be built with Apache Maven. The project uses Liberty Maven Plug-in to automatically download and install Liberty from the Liberty repository. Liberty Maven Plug-in is also used to create, configure, and run the application on the Liberty server.
-Use the following steps to run the application locally:
-Execute full Maven build to create the target/DemoSOE.war file:
-$ mvn clean install
+**Important:** In you Voice Gateway/Voice Agent configuration change the conversation url to the URL of the sample that just started which is: `{protocol}://{host}:{port}/banking/rest/bankWebhook` change the placeholders to fit your sample but remember to end the URL with **/banking/rest/bankWebhook**
 
-Download and install Liberty, then use it to run the built application from step 1:
-$ mvn liberty:run-server
-Once the server is running, the application will be available under http://localhost:9080/DemoSOE. (Or whatever path your server is attached to)
+### How it works
 
-4. Update server.env
-Place the following environment variables in the server.env file for the Liberty server
-    CONVERSATION_WORKSPACE_ID=[WORKSPACE ID FROM BLUEMIX]
-    CONVERSATION_VERSION=2016-07-11
-    CONVERSATION_USERNAME=[CONVERSATION SERVICE USERNAME FROM BLUEMIX]
-    CONVERSATION_PASSWORD=[CONVERSTAION SERVICE PASSWORD FROM BLUEMIX]
+* All the data for the customer are stored in the src/main/webapp/WEB-INF/callerProfile.csv. The SOE acesses this data for getting the info and validating the customer information
 
-5. Update Docker-Compose (Voice Gateway deployments)
-Now you need to change the docker-compose.yml file from the IBM Voice Gateway. Since the default with the Voice Gateway/Voice Agent is to talk directly to the Conversation Service, you need to change the parameter WATSON_CONVERSATION_URL to point to the voiceProxyServer IP address. You need to change it to the IP of where the voiceProxyServer is running. In addition you need to specify the port the server is listening on. The default is 5000. The url will be the one provided when the liberty server is started. However the /rest must be added to the end of the liberty server url.
-    WATSON_CONVERSATION_URL=http://localhost:9147/SOE/rest
-    **Note the /rest is necessary at the end of the liberty server url
+* If the SOE recognizes an intent that applies to it, it will take a turn and get the information from the csv and include it for the conversation with Watson Assistant. If not, it will just forward requests to Watson Assistant without interfering.
 
-In this example the port the VoiceProxyServer is listening on is 9147 running on server SERVER_NAME
-
-6. Run Server
-You can now start the server by starting the server in eclipse. You should see something like the following
-[AUDIT   ] CWWKE0001I: The server (SERVER_NAME) has been launched.
-[AUDIT   ] CWWKE0100I: This product is licensed for development, and limited production use. The full license terms can be viewed here: https://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/license/base_ilan/ilan/17.0.0.1/lafiles/en.html
-[AUDIT   ] CWWKZ0058I: Monitoring dropins for applications.
-[AUDIT   ] CWWKT0016I: Web application available (default_host): http://localhost:9147/SOE/
-
-##Run your application locally on Liberty:
-
-Create the war file by running:
-mvn package
-This will create a Demo-SOE snapshot file in the target directory of the project.  Add this file to the dropins folder of the liberty server. 
-
-Run your application on Bluemix:
-
-Right click on the JavaHelloWorldApp sample and select Run As -> Run on Server option
-Find and select the IBM Bluemix and press Finish
-A wizard will guide you with the deployment options. Be sure to choose a unique Name for your application
-In a few minutes, your application should be running at the URL you chose.
-
-7. The user can now call into Voice Gateway/Voice Agent normally and the call will be sent through the SOE.
-
-#Voice Script
+# Voice Scripts
 
 In an effort to help with using the demo it would be beneficial to know what questions to ask WCS. Below are the sample questions. Remember, there is an API that keeps track of the balances, so if you withdraw too much money you will get errors.
 
-Conversation Flow 1
+Conversation Flow 1:
 
 Hi I am Watson. How can I help you today?
     "I would like to pay my mortgage"
@@ -142,7 +123,8 @@ We will use your checking account. How much would you like to pay?
     "I want to pay two hundred dollars"
 Okay we will move $200 from your checking account. Is there anything else I can help with?
 
-Conversation Flow 2
+Conversation Flow 2:
+
 Hi I am Watson. How can I help you today?
     "I want to add a credit card"
 I need some personal information. Please say your first name.
