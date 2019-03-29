@@ -142,9 +142,10 @@ Okay I have added your card. Is there anything else I can help you with?
 ## Additional Comments
 
 * If your Agent or Gateway calls are failing because they can't connect to the SOE then you're probably better off depploying the sample as a Cloud Foundry App. To do this we assume you have an IBM cloud account and you have installed on your machine IBM Cloud CLI. 
-    1. Login to you IBM Cloud account in the CLI and set up the target for the cloud foundry running `ibmcloud target --cf`
-    2. Once you have that, package the app and server running `mvn clean package` in the directory of the sample.
+
+    1. Login to your IBM Cloud account in the CLI and set up the target for the cloud foundry running `ibmcloud target --cf`
+    2. Once you have that, follow all the steps to set up as described above if you haven't done so yet and package the app and server running `mvn clean package` in the directory of the sample.
     3. Once the server is packaged you will see it in the target directory as *banking.zip*
     4. Run `ibmcloud cf push banking-SOE -p target/banking.zip` to push the app to the cloud. Sometimes you would need to manually adjust the memory of the app in the cloud
-    5. Once the app is running you can set up your Agent or Gateway by filling the url as before but with the cloud foundry url which would tipically be `https://banking-soe.mybluemix.net/banking/rest/bankWebhook` and remember to always include the end path `banking/rest/bankWebhook`
+    5. Once the app is running you can set up your Agent or Gateway by filling the url as before but with the cloud foundry URL of the newly pushed app which would tipically be something like `https://banking-soe.mybluemix.net/banking/rest/bankWebhook` and remember to always include the end path `banking/rest/bankWebhook`
     6. Test out calling the Gateway or Agent and following on of the perdetermined conversations.
