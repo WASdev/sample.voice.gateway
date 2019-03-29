@@ -6,6 +6,29 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
+	<parent>
+    <groupId>net.wasdev.wlp.maven.parent</groupId>
+    <artifactId>liberty-maven-app-parent</artifactId>
+    <version>2.6.1</version>
+    </parent>
+    
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <app.name>${project.artifactId}</app.name>
+        <testServerHttpPort>9080</testServerHttpPort>
+        <testServerHttpsPort>9443</testServerHttpsPort>
+        <warContext>${app.name}</warContext>
+        <package.file>${project.build.directory}/${app.name}.zip</package.file>
+        <packaging.type>usr</packaging.type>
+        <server.name>SOE</server.name>
+    </properties>
+
+
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -46,4 +69,56 @@
 			<type>maven-plugin</type>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.2</version>
+			</plugin>
+			<!-- Plug in to include liberty for the project -->
+			<plugin>
+				<groupId>net.wasdev.wlp.maven.plugins</groupId>
+				<artifactId>liberty-maven-plugin</artifactId>
+				<version>2.6.1</version>
+				<configuration>
+					<assemblyArtifact>
+						<groupId>io.openliberty</groupId>
+						<artifactId>openliberty-runtime</artifactId>
+						<version>RELEASE</version>
+						<type>zip</type>
+					</assemblyArtifact>
+					<serverName>${server.name}</serverName>
+					<stripVersion>true</stripVersion>
+					<!-- 
+					Specify where our server configurations are so that they load by default
+					-->
+					<configFile>src/main/wlp/server.xml</configFile>
+					<serverEnv>src/main/wlp/server.env</serverEnv>
+					<packageFile>${package.file}</packageFile>
+					<include>${packaging.type}</include>
+					<bootstrapProperties>
+						<default.http.port>${testServerHttpPort}</default.http.port>
+						<default.https.port>${testServerHttpsPort}</default.https.port>
+						<app.context.root>${warContext}</app.context.root>
+					</bootstrapProperties>
+				</configuration>
+				<executions>
+					<execution>
+						<id>package-server</id>
+						<phase>package</phase>
+						<goals>
+							<goal>package-server</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/wlp-package</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+
 </project>

@@ -1,0 +1,22 @@
+<server description="new server">
+
+    <!-- Enable features -->
+    <featureManager>
+        <feature>webProfile-7.0</feature>
+        <feature>localConnector-1.0</feature>
+    </featureManager>
+
+    <!-- To access this server from a remote client add a host attribute to the following element, e.g. host="localhost" -->
+    <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}" id="defaultHttpEndpoint" host="*"/>
+                  
+    <!-- Automatically expand WAR files and EAR files -->
+    <applicationManager autoExpand="true"/>
+
+    <logging traceSpecification="*=info:conversation*=finest"></logging>
+    <jndiEntry value="${env.WORKSPACE_ID}" jndiName="WORKSPACE_ID"></jndiEntry>
+    <jndiEntry value="${env.CONVERSATION_VERSION}" jndiName="CONVERSATION_VERSION"></jndiEntry>
+    <jndiEntry value="${env.CONVERSATION_USERNAME}" jndiName="CONVERSATION_USERNAME"></jndiEntry>
+    <jndiEntry value="${env.CONVERSATION_PASSWORD}" jndiName="CONVERSATION_PASSWORD"></jndiEntry>
+    <jndiEntry value="${env.CONVERSATION_URL}" jndiName="CONVERSATION_URL"></jndiEntry>
+    
+</server>

@@ -34,12 +34,11 @@ import proxy.CheckDTMF;
 import proxy.CheckGatewaySignal;
 import proxy.FromGatewayFilter;
 
-@Path("/v1/workspaces")
-public class VoiceProxyServer {
-    private static Logger log = Logger.getLogger(VoiceProxyServer.class.getName());
+@Path("/bankWebhook")
+public class SOEEndpoint {
+    private static Logger log = Logger.getLogger(SOEEndpoint.class.getName());
 
     @POST
-    @Path("/{id}/message")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     /**
