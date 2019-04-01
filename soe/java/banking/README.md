@@ -103,38 +103,80 @@ CONVERSATION_URL=Url for connecting to the Watson Assistant API
 
 * If the SOE recognizes an intent that applies to it, it will take a turn and get the information from the csv and include it for the conversation with Watson Assistant. If not, it will just forward requests to Watson Assistant without interfering.
 
-# Voice Scripts
+### Deploying to IBM Cloud
+
+You can also deploy this sample application to IBM Cloud as an easy way to connect to it from Voice Agent, as well as a Voice Gateway deployment.
+
+**Requirements:**
+
+* Sign up for [IBM Cloud](https://cloud.ibm.com/registration)
+* Install the [IBM Cloud Standalone CLI](https://cloud.ibm.com/docs/cli/reference/ibmcloud/download_cli.html#install_use)
+
+**Steps:**
+
+1. Login to your IBM Cloud account in the CLI and set up the target for the cloud foundry running `ibmcloud target --cf`
+2. Once you have that, follow all the steps to set up as described above if you haven't done so yet and package the app and server running `mvn clean package` in the directory of the sample
+3. Once the server is packaged you will see it in the target directory as *banking.zip*
+4. Run `ibmcloud cf push banking-SOE -p target/banking.zip` to push the app to the cloud. Sometimes you would need to manually adjust the memory of the app in the cloud
+5. Once the app is running you can set up your Agent or Gateway by filling the url as before but with the cloud foundry URL of the newly pushed app which would tipically be something like `https://banking-soe.mybluemix.net/banking/rest/bankWebhook` and remember to always include the end path `banking/rest/bankWebhook`
+6. Test out calling the Gateway or Agent and following on of the perdetermined conversations.
+
+# Sample Conversation Scripts
 
 In an effort to help with using the demo it would be beneficial to know what questions to ask WCS. Below are the sample questions. Remember, there is an API that keeps track of the balances, so if you withdraw too much money you will get errors.
 
-Conversation Flow 1:
+### Conversation Flow 1:
 
-Hi I am Watson. How can I help you today?
-    "I would like to pay my mortgage"
-I need some personal information. Please say your first name.
-    "My name is Brian"
-I have your first name as Brian, is that correct?
-    "Yes it is"
-Please clearly say our password.
-   "baseball"
-Okay you want to pay your mortgage. What account do you want to use?
-    "I want to use my checking account"
-We will use your checking account. How much would you like to pay?
-    "I want to pay two hundred dollars"
-Okay we will move $200 from your checking account. Is there anything else I can help with?
+**Watson:** Hi I am Watson. How can I help you today?
 
-Conversation Flow 2:
+**Caller:** "I would like to pay my mortgage"
 
-Hi I am Watson. How can I help you today?
-    "I want to add a credit card"
-I need some personal information. Please say your first name.
-    "Olivia"
-I have your first name as Olivia, is that correct?
-    "Yes"
-Please clearly say our password
-    "Gymnastics"
-What type of card would you like to add?
-    "Mastercard"
-Please enter your card number
-    (Input card number with keypad)
-Okay I have added your card. Is there anything else I can help you with?
+**Watson:** I need some personal information. Please say your first name.
+
+**Caller:** "My name is Brian"
+
+**Watson:** I have your first name as Brian, is that correct?
+
+**Caller:** "Yes it is"
+
+**Watson:** Please clearly say our password.
+
+**Caller:** "baseball"
+
+**Watson:** Okay you want to pay your mortgage. What account do you want to use?
+
+**Caller:** "I want to use my checking account"
+
+**Watson:** We will use your checking account. How much would you like to pay?
+
+**Caller:** "I want to pay two hundred dollars"
+
+**Watson:** Okay we will move $200 from your checking account. Is there anything else I can help with?
+
+### Conversation Flow 2:
+
+**Watson:** Hi I am Watson. How can I help you today?
+
+**Caller:** "I want to add a credit card"
+
+**Watson:** I need some personal information. Please say your first name.
+
+**Caller:** "Olivia"
+
+**Watson:** I have your first name as Olivia, is that correct?
+
+**Caller:** "Yes"
+
+**Watson:** Please clearly say our password
+
+**Caller:** "Gymnastics"
+
+**Watson:** What type of card would you like to add?
+
+**Caller:** "Mastercard"
+
+**Watson:** Please enter your card number
+
+**Caller:** (Input card number with keypad)
+
+**Watson:** Okay I have added your card. Is there anything else I can help you with?
