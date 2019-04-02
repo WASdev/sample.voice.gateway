@@ -189,13 +189,13 @@
                          "name": "HTTP_HOST",
                          "value": "*"
                     }, {
-                         "name": "SSL_KEY_STORE_FILE",
+                         "name": "SSL_KEY_TRUST_STORE_FILE",
                          "value": "/your-path/yourKeyFileNamewExtension"
                     }, {
-                         "name": "SSL_KEY_FILE_TYPE",
+                         "name": "SSL_FILE_TYPE",
                          "value": ""
                     }, {
-                         "name": "SSL_KEY_PASSPHRASE",
+                         "name": "SSL_PASSPHRASE",
                          "value": ""
                     },{
                         "name": "ENABLE_AUDIT_MESSAGES",
