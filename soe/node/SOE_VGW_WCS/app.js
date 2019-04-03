@@ -12,12 +12,32 @@ if (process === null || process.env === null){
 	console.log("Not being able to read environment variables.");
 }
 
-var conversation = watson.conversation({
-	username: process.env.wcs_username,
-	password: process.env.wcs_password,
-	version: 'v1',
-	version_date: '2017-05-26'
-});
+//Watson Assistant will be constructed to this variable.  
+var conversation;
+
+
+//Environment variable is used to idenify usage of IBM IAM and Watson assistant is constructed.
+//Change "process.env.USING_IAM" to false in manifest.yml to use userID and password way of Watson Assistant construction.  
+//Current block is backward compatible for all the implementation using userID and password.
+
+if (process.env.USING_IAM) {
+
+	conversation = new watson.AssistantV1({
+	  iam_apikey: process.env.WATSON_CONVERSATION_APIKEY,
+	  version: process.env.WATSON_ASSITANT_RELEASE_VERSION,
+	  url: process.env.WATSON_ASSISTANT_URL
+	});
+
+}else{	
+
+	conversation = watson.conversation({
+		username: process.env.wcs_username,
+		password: process.env.wcs_password,
+		version: 'v1',
+		version_date: '2017-05-26'
+   	});
+}
+
 
 var showAllLogs = (process.env.show_all_logs === 'true');
 var receiverEmailAddress = process.env.receiver_email_address;
@@ -100,7 +120,7 @@ function commonGetPostCall(request, response) {
 		console.log(JSON.stringify(reqBody.input.text, null, 2));
 	}
 
-	reqBody.workspace_id = process.env.wcs_workspace;
+	reqBody.workspace_id = (process.env.USING_IAM)? process.env.WATSON_WORKSPACE_ID: process.env.wcs_workspace;
 
 	conversation.message(reqBody, function(err, response2) {
 		if (err) {
