@@ -10,3 +10,27 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 * Auto restart of any failed containers
 * Creates a 2 GB persistent volume called recordings to store call recordings
 * Recording is disabled by default. To enable recording set the value of ENABLE_RECORDING variable to true
+
+
+Deploying VGW on ICP manually:
+
+1) Download the deploy script from the following location [single-tenant](https://github.com/WASdev/sample.voice.gateway/tree/master/kubernetes/single-tenant) or [multi-tenant](https://github.com/WASdev/sample.voice.gateway/tree/master/kubernetes/multi-tenant)
+
+2) Edit the deploy file and add your WATSON_CONVERSATION_WORKSPACE_ID.
+
+3) Create a secret for the Watson service APIKEYs using the following command (make sure to use your own APIKEY):
+
+kubectl create secret generic secret-creds --from-literal=WATSON_STT_APIKEY='aaaBBBcc2hskx44mdcdd_Ind3' --from-literal=WATSON_TTS_APIKEY='aaaBBBcc2hskx44mdcdd_Ind3' --from-literal=WATSON_CONVERSATION_APIKEY='aaaBBBcc2hskx44mdcdd_Ind3'
+
+4) (Optional) If you want to enable recording: 
+  - Set ENABLE_RECORDING to true in deploy.yaml and create the recording PersistentVolume and PersistentVolumeClaim using the recording-pv.yaml and recording-pvc.yaml files.
+  - Uncomment recording volume and volumeMounts sections of the deploy.yaml
+
+5) (Optional) If you want to use MRCPv2 config file:
+  - More info: [Configuring services with MRCPv2](https://www.ibm.com/support/knowledgecenter/SS4U29/MRCP.html)
+  - Create unimrcpConfig secret from the unimrcpclient.xml file using the following command: 
+    kubectl create secret generic unimrcp-config-secret --from-file=unimrcpConfig=unimrcpclient.xml
+  - Uncomment the unimrcpconfig volume and volumeMounts sections of the deploy.yaml 
+  
+6) Deploy on ICP:
+   - kubectl create -f deploy.yaml
