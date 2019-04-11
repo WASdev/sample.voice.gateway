@@ -12,12 +12,12 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 * Recording is disabled by default. To enable recording set the value of ENABLE_RECORDING variable to true
 
 
-# Deploying VGW on ICP:
+# Deploying Voice Gateway in single-tenant mode:
 
 1) Edit the deploy.yaml file and add your WATSON_CONVERSATION_WORKSPACE_ID.
 
 1) Create a secret for the Watson service APIKEYs using the following command (make sure to use your own APIKEY):
-   ```
+   ```bash
    kubectl create secret generic secret-creds \
    --from-literal=WATSON_STT_APIKEY='aaaBBBcc2hskx44mdcdd_Ind3' \
    --from-literal=WATSON_TTS_APIKEY='aaaBBBcc2hskx44mdcdd_Ind3' \
@@ -25,18 +25,18 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
    ```
 
 1) If you want to enable recording (Optional): 
-  - Set ENABLE_RECORDING to true in deploy.yaml and create the recording PersistentVolume and PersistentVolumeClaim using the recording-pv.yaml and recording-pvc.yaml files.
-  - Uncomment recording volume and volumeMounts sections of the deploy.yaml
+   - Set ENABLE_RECORDING to true in deploy.yaml and create the recording PersistentVolume and PersistentVolumeClaim using the recording-pv.yaml and recording-pvc.yaml files.
+   - Uncomment recording volume and volumeMounts sections of the deploy.yaml
 
 1) If you want to use MRCPv2 config file (Optional):
-  - More info: [Configuring services with MRCPv2](https://www.ibm.com/support/knowledgecenter/SS4U29/MRCP.html)
-  - Create unimrcpConfig secret from the unimrcpclient.xml file using the following command: 
-    ```
+   - More info: [Configuring services with MRCPv2](https://www.ibm.com/support/knowledgecenter/SS4U29/MRCP.html)
+   - Create unimrcpConfig secret from the unimrcpclient.xml file using the following command: 
+    ```bash
     kubectl create secret generic unimrcp-config-secret --from-file=unimrcpConfig=unimrcpclient.xml
     ```
-  - Uncomment the unimrcpconfig volume and volumeMounts sections of the deploy.yaml 
+   - Uncomment the unimrcpconfig volume and volumeMounts sections of the deploy.yaml 
   
 1) Deploy on ICP:  
-   ```
+   ```bash
    kubectl create -f deploy.yaml
    ```

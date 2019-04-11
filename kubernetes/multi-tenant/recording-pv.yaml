@@ -1,0 +1,13 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: recordings
+spec:
+  storageClassName: <optional - must match PVC>
+  capacity:
+    storage: 4Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: <PATH>
