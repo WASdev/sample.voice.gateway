@@ -20,7 +20,7 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 
 1) Create secret called tenantconfig from the file tenantConfig.json:
    ```bash
-   kubectl create secret generic tenantconfig --from-file=tenantConfig.json
+   kubectl create secret generic tenantconfig --from-file=tenantConfig=tenantConfig.json
    ```
 
 1) If you want to enable recording (Optional): 
