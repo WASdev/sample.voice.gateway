@@ -24,11 +24,11 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
    --from-literal=WATSON_CONVERSATION_APIKEY='aaaBBBcc2hskx44mdcdd_Ind3'
    ```
 
-1) (Optional) If you want to enable recording: 
+1) If you want to enable recording (Optional): 
   - Set ENABLE_RECORDING to true in deploy.yaml and create the recording PersistentVolume and PersistentVolumeClaim using the recording-pv.yaml and recording-pvc.yaml files.
   - Uncomment recording volume and volumeMounts sections of the deploy.yaml
 
-1) (Optional) If you want to use MRCPv2 config file:
+1) If you want to use MRCPv2 config file (Optional):
   - More info: [Configuring services with MRCPv2](https://www.ibm.com/support/knowledgecenter/SS4U29/MRCP.html)
   - Create unimrcpConfig secret from the unimrcpclient.xml file using the following command: 
     ```
