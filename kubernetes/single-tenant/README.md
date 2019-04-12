@@ -25,7 +25,12 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
    ```
 
 1) If you want to enable recording (Optional): 
-   - Set ENABLE_RECORDING to true in deploy.yaml and create the recording PersistentVolume and PersistentVolumeClaim using the recording-pv.yaml and recording-pvc.yaml files.
+   - Set ENABLE_RECORDING to true in deploy.yaml and create the recording [PersistentVolume and PersistentVolumeClaim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) using the recording-pv.yaml and recording-pvc.yaml templates.
+   - Update the recording template files  and run the following commands: 
+     ```bash
+     kubectl create -f recording-pv.yaml
+     kubectl create -f recording-pvc.yaml
+     ```
    - Uncomment recording volume and volumeMounts sections of the deploy.yaml
 
 1) If you want to use MRCPv2 config file (Optional):

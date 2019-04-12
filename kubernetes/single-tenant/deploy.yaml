@@ -61,6 +61,8 @@ spec:
               key: WATSON_STT_APIKEY
         - name: WATSON_STT_URL
           value: https://stream.watsonplatform.net/speech-to-text/api
+        - name: WATSON_STT_TOKEN_SERVICE_PROVIDER_URL
+          value: https://iam.bluemix.net/identity/token
         - name: WATSON_TTS_APIKEY
           valueFrom:
             secretKeyRef:
@@ -70,6 +72,8 @@ spec:
           value: en-US_MichaelVoice
         - name: WATSON_TTS_URL
           value: https://stream.watsonplatform.net/text-to-speech/api
+        - name: WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL
+          value: https://iam.bluemix.net/identity/token
         volumeMounts:
 #
 #        - name: recordings
