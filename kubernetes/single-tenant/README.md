@@ -41,7 +41,7 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
     ```
    - Uncomment the unimrcpconfig volume and volumeMounts sections of the deploy.yaml 
   
-1) Deploy on ICP:  
+1) Deploy Voice Gateway:  
    ```bash
    kubectl create -f deploy.yaml
    ```
