@@ -1,0 +1,11 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: recordings
+spec:
+  storageClassName: <optional>
+  resources:
+    requests:
+      storage: 2Gi
+  accessModes:
+  - ReadWriteMany

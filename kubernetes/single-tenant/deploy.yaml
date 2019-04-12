@@ -1,0 +1,135 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: vgw
+  labels:
+    service: vgw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: vgw
+  template:
+    metadata:
+      labels:
+        service: vgw
+    spec:
+      volumes:
+#
+#      - name: recordings
+#        persistentVolumeClaim:
+#          claimName: recordings
+#
+#      - name: unimrcpconfig
+#        secret:
+#          secretName: unimrcp-config-secret
+#          items:
+#          - key: unimrcpConfig
+#            path: unimrcpclient.xml
+      hostNetwork: true
+      containers:
+      - name: vgw-media-relay
+        image: ibmcom/voice-gateway-mr:latest
+        ports:
+        - containerPort: 8080
+          hostPort: 8080
+          protocol: TCP
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - "/opt/quiesce.sh"
+        env:
+        - name: SDP_ADDRESS
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: ENABLE_RECORDING
+          value: 'false'
+        - name: RTP_UDP_PORT_RANGE
+          value: 16384-16394
+        - name: CLUSTER_WORKERS
+          value: '0'
+        - name: MEDIA_RELAY_LOG_LEVEL
+          value: 'DEBUG'
+        - name: MEDIA_RELAY_WS_PORT
+          value: '8080'
+        - name: WATSON_STT_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: WATSON_STT_APIKEY
+        - name: WATSON_STT_URL
+          value: https://stream.watsonplatform.net/speech-to-text/api
+        - name: WATSON_STT_TOKEN_SERVICE_PROVIDER_URL
+          value: https://iam.bluemix.net/identity/token
+        - name: WATSON_TTS_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: WATSON_TTS_APIKEY
+        - name: WATSON_TTS_VOICE
+          value: en-US_MichaelVoice
+        - name: WATSON_TTS_URL
+          value: https://stream.watsonplatform.net/text-to-speech/api
+        - name: WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL
+          value: https://iam.bluemix.net/identity/token
+        volumeMounts:
+#
+#        - name: recordings
+#          mountPath: "/vgw-media-relay/recordings"
+#
+#        - name: unimrcpconfig
+#          mountPath: "/vgw-media-relay/config/unimrcpclient.xml"
+#          subPath: "unimrcpclient.xml"
+        terminationMessagePath: "/dev/termination-log"
+        imagePullPolicy: Always
+      - name: vgw-sip-orchestrator
+        image: ibmcom/voice-gateway-so:latest
+        ports:
+        - containerPort: 5060
+          hostPort: 5060
+          protocol: TCP
+        - containerPort: 5060
+          hostPort: 5060
+          protocol: UDP
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - "/opt/quiesce.sh"
+        env:
+        - name: SIP_HOST
+          valueFrom:
+            fieldRef:
+              fieldPath: status.hostIP
+        - name: MEDIA_RELAY_HOST
+          value: localhost:8080
+        - name: SIP_PORT
+          value: '5060'
+        - name: HTTPS_PORT
+          value: '9443'
+        - name: HTTP_HOST
+          value: '127.0.0.1'
+        - name: WATSON_CONVERSATION_URL
+          value: https://gateway.watsonplatform.net/assistant/api
+        - name: WATSON_CONVERSATION_WORKSPACE_ID
+          value: ''
+        - name: WATSON_CONVERSATION_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: WATSON_CONVERSATION_APIKEY
+        - name: WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL
+          value: https://iam.bluemix.net/identity/token
+        - name: ENABLE_AUDIT_MESSAGES
+          value: 'true'
+        - name: ENABLE_TRANSCRIPTION_AUDIT_MESSAGES
+          value: 'true'
+        - name: LOG_LEVEL
+          value: all
+        terminationMessagePath: "/dev/termination-log"
+        imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 600
+      dnsPolicy: ClusterFirstWithHostNet
