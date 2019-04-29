@@ -19,14 +19,6 @@ You must have an account for Watson Services Text to Speech and Speech to Text a
 
 2. Open the `sample-creds.yml` and fill in all the credentials and variables needed for deploying. Once you fill the credentials run `kubectl apply -f sample-creds.yml`
 
-3. Since the image is still in artifactory you would need to add your credentials for pulling the image so run:
+3. Once all the network policies and credentials are in place you can deploy to kubernetes. Just run `kubectl create -f sample-deploy.json`
 
-```
-kubectl create secret docker-registry artifactory-creds \
- --docker-server=https://watson-vg-docker-local.artifactory.swg-devops.com \
- --docker-username=<w3UsernameID> \
- --docker-password=<w3Password> \
- --docker-email=<w3EmailAddress>
-```
-
-4. Once all the network policies and credentials are in place you can deploy to kubernetes. Just run `kubectl create -f sample-deploy.json`
+4. Thats it! Your Agent Tester is ready to go. You can get the IP of the worker running `ibmcloud ks workers <cluster-name>` and use that for accessing the Agent Tester and Caller Voice Gateway.
