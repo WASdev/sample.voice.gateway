@@ -89,20 +89,21 @@ services:
     volumes:
       - ./recordings:/vgw-media-relay/recordings
       - ./logs/MR:/vgw-media-relay/logs
-
-  couchdb:
-    container_name: testing-data
-    image: apache/couchdb:2.3.0
-    networks:
-      - tester-bundle
-    restart: always
-    ports:
-      - "5984:5984"
-    environment:
-      - COUCHDB_USER=${COUCHDB_USER}
-      - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
-    volumes:
-      - ./couchDbData:/opt/couchdb/data
+  
+  # Uncoment to deploy a local CouchDB instance
+  # couchdb:
+  #   container_name: testing-data
+  #   image: apache/couchdb:2.3.0
+  #   networks:
+  #     - tester-bundle
+  #   restart: always
+  #   ports:
+  #     - "5984:5984"
+  #   environment:
+  #     - COUCHDB_USER=${COUCHDB_USER}
+  #     - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
+  #   volumes:
+  #     - ./couchDbData:/opt/couchdb/data
 
 networks:
   tester-bundle:

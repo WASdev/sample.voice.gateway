@@ -30,7 +30,11 @@ You'll get a 201 response back and the id of the newly created worker. Then you 
 curl -X POST "http://localhost:9080/voice-agent-tester/v1/worker/{Worker-ID}/job" -H "accept: application/json"
 ```
 
-This will create a job, return the ID of the newly created job, and start an outbound call following the call definition you defined in the worker. With the ID of the job and the worker you can see the status of the jobs and manage them as you see fit.
+This will create a job, return the ID of the newly created job, and start an outbound call following the call definition you defined in the worker. With the ID of the job and the worker you can see the status of the jobs and manage them as you see fit. You can see the job running with its results by running
+
+```
+curl -X GET "http://localhost:9080/voice-agent-tester/v1/worker/{Worker-ID}/job/{Job-ID}"
+```
 
 To see all the REST endpoints available and their descriptions launch the service and head to http://localhost:9080/openapi/ui which will show the OpenAPI Specification of the service.
 

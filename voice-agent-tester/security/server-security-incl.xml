@@ -12,10 +12,10 @@
 
 
 		<!-- replace / add users as you like -->
-		<user name="admin" password="admin"/>
-		<user name="editor" password="editor"/>
-		<user name="operator" password="operator"/>
-		<user name="viewer" password="viewer"/>
+		<user name="admin-user" password="admin-pass"/>
+		<user name="editor-user" password="editor-pass"/>
+		<user name="operator-user" password="operator-pass"/>
+		<user name="viewer-user" password="viewer-pass"/>
 		
 		<!--  Access to all REST calls -->
 		<group name="${env.ROLE_NAME_ADMINISTRATOR}">
