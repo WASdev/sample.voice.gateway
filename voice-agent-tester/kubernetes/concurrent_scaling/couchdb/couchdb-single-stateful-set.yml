@@ -1,0 +1,46 @@
+---
+kind: StatefulSet
+apiVersion: apps/v1beta1
+metadata:
+    name: couchdb
+spec:
+    serviceName: couchdb
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: tester-microservice
+                tier: db
+                group: agent-tester-microservice
+        spec:
+            terminationGracePeriodSeconds: 10
+            containers:
+                - name: couchdb
+                  image: apache/couchdb:2.3.0
+                  ports:
+                      - containerPort: 5984
+                        name: http
+                  volumeMounts:
+                      - name: couchdb-data
+                        mountPath: /usr/local/var/lib/couchdb
+                  env:
+                      - name: COUCHDB_USER
+                        valueFrom:
+                            secretKeyRef:
+                                name: couchdb-secret
+                                key: COUCHDB_USER
+                      - name: COUCHDB_PASSWORD
+                        valueFrom:
+                            secretKeyRef:
+                                name: couchdb-secret
+                                key: COUCHDB_PASSWORD
+    volumeClaimTemplates:
+        - metadata:
+            name: couchdb-data
+          spec:
+              accessModes:
+                  - ReadWriteOnce
+              resources:
+                  requests:
+                      storage: 200M
+              storageClassName: ""

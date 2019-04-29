@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Secret
+stringData:
+  WATSON_STT_APIKEY: # Apikey for your STT service
+  WATSON_TTS_APIKEY: # Apikey for your TTS service
+  REST_API_USERNAME: # User for securing the exposed rest api for the agent tester microservice
+  REST_API_PASSWORD: # Password for securing the exposed rest api for the agent tester microservice
+  TESTER_WEBHOOK_USERNAME: # User for securing the exposed tester endpoints for the agent tester microservice
+  TESTER_WEBHOOK_PASSWORD: # Password for securing the exposed tester endpoints for the agent tester microservice
+  CLOUDANT_URL: # The URL for your database where the resources will be stored
+  CLOUDANT_USERNAME: # The Apikey for your database where the resources will be stored
+  CLOUDANT_PASSWORD: # The Apikey for your database where the resources will be stored
+  CLOUDANT_DATABASE_NAME: # The name of the database
+  # Optional for reporting. If you commented it out in the deployment comment it here too
+  REPORTING_APIKEY: # The apikey for your cloudant database
+  REPORTING_URL: # The url for your cloudant database
+metadata:
+  name: secret-creds
+  labels:
+    app: tester-microservice
+    role: tester
+    tier: backend
+    group: agent-tester-microservice
+type: Opaque

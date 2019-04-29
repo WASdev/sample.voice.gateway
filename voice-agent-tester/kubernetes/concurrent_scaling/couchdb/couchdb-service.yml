@@ -1,0 +1,22 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: couchdb-service
+  namespace: default
+  labels:
+    app: couch
+    tier: db
+spec:
+  # Comment once you have configured the database so that it can only be accessed by the microservice.
+  type: NodePort 
+  # Leave uncommented if you wish to access the db externally.
+  # Else it will be available for the cluster only and the microservice only will access it.
+  # If you leave uncommented please take the necessary steps for securing you database
+  ports:
+  - port: 5984
+    protocol: TCP
+  selector:
+    app: tester-microservice
+    tier: db
+    group: agent-tester-microservice

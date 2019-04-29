@@ -1,0 +1,59 @@
+{
+    "name": "Complex Conversation",
+    "description": "Sample conversation to include more validations",
+    "namespace": "test",
+    "turns": [
+    {
+      "receive": {
+        "type": "andList",
+        "value": [
+          {
+            "type": "substring",
+            "value": "name"
+          },
+          {
+            "type": "orList",
+            "value": [
+              {
+                "type": "substring",
+                "value": "kjsdckdsjnc"
+              },
+              {
+                "type": "regex",
+                "value": "(.*)name(.*)"
+              }
+            ]
+          },
+          {
+            "type": "substring",
+            "value": "application"
+          }
+        ]
+      },
+      "send": {
+        "type": "string",
+        "value": "Yes"
+      }
+    },
+    {
+      "receive": {
+        "type": "substring",
+        "value": "conversation"
+      },
+      "send": {
+        "type": "string",
+        "value": "Yes"
+      }
+    },
+    {
+      "receive": {
+        "type": "substring",
+        "value": "following"
+      },
+      "send": {
+        "type": "string",
+        "value": "Thanks"
+      }
+    }
+  ]
+}

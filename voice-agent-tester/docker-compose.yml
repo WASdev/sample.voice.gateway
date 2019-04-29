@@ -1,0 +1,109 @@
+version: "3.5"
+services:
+
+  va.testing.microservice:
+    container_name: testing-microservice
+    image: IMAGE GOES HERE
+    networks:
+      - tester-bundle
+    ports:
+      - "9060:9080"
+      - "9200:9443"
+    environment:
+      # Connection and microservice variables
+      - REST_ADMIN_USERNAME=myRestAdminUser
+      - REST_ADMIN_PASSWORD=myRestAdminPassword
+      - TESTER_WEBHOOK_USERNAME=testerWebhookUser
+      - TESTER_WEBHOOK_PASSWORD=testerWebhookPassword
+      - TESTER_WEBHOOK_URI=${TESTER_WEBHOOK_URI}
+      # Cloudant variables
+      - CLOUDANT_URL=${CLOUDANT_URL}
+      - CLOUDANT_USERNAME=${CLOUDANT_USERNAME}
+      - CLOUDANT_PASSWORD=${CLOUDANT_PASSWORD}
+      - CLOUDANT_DATABASE_NAME=${CLOUDANT_DATABASE_NAME}
+      # Caller Voice Gateway variables
+      - CALLER_VOICE_GATEWAY_URI=${CALLER_VOICE_GATEWAY_URI}
+      - CALLER_VOICE_GATEWAY_USERNAME=${CALLER_VOICE_GATEWAY_USERNAME}
+      - CALLER_VOICE_GATEWAY_PASSWORD=${CALLER_VOICE_GATEWAY_PASSWORD}
+      # Logging variables
+      - LOG_LEVEL=all
+      - LOG_MAX_FILE_SIZE=100
+      - LOG_MAX_FILES=10
+
+    volumes:
+      - ./logs/MS:/logs
+    
+  sip.orchestrator:
+    image: ibmcom/voice-gateway-so:1.0.1.0
+    container_name: caller-voice-gateway-so
+    networks:
+      - tester-bundle
+    ports:
+      - "9100:9080"
+      - "9110:9443"
+      - "5060:5060"
+      - "5060:5060/udp"
+    environment:
+      # Host name of the CMR.
+      - MEDIA_RELAY_HOST=media.relay:8080
+      - SIP_HOST=${EXTERNAL_IP}
+      - HTTP_HOST=*
+      - REST_API_USERNAME=${CALLER_VOICE_GATEWAY_USERNAME}
+      - REST_API_PASSWORD=${CALLER_VOICE_GATEWAY_PASSWORD}
+      # The Caller must have outbound calls enabled
+      - ENABLE_OUTBOUND_CALLS=true
+      # Logging related variables
+      - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
+      - LOG_LEVEL=all
+      - LOG_MAX_FILE_SIZE=100
+      - LOG_MAX_FILES=10
+    volumes:
+      - ./logs/SO:/logs
+
+  media.relay:
+    image: ibmcom/voice-gateway-mr:1.0.1.0
+    container_name: caller-voice-gateway-mr
+    networks:
+      - tester-bundle
+    ports:
+      - "16334-16394:16334-16394/udp"
+    environment:
+      - SDP_ADDRESS=${EXTERNAL_IP}
+      - RTP_UDP_PORT_RANGE=16334-16394
+      - MEDIA_RELAY_LOG_LEVEL=DEBUG
+      - MEDIA_RELAY_WS_PORT=8080
+
+      # Creds for Watson STT
+      - WATSON_STT_APIKEY=${WATSON_STT_APIKEY}
+      - WATSON_STT_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
+      - WATSON_STT_URL=https://gateway-wdc.watsonplatform.net/speech-to-text/api
+
+      # Creds for Watson TTS
+      - WATSON_TTS_APIKEY=${WATSON_TTS_APIKEY}
+      - WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
+      - WATSON_TTS_URL=https://gateway-wdc.watsonplatform.net/text-to-speech/api
+      - WATSON_TTS_VOICE=en-US_MichaelV2Voice
+      
+      # Comment to disable recording
+      - ENABLE_RECORDING=true
+    volumes:
+      - ./recordings:/vgw-media-relay/recordings
+      - ./logs/MR:/vgw-media-relay/logs
+
+  couchdb:
+    container_name: testing-data
+    image: apache/couchdb:2.3.0
+    networks:
+      - tester-bundle
+    restart: always
+    ports:
+      - "5984:5984"
+    environment:
+      - COUCHDB_USER=${COUCHDB_USER}
+      - COUCHDB_PASSWORD=${COUCHDB_PASSWORD}
+    volumes:
+      - ./couchDbData:/opt/couchdb/data
+
+networks:
+  tester-bundle:
+    name: tester-bundle

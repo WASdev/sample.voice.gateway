@@ -1,0 +1,22 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-kubelet-connections
+spec:
+  selector: ibm.role in { 'worker_public', 'master_public' }
+  ingress:
+  - action: Allow
+    protocol: TCP
+    destination:
+      ports:
+      - 5060
+      - 9300
+      - 9210
+      - 9080
+      - 9443
+  - action: Allow
+    protocol: UDP
+    destination:
+      ports:
+      - 5060
+  order: 1500

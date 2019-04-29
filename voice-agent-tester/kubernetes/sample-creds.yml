@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Secret
+stringData:
+  WATSON_STT_APIKEY: # The apikey for your watson speech to text
+  WATSON_TTS_APIKEY: # The apikey for your watson text to speech
+  REST_API_USERNAME: # The Username for accessing all rest calls
+  REST_API_PASSWORD: # The Password for accessing all rest calls
+  TESTER_WEBHOOK_USERNAME: # The Username for securing the tester webhook endpoints
+  TESTER_WEBHOOK_PASSWORD: # The Password for securing the tester webhook endpoints
+  CLOUDANT_URL: # The URL for your cloudant service
+  CLOUDANT_APIKEY: # The apikey for connecting to your cloudant account
+  CLOUDANT_DATABASE_NAME: # The name of the database which will store all the test resources
+metadata:
+  name: secret-creds
+type: Opaque

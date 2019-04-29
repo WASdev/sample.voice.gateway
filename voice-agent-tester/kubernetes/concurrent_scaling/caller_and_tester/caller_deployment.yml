@@ -1,0 +1,188 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: caller-deployment
+  labels:
+    service: caller-deployment
+    role: caller
+    group: agent-tester-microservice
+spec:
+  replicas: 2 # Set to less than or equal to the number of nodes you have available
+  selector:
+    matchLabels:
+      service: caller-deployment
+      role: caller
+      group: agent-tester-microservice
+  template:
+    metadata:
+      labels:
+        service: caller-deployment
+        role: caller
+        group: agent-tester-microservice
+    spec:
+      volumes:
+      - name: recordings
+      hostNetwork: true
+      containers:
+      - name: caller-media-relay
+        image: ibmcom/voice-gateway-mr:1.0.1.0
+        ports:
+        - containerPort: 8080
+          hostPort: 8080
+          protocol: TCP
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - "/opt/quiesce.sh"
+        command:
+        - "/bin/sh"
+        - "-c"
+        args:
+        - export SDP_ADDRESS=$(hostname -I | awk '{print $2}'); exec /vgw-media-relay/bin/media-relay
+        env:
+        - name: ENABLE_RECORDING
+          value: 'true'
+        - name: WATSON_STT_FIRMUP_SILENCE_TIME # For adjusting to different conviersation. It waits longer to see if the person finished
+          value: '1.6'
+        - name: RTP_UDP_PORT_RANGE
+          value: 16384-16684
+        - name: CLUSTER_WORKERS
+          value: '0'
+        - name: MEDIA_RELAY_LOG_LEVEL # If set to TRACE consumes too much resources and could affect the calls
+          value: DEBUG
+        - name: STT_TRACK_LATENCY
+          value: 'true'
+        - name: MEDIA_RELAY_WS_PORT
+          value: '8080'
+        - name: WATSON_STT_TOKEN_SERVICE_PROVIDER_URL
+          value: https://iam.bluemix.net/identity/token
+        - name: WATSON_STT_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: WATSON_STT_APIKEY
+        - name: WATSON_STT_URL
+          value: https://stream.watsonplatform.net/speech-to-text/api
+        - name: WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL
+          value: https://iam.bluemix.net/identity/token
+        - name: WATSON_TTS_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: WATSON_TTS_APIKEY
+        - name: WATSON_TTS_VOICE
+          value: en-US_AllisonV2Voice
+        - name: WATSON_TTS_URL
+          value: https://stream.watsonplatform.net/text-to-speech/api
+        volumeMounts:
+        - name: recordings
+          mountPath: "/vgw-media-relay/recordings"
+        terminationMessagePath: "/dev/termination-log"
+        imagePullPolicy: Always
+      - name: caller-sip-orchestrator
+        image: ibmcom/voice-gateway-so:1.0.1.0
+        ports:
+        - containerPort: 5060
+          hostPort: 5060
+          protocol: TCP
+        - containerPort: 5060
+          hostPort: 5060
+          protocol: UDP
+        - containerPort: 9080
+          hostPort: 9080
+          protocol: TCP
+        - containerPort: 9443
+          hostPort: 9443
+          protocol: TCP
+        lifecycle:
+          preStop:
+            exec:
+              command:
+              - "/opt/quiesce.sh"
+        command:
+        - "/bin/sh"
+        - "-c"
+        args:
+        - export SIP_HOST=$(hostname -I | awk '{print $2}'); exec /opt/startup.sh
+        env:
+        - name: MEDIA_RELAY_HOST
+          value: localhost:8080
+        - name: SIP_PORT
+          value: '5060'
+        - name: HTTPS_PORT
+          value: '9443'
+        - name: HTTP_HOST
+          value: "*"
+        - name: ENABLE_OUTBOUND_CALLS
+          value: 'true'
+        - name: REST_API_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REST_API_USERNAME
+        - name: REST_API_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REST_API_PASSWORD
+        - name: WHITELIST_TO_URI # Add your own number. This is to secure from unwanted SIP invites
+          value: '16152059390'
+        - name: POST_RESPONSE_TIMEOUT # Waits more for the other person to answer. In case the endpoint takes a while to look for information
+          value: '15000'
+        - name: ENABLE_AUDIT_MESSAGES
+          value: 'true'
+        - name: ENABLE_TRANSCRIPTION_AUDIT_MESSAGES
+          value: 'true'
+        - name: LOG_LEVEL
+          value: all
+          # These are optional for reporting. You could comment these out if you'd like
+        - name: REPORTING_CDR_CLOUDANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REPORTING_URL
+        - name: REPORTING_CDR_CLOUDANT_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REPORTING_APIKEY
+        - name: REPORTING_CDR_CLOUDANT_DB_NAME
+          value: cdr_agent_testee
+        - name: REPORTING_CDR_CLOUDANT_EVENT_INDEX
+          value: cdr
+        - name: REPORTING_TRANSCRIPTION_CLOUDANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REPORTING_URL
+        - name: REPORTING_TRANSCRIPTION_CLOUDANT_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REPORTING_APIKEY
+        - name: REPORTING_TRANSCRIPTION_CLOUDANT_DB_NAME
+          value: transcripts_agent_testee
+        - name: REPORTING_TRANSCRIPTION_CLOUDANT_EVENT_INDEX
+          value: transcription
+        - name: REPORTING_CONVERSATION_CLOUDANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REPORTING_URL
+        - name: REPORTING_CONVERSATION_CLOUDANT_APIKEY
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REPORTING_APIKEY
+        - name: REPORTING_CONVERSATION_CLOUDANT_DB_NAME
+          value: conv_agent_testee
+        - name: REPORTING_CONVERSATION_CLOUDANT_EVENT_INDEX
+          value: conv
+        # Comment up to here for turning off reporting
+        terminationMessagePath: "/dev/termination-log"
+        imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 600
+      dnsPolicy: ClusterFirstWithHostNet

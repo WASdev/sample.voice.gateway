@@ -1,0 +1,46 @@
+<server>
+
+	<!-- This is a sample for using your own registry for securing the microservice -->
+
+     <basicRegistry id="basic" realm="testerBasicRegistry">
+	 
+		<!-- !!!!!!  IMPORTANT  !!!!!! -->
+		<!-- THIS USER MUST ALWAYS BE INCLUDED ALONG WITH ANY OTHER USER YOU WHISH TO ADD -->
+		<!-- THIS IS THE USER AND PASSWORD THAT IS USED FOR ADDING SECURITY TO THE TESTER WEBHOOK ENDPOINTS -->
+		<user name="${env.TESTER_WEBHOOK_USERNAME}" password="${env.TESTER_WEBHOOK_PASSWORD}"/>
+
+
+
+		<!-- replace / add users as you like -->
+		<user name="admin" password="admin"/>
+		<user name="editor" password="editor"/>
+		<user name="operator" password="operator"/>
+		<user name="viewer" password="viewer"/>
+		
+		<!--  Access to all REST calls -->
+		<group name="${env.ROLE_NAME_ADMINISTRATOR}">
+		<!-- replace / add users as you like -->
+			<member name="admin"/>	
+		</group>
+		
+		<!--  Access to all REST calls -->
+		<group name="${env.ROLE_NAME_EDITOR}">
+		<!-- replace / add users as you like -->
+			<member name="editor"/>	
+		</group>
+		
+		<!--  Access only to REST GETs and Job REST calls -->
+		<group name="${env.ROLE_NAME_OPERATOR}">
+		<!-- replace / add users as you like -->
+			<member name="operator"/>		
+		</group>
+		
+		<!--  Access only to REST GETs -->
+		<group name="${env.ROLE_NAME_VIEWER}">
+		<!-- replace / add users as you like -->
+			<member name="viewer"/>	
+		</group>
+
+    </basicRegistry>
+
+</server>

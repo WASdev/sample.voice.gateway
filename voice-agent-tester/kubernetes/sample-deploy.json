@@ -1,0 +1,367 @@
+{
+	"apiVersion": "extensions/v1beta1",
+	"kind": "Deployment",
+	"metadata": {
+		"name": "va-tester-service",
+		"labels": {
+			"service": "va-tester-service"
+		}
+	},
+	"spec": {
+		"replicas": 1,
+		"selector": {
+			"matchLabels": {
+				"service": "va-tester-service"
+			}
+		},
+		"template": {
+			"metadata": {
+				"labels": {
+					"service": "va-tester-service"
+				}
+			},
+			"spec": {
+				"volumes": [
+					{
+						"name": "recordings",
+						"emptyDir": {}
+					}
+				],
+				"hostNetwork": true,
+				"containers": [
+					{
+						"name": "vgw-media-relay",
+						"image": "ibmcom/voice-gateway-mr:1.0.1.0",
+						"ports": [
+							{
+								"containerPort": 8080,
+								"hostPort": 8080,
+								"protocol": "TCP"
+							}
+						],
+						"lifecycle": {
+							"preStop": {
+								"exec": {
+									"command": [
+										"/opt/quiesce.sh"
+									]
+								}
+							}
+						},
+						"command": [
+							"/bin/sh",
+							"-c"
+						],
+						"args": [
+							"export SDP_ADDRESS=$(hostname -I | awk '{print $2}'); exec /vgw-media-relay/bin/media-relay"
+						],
+						"env": [
+							{
+								"name": "ENABLE_RECORDING",
+								"value": "true"
+							},
+							{
+								"name": "RTP_UDP_PORT_RANGE",
+								"value": "16384-16584"
+							},
+							{
+								"name": "CLUSTER_WORKERS",
+								"value": "0"
+							},
+							{
+								"name": "MEDIA_RELAY_LOG_LEVEL",
+								"value": "TRACE"
+							},
+							{
+								"name": "STT_TRACK_LATENCY",
+								"value": "true"
+							},
+							{
+								"name": "MEDIA_RELAY_WS_PORT",
+								"value": "8080"
+							},
+							{
+								"name": "WATSON_STT_TOKEN_SERVICE_PROVIDER_URL",
+								"value": "https://iam.bluemix.net/identity/token"
+							},
+							{
+								"name": "WATSON_STT_APIKEY",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "WATSON_STT_APIKEY"
+									}
+								}
+							},
+							{
+								"name": "WATSON_STT_URL",
+								"value": "https://gateway-wdc.watsonplatform.net/speech-to-text/api"
+							},
+							{
+								"name": "WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL",
+								"value": "https://iam.bluemix.net/identity/token"
+							},
+							{
+								"name": "WATSON_TTS_APIKEY",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "WATSON_TTS_APIKEY"
+									}
+								}
+							},
+							{
+								"name": "WATSON_TTS_VOICE",
+								"value": "en-US_AllisonV2Voice"
+							},
+							{
+								"name": "WATSON_TTS_URL",
+								"value": "https://gateway-wdc.watsonplatform.net/text-to-speech/api"
+							}
+						],
+						"resources": {},
+						"volumeMounts": [
+							{
+								"name": "recordings",
+								"mountPath": "/vgw-media-relay/recordings"
+							}
+						],
+						"terminationMessagePath": "/dev/termination-log",
+						"imagePullPolicy": "Always"
+					},
+					{
+						"name": "tester-sip-orchestrator",
+						"image": "ibmcom/voice-gateway-so:1.0.1.0",
+						"ports": [
+							{
+								"containerPort": 5060,
+								"hostPort": 5060,
+								"protocol": "TCP"
+							},
+							{
+								"containerPort": 5060,
+								"hostPort": 5060,
+								"protocol": "UDP"
+							},
+							{
+								"containerPort": 9080,
+								"hostPort": 9080,
+								"protocol": "TCP"
+							},
+							{
+								"containerPort": 9443,
+								"hostPort": 9443,
+								"protocol": "TCP"
+							}
+						],
+						"lifecycle": {
+							"preStop": {
+								"exec": {
+									"command": [
+										"/opt/quiesce.sh"
+									]
+								}
+							}
+						},
+						"command": [
+							"/bin/sh",
+							"-c"
+						],
+						"args": [
+							"export SIP_HOST=$(hostname -I | awk '{print $2}'); exec /opt/startup.sh"
+						],
+						"env": [
+							{
+								"name": "MEDIA_RELAY_HOST",
+								"value": "localhost:8080"
+							},
+							{
+								"name": "SIP_PORT",
+								"value": "5060"
+							},
+							{
+								"name": "HTTPS_PORT",
+								"value": "9443"
+							},
+							{
+								"name": "HTTP_HOST",
+								"value": "*"
+							},
+							{
+								"name": "ENABLE_OUTBOUND_CALLS",
+								"value": "true"
+							},
+							{
+								"name": "REST_API_USERNAME",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "REST_API_USERNAME"
+									}
+								}
+							},
+							{
+								"name": "REST_API_PASSWORD",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "REST_API_PASSWORD"
+									}
+								}
+							},
+							{
+								"name": "WHITELIST_TO_URI",
+								"value": "16152059390"
+							},
+							{
+								"name": "ENABLE_AUDIT_MESSAGES",
+								"value": "true"
+							},
+							{
+								"name": "ENABLE_TRANSCRIPTION_AUDIT_MESSAGES",
+								"value": "true"
+							},
+							{
+								"name": "LOG_LEVEL",
+								"value": "all"
+							}
+						],
+						"resources": {},
+						"terminationMessagePath": "/dev/termination-log",
+						"imagePullPolicy": "Always"
+					},
+					{
+						"name": "tester-microservice",
+						"image": "IMAGE GOES HERE",
+						"ports": [
+							{
+								"containerPort": 9300,
+								"hostPort": 9300,
+								"protocol": "TCP"
+							},
+							{
+								"containerPort": 9210,
+								"hostPort": 9210,
+								"protocol": "TCP"
+							}
+						],
+						"env": [
+							{
+								"name": "REST_ADMIN_USERNAME",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "REST_API_USERNAME"
+									}
+								}
+							},
+							{
+								"name": "REST_ADMIN_PASSWORD",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "REST_API_PASSWORD"
+									}
+								}
+							},
+							{
+								"name": "TESTER_WEBHOOK_USERNAME",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "TESTER_WEBHOOK_USERNAME"
+									}
+								}
+							},
+							{
+								"name": "TESTER_WEBHOOK_PASSWORD",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "TESTER_WEBHOOK_PASSWORD"
+									}
+								}
+							},
+							{
+								"name": "TESTER_WEBHOOK_URI",
+								"value": "http://localhost:9300/"
+							},
+							{
+								"name": "HTTP_PORT",
+								"value": "9300"
+							},
+							{
+								"name": "HTTPS_PORT",
+								"value": "9210"
+							},
+							{
+								"name": "HTTP_HOST",
+								"value": "*"
+							},
+							{
+								"name": "CLOUDANT_URL",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "CLOUDANT_URL"
+									}
+								}
+							},
+							{
+								"name": "CLOUDANT_APIKEY",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "CLOUDANT_APIKEY"
+									}
+								}
+							},
+							{
+                                "name": "CLOUDANT_DATABASE_NAME",
+                                "valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "CLOUDANT_DATABASE_NAME"
+									}
+								}
+							},
+							{
+								"name": "CALLER_VOICE_GATEWAY_URI",
+								"value": "http://localhost:9080/"
+							},
+							{
+								"name": "CALLER_VOICE_GATEWAY_USERNAME",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "REST_API_USERNAME"
+									}
+								}
+							},
+							{
+								"name": "CALLER_VOICE_GATEWAY_PASSWORD",
+								"valueFrom": {
+									"secretKeyRef": {
+										"name": "secret-creds",
+										"key": "REST_API_PASSWORD"
+									}
+								}
+							},
+							{
+								"name": "LOG_LEVEL",
+								"value": "all"
+							}
+						],
+						"resources": {},
+						"terminationMessagePath": "/dev/termination-log",
+						"imagePullPolicy": "Always"
+					}
+				],
+				"restartPolicy": "Always",
+				"terminationGracePeriodSeconds": 600,
+				"dnsPolicy": "ClusterFirstWithHostNet"
+			}
+		}
+	},
+	"status": {}
+}
