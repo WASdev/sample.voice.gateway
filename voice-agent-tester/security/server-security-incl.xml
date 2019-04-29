@@ -20,25 +20,25 @@
 		<!--  Access to all REST calls -->
 		<group name="${env.ROLE_NAME_ADMINISTRATOR}">
 		<!-- replace / add users as you like -->
-			<member name="admin"/>	
+			<member name="admin-user"/>	
 		</group>
 		
 		<!--  Access to all REST calls -->
 		<group name="${env.ROLE_NAME_EDITOR}">
 		<!-- replace / add users as you like -->
-			<member name="editor"/>	
+			<member name="editor-user"/>	
 		</group>
 		
 		<!--  Access only to REST GETs and Job REST calls -->
 		<group name="${env.ROLE_NAME_OPERATOR}">
 		<!-- replace / add users as you like -->
-			<member name="operator"/>		
+			<member name="operator-user"/>		
 		</group>
 		
 		<!--  Access only to REST GETs -->
 		<group name="${env.ROLE_NAME_VIEWER}">
 		<!-- replace / add users as you like -->
-			<member name="viewer"/>	
+			<member name="viewer-user"/>	
 		</group>
 
     </basicRegistry>
