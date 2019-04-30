@@ -19,9 +19,6 @@ services:
       # Variable required to replace existing basic Auth configuration
       #- SERVER_REGISTRY_INCLUDE_PATH=/config/resources/registry/server-security-incl.xml
 
-      # 
-      - LICENSED_FOR_PRODUCTION_USE=false
-
       # Logging related variables
       #- ENABLE_TRANSCRIPTION_MESSAGES=false
       #- LOG_LEVEL=info
