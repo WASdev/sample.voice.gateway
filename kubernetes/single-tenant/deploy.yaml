@@ -15,7 +15,6 @@ spec:
         service: vgw
     spec:
       volumes:
-#
 #      - name: recordings
 #        persistentVolumeClaim:
 #          claimName: recordings
@@ -26,6 +25,29 @@ spec:
 #          items:
 #          - key: unimrcpConfig
 #            path: unimrcpclient.xml
+
+# Volumes for SSL configuration
+# Sip Orchestrator
+#      - name: ssl-so
+#        secret:
+#          secretName: trust-store-file-secret
+#          items:
+#          - key: "trustStoreFile"
+#            path: "trustStoreFile"
+# Media Relay
+#      - name: ssl-mr-mutualauth
+#        secret:
+#          secretName: ssl-client-pkcs12-file-secret
+#          items:
+#          - key: "clientPkcs12File"
+#            path: "clientPkcs12File"
+#      - name: ssl-mr
+#        secret:
+#          secretName: client-ca-cert-secret
+#          items:
+#          - key: "clientCaCertFile"
+#            path: "clientCaCertFile"
+            
       hostNetwork: true
       containers:
       - name: vgw-media-relay
@@ -74,6 +96,18 @@ spec:
           value: https://stream.watsonplatform.net/text-to-speech/api
         - name: WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL
           value: https://iam.bluemix.net/identity/token
+          
+#        - name: SSL_CLIENT_CA_CERTIFICATE_FILE
+#          value: "/sslConf/clientCaCertFile"
+        
+#        - name: SSL_CLIENT_PKCS12_FILE
+#          value: "/sslConf/clientPkcs12File"
+#        - name: SSL_CLIENT_PASSPHRASE
+#          valueFrom:
+#            secretKeyRef:
+#              name: ssl-client-passphrase-secret
+#              key: sslClientPassphrase
+              
         volumeMounts:
 #
 #        - name: recordings
@@ -82,6 +116,14 @@ spec:
 #        - name: unimrcpconfig
 #          mountPath: "/vgw-media-relay/config/unimrcpclient.xml"
 #          subPath: "unimrcpclient.xml"
+
+#        - name: ssl-mr
+#          mountPath: "/sslConf/clientCaCertFile"
+#          subPath: "clientCaCertFile"
+#        - name: ssl-mr-mutualauth
+#          mountPath: "/sslConf/clientPkcs12File"
+#          subPath: "clientPkcs12File"
+
         terminationMessagePath: "/dev/termination-log"
         imagePullPolicy: Always
       - name: vgw-sip-orchestrator
@@ -128,6 +170,22 @@ spec:
           value: 'true'
         - name: LOG_LEVEL
           value: all
+
+#        - name: SSL_KEY_TRUST_STORE_FILE
+#          value: "/sslConf/trustStoreFile"
+#        - name: SSL_FILE_TYPE
+#          value: "JKS"
+#        - name: SSL_PASSPHRASE
+#          valueFrom:
+#            secretKeyRef:
+#              name: ssl-passphrase-secret
+#              key: sslPassphrase
+
+        volumeMounts:
+#        - name: ssl-so
+#          mountPath: "/sslConf/trustStoreFile"
+#          subPath: "trustStoreFile"
+          
         terminationMessagePath: "/dev/termination-log"
         imagePullPolicy: Always
       restartPolicy: Always

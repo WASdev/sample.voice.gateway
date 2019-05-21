@@ -42,3 +42,42 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
    ```bash
    kubectl create -f deploy.yaml
    ```
+
+# SSL configuration
+- More info: [Configuring SSL and TLS encryption](https://www.ibm.com/support/knowledgecenter/SS4U29/security.html#configuring-ssl-and-tls-encryption)
+
+##### Adding trusted certificates for the SIP Orchestrator (For enabling SSL or Mutual Authentication):
+- Create secret from the trust store key file:
+  ```
+  kubectl create secret generic trust-store-file-secret --from-file=trustStoreFile=myPKCS12File.p12 -n <namespace>
+  ```
+- Create secret for the SSL Passphrase:
+  - Add passphrase in a text file `ssl_passphrase.txt` (Make sure there are no extra spaces or new lines in the text file)
+  - Create secret from the text file:
+    ```
+    kubectl create secret generic ssl-passphrase-secret --from-file=sslPassphrase=ssl_passphrase.txt -n <namespace>
+    ```
+- Uncomment *ssl-so* in `volumes` and `volumeMounts` section of the deploy.yaml
+- Uncomment variables `SSL_KEY_TRUST_STORE_FILE`, `SSL_FILE_TYPE` and `SSL_PASSPHRASE` in *deploy.yaml* and set `SSL_FILE_TYPE` to the correct file type.
+
+##### Adding trusted certificates for the Media Relay (For enabling SSL):
+- Create secret from client CA certificate file:
+  ```
+  kubectl create secret generic client-ca-cert-secret --from-file=clientCaCertFile=ca-bundle.pem -n <namespace>
+  ```
+- Uncomment *ssl-mr* in `volumes` and `volumeMounts` section of the deploy.yaml
+- Uncomment variable `SSL_CLIENT_CA_CERTIFICATE_FILE` in *deploy.yaml* 
+
+##### Adding certificates for the Media Relay (For Mutual Authentication):
+- Create secret from the SSL client PKCS12 file:
+  ```
+  kubectl create secret generic ssl-client-pkcs12-file-secret --from-file=clientPkcs12File=myPKCS12File.p12 -n <namespace>
+  ```
+- Create secret for the SSL Passphrase:
+  - Add passphrase in a text file `ssl_client_passphrase.txt` (Make sure there are no extra spaces or new lines in the text file)
+  - Create secret from the text file:
+    ```
+    kubectl create secret generic ssl-client-passphrase-secret --from-file=sslClientPassphrase=ssl_client_passphrase.txt -n <namespace>
+    ```
+- Uncomment *ssl-mr-mutualauth* in `volumes` and `volumeMounts` section of the deploy.yaml
+- Uncomment variables `SSL_CLIENT_PKCS12_FILE` and `SSL_CLIENT_PASSPHRASE` in *deploy.yaml*
