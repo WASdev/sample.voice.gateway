@@ -31,8 +31,17 @@
         ]
       },
       "send": {
-        "type": "string",
-        "value": "Yes"
+        "type": "commands",
+        "value": [
+          {
+            "parameters": {
+              "text": [
+                "Yes"
+              ]
+            },
+            "command": "vgwActPlayText"
+          }
+        ]
       }
     },
     {

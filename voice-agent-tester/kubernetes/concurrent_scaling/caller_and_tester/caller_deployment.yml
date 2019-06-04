@@ -26,7 +26,7 @@ spec:
       hostNetwork: true
       containers:
       - name: caller-media-relay
-        image: ibmcom/voice-gateway-mr:1.0.1.0
+        image: # Latest image of MR
         ports:
         - containerPort: 8080
           hostPort: 8080
@@ -82,7 +82,7 @@ spec:
         terminationMessagePath: "/dev/termination-log"
         imagePullPolicy: Always
       - name: caller-sip-orchestrator
-        image: ibmcom/voice-gateway-so:1.0.1.0
+        image: # Latest image of SO
         ports:
         - containerPort: 5060
           hostPort: 5060
