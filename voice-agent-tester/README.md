@@ -1,6 +1,6 @@
 # Samples for using the microservice
 
-Basic samples for understanding and using the Voice Agent Tester microservice. You can quickly start using the microservice by using the `docker-compose.yml` which includes the Agent Tester, a SIP Orchestrator and a Media Relay which are the components for the Caller Voice Gateway, and a CouchDB for the persistence. Just fill in the variables and run `docker-compose up`. If you're going to use the CouchDB service as you persistence then you would have to run a [first time setup](https://docs.couchdb.org/en/master/setup/index.html#setup).
+Basic samples for understanding and using the Voice Agent Tester microservice. You can quickly start using the microservice by using the `docker-compose.yml` which includes the Agent Tester, a SIP Orchestrator and a Media Relay which are the components for the Caller Voice Gateway, and a CouchDB for the persistence. Just fill in the variables and run `docker-compose up`. If you're going to use the CouchDB service as your persistence then you would have to run a [first time setup](https://docs.couchdb.org/en/master/setup/index.html#setup).
 
 ## Microservice samples
 

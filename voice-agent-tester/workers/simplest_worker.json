@@ -1,4 +1,5 @@
 {
+    "name":"Test Worker",
     "iterations": 0,
     "namespace":"test",
     "callDefinition": {

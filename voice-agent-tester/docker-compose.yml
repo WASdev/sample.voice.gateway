@@ -15,18 +15,17 @@ services:
       - REST_ADMIN_PASSWORD=myRestAdminPassword
       - TESTER_WEBHOOK_USERNAME=testerWebhookUser
       - TESTER_WEBHOOK_PASSWORD=testerWebhookPassword
-      - TESTER_WEBHOOK_URI=${TESTER_WEBHOOK_URI}
       # Cloudant variables
-      - CLOUDANT_URL=${CLOUDANT_URL}
-      - CLOUDANT_USERNAME=${CLOUDANT_USERNAME}
-      - CLOUDANT_PASSWORD=${CLOUDANT_PASSWORD}
-      - CLOUDANT_DATABASE_NAME=${CLOUDANT_DATABASE_NAME}
+      - CLOUDANT_URL=${CLOUDANT_URL} # Fill in URL to database
+      - CLOUDANT_USERNAME=${CLOUDANT_USERNAME} # Fill in credentials for database
+      - CLOUDANT_PASSWORD=${CLOUDANT_PASSWORD} # Fill in credentials for database
+      - CLOUDANT_DATABASE_NAME=vat_test_data # Fill in database name
       # Caller Voice Gateway variables
-      - CALLER_VOICE_GATEWAY_URI=${CALLER_VOICE_GATEWAY_URI}
-      - CALLER_VOICE_GATEWAY_USERNAME=${CALLER_VOICE_GATEWAY_USERNAME}
-      - CALLER_VOICE_GATEWAY_PASSWORD=${CALLER_VOICE_GATEWAY_PASSWORD}
+      - CALLER_VOICE_GATEWAY_URI=http://sip.orchestrator:9080
+      - CALLER_VOICE_GATEWAY_USERNAME=outboundCallsUser
+      - CALLER_VOICE_GATEWAY_PASSWORD=outboundCallsPassword
       # Logging variables
-      - LOG_LEVEL=all
+      - LOG_LEVEL=info
       - LOG_MAX_FILE_SIZE=100
       - LOG_MAX_FILES=10
 
@@ -48,13 +47,14 @@ services:
       - MEDIA_RELAY_HOST=media.relay:8080
       - SIP_HOST=${EXTERNAL_IP}
       - HTTP_HOST=*
-      - REST_API_USERNAME=${CALLER_VOICE_GATEWAY_USERNAME}
-      - REST_API_PASSWORD=${CALLER_VOICE_GATEWAY_PASSWORD}
+      # To secure the outbound calls REST API
+      - REST_API_USERNAME=outboundCallsUser
+      - REST_API_PASSWORD=outboundCallsPassword
       # The Caller must have outbound calls enabled
       - ENABLE_OUTBOUND_CALLS=true
       # Logging related variables
       - ENABLE_TRANSCRIPTION_AUDIT_MESSAGES=true
-      - LOG_LEVEL=all
+      - LOG_LEVEL=info
       - LOG_MAX_FILE_SIZE=100
       - LOG_MAX_FILES=10
     volumes:
@@ -76,12 +76,12 @@ services:
       # Creds for Watson STT
       - WATSON_STT_APIKEY=${WATSON_STT_APIKEY}
       - WATSON_STT_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
-      - WATSON_STT_URL=https://gateway-wdc.watsonplatform.net/speech-to-text/api
+      - WATSON_STT_URL=https://stream.watsonplatform.net/speech-to-text/api
 
       # Creds for Watson TTS
       - WATSON_TTS_APIKEY=${WATSON_TTS_APIKEY}
       - WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
-      - WATSON_TTS_URL=https://gateway-wdc.watsonplatform.net/text-to-speech/api
+      - WATSON_TTS_URL=https://stream.watsonplatform.net/text-to-speech/api
       - WATSON_TTS_VOICE=en-US_MichaelV2Voice
       
       # Comment to disable recording
@@ -93,7 +93,7 @@ services:
   # Uncoment to deploy a local CouchDB instance
   # couchdb:
   #   container_name: testing-data
-  #   image: apache/couchdb:2.3.0
+  #   image: couchdb:2.3.0
   #   networks:
   #     - tester-bundle
   #   restart: always
