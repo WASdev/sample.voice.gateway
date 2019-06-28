@@ -1,10 +1,10 @@
 # Deploy Microservice on Kubernetes
 
-This is a simple setup for deploying the Agent Tester microservice to a kubernetes cluster on IBM Cloud. See the `concurrent_scaling` directory which contains deployment scripts for scaling and running multiple concurrent calls at the same time. The other scripts are just for deploying them all on one worker.
+This is a simple setup for deploying the Voice Agent Tester microservice to a kubernetes cluster on IBM Cloud. See the `concurrent_scaling` directory which contains deployment scripts for scaling and running multiple concurrent calls at the same time. The other scripts are just for deploying them all on one worker.
 
 ## Prerequisites
 
-You must have an account for Watson Services Text to Speech and Speech to Text and also a kubernetes cluster service. Configure the following CLI tools so that you can access your Kubernetes cluster on IBM Cloud through the command line
+You must have an account for [Watson Speech-To-Text](https://cloud.ibm.com/catalog/services/speech-to-text) and [Watson Text-To-Speech](https://cloud.ibm.com/catalog/services/text-to-speech) and also an [IBM Cloud Kubernetes cluster](https://cloud.ibm.com/kubernetes/catalog/cluster/create). Configure the following CLI tools so that you can access your Kubernetes cluster on IBM Cloud through the command line
 
 1. [Install the IBM Cloud CLI](https://console.bluemix.net/docs/containers/cs_cli_install.html#cs_cli_install), which is required to interact with the IBM Cloud from the command line.
 2. [Install the IBM Cloud Kubernetes plug-in (ibmcloud ks) and Kubernetes CLI](https://console.bluemix.net/docs/containers/cs_cli_install.html#cs_cli_install). The Kubernetes CLI enables you to use native Kubernetes commands to interact with your cluster.

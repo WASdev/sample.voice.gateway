@@ -74,12 +74,12 @@ services:
       - MEDIA_RELAY_WS_PORT=8080
 
       # Creds for Watson STT
-      - WATSON_STT_APIKEY=${WATSON_STT_APIKEY}
+      - WATSON_STT_APIKEY=${WATSON_STT_APIKEY} # Fill in credentials for STT
       - WATSON_STT_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
       - WATSON_STT_URL=https://stream.watsonplatform.net/speech-to-text/api
 
       # Creds for Watson TTS
-      - WATSON_TTS_APIKEY=${WATSON_TTS_APIKEY}
+      - WATSON_TTS_APIKEY=${WATSON_TTS_APIKEY} # Fill in credentials for TTS
       - WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL=https://iam.bluemix.net/identity/token
       - WATSON_TTS_URL=https://stream.watsonplatform.net/text-to-speech/api
       - WATSON_TTS_VOICE=en-US_MichaelV2Voice
