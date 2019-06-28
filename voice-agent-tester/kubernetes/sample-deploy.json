@@ -31,7 +31,7 @@
 				"containers": [
 					{
 						"name": "vgw-media-relay",
-						"image": "IMAGE GOES HERE",
+						"image": "ibmcom/voice-gateway-mr:latest",
 						"ports": [
 							{
 								"containerPort": 8080,
@@ -131,7 +131,7 @@
 					},
 					{
 						"name": "tester-sip-orchestrator",
-						"image": "IMAGE GOES HERE",
+						"image": "ibmcom/voice-gateway-so:latest",
 						"ports": [
 							{
 								"containerPort": 5060,
@@ -232,7 +232,7 @@
 					},
 					{
 						"name": "tester-microservice",
-						"image": "IMAGE GOES HERE",
+						"image": "ibmcom/voice-agent-tester:latest",
 						"ports": [
 							{
 								"containerPort": 9300,

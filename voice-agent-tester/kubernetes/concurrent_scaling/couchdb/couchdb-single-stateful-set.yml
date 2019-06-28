@@ -16,7 +16,7 @@ spec:
             terminationGracePeriodSeconds: 10
             containers:
                 - name: couchdb
-                  image: apache/couchdb:2.3.0
+                  image: couchdb:2.3.0
                   ports:
                       - containerPort: 5984
                         name: http

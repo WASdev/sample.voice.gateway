@@ -26,7 +26,7 @@ spec:
       hostNetwork: true
       containers:
       - name: caller-media-relay
-        image: # Latest image of MR
+        image: ibmcom/voice-gateway-mr:latest
         ports:
         - containerPort: 8080
           hostPort: 8080
@@ -44,8 +44,6 @@ spec:
         env:
         - name: ENABLE_RECORDING
           value: 'true'
-        - name: WATSON_STT_FIRMUP_SILENCE_TIME # For adjusting to different conviersation. It waits longer to see if the person finished
-          value: '1.6'
         - name: RTP_UDP_PORT_RANGE
           value: 16384-16684
         - name: CLUSTER_WORKERS
@@ -82,7 +80,7 @@ spec:
         terminationMessagePath: "/dev/termination-log"
         imagePullPolicy: Always
       - name: caller-sip-orchestrator
-        image: # Latest image of SO
+        image: ibmcom/voice-gateway-so:latest
         ports:
         - containerPort: 5060
           hostPort: 5060
@@ -129,8 +127,6 @@ spec:
               key: REST_API_PASSWORD
         - name: WHITELIST_TO_URI # Add your own number. This is to secure from unwanted SIP invites
           value: '16152059390'
-        - name: POST_RESPONSE_TIMEOUT # Waits more for the other person to answer. In case the endpoint takes a while to look for information
-          value: '15000'
         - name: ENABLE_AUDIT_MESSAGES
           value: 'true'
         - name: ENABLE_TRANSCRIPTION_AUDIT_MESSAGES

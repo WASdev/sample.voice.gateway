@@ -3,7 +3,7 @@ services:
 
   va.testing.microservice:
     container_name: agent-tester-microservice
-    image: # Microservice image
+    image: ibmcom/voice-agent-tester:latest
     networks:
       - tester-bundle
     ports:
@@ -33,7 +33,7 @@ services:
       - ./logs/MS:/logs
     
   sip.orchestrator:
-    image: # Latest image of SO
+    image: ibmcom/voice-gateway-so:latest
     container_name: caller-voice-gateway-so
     networks:
       - tester-bundle
@@ -61,7 +61,7 @@ services:
       - ./logs/SO:/logs
 
   media.relay:
-    image: # Latest image of MR
+    image: ibmcom/voice-gateway-mr:latest
     container_name: caller-voice-gateway-mr
     networks:
       - tester-bundle
