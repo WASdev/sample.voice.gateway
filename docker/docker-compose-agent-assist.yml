@@ -1,4 +1,4 @@
-https://www.ibm.com/support/knowledgecenter/SS4U29/reporting.htmlversion: '2'
+version: '2'
 services:
   sip.orchestrator:
     image: ibmcom/voice-gateway-so:latest

@@ -1,57 +1,135 @@
-
-
 version: '3'
 
 services:
+#  va.dashboard:
+#    container_name: va-dashboard
+#    image: va-dashboard-test100:latest
+#    
+#    ports:
+#      - "8080:8080"
+#
+  va.op:
+    container_name: va-openid-provider
+    image: ibmcom/voice-agent-oidc-provider:latest
+    
+    ports:
+      - "9444:9444"
+      
+    environment:
+      
+      # Uncomment and specify your own username and password to override the default
+      # Do not add whitespace or quotes around the username (admin) or hashed password (password)
+      - BASIC_REGISTRY_USERNAME=admin
+      - BASIC_REGISTRY_PASSWORD=ATAAAAAI7tXy93T2DDdAAAAAIEny+m0RVHlDl2o+hkRcpihcpogPTuI6QznzUMHzYmKd
+      
+      # Variable required to replace existing basic auth configuration
+      #- SERVER_REGISTRY_INCLUDE_PATH=/config/security-incl/server-security-incl.xml
+      
+      # Logging related variables
+      - LOG_LEVEL=fine:TCPChannel=all:SSLChannel=all:com.ibm.ws.webcontainer*=all:com.ibm.wsspi.webcontainer*=all:HTTPChannel=all
+      #- LOG_MAX_FILE_SIZE=100
+      #- LOG_MAX_FILES=10
+      
+      # Defines host and port of the open ID provider       
+      #- ENV HTTP_HOST=localhost
+      #- ENV HTTPS_PORT=9444
+    
+      # Uncomment this section to use your own keystore
+      # SSL KeyStore related variables
+      #- SSL_KEY_PASSPHRASE=changeit
+      #- SSL_KEY_STORE_FILE=/sslconf/key.jks
+      #- SSL_KEY_FILE_TYPE=JKS
+      
+      # OIDC client configuration for Insights 
+      #- OIDC_INSIGHTS_HOST=localhost
+      #- OIDC_INSIGHTS_PORT=9443
+      #- OIDC_INSIGHTS_CLIENT_ID=va-insights
+      #- OIDC_INSIGHTS_CLIENT_SECRET=password
+      
+      # OIDC provider configuration
+      #- OIDC_ISSUER_IDENTIFIER=https://localhost:9444/oidc/endpoint/OP
+      #- OIDC_ACCESS_TOKEN_LIFETIME=7200s
+      
+      # This is the startup page for the UI. The OP will redirect to this link on logout.
+      #- STARTUP_PAGE=https://localhost:9443/va.insights
+
+    volumes:
+      # REQUIRED Mounts a local directory with agent config json file onto the container
+      # Default directory specified below. This can be reconfigured
+      - "./sslconf/:/sslconf/"
+      - "./logs/op/:/logs/"
+      # Uncomment if you wish to expose security include to add more users
+      #- "./security/:/config/security-incl/"
+      - "./config/registry/:/config/registry/"
+      
+  
   va.insights:
     container_name: va-insights
-    image: ibmcom/voice-agent-insights:alpha.latest
+    image: ibmcom/voice-agent-insights:latest
     
     ports:
       - "9080:9080"
       - "9443:9443"
-      
-    environment:
-      
-      # REQURIED Specify the configuration JSON file that maps agent numbers to the cloudant credentials
-      - CONFIG_FILE_PATH=/config/resources/agentConfig/vainsights.json
-      
-      # Variable required to replace existing basic Auth configuration
-      #- SERVER_REGISTRY_INCLUDE_PATH=/config/resources/registry/server-security-incl.xml
-
+     
+    environment: 
       # Logging related variables
-      #- ENABLE_TRANSCRIPTION_MESSAGES=false
-      #- LOG_LEVEL=info
+      #- LOG_LEVEL=fine:com.ibm.ws.security.*=fine
+      - LOG_LEVEL=fine
       #- LOG_MAX_FILE_SIZE=100
       #- LOG_MAX_FILES=10
 
-    
-      # Uncomment and specify your own username and password to override the default
+      # OpenID role definitions 
+      #- ROLE_NAME_ADMINISTRATOR=Administrator
+      #- ROLE_NAME_EDITOR=Editor
+      #- ROLE_NAME_OPERATOR=Operator
+      #- ROLE_NAME_VIEWER=Viewer      
+
+      # Uncomment and specify your own username and password for Basic Auth
       # Do not add whitespace or quotes around the username or password{hashed}
-      - BASIC_REGISTRY_USERNAME=
-      - BASIC_REGISTRY_PASSWORD=
+      #- BASIC_REGISTRY_USERNAME=
+      #- BASIC_REGISTRY_PASSWORD=
 
       # Uncomment this section to use your own keystore
-      # SSL KeyStore related variables
-      #- SSL_KEY_PASSPHRASE=/config/resources/security/file.jks
-      #- SSL_KEY_STORE_FILE=
+      #- SSL_KEY_PASSPHRASE=changeit
+      #- SSL_KEY_STORE_FILE=/sslconf/key.jks
       #- SSL_KEY_FILE_TYPE=JKS
 
-      # Uncomment this section to specify your own truststore
-      # Change values to override the default settings of Java certs
-      #- SSL_TRUST_PASSPHRASE=
-      #- SSL_TRUST_STORE_FILE=
+      # Uncomment this section to specify your own truststore for the REST client
+      #- SSL_TRUST_PASSPHRASE=changeit
+      #- SSL_TRUST_STORE_FILE=/opt/ibm/java/jre/lib/security/cacerts
       #- SSL_TRUST_FILE_TYPE=JKS
+      
+      # Uncomment this section to specify your own truststore for OpenID Provider connections
+      # Change values to override the default settings of Java certs
+      #- SSL_OIDC_TRUST_PASSPHRASE=changeit
+      #- SSL_OIDC_TRUST_STORE_FILE=/sslconf/key.jks
+      #- SSL_OIDC_TRUST_FILE_TYPE=JKS
+      
+      # OIDC Insights Client configuration
+      #- OIDC_CLIENT_ID=va-insights
+      #- OIDC_CLIENT_SECRET=password
+      #- OIDC_REALM=OpBasicRealm
+
+      # OIDC Endpoint configuration
+      #- OIDC_AUTH_ENDPOINT_URL=https://localhost:9444/oidc/endpoint/OP/authorize
+      #- OIDC_LOGOUT_ENDPOINT_URL=https://localhost:9444/oidc/endpoint/OP/logout
+      #- These two URLs assume access to the OP via docker overlay network (do not use localhost for these)
+      #- OIDC_TOKEN_ENDPOINT_URL=https://va-openid-provider:9444/oidc/endpoint/OP/token
+      #- OIDC_JWK_ENDPOINT_URL=https://va-openid-provider:9444/oidc/endpoint/OP/jwk
+      #- OIDC_SIGNATURE_ALGORITHM=RS256
+      #- LTPA_TOKEN_EXPIRATION=120m
       
       # Proxy variables for Cloudant
       #- CLOUDANT_PROXY_URL=
       #- CLOUDANT_PROXY_USERNAME=
       #- CLOUDANT_PROXY_PASSWORD=
       
-      # REQUIRED Mounts a local directory with agent config json file onto the container
-      # Default directory specified below. This can be reconfigured
     volumes:
-      - "./config/:/config/resources/agentConfig/"
-      - "./logs/:/logs/"
-      #- "./config/registry/:/config/resources/registry/"
-      #- "./config/security/:/config/resources/security/"
+      # REQUIRED Mounts a local directory with agent config json file onto the container
+      # Also mounts a directory to access the trust store.
+      # Note that the trust store is currently mapped to the OpenID providers key store
+      - "./config/insights/:/config/resources/agentConfig/"
+      - "./logs/insights/:/logs/"
+      - "./sslconf/:/sslconf/"
+      #- "./config/insights/registry/:/config/registry/"
+
