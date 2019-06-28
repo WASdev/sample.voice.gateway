@@ -1,0 +1,23 @@
+<!--
+/* ***************************************************************** */
+/*                                                                   */
+/* Licensed Materials - Property of IBM                              */
+/*                                                                   */
+/* (C) Copyright IBM Corp. 2018, 2019. All Rights Reserved.          */
+/*                                                                   */
+/* US Government Users Restricted Rights - Use, duplication or       */
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+/*                                                                   */
+/* ***************************************************************** */
+-->
+<server>
+   <basicRegistry id="basic" realm="OpBasicRealm">
+      <!-- replace / add user -->
+      <user name="bpulito" password="{hash}ATAAAAAI7tXy93T2DDdAAAAAIEny+m0RVHlDl2o+hkRcpihcpogPTuI6QznzUMHzYmKd" />
+      <group name="${env.ROLE_NAME_ADMINISTRATOR}">
+         <!-- replace / add above user as member -->
+         <member name="admin" />
+      </group>
+   </basicRegistry>
+    
+</server>
