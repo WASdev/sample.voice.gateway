@@ -28,11 +28,9 @@ After adding the test case to the worker you can run
 curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '@path/to/worker.json' 'http://localhost:9080/voice-agent-tester/v1/worker'
 ```
 
-You'll get a 201 response back and the id of the newly created worker.
-
 ### Executing Jobs and Batch Jobs
 
-With the id of the newly created worker you will start and manage jobs which are the actual executions of the worker and contain all the data for the running/finished tests. You can start a job by running
+You'll get a 201 response back and the id of the newly created worker and with that id, you will start and manage jobs which are the actual executions of the worker and contain all the data for the running/finished tests. You can start a job by running
 
 ```
 curl -X POST "http://localhost:9080/voice-agent-tester/v1/worker/{Worker-ID}/job" -H "accept: application/json"
