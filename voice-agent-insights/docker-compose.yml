@@ -26,7 +26,7 @@ services:
       #- SERVER_REGISTRY_INCLUDE_PATH=/config/security-incl/server-security-incl.xml
       
       # Logging related variables
-      - LOG_LEVEL=fine:TCPChannel=all:SSLChannel=all:com.ibm.ws.webcontainer*=all:com.ibm.wsspi.webcontainer*=all:HTTPChannel=all
+      - LOG_LEVEL=all
       #- LOG_MAX_FILE_SIZE=100
       #- LOG_MAX_FILES=10
       
@@ -60,7 +60,7 @@ services:
       - "./logs/op/:/logs/"
       # Uncomment if you wish to expose security include to add more users
       #- "./security/:/config/security-incl/"
-      - "./config/registry/:/config/registry/"
+      #- "./config/registry/:/config/registry/"
       
   
   va.insights:
@@ -74,7 +74,7 @@ services:
     environment: 
       # Logging related variables
       #- LOG_LEVEL=fine:com.ibm.ws.security.*=fine
-      - LOG_LEVEL=fine
+      - LOG_LEVEL=all
       #- LOG_MAX_FILE_SIZE=100
       #- LOG_MAX_FILES=10
 
