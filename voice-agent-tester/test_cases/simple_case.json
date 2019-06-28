@@ -1,0 +1,47 @@
+{
+    "name": "Test Conversation",
+    "description": "Simple sample Conversation",
+    "namespace": "test",
+    "turns": [
+    {
+      "receive": {
+        "type": "substring",
+        "value": "name"
+      },
+      "send": {
+        "type": "string",
+        "value": "Yes"
+      }
+    },
+    {
+      "receive": {
+        "type": "substring",
+        "value": "conversation"
+      },
+      "send": {
+        "type": "string",
+        "value": "Yes"
+      }
+    },
+    {
+      "receive": {
+        "type": "substring",
+        "value": "following"
+      },
+      "send": {
+        "type": "string",
+        "value": "Hang up"
+      }
+    },
+    {
+      "receive": {
+        "type": "string",
+        "value": "vgwHangUp"
+      },
+      "send": {
+        "type": "string",
+        "value": ""
+      }
+    }
+  ]
+}

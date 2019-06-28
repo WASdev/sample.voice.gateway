@@ -1,0 +1,96 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agent-tester
+  labels:
+    app: tester-microservice
+    role: tester
+    tier: backend
+    group: agent-tester-microservice
+spec:
+  selector:
+    matchLabels:
+      app: tester-microservice
+      role: tester
+      tier: backend
+      group: agent-tester-microservice
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: tester-microservice
+        role: tester
+        tier: backend
+        group: agent-tester-microservice
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: tester-microservice
+        image: ibmcom/voice-agent-tester:latest
+        ports:
+        - containerPort: 9300
+        - containerPort: 9210
+        env:
+        - name: CACHE_IMPLEMENTATION # If you need to scale set to none. Otherwise remove it. Redis implementation for cache in progress
+          value: none
+        - name: REST_ADMIN_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REST_API_USERNAME
+        - name: REST_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REST_API_PASSWORD
+        - name: TESTER_WEBHOOK_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: TESTER_WEBHOOK_USERNAME
+        - name: TESTER_WEBHOOK_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: TESTER_WEBHOOK_PASSWORD
+        - name: TESTER_WEBHOOK_URI
+          value: http://agent-tester:9300/ # Could need to be changed if you change the service name for agent tester
+        - name: HTTP_PORT
+          value: '9300'
+        - name: HTTPS_PORT
+          value: '9210'
+        - name: CLOUDANT_URL
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: CLOUDANT_URL
+        - name: CLOUDANT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: CLOUDANT_USERNAME
+        - name: CLOUDANT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: CLOUDANT_PASSWORD
+        - name: CLOUDANT_DATABASE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: CLOUDANT_DATABASE_NAME
+        - name: CALLER_VOICE_GATEWAY_URI
+          value: http://outbound-call:9080/ # Could need to be changed if you change the service name for outbound calls
+        - name: CALLER_VOICE_GATEWAY_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REST_API_USERNAME
+        - name: CALLER_VOICE_GATEWAY_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secret-creds
+              key: REST_API_PASSWORD
+        - name: LOG_LEVEL
+          value: all

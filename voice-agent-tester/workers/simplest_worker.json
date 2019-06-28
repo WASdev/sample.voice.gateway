@@ -1,0 +1,14 @@
+{
+    "name":"Test Worker",
+    "iterations": 0,
+    "namespace":"test",
+    "callDefinition": {
+        "to": "sip:testee@somewhere",
+        "from": "sip:tester@somewhere"
+    },
+    "cases": [
+        {
+         "caseId": "YOUR_TEST_CASE_ID_GOES_HERE. ADD MORE JSON OBJECTS LIKE THIS TO THE CASES FOR TESTING OTHER TEST CASES"
+        }
+    ]
+}
