@@ -9,7 +9,8 @@ Table of Contents:
 	- [Converting Audio for Music On Hold Using iTunes](converting-audio-for-music-on-hold.md)
 	- [Usage of Watson STT grammars within Watson Assistant](https://bit.ly/2Fnx1kD)
 	- [Mapping logs to a Docker volume for persistent storage](https://ibm.co/2Jn4CQS)
-	- [Use optimal configuration setting to enable caching and other tuning parameters](https://ibm.co/2HFSgAP)  
+	- [Use optimal configuration setting to enable caching and other tuning parameters](https://ibm.co/2HFSgAP)
+	- [Connecting to CPqD over MRCPv2](connecting-mrcpv2-cqpd.md)
 <!--	      + Check note on GDPR/PI exclusion for cache
 	- Aspects of latency
 		+ Elaborate on Watson STT latency tracking (relation to transcripts)
