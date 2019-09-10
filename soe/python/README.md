@@ -79,21 +79,21 @@ import a new workspace. In the workspace folder in the voiceProxy project, you w
 Import this file into your workspace. This will create a new Conversation called VoiceProxy-Demo. This is the convesation
 you will be connecting to from the VoiceProxy Server.   
 
-	![Image of conversation tile](/images/Watson-Conversation-tile.png)   
+	![Image of conversation tile](./images/Watson-Conversation-tile.png)   
 	
 	Create your new conversation service. 
    
-   ![Image of conversation service ](/images/Watson-conversation-create-service.png)
+   ![Image of conversation service ](./images/Watson-conversation-create-service.png)
 	
 	From the source code under the **workspace** folder is a JSON file voiceProxy-demo.json. You need to import this file into your workspace.
 	
 	Now we need to get access to the credentials for later use. Click on view credentials
 	
-	![Image of conversation credentials ](/images/Watson-conversation-credentials.png)
+	![Image of conversation credentials ](./images/Watson-conversation-credentials.png)
 	
 	Next we need to copy the workspace_id for use later
 	
-	![Image of conversation workspace  ](/images/Watson-conversation-wks-id.png)
+	![Image of conversation workspace  ](./images/Watson-conversation-wks-id.png)
 	
    You are going to use the workspace ID above in the next step, along with the userid and password from the credentials page.   
    
@@ -133,28 +133,28 @@ import a new workspace. In the workspace folder in the voiceProxy project, you w
 Import this file into your workspace. This will create a new Conversation called VoiceProxy-Demo. This is the convesation
 you will be connecting to from the VoiceProxy Server. 
 
-	![Image of conversation tile](/images/Watson-Conversation-tile.png)
+	![Image of conversation tile](./images/Watson-Conversation-tile.png)
 	
 	Create your new conversation service. 
 	
-	![Image of conversation service ](/images/Watson-conversation-create-service.png)
+	![Image of conversation service ](./images/Watson-conversation-create-service.png)
 	
 	From the source code under the **workspace** folder is a JSON file voiceProxy-demo.json. You need to import this file into your workspace.
 
 	Now we need to get access to the credentials for later use. Click on view credentials
 	
-	![Image of conversation credentials ](/images/Watson-conversation-credentials.png)
+	![Image of conversation credentials ](./images/Watson-conversation-credentials.png)
 	
 	Next we need to copy the workspace_id for use later
 	
-	![Image of conversation workspace  ](/images/Watson-conversation-wks-id.png)
+	![Image of conversation workspace  ](./images/Watson-conversation-wks-id.png)
 	
 	
 2. Create a new Python Flask application on BlueMix. Keep track of you application and host names, you will need it later.
 
-	![Image of Bluemix](/images/python-flask-tile.png)
+	![Image of Bluemix](./images/python-flask-tile.png)
 	
-	![Image of Create Bluemix app](/images/python-flask-create-app.png)
+	![Image of Create Bluemix app](./images/python-flask-create-app.png)
 	
 3. Go to the command line where you cloned the source code from GitHub.
 Login to BlueMix from the command line, from within the voiceProxyServer directory
@@ -187,7 +187,7 @@ Login to BlueMix from the command line, from within the voiceProxyServer directo
 	BlueMix will use the configuration defined and add all the appropriate dependencies. 
 	Sometimes, the application will not start the first time. This seems to be a bug in Bluemix. I recommend
 	issuing the push command again. It seems to work the second time.
-	![command line](/images/bluemix-command-line.png)
+	![command line](./images/bluemix-command-line.png)
 
 
 5. On BlueMix, make sure the following environment variables have been added to the application. These can be checked
@@ -195,7 +195,7 @@ Login to BlueMix from the command line, from within the voiceProxyServer directo
 Then in the center of the screen there is an option for **Environment Variables**. 
 Click on the link and then add your values where appropriate and then click on the **Save** button.   
 Your screen should look like below:   
-![Image of Python add Env Vars  ](/images/python-flask-environment-vars-filled.png)   
+![Image of Python add Env Vars  ](./images/python-flask-environment-vars-filled.png)   
 
 6. Now you need to change the docker-compose.yml file from the IBM Voice Gateway. Since the default with the Voice
 Gateway is to talk directly to the Conversation Service, you need to change the following parameter:   
@@ -242,7 +242,7 @@ Once the Proxy has been deployed, you can test it by using the a built in Web Cl
 
 You should see a screen similar to the following, but without the text:   
 
-![cloudant query](/images/webclient_example.png)
+![cloudant query](./images/webclient_example.png)
 
 ### Setup of WebLogging Tool
 
@@ -259,17 +259,17 @@ The URL is on the "Services Credentials" tab in your cloudant dashboad on BlueMi
 
 3. Update your CloudantDB information by logging into cloudant and by doing the following steps:
      1. Create a new database called **soelogging**
-     ![cloudant create database](/images/cloudant-create-db.png)
+     ![cloudant create database](./images/cloudant-create-db.png)
 
      2. Create new Design Document, document view 
-     ![cloudant create view](/images/cloudant-create-view.png)
+     ![cloudant create view](./images/cloudant-create-view.png)
      
      3.  Call it **"logEntry"** and then click the "Create Document and Build Index" button
-     ![cloudant create logEntry](/images/cloudant-create-view-logentry.png)
+     ![cloudant create logEntry](./images/cloudant-create-view-logentry.png)
      
      
      4.  Now edit the logEntry document by clicking on database button and then All Documents. Your newly created view "logEntry" should be the only document in the list. Click on the upper right corner of the document "pencil icon" to edit the document.
-     ![cloudant edit logEntry](/images/cloudant-update-logentry.png) 
+     ![cloudant edit logEntry](./images/cloudant-update-logentry.png) 
 
      5. Copy the text from the bottom of this section and paste it into the document, overwriting everything except the "id" and "rev" lines. Make sure to paste right after the 'comma' at the end of the "rev" line.
 
@@ -304,18 +304,18 @@ The URL is on the "Services Credentials" tab in your cloudant dashboad on BlueMi
 ```
      
 
-![cloudant logEntry paste](/images/cloudant-logentry-paste.png)
+![cloudant logEntry paste](./images/cloudant-logentry-paste.png)
 
 Your screen should now have some new search indexes and views.
-![cloudant logEntry paste](/images/cloudant-logentry-updated.png)
+![cloudant logEntry paste](./images/cloudant-logentry-updated.png)
 
 
 4. Create new query documents and Indexes.
 	1. Now you need to create query indexes for your web queries. Click on the "Query" button. Then click the **edit** button to the right of "Queryable Indexes" label.
-	![cloudant query](/images/cloudant-query-index.png)
+	![cloudant query](./images/cloudant-query-index.png)
 
 	8. You should now see the following screen
-	![cloudant query index ](/images/cloudant-query-index-create.png)
+	![cloudant query index ](./images/cloudant-query-index-create.png)
 
 	9. Paste the following into the little editor window, overwriting the existing text. This creates an index for the sessionID attribute. Then click the create index button.
 You should now see two documents on the right side of the screen. The "special_id" and "JSON sessionID".
@@ -329,7 +329,7 @@ You should now see two documents on the right side of the screen. The "special_i
 	}
 ```
 
-![cloudant query](/images/cloudant-query-index-create-sessionid.png)
+![cloudant query](./images/cloudant-query-index-create-sessionid.png)
 Paste the following into the editor, overwriting the existing text. This now creates an index for the logtime attribute. Then click the create index button.
 
 ```JSON
@@ -340,7 +340,7 @@ Paste the following into the editor, overwriting the existing text. This now cre
     "type" : "json"
 }
 ```
-![cloudant query](/images/cloudant-query-index-create-logtime.png)
+![cloudant query](./images/cloudant-query-index-create-logtime.png)
 Paste the following into the editor, overwriting the existing text. This now creates an index for the both the logtime and sessionid attributes. Then click the create index button.
 
 ```JSON
@@ -351,9 +351,9 @@ Paste the following into the editor, overwriting the existing text. This now cre
     "type" : "json"
 }
 ```
-![cloudant query](/images/cloudant-query-index-create-logtime-sessionid.png)
+![cloudant query](./images/cloudant-query-index-create-logtime-sessionid.png)
 Finally, your screen should look like the following
-![cloudant query](/images/cloudant-query-index-create-completed.png)
+![cloudant query](./images/cloudant-query-index-create-completed.png)
 
 Your database is now set up to add new log entries and then query them to see how the conversation flows between the Watson Voice Gateway and Watson Conversation Service
 
@@ -361,9 +361,9 @@ To access the webLogging tool you can point your browser to the url of the proxy
 ***https://url-of-proxy/soeLogging***
 
 You will see a screen like the following:
-![seologging](/images/soe-weblogging.png)
+![seologging](./images/soe-weblogging.png)
 You will need a the sessionID from a call to the Watson Voice Gateway. The sessionID is used as the unique key. Once a sessionID is provide hit search. You should now a a list of conversation log enties. You can click on one of the entries to see the JSON for that point in time.
-![seologging](/images/soe-weblogging-example.png)
+![seologging](./images/soe-weblogging-example.png)
 
 Thas is is, you are fully running with logging enabled. Remember this is for debugging and not for production use. The intent is to help identify the flow of the data from the Watson Voice Gateway and Watson Conversation Service. If you run too many logs, Cloudant DB will complain because there are too many write requests per second.
 
