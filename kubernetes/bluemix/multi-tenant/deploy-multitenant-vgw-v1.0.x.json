@@ -24,6 +24,15 @@
                 "volumes": [{
                     "name": "recordings",
                     "emptyDir": {}
+                }, {
+                    "name": "tenantconfig",
+                    "secret": {
+                        "secretName": "tenantconfig",
+                        "items": [{
+                            "key": "tenantConfig.json",
+                            "path": "tenantConfig.json"
+                        }]
+                    }
                 }],
                 "hostNetwork": true,
                 "containers": [{
@@ -44,7 +53,7 @@
                         }
                     },
                     "command": ["/bin/sh", "-c"],
-                    "args": ["export SDP_ADDRESS=$(printf 'import socket \nip = socket.gethostbyname(socket.gethostname()) \nprint(ip)' > getip.py; python getip.py); exec /vgw-media-relay/bin/media-relay"],
+                    "args": ["export SDP_ADDRESS=$(hostname -I | awk '{print $2}'); exec /vgw-media-relay/bin/media-relay"],
                     "env": [{
                         "name": "ENABLE_RECORDING",
                         "value": "false"
@@ -60,37 +69,6 @@
                     }, {
                         "name": "MEDIA_RELAY_WS_PORT",
                         "value": "8080"
-                    }, {
-                        "name": "WATSON_STT_USERNAME",
-                        "value": "3b36c01c-6dfb-4cb6-9a7f-ea4fafd1b2f1"
-                    }, {
-                        "name": "WATSON_STT_PASSWORD",
-                        "valueFrom": {
-                            "secretKeyRef": {
-                                "name": "secret-creds",
-                                "key": "WATSON_STT_PASSWORD"
-                            }
-                        }
-                    }, {
-                        "name": "WATSON_STT_URL",
-                        "value": "https://stream.watsonplatform.net/speech-to-text/api"
-                    }, {
-                        "name": "WATSON_TTS_USERNAME",
-                        "value": "e48b9a83-98e2-4499-8db0-e09b2d8f2629"
-                    }, {
-                        "name": "WATSON_TTS_PASSWORD",
-                        "valueFrom": {
-                            "secretKeyRef": {
-                                "name": "secret-creds",
-                                "key": "WATSON_TTS_PASSWORD"
-                            }
-                        }
-                    }, {
-                        "name": "WATSON_TTS_VOICE",
-                        "value": "en-US_MichaelVoice"
-                    }, {
-                        "name": "WATSON_TTS_URL",
-                        "value": "https://stream.watsonplatform.net/text-to-speech/api"
                     }],
                     "resources": {},
                     "volumeMounts": [{
@@ -121,7 +99,7 @@
                         }
                     },
                     "command": ["/bin/sh", "-c"],
-                    "args": ["export SIP_HOST=$(printf 'import socket \nip = socket.gethostbyname(socket.gethostname()) \nprint(ip)' > getip.py; python getip.py); exec /opt/startup.sh"],
+                    "args": ["export SIP_HOST=$(hostname -I | awk '{print $2}'); exec /opt/startup.sh"],
                     "env": [{
                         "name": "MEDIA_RELAY_HOST",
                         "value": "localhost:8080"
@@ -129,28 +107,11 @@
                         "name": "SIP_PORT",
                         "value": "5060"
                     }, {
-                        "name": "HTTPS_PORT",
-                        "value": "9443"
+                         "name": "HTTPS_PORT",
+                         "value": "9443"
                     }, {
-                        "name": "HTTP_HOST",
-                        "value": "127.0.0.1"
-                    }, {
-                        "name": "WATSON_CONVERSATION_WORKSPACE_ID",
-                        "value": ""
-                    }, {
-                        "name": "WATSON_CONVERSATION_USERNAME",
-                        "value": ""
-                    }, {
-                        "name": "WATSON_CONVERSATION_PASSWORD",
-                        "valueFrom": {
-                            "secretKeyRef": {
-                                "name": "secret-creds",
-                                "key": "WATSON_CONVERSATION_PASSWORD"
-                            }
-                        }
-                    }, {
-                        "name": "WATSON_CONVERSATION_URL",
-                        "value": "https://gateway.watsonplatform.net/conversation/api"
+                         "name": "HTTP_HOST",
+                         "value": "127.0.0.1"
                     }, {
                         "name": "ENABLE_AUDIT_MESSAGES",
                         "value": "true"
@@ -160,11 +121,20 @@
                     }, {
                         "name": "LOG_LEVEL",
                         "value": "all"
+                    }, {
+                        "name": "MULTI_TENANT_CONFIG_FILE",
+                        "value": "/tenantconfig/tenantConfig.json"
                     }],
                     "resources": {},
+                    "volumeMounts": [{
+                        "name": "tenantconfig",
+                        "mountPath": "/tenantconfig/tenantConfig.json",
+                        "subPath": "tenantConfig.json"
+                    }],
                     "terminationMessagePath": "/dev/termination-log",
                     "imagePullPolicy": "Always"
                 }],
+
                 "restartPolicy": "Always",
                 "terminationGracePeriodSeconds": 600,
                 "dnsPolicy": "ClusterFirstWithHostNet"
