@@ -44,7 +44,7 @@
                         }
                     },
                     "command": ["/bin/sh", "-c"],
-                    "args": ["printf 'import socket \nip = socket.gethostbyname(socket.gethostname()) \nprint(ip)' > getip.py; export SDP_ADDRESS=$(python getip.py); exec /vgw-media-relay/bin/media-relay"],
+                    "args": ["export SDP_ADDRESS=$(printf 'import socket \nip = socket.gethostbyname(socket.gethostname()) \nprint(ip)' > getip.py; python getip.py); exec /vgw-media-relay/bin/media-relay"],
                     "env": [{
                         "name": "ENABLE_RECORDING",
                         "value": "false"
@@ -121,7 +121,7 @@
                         }
                     },
                     "command": ["/bin/sh", "-c"],
-                    "args": ["printf 'import socket \nip = socket.gethostbyname(socket.gethostname()) \nprint(ip)' > getip.py; export SIP_HOST=$(python getip.py); exec /opt/startup.sh"],
+                    "args": ["export SIP_HOST=$(printf 'import socket \nip = socket.gethostbyname(socket.gethostname()) \nprint(ip)' > getip.py; python getip.py); exec /opt/startup.sh"],
                     "env": [{
                         "name": "MEDIA_RELAY_HOST",
                         "value": "localhost:8080"
