@@ -64,3 +64,16 @@ To run this script you will need to do the following:
 1. Run the script like this ```./wa-curl.sh > output.txt ```
 
 **Note that this script currently supports the v1 Watson Assistant API. You can pass an API-KEY to it by setting the username to ```apikey``` and password to the actual api key value.**
+
+## TTS Curl Command Example
+
+You can use this curl command to test Watson TTS:
+
+curl -X POST -u "username":"password" \
+--header "Content-Type: application/json" \
+--header "Accept: audio/wav" \
+--data "{\"text\":\"Hello world\"}" \
+--output hello_world.wav \
+--show-error \
+--write-out 'lookup:        %{time_namelookup}\nconnect:       %{time_connect}\nappconnect:    %{time_appconnect}\npretransfer:   %{time_pretransfer}\nredirect:      %{time_redirect}\nstarttransfer: %{time_starttransfer}\ntotal:         %{time_total}\n' \
+"https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?voice=en-US_AllisonVoice"
