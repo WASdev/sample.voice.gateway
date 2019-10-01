@@ -13,7 +13,7 @@
             "bearerToken": ""
         },
         "smsProvider": {
-        "url": "https://api.twilio.com",
+            "url": "https://api.twilio.com",
             "username": "mySMSProviderUserName",
             "password": "p4ssw0rd"
         }
