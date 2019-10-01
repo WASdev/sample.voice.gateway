@@ -1,0 +1,22 @@
+{
+    "tenants": [
+      {
+        "tenantPhoneNumber": "+19191234567",
+        "description": "Sample tenant configuration for CP4D.",
+        "allowSessionCreateViaSMS": "true",
+        "smsProviderConnectTimeout": "30000",
+        "smsProvideReadTimeout": "30000",
+        "notifyOnSessionTimeout": "true",
+        "conversation": {
+            "url": "",
+            "workspaceID": "",
+            "bearerToken": ""
+        },
+        "smsProvider": {
+        "url": "https://api.twilio.com",
+            "username": "mySMSProviderUserName",
+            "password": "p4ssw0rd"
+        }
+      }
+    ]
+  }

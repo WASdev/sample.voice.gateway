@@ -1,0 +1,26 @@
+{
+	"tenants": [{
+		"tenantURI": "watson",
+		"description": "Sample tenant configuration for CP4D.",
+		"conversation": {
+			"url": "",
+			"workspaceID": "",
+			"bearerToken": ""
+		},
+		"stt": {
+			"credentials": {
+				"url": "",
+				"bearerToken": ""
+			}
+		},
+		"tts": {
+			"credentials": {
+				"url": "",
+				"bearerToken": ""
+			},
+			"config": {
+				"voice": "en-US_AllisonV3Voice"
+			}
+		}
+	}]
+}
