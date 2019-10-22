@@ -7,16 +7,16 @@ This folder contains tools you can use to debug voice gateway networking related
 This bash script will issue periodic request to Watson Assistant (default period is every 2 seconds) and will print out cases where the response time exceeds a predefined threshold (default threshold is 2 seconds). This WA request does not include input text so a new conversation-id will be generated on every request. The curl command generates all of the following:
 
 - **HTTP Response Headers** - needed to access transaction IDs
-- **JSON Response from Watson Assistant** - which includes the conversation ID 
+- **JSON Response from Watson Assistant** - which includes the conversation ID
 - **Time Elements** - which provide details about where time was spent during the transaction
 
-Note that this script first dumps all the results to a file (results.txt) and then uses awk to parse the last line of the file to get the total transaction time. 
+Note that this script first dumps all the results to a file (results.txt) and then uses awk to parse the last line of the file to get the total transaction time.
 
 Here is an example of the response that is returned from this script:
 
 ```
 time: 02/28/2019 15:47:47
-HTTP/2 200 
+HTTP/2 200
 x-backside-transport: OK OK
 content-type: application/json; charset=utf-8
 access-control-allow-origin: *
@@ -36,7 +36,7 @@ x-dp-transit-id: gateway01-380245997
 content-length: 411
 date: Thu, 28 Feb 2019 20:47:47 GMT
 
-{"intents":[],"entities":[],"input":{"text":""},"output":{"text":["Hi, my name is Watson. What can I do for you today?"],"nodes_visited":["Introduction"],"log_messages":[]},"context":{"conversation_id":"e13622f3-0816-4656-ad0f-5c187fefc5a4","system":{"initialized":true,"dialog_stack":[{"dialog_node":"Introduction"}],"dialog_turn_counter":1,"dialog_request_counter":1,"_node_output_map":{"Introduction":[0]}}}} 
+{"intents":[],"entities":[],"input":{"text":""},"output":{"text":["Hi, my name is Watson. What can I do for you today?"],"nodes_visited":["Introduction"],"log_messages":[]},"context":{"conversation_id":"e13622f3-0816-4656-ad0f-5c187fefc5a4","system":{"initialized":true,"dialog_stack":[{"dialog_node":"Introduction"}],"dialog_turn_counter":1,"dialog_request_counter":1,"_node_output_map":{"Introduction":[0]}}}}
 lookup:        0.061419
 connect:       0.121267
 appconnect:    3.288581
@@ -65,7 +65,7 @@ To run this script you will need to do the following:
 
 **Note that this script currently supports the v1 Watson Assistant API. You can pass an API-KEY to it by setting the username to ```apikey``` and password to the actual api key value.**
 
-## TTS Curl Command Example
+## Text-To-Speech Curl Command Example
 
 You can use this curl command to test Watson TTS:
 
@@ -77,3 +77,43 @@ curl -X POST -u "username":"password" \
 --show-error \
 --write-out 'lookup:        %{time_namelookup}\nconnect:       %{time_connect}\nappconnect:    %{time_appconnect}\npretransfer:   %{time_pretransfer}\nredirect:      %{time_redirect}\nstarttransfer: %{time_starttransfer}\ntotal:         %{time_total}\n' \
 "https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?voice=en-US_AllisonVoice"
+
+
+## Speech-To-Text Curl Command Example
+
+
+Use the following curl command to print timing information as well as test the connection to Watson Speech-To-Text:
+
+```
+curl -X POST -u "apikey:{apikey}" --header "Content-Type: audio/wav" --data-binary @resources/smoky-fires.wav --write-out "\ndns_lookup: %{time_namelookup}\nconnect: %{time_connect}\nappconnect: %{time_appconnect}\n pretransfer: %{time_pretransfer}\nredirect: %{time_redirect}\nstarttransfer: %{time_starttransfer}\ntotal: %{time_total}\n" \
+"https://stream.watsonplatform.net/speech-to-text/api/v1/recognize?model=en-US_NarrowbandModel"
+```
+
+**Note**: You will have to specify your `apikey` when making requests, additionally validate you are making requests to the correct service instance. For example, US South instances use the `stream.watsonplatform.net` hostname, while Washington DC instances use `gateway-wdc.watsonplatform.net`.
+
+
+Example Output:
+
+```bash
+{
+   "results": [
+      {
+         "alternatives": [
+            {
+               "confidence": 0.99,
+               "transcript": "smoky fires lack flame and heat "
+            }
+         ],
+         "final": true
+      }
+   ],
+   "result_index": 0
+}
+dns_lookup: 0.063025
+connect: 0.113092
+appconnect: 0.229476
+ pretransfer: 0.229533
+redirect: 0.000000
+starttransfer: 0.301009
+total: 2.322544
+```
