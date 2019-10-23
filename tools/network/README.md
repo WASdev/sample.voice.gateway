@@ -117,3 +117,61 @@ redirect: 0.000000
 starttransfer: 0.301009
 total: 2.322544
 ```
+## Speech-To-Text Curl Script: stt-curl.sh
+
+This bash script will issue periodic request to Watson Speech To Text (default period is every 2 seconds) and will print out cases where the response time exceeds a predefined threshold (default threshold is 2 seconds). The curl command generates all of the following:
+
+- **HTTP Response Headers** - needed to access transaction IDs
+- **JSON Response from STT** - which includes the STT ID (X-DP-Watson-Tran-ID and x-global-transaction-id)
+- **Time Elements** - which provide details about where time was spent during the transaction
+
+Note that this script first dumps all the results to a file (results.txt) and then uses awk to parse the last line of the file to get the total transaction time.
+
+Here is an example of the response that is returned from this script:
+
+```
+time: 10/23/2019 16:16:23
+HTTP/1.1 100 Continue
+X-EdgeConnect-MidMile-RTT: 18
+X-EdgeConnect-Origin-MEX-Latency: 24
+
+HTTP/1.1 200 OK
+Content-Type: application/json
+session-name: JQUNRERVMOBJJDTA-en-US_NarrowbandModel
+x-content-type-options: nosniff
+content-disposition: inline; filename="result.json"
+content-security-policy: default-src 'none'
+x-xss-protection: 1
+x-frame-options: DENY
+x-global-transaction-id: e8ed299b921a1510a2d80e9459a6ad89
+X-DP-Watson-Tran-ID: e8ed299b921a1510a2d80e9459a6ad89
+Content-Length: 254
+X-EdgeConnect-MidMile-RTT: 18
+X-EdgeConnect-Origin-MEX-Latency: 4431
+X-EdgeConnect-MidMile-RTT: 18
+X-EdgeConnect-Origin-MEX-Latency: 24
+Date: Wed, 23 Oct 2019 20:16:23 GMT
+Connection: keep-alive
+
+{
+   "results": [
+      {
+         "alternatives": [
+            {
+               "confidence": 0.99,
+               "transcript": "smoky fires lack flame and heat "
+            }
+         ],
+         "final": true
+      }
+   ],
+   "result_index": 0
+}
+dns_lookup: 0.004397
+connect: 0.044387
+appconnect: 0.829275
+pretransfer: 0.829317
+redirect: 0.000000
+starttransfer: 0.970303
+total: 5.402592
+```
