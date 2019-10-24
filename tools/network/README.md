@@ -4,11 +4,15 @@ This folder contains tools you can use to debug voice gateway networking related
 
 ## Watson Assistant Curl Script: wa-curl.sh
 
-This bash script will issue periodic request to Watson Assistant (default period is every 2 seconds) and will print out cases where the response time exceeds a predefined threshold (default threshold is 2 seconds). This WA request does not include input text so a new conversation-id will be generated on every request. The curl command generates all of the following:
+This bash script will issue periodic requests to Watson Assistant (default period is every 2 seconds) and will print out cases where the response time exceeds a predefined threshold (default threshold is 2 seconds). This WA request does not include input text so a new conversation-id will be generated on every request. The curl command generates all of the following:
 
 - **HTTP Response Headers** - needed to access transaction IDs
 - **JSON Response from Watson Assistant** - which includes the conversation ID
 - **Time Elements** - which provide details about where time was spent during the transaction
+
+You will need to make the following two changes to the script before running it:
+1. Be sure to set the username:password to match your WA service instance (note that apikey:your-apikey will also work for username password).
+1. Be sure to modify the WA service URL to match the URL associated with your service instance.
 
 Note that this script first dumps all the results to a file (results.txt) and then uses awk to parse the last line of the file to get the total transaction time.
 
@@ -119,11 +123,15 @@ total: 2.322544
 ```
 ## Speech-To-Text Curl Script: stt-curl.sh
 
-This bash script will issue periodic request to Watson Speech To Text (default period is every 2 seconds) and will print out cases where the response time exceeds a predefined threshold (default threshold is 2 seconds). The curl command generates all of the following:
+This bash script will issue periodic requests to Watson Speech To Text (default period is every 2 seconds) and will print out cases where the response time exceeds a predefined threshold (default threshold is 2 seconds). The curl command generates all of the following:
 
 - **HTTP Response Headers** - needed to access transaction IDs
 - **JSON Response from STT** - which includes the STT ID (X-DP-Watson-Tran-ID and x-global-transaction-id)
 - **Time Elements** - which provide details about where time was spent during the transaction
+
+You will need to make the following two changes to the script before running it:
+1. Be sure to set the API KEY to match your STT service instance.
+1. Be sure to modify the STT service URL to match the URL associated with your service instance.
 
 Note that this script first dumps all the results to a file (results.txt) and then uses awk to parse the last line of the file to get the total transaction time.
 
