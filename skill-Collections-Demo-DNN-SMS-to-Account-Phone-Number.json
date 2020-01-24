@@ -1,0 +1,4496 @@
+{
+  "intents": [
+    {
+      "intent": "change",
+      "examples": [
+        {
+          "text": "add a comment"
+        },
+        {
+          "text": "change the comment as"
+        },
+        {
+          "text": "make it"
+        },
+        {
+          "text": "update the comment to"
+        },
+        {
+          "text": "provide a memo as"
+        },
+        {
+          "text": "can you update the amount"
+        },
+        {
+          "text": "update memo"
+        },
+        {
+          "text": "update the"
+        },
+        {
+          "text": "can you update the memo"
+        },
+        {
+          "text": "update the memo as"
+        },
+        {
+          "text": "change the memo"
+        },
+        {
+          "text": "update the amount to"
+        },
+        {
+          "text": "change memo to"
+        },
+        {
+          "text": "change the amount"
+        },
+        {
+          "text": "add a memo as"
+        },
+        {
+          "text": "update to"
+        }
+      ]
+    },
+    {
+      "intent": "messageMe",
+      "examples": [
+        {
+          "text": "message me"
+        },
+        {
+          "text": "brief chat"
+        },
+        {
+          "text": "chat"
+        },
+        {
+          "text": "the first"
+        },
+        {
+          "text": "let's message"
+        },
+        {
+          "text": "i want to chat"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "pw_help",
+      "examples": [
+        {
+          "text": "I can't remember my pin"
+        },
+        {
+          "text": "I have no idea what my password is"
+        },
+        {
+          "text": "I am not sure what it was"
+        },
+        {
+          "text": "I can't remember my password"
+        },
+        {
+          "text": "I have forgotten my password"
+        },
+        {
+          "text": "Could you give me a hint please"
+        },
+        {
+          "text": "I forgot it"
+        }
+      ],
+      "description": "Help with the persons verification information"
+    },
+    {
+      "intent": "ready",
+      "examples": [
+        {
+          "text": "I'm ready"
+        },
+        {
+          "text": "I am ready"
+        },
+        {
+          "text": "okay ready"
+        },
+        {
+          "text": "ready"
+        }
+      ],
+      "description": "Person is ready to take action"
+    },
+    {
+      "intent": "vgwSwitchToMichael",
+      "examples": [
+        {
+          "text": "Can I talk to a man?"
+        },
+        {
+          "text": "Switch back to Michael"
+        },
+        {
+          "text": "I would prefer to speak with a man."
+        },
+        {
+          "text": "Switch to Michael"
+        },
+        {
+          "text": "Can I speak to Michael?"
+        },
+        {
+          "text": "Can I talk to Michael?"
+        },
+        {
+          "text": "I prefer to speak with a man"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "payments_full",
+      "examples": [
+        {
+          "text": "Oh right, I meant to schedule that payment the other day. Yes, I can make the payment."
+        },
+        {
+          "text": "I meant to schedule that payment the other day."
+        },
+        {
+          "text": "Yes, I can make the payment."
+        },
+        {
+          "text": "I meant to schedule that payment"
+        },
+        {
+          "text": "I intended on paying that but forgot"
+        }
+      ],
+      "description": "Words to process all of a payment"
+    },
+    {
+      "intent": "last_four",
+      "examples": [
+        {
+          "text": "sure 4590"
+        },
+        {
+          "text": "4590"
+        }
+      ],
+      "description": "4590"
+    },
+    {
+      "intent": "greetings",
+      "examples": [
+        {
+          "text": "good"
+        },
+        {
+          "text": "hi"
+        },
+        {
+          "text": "heya"
+        },
+        {
+          "text": "hey there"
+        },
+        {
+          "text": "hi how are u"
+        },
+        {
+          "text": "hi there"
+        },
+        {
+          "text": "Hola"
+        },
+        {
+          "text": "hiya"
+        },
+        {
+          "text": "Hi watson"
+        },
+        {
+          "text": "hey"
+        },
+        {
+          "text": "good day"
+        },
+        {
+          "text": "Hello Watson"
+        },
+        {
+          "text": "I am not feeling good"
+        },
+        {
+          "text": "Its not that good"
+        },
+        {
+          "text": "namaste"
+        },
+        {
+          "text": "greetings"
+        },
+        {
+          "text": "bonjour"
+        },
+        {
+          "text": "ciao"
+        },
+        {
+          "text": "yello"
+        },
+        {
+          "text": "g'day"
+        },
+        {
+          "text": "I'm feeling good thanks"
+        },
+        {
+          "text": "How are you doing"
+        },
+        {
+          "text": "Hello, how are you"
+        },
+        {
+          "text": "good how are you"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "hola como estas"
+        },
+        {
+          "text": "buenos dias"
+        },
+        {
+          "text": "good morning"
+        },
+        {
+          "text": "good evening"
+        },
+        {
+          "text": "yo"
+        },
+        {
+          "text": "aloha"
+        },
+        {
+          "text": "feeling bit low"
+        },
+        {
+          "text": "bad"
+        },
+        {
+          "text": "howdy"
+        }
+      ]
+    },
+    {
+      "intent": "yes",
+      "examples": [
+        {
+          "text": "absolutely"
+        },
+        {
+          "text": "let's go for it"
+        },
+        {
+          "text": "yes"
+        },
+        {
+          "text": "That's correct"
+        },
+        {
+          "text": "Yeah, please do."
+        },
+        {
+          "text": "I guess so."
+        },
+        {
+          "text": "no doubt about that"
+        },
+        {
+          "text": "I do"
+        },
+        {
+          "text": "let's do that"
+        },
+        {
+          "text": "let's do it"
+        },
+        {
+          "text": "yeah"
+        },
+        {
+          "text": "agreed"
+        },
+        {
+          "text": "Hi yes this is Melissa"
+        },
+        {
+          "text": "please"
+        },
+        {
+          "text": "go on then"
+        },
+        {
+          "text": "sure"
+        },
+        {
+          "text": "yah"
+        },
+        {
+          "text": "ja"
+        },
+        {
+          "text": "ok"
+        },
+        {
+          "text": "yes Watson"
+        },
+        {
+          "text": "sure Watson"
+        },
+        {
+          "text": "yes you can"
+        },
+        {
+          "text": "go right ahead"
+        },
+        {
+          "text": "you better believe it"
+        },
+        {
+          "text": "right"
+        },
+        {
+          "text": "true"
+        },
+        {
+          "text": "Hi yes"
+        },
+        {
+          "text": "yarp"
+        },
+        {
+          "text": "of course"
+        },
+        {
+          "text": "you'd better believe it"
+        },
+        {
+          "text": "you bet"
+        },
+        {
+          "text": "that's it"
+        },
+        {
+          "text": "no doubt"
+        },
+        {
+          "text": "agree"
+        },
+        {
+          "text": "absolutely agree"
+        },
+        {
+          "text": "go for it"
+        },
+        {
+          "text": "yes please"
+        },
+        {
+          "text": "go ahead"
+        },
+        {
+          "text": "obviously"
+        },
+        {
+          "text": "certainly"
+        },
+        {
+          "text": "that is true"
+        }
+      ],
+      "description": "Affirmative answers to questions"
+    },
+    {
+      "intent": "more_time",
+      "examples": [
+        {
+          "text": "wait"
+        },
+        {
+          "text": "one minute"
+        },
+        {
+          "text": "wait a minute"
+        },
+        {
+          "text": "wait a second"
+        },
+        {
+          "text": "Just a moment"
+        },
+        {
+          "text": "hold on"
+        },
+        {
+          "text": "wait a sec"
+        },
+        {
+          "text": "uh yes Just a moment"
+        },
+        {
+          "text": "wait please"
+        },
+        {
+          "text": "hang on"
+        }
+      ],
+      "description": "The person needs time to take action before responding"
+    },
+    {
+      "intent": "vgwMyPhoneNumber",
+      "examples": [
+        {
+          "text": "the number I'm on"
+        },
+        {
+          "text": "My number"
+        },
+        {
+          "text": "the number i'm using now"
+        },
+        {
+          "text": "my current number"
+        },
+        {
+          "text": "The number I'm calling from"
+        },
+        {
+          "text": "the number I'm on now"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "webex",
+      "examples": [
+        {
+          "text": "Welcome to webex"
+        },
+        {
+          "text": "Press one to be connected to your meeting"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "payment_arrangement",
+      "examples": [
+        {
+          "text": "no not now"
+        },
+        {
+          "text": "Not at this time"
+        },
+        {
+          "text": "tonight or tomorrow"
+        },
+        {
+          "text": "I'll pay later"
+        },
+        {
+          "text": "no not at this time"
+        },
+        {
+          "text": "No, not at this time. I’ll make it online tonight or tomorrow."
+        },
+        {
+          "text": "I can make it online tonight or tomorrow"
+        },
+        {
+          "text": "I can pay part of it"
+        },
+        {
+          "text": "No, not at this time. I’ll make it online tonight or tomorrow"
+        }
+      ],
+      "description": "Intents to not pay in full"
+    },
+    {
+      "intent": "vgwHangUp",
+      "examples": [
+        {
+          "text": "vgwHangUp"
+        },
+        {
+          "text": "nochat"
+        },
+        {
+          "text": "hangup"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "DTMF-one",
+      "examples": [
+        {
+          "text": "1"
+        },
+        {
+          "text": "one"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "payment_method",
+      "examples": [
+        {
+          "text": "credit card"
+        },
+        {
+          "text": "use the credit card"
+        },
+        {
+          "text": "card"
+        },
+        {
+          "text": "use the card"
+        },
+        {
+          "text": "use what I have on file"
+        },
+        {
+          "text": "use the card I have on file"
+        },
+        {
+          "text": "use the debit card"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "no",
+      "examples": [
+        {
+          "text": "nothing else"
+        },
+        {
+          "text": "bummer"
+        },
+        {
+          "text": "no way"
+        },
+        {
+          "text": "nothing today"
+        },
+        {
+          "text": "I can't make the payment"
+        },
+        {
+          "text": "nada"
+        },
+        {
+          "text": "no"
+        },
+        {
+          "text": "not right now"
+        },
+        {
+          "text": "I can't make the whole payment today"
+        },
+        {
+          "text": "nope"
+        },
+        {
+          "text": "that's not right"
+        }
+      ]
+    },
+    {
+      "intent": "partial_payment",
+      "examples": [
+        {
+          "text": "I can pay some of it"
+        },
+        {
+          "text": "I can pay part of it"
+        },
+        {
+          "text": "I can pay a little bit"
+        },
+        {
+          "text": "I can make a partial payment"
+        },
+        {
+          "text": "I can pay about half"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "cancel",
+      "examples": [
+        {
+          "text": "i do not want to proceed with that"
+        },
+        {
+          "text": "start over"
+        },
+        {
+          "text": "i want to do something else"
+        },
+        {
+          "text": "can we begin again"
+        },
+        {
+          "text": "cancel that"
+        },
+        {
+          "text": "get me out of here"
+        },
+        {
+          "text": "don't do that"
+        },
+        {
+          "text": "i want to cancel"
+        },
+        {
+          "text": "ignore that"
+        },
+        {
+          "text": "forget that"
+        },
+        {
+          "text": "ignore the previous request"
+        },
+        {
+          "text": "reset"
+        },
+        {
+          "text": "let's start again"
+        },
+        {
+          "text": "go to the start"
+        },
+        {
+          "text": "exit"
+        }
+      ]
+    },
+    {
+      "intent": "authentication",
+      "examples": [
+        {
+          "text": "auth"
+        },
+        {
+          "text": "the second"
+        },
+        {
+          "text": "authenticate"
+        },
+        {
+          "text": "the authentication"
+        },
+        {
+          "text": "authentication"
+        },
+        {
+          "text": "the code"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "vgwSMSFailed",
+      "examples": [
+        {
+          "text": "vgwSMSFailed"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "off_topic",
+      "examples": [
+        {
+          "text": "whats your favorite movie"
+        },
+        {
+          "text": "where is the poop deck on this ship"
+        },
+        {
+          "text": "yeah"
+        },
+        {
+          "text": "tell me joke"
+        },
+        {
+          "text": "tell me jokes"
+        },
+        {
+          "text": "tell me some jokes"
+        },
+        {
+          "text": "tell me your favorite color"
+        },
+        {
+          "text": "tell me your favorite foods"
+        },
+        {
+          "text": "test"
+        },
+        {
+          "text": "testing om"
+        },
+        {
+          "text": "This is awesome"
+        },
+        {
+          "text": "This is good"
+        },
+        {
+          "text": "Turn left"
+        },
+        {
+          "text": "what is my speed"
+        },
+        {
+          "text": "what is your name"
+        },
+        {
+          "text": "what kind of food do you eat"
+        },
+        {
+          "text": "What's the speed"
+        },
+        {
+          "text": "lgits"
+        },
+        {
+          "text": "lgiths"
+        },
+        {
+          "text": "know any jokes"
+        },
+        {
+          "text": "I want to talk"
+        },
+        {
+          "text": "i want to see how this demo works"
+        },
+        {
+          "text": "i want jokes"
+        },
+        {
+          "text": "it's too dark"
+        },
+        {
+          "text": "I need to shut it down"
+        },
+        {
+          "text": "i need a new wheelchair"
+        },
+        {
+          "text": "I love spicy food"
+        },
+        {
+          "text": "I love dolphins"
+        },
+        {
+          "text": "I enjoy petting cats"
+        },
+        {
+          "text": "I'd like to have dinner with you"
+        },
+        {
+          "text": "huhu"
+        },
+        {
+          "text": "how tall are you"
+        },
+        {
+          "text": "how old are you"
+        },
+        {
+          "text": "how much do you weigh"
+        },
+        {
+          "text": "how many licks does it take to get to the center of a tootsie roll"
+        },
+        {
+          "text": "how far to"
+        },
+        {
+          "text": "how far is the moon"
+        },
+        {
+          "text": "go fast"
+        },
+        {
+          "text": "funny"
+        },
+        {
+          "text": "fdsafsaHi watson"
+        },
+        {
+          "text": "do you love"
+        },
+        {
+          "text": "Do you like"
+        },
+        {
+          "text": "do you hate"
+        },
+        {
+          "text": "don't you know any jokes"
+        },
+        {
+          "text": "dfddfg"
+        },
+        {
+          "text": "deploy airbags"
+        },
+        {
+          "text": "culd"
+        },
+        {
+          "text": "shut down"
+        },
+        {
+          "text": "shutdown"
+        },
+        {
+          "text": "roll down windows"
+        },
+        {
+          "text": "repair my car"
+        },
+        {
+          "text": "Post-it notes taste terrible."
+        },
+        {
+          "text": "poop"
+        },
+        {
+          "text": "open door"
+        },
+        {
+          "text": "go slow"
+        },
+        {
+          "text": "Nuts"
+        },
+        {
+          "text": "aho"
+        },
+        {
+          "text": "cool"
+        },
+        {
+          "text": "asdasidjiwe"
+        },
+        {
+          "text": "book a flight for NY on sunday"
+        },
+        {
+          "text": "carrot"
+        },
+        {
+          "text": "make me a sandwich"
+        },
+        {
+          "text": "whats the square root of 70"
+        },
+        {
+          "text": "what's up"
+        },
+        {
+          "text": "what's your"
+        },
+        {
+          "text": "what's your favorite"
+        },
+        {
+          "text": "whats your favorite color"
+        },
+        {
+          "text": "I want to date you"
+        },
+        {
+          "text": "what's your name"
+        },
+        {
+          "text": "whats your name"
+        },
+        {
+          "text": "what time is it"
+        },
+        {
+          "text": "what types of food do you like"
+        },
+        {
+          "text": "when will it be funny?"
+        },
+        {
+          "text": "Where are we"
+        },
+        {
+          "text": "which color is best for wedding"
+        },
+        {
+          "text": "why"
+        },
+        {
+          "text": "why is the sky blue"
+        },
+        {
+          "text": "yes"
+        },
+        {
+          "text": "Yolo"
+        },
+        {
+          "text": "you are funny"
+        },
+        {
+          "text": "You're asking me too much"
+        },
+        {
+          "text": "I want to eat tacos everyday"
+        },
+        {
+          "text": "how close is"
+        },
+        {
+          "text": "cats are my favorite animal"
+        },
+        {
+          "text": "cold"
+        },
+        {
+          "text": "sup"
+        },
+        {
+          "text": "tell me a joke"
+        },
+        {
+          "text": "system error, unable to lonin"
+        },
+        {
+          "text": "hot"
+        },
+        {
+          "text": "where should I turn"
+        },
+        {
+          "text": "near"
+        },
+        {
+          "text": "nope"
+        },
+        {
+          "text": "asdasdasda"
+        },
+        {
+          "text": "how far is"
+        }
+      ]
+    },
+    {
+      "intent": "previous_transaction",
+      "examples": [
+        {
+          "text": "I would like to use the one from the previous transaction"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "capabilities",
+      "examples": [
+        {
+          "text": "tell me what things you can do"
+        },
+        {
+          "text": "How are you going to help me"
+        },
+        {
+          "text": "What can i say"
+        },
+        {
+          "text": "what do i say"
+        },
+        {
+          "text": "what else"
+        },
+        {
+          "text": "what do you know"
+        },
+        {
+          "text": "how can i provide"
+        },
+        {
+          "text": "how can you help me"
+        },
+        {
+          "text": "how do i"
+        },
+        {
+          "text": "why should i use you"
+        },
+        {
+          "text": "what are you capable of"
+        },
+        {
+          "text": "tell me what you can do"
+        },
+        {
+          "text": "I don't know"
+        },
+        {
+          "text": "what can you do"
+        },
+        {
+          "text": "help me out"
+        },
+        {
+          "text": "what things can you do"
+        },
+        {
+          "text": "what are your capabilities Watson"
+        }
+      ]
+    },
+    {
+      "intent": "pay_my_account",
+      "examples": [
+        {
+          "text": "transfer money to"
+        },
+        {
+          "text": "I forgot to make a payment"
+        },
+        {
+          "text": "transfer to"
+        },
+        {
+          "text": "I want to pay"
+        },
+        {
+          "text": "I would like to pay"
+        },
+        {
+          "text": "I need to pay"
+        },
+        {
+          "text": "send a payment of to"
+        },
+        {
+          "text": "sent to"
+        },
+        {
+          "text": "transfer funds to"
+        },
+        {
+          "text": "I want to pay on my account."
+        },
+        {
+          "text": "send money to"
+        },
+        {
+          "text": "pay my bill"
+        },
+        {
+          "text": "send"
+        },
+        {
+          "text": "make a payment"
+        },
+        {
+          "text": "sent"
+        },
+        {
+          "text": "Yeah, I want to pay my bill"
+        },
+        {
+          "text": "Yeah, I want to make a payment."
+        },
+        {
+          "text": "I need to pay now"
+        },
+        {
+          "text": "can you pay"
+        },
+        {
+          "text": "I want to pay my bill"
+        },
+        {
+          "text": "I need to make a payment"
+        }
+      ]
+    },
+    {
+      "intent": "hesitation_response",
+      "examples": [
+        {
+          "text": "I’m not sure when I will be able to"
+        },
+        {
+          "text": "I don't know when I will be able to"
+        },
+        {
+          "text": "I’m not sure"
+        }
+      ],
+      "description": "Caller is not willing to strongly commit"
+    },
+    {
+      "intent": "callMe",
+      "examples": [
+        {
+          "text": "refer to me as"
+        },
+        {
+          "text": "change my name to"
+        },
+        {
+          "text": "call me"
+        },
+        {
+          "text": "my name is"
+        },
+        {
+          "text": "can you call me"
+        }
+      ]
+    },
+    {
+      "intent": "test",
+      "examples": []
+    },
+    {
+      "intent": "half_payment",
+      "examples": [
+        {
+          "text": "Go ahead and pay half"
+        },
+        {
+          "text": "Make a half payment"
+        },
+        {
+          "text": "Make a payment for half of what I owe"
+        },
+        {
+          "text": "Pay half"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "paid_claim",
+      "examples": [
+        {
+          "text": "I thought I was paid up"
+        },
+        {
+          "text": "I thought I paid this already"
+        },
+        {
+          "text": "Am I not current on my payments already?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "verified_two",
+      "examples": [
+        {
+          "text": "7852"
+        },
+        {
+          "text": "the code is 7852"
+        },
+        {
+          "text": "My code is 7852"
+        },
+        {
+          "text": "it says 7852"
+        },
+        {
+          "text": "it reads 7852"
+        }
+      ],
+      "description": "Two Factor Verification"
+    },
+    {
+      "intent": "goodbyes",
+      "examples": [
+        {
+          "text": "see ya soon"
+        },
+        {
+          "text": "good bye"
+        },
+        {
+          "text": "goodbye"
+        },
+        {
+          "text": "laters"
+        },
+        {
+          "text": "out of time"
+        },
+        {
+          "text": "adios"
+        },
+        {
+          "text": "should be going"
+        },
+        {
+          "text": "soon"
+        },
+        {
+          "text": "so long"
+        },
+        {
+          "text": "signing out"
+        },
+        {
+          "text": "that's great"
+        },
+        {
+          "text": "should go"
+        },
+        {
+          "text": "over and out"
+        },
+        {
+          "text": "bye bye"
+        },
+        {
+          "text": "adieu"
+        },
+        {
+          "text": "ok bye"
+        },
+        {
+          "text": "bye"
+        },
+        {
+          "text": "good day"
+        },
+        {
+          "text": "signing off"
+        },
+        {
+          "text": "gtg"
+        },
+        {
+          "text": "that's all for now"
+        },
+        {
+          "text": "good night"
+        },
+        {
+          "text": "thank you"
+        },
+        {
+          "text": "i am done"
+        },
+        {
+          "text": "gotta run"
+        },
+        {
+          "text": "toodles"
+        },
+        {
+          "text": "then bye"
+        },
+        {
+          "text": "bye now"
+        },
+        {
+          "text": "cya"
+        },
+        {
+          "text": "go"
+        },
+        {
+          "text": "that will be all"
+        },
+        {
+          "text": "farewell"
+        },
+        {
+          "text": "see you"
+        },
+        {
+          "text": "that is all i had"
+        },
+        {
+          "text": "thanks watson"
+        },
+        {
+          "text": "thank you and goodbye"
+        },
+        {
+          "text": "I'm leaving"
+        },
+        {
+          "text": "later"
+        },
+        {
+          "text": "leave"
+        },
+        {
+          "text": "gotta go"
+        },
+        {
+          "text": "au revoir"
+        },
+        {
+          "text": "logging off"
+        },
+        {
+          "text": "my time is up"
+        },
+        {
+          "text": "sounds good"
+        },
+        {
+          "text": "run"
+        },
+        {
+          "text": "see ya"
+        },
+        {
+          "text": "see ya later"
+        }
+      ]
+    },
+    {
+      "intent": "vgwSMSMessage",
+      "examples": [
+        {
+          "text": "vgwSMSMessage"
+        }
+      ],
+      "description": "vgwSMSMessage"
+    },
+    {
+      "intent": "payment_schedule",
+      "examples": [
+        {
+          "text": "I'll make it online tonight or tomorrow."
+        },
+        {
+          "text": "I want to pay later"
+        },
+        {
+          "text": "How about tomorrow?"
+        },
+        {
+          "text": "I'll pay in the morning"
+        },
+        {
+          "text": "Can I pay later?"
+        },
+        {
+          "text": "No, not at this time. I'll do it tomorrow."
+        },
+        {
+          "text": "I want to pay tonight"
+        },
+        {
+          "text": "Can I pay tomorrow?"
+        },
+        {
+          "text": "How about tonight?"
+        },
+        {
+          "text": "I want to pay tomorrow"
+        },
+        {
+          "text": "I'll do it tomorrow."
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "viewTransactions",
+      "examples": [
+        {
+          "text": "what payments have been sent and received last week"
+        },
+        {
+          "text": "show me recent transactions"
+        },
+        {
+          "text": "show me payments made in the last month"
+        },
+        {
+          "text": "show me payment transactions"
+        },
+        {
+          "text": "can i see all payments"
+        },
+        {
+          "text": "list my recent payments"
+        },
+        {
+          "text": "show me the payments I have received in the past"
+        },
+        {
+          "text": "show me all payments in the past month"
+        }
+      ]
+    },
+    {
+      "intent": "reset_pw",
+      "examples": [
+        {
+          "text": "I can't remember my pin"
+        },
+        {
+          "text": "i don't remember my pin"
+        },
+        {
+          "text": "i do not have my pin"
+        },
+        {
+          "text": "i forgot my pin"
+        },
+        {
+          "text": "I forgot it"
+        },
+        {
+          "text": "I don't remember"
+        }
+      ],
+      "description": "Reset Persons Password"
+    },
+    {
+      "intent": "stay_online",
+      "examples": [
+        {
+          "text": "stay with me"
+        },
+        {
+          "text": "stay please"
+        }
+      ],
+      "description": "No call back needed for this next step"
+    },
+    {
+      "intent": "uncertain",
+      "examples": [
+        {
+          "text": "not sure"
+        },
+        {
+          "text": "don't know"
+        }
+      ]
+    },
+    {
+      "intent": "pw_reset_complete",
+      "examples": [
+        {
+          "text": "99378291"
+        },
+        {
+          "text": "the code is 99378291"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "vgwSwitchToAllison",
+      "examples": [
+        {
+          "text": "Can I speak with Allison"
+        },
+        {
+          "text": "Switch to Allison"
+        },
+        {
+          "text": "Switch to female DNN voice"
+        },
+        {
+          "text": "Switch to version one"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "vgwSwitchToLisa",
+      "examples": [
+        {
+          "text": "Switch to Lisa"
+        },
+        {
+          "text": "I want to talk to Lisa"
+        },
+        {
+          "text": "I want to talk with Lisa"
+        },
+        {
+          "text": "Is Lisa there?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "pw_reset_action",
+      "examples": [
+        {
+          "text": "please reset my pin"
+        },
+        {
+          "text": "reset the pin"
+        },
+        {
+          "text": "i would like to reset my pin"
+        },
+        {
+          "text": "I would  like to reset my pin."
+        },
+        {
+          "text": "can I reset the pin"
+        },
+        {
+          "text": "I want to reset my PIN"
+        },
+        {
+          "text": "reset my pin"
+        },
+        {
+          "text": "do a pin reset"
+        }
+      ],
+      "description": "Reset the PIN"
+    },
+    {
+      "intent": "TwoFactorSMSAuth",
+      "examples": [
+        {
+          "text": "Enabled two factor authentication"
+        },
+        {
+          "text": "Enable two factor auth with S M S"
+        },
+        {
+          "text": "Enable S M S"
+        },
+        {
+          "text": "Enable two factory authentication with S M S"
+        },
+        {
+          "text": "Enable texting"
+        },
+        {
+          "text": "Enabled two factor auth"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "balance",
+      "examples": [
+        {
+          "text": "what is my account balance"
+        },
+        {
+          "text": "list my accounts"
+        },
+        {
+          "text": "account information"
+        },
+        {
+          "text": "what is the balance on my account"
+        },
+        {
+          "text": "balance please"
+        },
+        {
+          "text": "show me accounts"
+        },
+        {
+          "text": "how much money do i have"
+        },
+        {
+          "text": "check my balance"
+        },
+        {
+          "text": "show me my balance"
+        }
+      ]
+    },
+    {
+      "intent": "PostResponseTimeout",
+      "examples": [
+        {
+          "text": "vgwPostResponseTimeout"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Call_Inquiry",
+      "examples": [
+        {
+          "text": "I don't understand why you called"
+        },
+        {
+          "text": "why are you calling me"
+        },
+        {
+          "text": "Why have you called"
+        },
+        {
+          "text": "why did you call me?"
+        },
+        {
+          "text": "I want to know why you called"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "hurry",
+      "examples": [
+        {
+          "text": "I don’t have much time to talk"
+        }
+      ],
+      "description": "Caller in a Hurry"
+    },
+    {
+      "intent": "payments_partial",
+      "examples": [
+        {
+          "text": "I cannot pay the full amount"
+        },
+        {
+          "text": "I want to pay part of my bill"
+        },
+        {
+          "text": "I want to make a partial payment"
+        },
+        {
+          "text": "I want to pay part of what I owe"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "thank",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "thank you",
+          "synonyms": [
+            "that was helpful",
+            "thanks",
+            "thank"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "category",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "fuel",
+          "synonyms": [
+            "gas"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "travel",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "fee",
+          "synonyms": [
+            "fees"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "utility",
+          "synonyms": [
+            "power",
+            "energy",
+            "electricity"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "dining",
+          "synonyms": [
+            "restaurant",
+            "lunch",
+            "eating out",
+            "eating",
+            "dinner"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "payment",
+          "synonyms": [
+            "payments"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "grocery",
+          "synonyms": []
+        }
+      ]
+    },
+    {
+      "entity": "ContactInfo",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "allPhone",
+          "patterns": [
+            "^(\\(?\\+?[0-9]*\\)?)?[0-9_\\- \\(\\)]*[#]?$"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "acknowledge",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "no",
+          "synonyms": [
+            "cancel",
+            "not",
+            "nope",
+            "negative",
+            "neah",
+            "nay",
+            "nada",
+            "na",
+            "ignore",
+            "go back",
+            "forget that",
+            "forget it"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "yes",
+          "synonyms": [
+            "yup",
+            "yep",
+            "yeah",
+            "ya",
+            "sure",
+            "roger",
+            "right",
+            "proceed",
+            "perfect",
+            "go ahead",
+            "correct",
+            "absolutely"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "FourDigitNumber",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "FourDigitNumber",
+          "patterns": [
+            "\\d{4}#?"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "SMSCode",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "code",
+          "patterns": [
+            "\\d{4}"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sendMoneyTo",
+      "values": []
+    },
+    {
+      "entity": "EightDigitNumber",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "EightDigitNumber",
+          "patterns": [
+            "\\d{8}"
+          ]
+        }
+      ],
+      "fuzzy_match": false
+    },
+    {
+      "entity": "sys-time",
+      "values": []
+    },
+    {
+      "entity": "receiveMoneyFrom",
+      "values": []
+    },
+    {
+      "entity": "type",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "credit",
+          "synonyms": [
+            "received",
+            "receive",
+            "credits",
+            "credited",
+            "credit"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "debit",
+          "synonyms": [
+            "sent",
+            "outgoing",
+            "debits",
+            "debit"
+          ]
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "SMS code verified",
+      "output": {},
+      "parent": "node_23_1539281840376",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "$smsEnabled==true && $smsCode==$smsCodeResponse",
+      "dialog_node": "node_2_1548506835744",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_8_1547744377446"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Thanks! "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_23_1539281840376",
+      "context": {
+        "authenticationComplete": true
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1539406525095"
+      },
+      "conditions": "$smsEnabled==false || $smsSessionID",
+      "dialog_node": "node_6_1548812928672",
+      "previous_sibling": "response_1_1547908936493"
+    },
+    {
+      "type": "standard",
+      "title": "Anything Else",
+      "output": {},
+      "parent": "node_23_1539281840376",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_7_1547744240138",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_11_1548853887291"
+    },
+    {
+      "type": "standard",
+      "title": "Post response timeout",
+      "output": {
+        "text": {
+          "values": [
+            "Did you ever receive the SMS message?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_23_1539281840376",
+      "metadata": {},
+      "conditions": "#PostResponseTimeout",
+      "dialog_node": "node_8_1547744377446",
+      "previous_sibling": "node_7_1548813004846"
+    },
+    {
+      "type": "standard",
+      "title": "Four digit code verified",
+      "output": {},
+      "parent": "node_23_1539281840376",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "$smsEnabled==false && @FourDigitNumber",
+      "dialog_node": "node_11_1548853887291",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_2_1548506835744"
+    },
+    {
+      "type": "standard",
+      "title": "Parse SMS Response",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_23_1539281840376",
+      "context": {
+        "smsCodeResponse": "<?input.text.extract('[\\d]+',0).trim()?>"
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_7_1548813004846"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_4_1548812561097",
+      "previous_sibling": "node_6_1548812928672"
+    },
+    {
+      "type": "frame",
+      "title": "SMS Failed",
+      "parent": "node_23_1539281840376",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1539406525095"
+      },
+      "conditions": "#vgwSMSFailed",
+      "dialog_node": "node_7_1548813004846",
+      "previous_sibling": "node_4_1548812561097"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_1_1547908936493",
+      "output": {
+        "text": {
+          "values": [
+            "Thanks! You've requested two-factor authentication so I texted you a four digit code. When you get the text, just say or enter it."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfTermKey": "#",
+              "dtmfMaxCount": "5",
+              "dtmfMinCount": "4",
+              "dtmfIgnoreSpeech": "true",
+              "dtmfPauseAfterCollection": true,
+              "dtmfInterDigitTimeoutCount": "1500"
+            }
+          },
+          {
+            "command": "vgwActSendSMS",
+            "parameters": {
+              "message": "Please say $smsCode",
+              "userPhoneNumber": "$acctPhoneNumber"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_23_1539281840376",
+      "context": {
+        "smsCode": "<?  (1000 + new java.util.Random().nextInt(8999)).toString() ?>",
+        "vgwPostResponseTimeoutCount": 15000
+      },
+      "metadata": {},
+      "conditions": "$smsEnabled==true && !$smsSessionID",
+      "dialog_node": "response_1_1547908936493"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_4_1547837660895",
+      "output": {
+        "text": {
+          "values": [
+            "No problem, take as much time as you need."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1547743705919",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_4_1547837660895"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "The numbers you gave me do not match the credit card we have on record. Please try a different credit card."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_4_1539406836446",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_5_1539407043704"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_5_1547751232754",
+      "previous_sibling": "node_5_1539407043704"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Please confirm the last four digits of the debit card number. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1539406836446",
+      "conditions": "$smsSessionID",
+      "dialog_node": "response_6_1575906422686",
+      "previous_sibling": "node_5_1548177943895"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Please confirm the last four digits of the debit card number. You may say it out loud or type it on the keypad, followed by the pound sign."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActCollectDTMF",
+          "parameters": {
+            "dtmfTermKey": "#",
+            "dtmfMaxCount": "5",
+            "dtmfMinCount": "4",
+            "dtmfIgnoreSpeech": "true",
+            "dtmfPauseAfterCollection": true,
+            "dtmfInterDigitTimeoutCount": "1500"
+          }
+        }
+      },
+      "parent": "node_4_1539406836446",
+      "metadata": {},
+      "conditions": "!$smsSessionID",
+      "dialog_node": "node_5_1548177943895",
+      "previous_sibling": "node_5_1547751232754"
+    },
+    {
+      "type": "standard",
+      "title": "Confirm debit card number",
+      "parent": "node_4_1539406836446",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#last_four || @FourDigitNumber",
+      "dialog_node": "node_5_1539407043704",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Great! Your payment has been processed. Is there anything else I can help you with?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1539407156098",
+      "conditions": "$smsSessionID",
+      "dialog_node": "response_3_1575904423886",
+      "previous_sibling": "response_5_1547852591696"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Okay.  "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1539407156098",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_13_1539229132959"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_5_1547919455644",
+      "previous_sibling": "node_4_1547919390568"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_5_1547852591696",
+      "output": {
+        "text": {
+          "values": [
+            "Great! <break/> Your payment has been processed. Is there anything else I can help you with?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1539407156098",
+      "metadata": {},
+      "conditions": "!$smsSessionID",
+      "dialog_node": "response_5_1547852591696",
+      "previous_sibling": "node_5_1547919455644"
+    },
+    {
+      "type": "standard",
+      "title": "Yes",
+      "output": {
+        "text": {
+          "values": [
+            "Ok, what can I help you with?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1539407156098",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_1_1529420141208"
+      },
+      "conditions": "#yes",
+      "dialog_node": "node_4_1547919390568"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Would you like to make that payment with the debit card you have on file or use a different form of payment."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1548177636986",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "node_2_1548177708776",
+      "previous_sibling": "node_4_1539406836446"
+    },
+    {
+      "type": "standard",
+      "title": "Confirm Credit Card",
+      "parent": "node_1_1548177636986",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_4_1539406836446",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Ok, let's try again. I'm going to send you a new SMS message now."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfCount": "4",
+              "dtmfInterDigitTimeoutCount": "2000"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_8_1547744377446",
+      "metadata": {},
+      "conditions": "anything_else",
+      "dialog_node": "node_10_1547744552134",
+      "previous_sibling": "node_9_1547744481033"
+    },
+    {
+      "type": "standard",
+      "title": "yes",
+      "output": {
+        "text": {
+          "values": [
+            "Ok, please say the code you received or enter it on your phone's key pad."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfCount": "4",
+              "dtmfInterDigitTimeoutCount": "2000"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_8_1547744377446",
+      "metadata": {},
+      "conditions": "#yes || #Bot_Control_Approve_Response",
+      "dialog_node": "node_9_1547744481033"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "That's right. What do you want to use for your new 4 digit pin?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_24_1548861772828",
+      "context": {
+        "authenticationComplete": true,
+        "vgwPostResponseTimeoutCount": 7000
+      },
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice==\"DNN-voice\"",
+      "dialog_node": "node_26_1548861772828"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Ok, well normally I would ask you what was wrong but I don't currently handle that case so I'm going to assume everything is OK and move on."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_5_1539407043704",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_6_1539407156098"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_3_1549490713556",
+      "previous_sibling": "node_6_1539407156098"
+    },
+    {
+      "type": "standard",
+      "title": "Confirmation",
+      "parent": "node_5_1539407043704",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#yes",
+      "dialog_node": "node_6_1539407156098",
+      "digress_out": "allow_all",
+      "previous_sibling": "response_2_1575904479759"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank you! To confirm I will schedule a payment of \\$600 to the Visa Debit Card ending in $debitCardNumber, for tomorrow, <? today().plusDays(1).reformatDateTime('EEEE, MMMM d yyyy') ?>. Is that correct??"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1539407043704",
+      "context": {
+        "debitCardNumber": "<?input.text.extract('[\\d]+',0).trim()?>"
+      },
+      "conditions": "$smsSessionID",
+      "dialog_node": "response_2_1575904479759",
+      "previous_sibling": "response_4_1547851789301"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_4_1547851789301",
+      "output": {
+        "text": {
+          "values": [
+            "Thank you!! <break/> To confirm I will schedule a payment of \\$600 to the Visa Debit Card ending in $debitCardNumber, for tomorrow, <? today().plusDays(1).reformatDateTime('EEEE, MMMM d yyyy') ?>... Is that correct??"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_5_1539407043704",
+      "context": {
+        "debitCardNumber": "<?input.text.extract('[\\d]+',0).trim()?>"
+      },
+      "metadata": {},
+      "conditions": "!$smsSessionID",
+      "dialog_node": "response_4_1547851789301"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Hi, I'm Michael, your virtual gateway assistant.  How can I help you today?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1529420141208",
+      "metadata": {},
+      "conditions": "$smsSessionID",
+      "dialog_node": "node_2_1549375072460",
+      "previous_sibling": "node_1_1549375049666"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "<break time=\"1000ms\"/> Hi, I'm Michael, your virtual gateway assistant.  How can I help you today?"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActSetTTSConfig",
+          "parameters": {
+            "config": {
+              "voice": "en-US_MichaelV2Voice"
+            }
+          }
+        }
+      },
+      "parent": "node_1_1529420141208",
+      "context": {
+        "smsEnabled": true,
+        "vgwPostResponseTimeoutCount": 10000
+      },
+      "metadata": {},
+      "conditions": "!$smsSessionID",
+      "dialog_node": "node_1_1549375049666"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Okay... I understand...  <break/> Would you like to schedule it for <? today().plusMonths(1).reformatDateTime('EEEE, MMMM d yyyy') ?>? <break/> If it remains unpaid past <? today().plusMonths(1).reformatDateTime('EEEE, MMMM d yyyy') ?>, your account will be assessed a 30-day late fee of \\$25..."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1547787229172",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_6_1547787936705"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_5_1547787506292",
+      "digress_out": "allow_all",
+      "previous_sibling": "response_9_1547915566953"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_9_1547915566953",
+      "output": {
+        "text": {
+          "values": [
+            "Ok. <break/> I've scheduled your payment, and you'll soon receive a confirmation text.  May I help you schedule the payment of the remaining balance of \\$300?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1547787229172",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_9_1547915566953",
+      "previous_sibling": "node_6_1547787936705"
+    },
+    {
+      "type": "standard",
+      "title": "Determine form of payment",
+      "output": {
+        "text": {
+          "values": [
+            "Thank you. Would you like to use the debit card again or a different form of payment."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1547787229172",
+      "metadata": {},
+      "conditions": "#yes || #Bot_Control_Approve_Response",
+      "dialog_node": "node_6_1547787936705"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "I've texted you an eight digit code to reset your pin. When it arrives, please say or enter the code."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfCount": "8",
+              "dtmfInterDigitTimeoutCount": "5000"
+            }
+          },
+          {
+            "command": "vgwActSendSMS",
+            "parameters": {
+              "message": "Please say $smsCode",
+              "userPhoneNumber": "$acctPhoneNumber"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_2_1539283672396",
+      "context": {
+        "smsCode": "<?  (1000000 + new java.util.Random().nextInt(89999999)).toString() ?>"
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_20_1548860682854"
+      },
+      "conditions": "$smsEnabled==true",
+      "dialog_node": "node_19_1548860365344",
+      "previous_sibling": "response_10_1547910427932"
+    },
+    {
+      "type": "standard",
+      "title": "Eight digit code verified",
+      "output": {
+        "text": {
+          "values": [
+            "That's right. What do you want to use for your new 4 digit pin?"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfCount": "4",
+              "dtmfInterDigitTimeoutCount": "5000"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_2_1539283672396",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "$smsEnabled==false || @EightDigitNumber",
+      "dialog_node": "node_3_1539653040077",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_24_1548861772828"
+    },
+    {
+      "type": "standard",
+      "title": "PostResponseTimeout",
+      "output": {
+        "text": {
+          "values": [
+            "Do you need more time?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1539283672396",
+      "metadata": {},
+      "conditions": "#PostResponseTimeout",
+      "dialog_node": "node_6_1547989497115",
+      "previous_sibling": "node_21_1548860738669"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_10_1547910427932",
+      "output": {
+        "text": {
+          "values": [
+            "I've texted you an eight digit code to reset your pin. When it arrives, please say or enter the code."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1539283672396",
+      "context": {
+        "vgwPostResponseTimeoutCount": "360000"
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_6_1547989497115"
+      },
+      "conditions": "$smsEnabled==false",
+      "dialog_node": "response_10_1547910427932",
+      "previous_sibling": "node_10_1547910877071"
+    },
+    {
+      "type": "standard",
+      "title": "SMS Failed 2",
+      "output": {
+        "text": {
+          "values": [
+            "Looks like I'm unable to send you an SMS message. Since this is just a demo I will allow you to proceed but if I were in production I would need to prevent you from going any further."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1539283672396",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1539406525095"
+      },
+      "conditions": "#vgwSMSFailed",
+      "dialog_node": "node_21_1548860738669",
+      "previous_sibling": "node_20_1548860682854"
+    },
+    {
+      "type": "standard",
+      "title": "SMS code verified 2",
+      "output": {
+        "text": {
+          "values": [
+            "That's right. What do you want to use for your new 4 digit pin?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1539283672396",
+      "context": {
+        "authenticationComplete": true,
+        "vgwPostResponseTimeoutCount": 7000
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_2_1547757977711"
+      },
+      "conditions": "$smsEnabled==true && $smsCode==$smsCodeResponse",
+      "dialog_node": "node_24_1548861772828",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_6_1547989497115"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {},
+      "parent": "node_2_1539283672396",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_10_1547910877071",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_3_1539653040077"
+    },
+    {
+      "type": "standard",
+      "title": "Parse SMS Response",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1539283672396",
+      "context": {
+        "smsCodeResponse": "<?input.text.extract('[\\d]+',0).trim()?>"
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_21_1548860738669"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_20_1548860682854"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thanks for messaging me. Goodbye."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_13_1539229132959",
+      "conditions": "$smsSessionID",
+      "dialog_node": "response_10_1575903643909",
+      "previous_sibling": "response_7_1547917340529"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_7_1547917340529",
+      "output": {
+        "text": {
+          "values": [
+            "<speak><break/> Thanks for calling. Goodbye</speak>"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActHangup"
+        }
+      },
+      "parent": "node_13_1539229132959",
+      "metadata": {},
+      "conditions": "!$smsSessionID",
+      "dialog_node": "response_7_1547917340529"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_6_1547917167898",
+      "output": {
+        "text": {
+          "values": [
+            "OK, I've set the reminder. "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_10_1547788705793",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_6_1547917167898"
+    },
+    {
+      "type": "standard",
+      "title": "Reset PIN Request",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1547671829343",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1539283594475"
+      },
+      "conditions": "#reset_pw || #pw_help",
+      "dialog_node": "node_7_1547758792982",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_23_1539281840376"
+    },
+    {
+      "type": "standard",
+      "title": "Response Timeout",
+      "output": {
+        "text": {
+          "values": [
+            "Do you need more time to respond or did you forget your pin number?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1547671829343",
+      "metadata": {},
+      "conditions": "#PostResponseTimeout",
+      "dialog_node": "node_4_1547743789505",
+      "previous_sibling": "node_3_1547743705919"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1547671829343",
+      "dialog_node": "slot_2_1547671870859",
+      "previous_sibling": "node_1_1547748661648"
+    },
+    {
+      "type": "standard",
+      "title": "Get Two-Factor Auth code via SMS",
+      "output": {},
+      "parent": "node_1_1547671829343",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@FourDigitNumber",
+      "dialog_node": "node_23_1539281840376",
+      "previous_sibling": "response_4_1547837931691"
+    },
+    {
+      "type": "standard",
+      "title": "More Time Needed",
+      "output": {
+        "text": {
+          "values": [
+            "No problem, take as much time as you need."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1547671829343",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_23_1539281840376"
+      },
+      "conditions": "#more_time",
+      "dialog_node": "node_3_1547743705919",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_7_1547758792982"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "I didn't recognize the pin you provided. Please say it again."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1547671829343",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_23_1539281840376"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_1_1547748661648",
+      "previous_sibling": "node_4_1547743789505"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_4_1547837931691",
+      "output": {
+        "text": {
+          "values": [
+            "Got it. And what is your four digit security code? "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1547671829343",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_4_1547837931691"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "You called just in time because if we did not receive a payment by the end of the month your account will be assessed a 30-day late fee of \\$25. Wouldn't you like to go ahead and schedule a payment now?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1539629680984",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_2_1547786375851"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_6_1547913241256",
+      "previous_sibling": "node_2_1547786375851"
+    },
+    {
+      "type": "standard",
+      "title": "Confirm payment type",
+      "output": {
+        "text": {
+          "values": [
+            "Would you like to make that payment with the debit card you have on file or use a different form of payment."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1539629680984",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#yes || #pay_my_account || #Bot_Control_Approve_Response",
+      "dialog_node": "node_2_1547786375851",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1547671870859",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1547671870859",
+      "previous_sibling": "handler_3_1547671870859"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_2_1547671870859",
+      "event_name": "input",
+      "dialog_node": "handler_3_1547671870859"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_3_1547917772464",
+      "output": {
+        "text": {
+          "values": [
+            "To avoid further fees we will need to get a payment scheduled for you for at least half the balance. Would you like to schedule a partial payment?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_4_1547786600148",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_3_1547917772464",
+      "previous_sibling": "node_10_1548023608143"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Ok, please call me back when you are ready to make a payment."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_4_1547786600148",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_13_1539229132959"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_10_1548023608143",
+      "previous_sibling": "node_1_1539629680984"
+    },
+    {
+      "type": "standard",
+      "title": "Partial Payment",
+      "output": {
+        "text": {
+          "values": [
+            "Okay. May I take care of scheduling the payment for you?"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_4_1547786600148",
+      "metadata": {},
+      "conditions": "#yes || #half_payment || #Bot_Control_Approve_Response",
+      "dialog_node": "node_1_1539629680984"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1547757977712",
+      "metadata": {},
+      "event_name": "focus",
+      "dialog_node": "handler_5_1547757977712",
+      "previous_sibling": "handler_4_1547757977712"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_3_1547757977712",
+      "context": {},
+      "metadata": {},
+      "event_name": "input",
+      "dialog_node": "handler_4_1547757977712"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Sorry, you have not set this option up yet. Your only option is to reset your pin. "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1539283594475",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_2_1539283672396"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_3_1547910250644",
+      "previous_sibling": "node_2_1539283672396"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_6_1547910042784",
+      "output": {
+        "text": {
+          "values": [
+            "That's okay.  There are a couple of things we can do.   Would you prefer to reset your pin, or answer a few additional questions to authenticate yourself. "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1539283594475",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_6_1547910042784",
+      "previous_sibling": "node_3_1547910250644"
+    },
+    {
+      "type": "standard",
+      "title": "Send SMS Code",
+      "parent": "node_1_1539283594475",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#pw_reset_action",
+      "dialog_node": "node_2_1539283672396"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I'm sorry, I didn't recognize your input as a phone number, can you try again?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1579809939619",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1547743299653"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "response_4_1579810232213",
+      "previous_sibling": "response_1_1579810146168"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Phone number accepted."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1579809939619",
+      "context": {
+        "acctPhoneNumber": "@ContactInfo.literal"
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "condition",
+        "dialog_node": "node_1_1547671829343"
+      },
+      "conditions": "@ContactInfo",
+      "dialog_node": "response_1_1579810146168"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "OK."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_11_1548853887291",
+      "context": {
+        "authenticationComplete": true,
+        "vgwPostResponseTimeoutCount": 7000
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1539406525095"
+      },
+      "conditions": "$makePayment",
+      "dialog_node": "node_13_1548853887293"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1570124161387",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1570124161400",
+      "previous_sibling": "handler_9_1570124161400"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_4_1570124161387",
+      "event_name": "input",
+      "dialog_node": "handler_9_1570124161400"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "It looks like you have a past due payment of \\$600. Are you able to make this payment today?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1539406525095",
+      "conditions": "$authenticationComplete && $smsSessionID",
+      "dialog_node": "response_2_1575904578713",
+      "previous_sibling": "node_14_1547746025541"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "To avoid further fees we will need to get a payment scheduled for you for at least half the balance. Would you like to schedule a partial payment?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1539406525095",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_4_1547786600148",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_1_1548177636986"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_7_1547912368575",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1539406525095",
+      "context": {
+        "makePayment": true
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1547743299653"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "response_7_1547912368575",
+      "previous_sibling": "response_2_1575904578713"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "<break/> It looks like you have a past-due payment of \\$600. Are you able to make this payment today?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1539406525095",
+      "context": {
+        "makePayment": true
+      },
+      "metadata": {},
+      "conditions": "$authenticationComplete && !$smsSessionID",
+      "dialog_node": "node_14_1547746025541",
+      "previous_sibling": "node_4_1547786600148"
+    },
+    {
+      "type": "standard",
+      "title": "Pay in Full",
+      "output": {
+        "text": {
+          "values": [
+            "Would you like to make that payment with the debit card you have on file or use a different form of payment."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1539406525095",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#payments_full || #yes || #pay_my_account",
+      "dialog_node": "node_1_1548177636986",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Sorry, I don't understand. I will schedule a payment of $300 to the Visa Debit Card ending in 4590, for tomorrow, <? today().plusDays(1).reformatDateTime('EEEE, MMMM d yyyy') ?>. Is that correct?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1547787030220",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_3_1547787229172"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_8_1547915422990",
+      "previous_sibling": "node_3_1547787229172"
+    },
+    {
+      "type": "standard",
+      "title": "Schedule Pay of Remaining Balance",
+      "output": {
+        "text": {
+          "values": [
+            "Ok. <break/> I've scheduled your payment, and you'll soon receive a confirmation text.  May I help you schedule the payment of the remaining balance of \\$300?"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActSendSMS",
+          "parameters": {
+            "message": "A payment of $300 was scheduled for tomorrow, <? today().plusDays(1).reformatDateTime('EEEE, MMMM d yyyy') ?>",
+            "userPhoneNumber": "$acctPhoneNumber"
+          }
+        }
+      },
+      "parent": "node_1_1547787030220",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#yes",
+      "dialog_node": "node_3_1547787229172",
+      "digress_out": "allow_all",
+      "previous_sibling": "response_4_1547915350523"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_4_1547915350523",
+      "output": {
+        "text": {
+          "values": [
+            "Thanks, let's review. <break/> Do you authorize a payment of \\$300 to the Visa Debit Card ending in $debitCardNumber, for tomorrow, <? today().plusDays(1).reformatDateTime('EEEE, MMMM d yyyy') ?>?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1547787030220",
+      "context": {
+        "debitCardNumber": "<?input.text.extract('[\\d]+',0).trim()?>"
+      },
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_4_1547915350523"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "I do not recognize that code. Please say or type the code I just texted you."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfCount": "8",
+              "dtmfInterDigitTimeoutCount": "5000"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_10_1547910877071",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_20_1548860682854"
+      },
+      "conditions": "$smsEnabled== true",
+      "dialog_node": "node_23_1548861369868",
+      "previous_sibling": "node_22_1548861326739"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "I do not recognize that code. Please say or type the code I just texted you."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfCount": "8",
+              "dtmfInterDigitTimeoutCount": "5000"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_10_1547910877071",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_6_1547989497115"
+      },
+      "conditions": "$smsEnabled== false",
+      "dialog_node": "node_22_1548861326739"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Hmm.  I didn't recognize that number. Please say it again or use the keypad on your phone to type it in."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActCollectDTMF",
+          "parameters": {
+            "dtmfCount": "4",
+            "dtmfPauseAfterCollection": true,
+            "dtmfInterDigitTimeoutCount": "2000"
+          }
+        }
+      },
+      "parent": "node_1_1547743299653",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_1_1547671829343"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_2_1547743541097",
+      "previous_sibling": "node_1_1547671829343"
+    },
+    {
+      "type": "standard",
+      "title": "Get PIN Number",
+      "output": {
+        "text": {
+          "values": [
+            "And what is your four digit security code? "
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActCollectDTMF",
+          "parameters": {
+            "dtmfTermKey": "#",
+            "dtmfMaxCount": "5",
+            "dtmfMinCount": "4",
+            "dtmfIgnoreSpeech": "true",
+            "dtmfPauseAfterCollection": true,
+            "dtmfInterDigitTimeoutCount": "1500"
+          }
+        }
+      },
+      "parent": "node_1_1547743299653",
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "@ContactInfo || #vgwMyPhoneNumber",
+      "dialog_node": "node_1_1547671829343",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_2_1579809939619"
+    },
+    {
+      "type": "standard",
+      "title": "Get Account Phone Number",
+      "parent": "node_1_1547743299653",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@ContactInfo",
+      "dialog_node": "node_2_1579809939619",
+      "previous_sibling": "slot_3_1579798067050"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "I can help with that.  What’s the phone number on the account?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1547743299653",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "node_2_1547818049675",
+      "previous_sibling": "node_2_1547743541097"
+    },
+    {
+      "type": "slot",
+      "parent": "node_1_1547743299653",
+      "variable": "$ContactInfo",
+      "dialog_node": "slot_3_1579798067050"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_3_1570115732370",
+      "output": {
+        "text": {
+          "values": [
+            "Looks like I'm unable to send you an SMS message. Since this is just a demo I will allow you to proceed but if I were in production I would need to prevent you from going any further."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1548813004846",
+      "dialog_node": "response_3_1570115732370",
+      "previous_sibling": "slot_4_1570124161387"
+    },
+    {
+      "type": "slot",
+      "parent": "node_7_1548813004846",
+      "dialog_node": "slot_4_1570124161387"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            ""
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1547788410285",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1548023905417"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_8_1547998731779",
+      "previous_sibling": "node_10_1547788705793"
+    },
+    {
+      "type": "standard",
+      "title": "Yes to set the reminder",
+      "output": {
+        "text": {
+          "values": [
+            "OK, I've set the reminder. "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1547788410285",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1548023905417"
+      },
+      "conditions": "#yes || #Bot_Control_Approve_Response",
+      "dialog_node": "node_10_1547788705793",
+      "digress_out": "allow_all",
+      "previous_sibling": "response_3_1547916908228"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_3_1547916908228",
+      "output": {
+        "text": {
+          "values": [
+            "OK, I've scheduled a payment of \\$300 to the Visa Debit Card ending in $debitCardNumber, for <? today().plusMonths(1).reformatDateTime('EEEE, MMMM d yyyy') ?>, with a text confirmation on the way. Would you like us to send a reminder 3 days in advance of the payment date?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_8_1547788410285",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_3_1547916908228"
+    },
+    {
+      "type": "standard",
+      "title": "Confirm debit card",
+      "output": {
+        "text": {
+          "values": [
+            "Please confirm the debit card's last four digits."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActCollectDTMF",
+          "parameters": {
+            "dtmfTermKey": "#",
+            "dtmfMaxCount": "5",
+            "dtmfMinCount": "4",
+            "dtmfIgnoreSpeech": "true",
+            "dtmfInterDigitTimeoutCount": "1500"
+          }
+        }
+      },
+      "parent": "node_2_1547786375851",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#payment_method",
+      "dialog_node": "node_3_1547786551406",
+      "digress_out": "allow_all",
+      "previous_sibling": "response_1_1547913173795"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "The system for collecting other forms of payment is currently down.  We will need to use the credit card you currently have on file."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1547786375851",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1547786551406"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_5_1547916199064",
+      "previous_sibling": "node_3_1547786551406"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_1_1547913173795",
+      "output": {
+        "text": {
+          "values": [
+            "Would you like to make that payment with the debit card you have on file or use a different form of payment."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1547786375851",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_1_1547913173795"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Great."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1548506835744",
+      "context": {
+        "authenticationComplete": true,
+        "vgwPostResponseTimeoutCount": 7000
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1539406525095"
+      },
+      "conditions": "$makePayment",
+      "dialog_node": "node_9_1548813458226"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1547757977711",
+      "metadata": {},
+      "dialog_node": "slot_3_1547757977712",
+      "previous_sibling": "node_6_1547757977712"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "OK, you've successfully changed your pin.  Please keep it somewhere safe <break time=\"1000ms\"/>"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_2_1547757977711",
+      "context": {
+        "authenticationComplete": true
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_3_1539406525095"
+      },
+      "conditions": "$makePayment",
+      "dialog_node": "node_6_1547757977712"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_10_1547915745128",
+      "output": {
+        "text": {
+          "values": [
+            "Okay... I understand...  <break/> Would you like to schedule it for <? today().plusMonths(1).reformatDateTime('EEEE, MMMM d yyyy') ?>? <break/> If it remains unpaid past <? today().plusMonths(1).reformatDateTime('EEEE, MMMM d yyyy') ?>, your account will be assessed a 30-day late fee of \\$25..."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_5_1547787506292",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_10_1547915745128"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1548779871594",
+      "context": {
+        "smsEnabled": true
+      },
+      "metadata": {},
+      "conditions": "#DTMF-one",
+      "dialog_node": "node_3_1548812285961",
+      "previous_sibling": "node_2_1548812192244"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Two factor authentication using S M S is now enabled."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_1_1548779871594",
+      "context": {
+        "smsEnabled": true
+      },
+      "metadata": {},
+      "conditions": "#TwoFactorSMSAuth",
+      "dialog_node": "node_2_1548812192244"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Your response didn't match our records. Please say the code you received via S M S again."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1547744240138",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_8_1547744377446"
+      },
+      "conditions": "$smsEnabled==false",
+      "dialog_node": "node_17_1548855158649",
+      "previous_sibling": "node_16_1548855112393"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "Your response didn't match our records. Please say the code you received via S M S again."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfCount": "4",
+              "dtmfInterDigitTimeoutCount": "2000"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_7_1547744240138",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_4_1548812561097"
+      },
+      "conditions": "$smsEnabled==true",
+      "dialog_node": "node_16_1548855112393"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "parent": "node_6_1547989497115",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_3_1539653040077"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_1_1547989582384"
+    },
+    {
+      "type": "standard",
+      "title": "Confirm Payment Details",
+      "output": {
+        "text": {
+          "values": [
+            "Thanks, let's review. <break/> Do you authorize a payment of \\$300 to the Visa Debit Card ending in $debitCardNumber, for tomorrow, <? today().plusDays(1).reformatDateTime('EEEE, MMMM d yyyy') ?>?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1547786551406",
+      "context": {
+        "debitCardNumber": "<?input.text.extract('[\\d]+',0).trim()?>"
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#last_four || @FourDigitNumber",
+      "dialog_node": "node_1_1547787030220",
+      "digress_out": "allow_all",
+      "previous_sibling": "response_5_1547915166618"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "That number does not match the debit card we have on file. Could you please read it again?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1547786551406",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_1_1547787030220"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_3_1547915207632",
+      "previous_sibling": "node_1_1547787030220"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_5_1547915166618",
+      "output": {
+        "text": {
+          "values": [
+            "Please confirm the debit card's last four digits."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1547786551406",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_5_1547915166618"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Unfortunately, we have no other way to complete this transaction right now. Would it be Okay to go ahead and use the credit card we have on file for this transaction?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1547787936705",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_8_1547788410285"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_5_1547916713994",
+      "previous_sibling": "node_8_1547788410285"
+    },
+    {
+      "type": "standard",
+      "title": "Use previous transaction method",
+      "output": {
+        "text": {
+          "values": [
+            "OK, I've scheduled a payment of \\$300 to the Visa Debit Card ending in $debitCardNumber, for <? today().plusMonths(1).reformatDateTime('EEEE, MMMM d yyyy') ?>, with a text confirmation on the way. Would you like us to send a reminder 3 days in advance of the payment date?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_6_1547787936705",
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#previous_transaction || #yes || #payment_method || #Bot_Control_Approve_Response",
+      "dialog_node": "node_8_1547788410285",
+      "digress_out": "allow_all"
+    },
+    {
+      "type": "standard",
+      "title": "What can I help with?",
+      "output": {
+        "text": {
+          "values": [
+            "Please tell me how I can help."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1548023905417",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_1_1529420141208"
+      },
+      "conditions": "#yes",
+      "dialog_node": "node_5_1548023932443",
+      "previous_sibling": "response_1_1548024200586"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "Okay"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1548023905417",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_13_1539229132959"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_2_1548024018836",
+      "previous_sibling": "node_5_1548023932443"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_1_1548024200586",
+      "output": {
+        "text": {
+          "values": [
+            "Is there anything else I can help you with today?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_3_1548023905417",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_1_1548024200586"
+    },
+    {
+      "type": "standard",
+      "title": "New PIN Received",
+      "output": {},
+      "parent": "node_3_1539653040077",
+      "metadata": {
+        "fallback": "leave",
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@FourDigitNumber",
+      "dialog_node": "node_2_1547757977711",
+      "digress_out": "allow_all",
+      "previous_sibling": "response_4_1547910517362"
+    },
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "text": {
+          "values": [
+            "That's an invalid pin number. Please say or type a 4 digit pin."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfCount": "4",
+              "dtmfInterDigitTimeoutCount": "5000"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_3_1539653040077",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_2_1547757977711"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_2_1547911988377",
+      "previous_sibling": "node_2_1547757977711"
+    },
+    {
+      "type": "response_condition",
+      "title": "response_4_1547910517362",
+      "output": {
+        "text": {
+          "values": [
+            "That's right. What do you want to use for your new 4 digit pin?"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwActionSequence": [
+          {
+            "command": "vgwActCollectDTMF",
+            "parameters": {
+              "dtmfCount": "4",
+              "dtmfInterDigitTimeoutCount": "5000"
+            }
+          },
+          {
+            "command": "vgwActPlayText"
+          }
+        ]
+      },
+      "parent": "node_3_1539653040077",
+      "disabled": true,
+      "metadata": {},
+      "conditions": "$demoVoice=='DNN-voice'",
+      "dialog_node": "response_4_1547910517362"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1547758792982",
+      "disabled": true,
+      "metadata": {},
+      "dialog_node": "node_1_1562697160018"
+    },
+    {
+      "type": "standard",
+      "title": "Yes",
+      "output": {
+        "text": {
+          "values": [
+            "Ok, take as long as you need."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_4_1547743789505",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_23_1539281840376"
+      },
+      "conditions": "#yes || #Bot_Control_Approve_Response",
+      "dialog_node": "node_5_1547743993985",
+      "previous_sibling": "node_7_1547908308010"
+    },
+    {
+      "type": "standard",
+      "title": "Anything Else",
+      "output": {
+        "text": {
+          "values": [
+            "For your account's security, I need to verify your identity using the four digit security pin. Please say the pin or type it on your phone's keypad."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_4_1547743789505",
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_23_1539281840376"
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_6_1547744064928",
+      "previous_sibling": "node_5_1547743993985"
+    },
+    {
+      "type": "standard",
+      "title": "Reset PIN",
+      "parent": "node_4_1547743789505",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1539283594475"
+      },
+      "conditions": "#reset_pw",
+      "dialog_node": "node_7_1547908308010"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "I can help with that. Please say or enter the phone number on the account."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_3_1579798067050",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1579798067061",
+      "previous_sibling": "handler_4_1579798067061"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_3_1579798067050",
+      "context": {
+        "ContactInfo": "@ContactInfo"
+      },
+      "conditions": "@ContactInfo",
+      "event_name": "input",
+      "dialog_node": "handler_4_1579798067061"
+    },
+    {
+      "type": "standard",
+      "title": "Capabilities",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I can help you make a payment, switch to Allison, Lisa or Stacy. What would you like to do?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "#capabilities",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1579790613098",
+      "previous_sibling": "node_1_1529420141208"
+    },
+    {
+      "type": "standard",
+      "title": "Any thing else I can help you with?",
+      "output": {
+        "text": {
+          "values": [
+            "Is there anything else I can help you with today?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "digress_in": "does_not_return",
+      "dialog_node": "node_3_1548023905417",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_13_1539229132959"
+    },
+    {
+      "type": "standard",
+      "title": "Enable Two-Factor Authentication with SMS",
+      "output": {},
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_1_1547743299653"
+      },
+      "conditions": "#TwoFactorSMSAuth || #DTMF-one",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1548779871594",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_1_1539283594475"
+    },
+    {
+      "type": "standard",
+      "title": "Reset Pin",
+      "output": {
+        "text": {
+          "values": [
+            "That's okay.  There are a couple of things we can do.   Would you prefer to reset your pin, or answer a few additional questions to authenticate yourself. "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "#reset_pw",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1539283594475",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_3_1539406525095"
+    },
+    {
+      "type": "standard",
+      "title": "Make payment",
+      "output": {},
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#pay_my_account",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_3_1539406525095",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_1_1547743299653"
+    },
+    {
+      "type": "standard",
+      "title": "Switch to Allison",
+      "output": {
+        "text": {
+          "values": [
+            "Hi, this is the new Watson D N N Allison voice. What can I help you with?"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActSetTTSConfig",
+          "parameters": {
+            "config": {
+              "voice": "en-US_AllisonV3Voice"
+            }
+          }
+        }
+      },
+      "metadata": {},
+      "conditions": "#vgwSwitchToAllison",
+      "dialog_node": "node_2_1549489606638",
+      "previous_sibling": "node_1_1549489312525"
+    },
+    {
+      "type": "standard",
+      "title": "Switch to Michael",
+      "output": {
+        "text": {
+          "values": [
+            "Hi, this is the new Watson D N N Michael voice. What can I help you with?"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActSetTTSConfig",
+          "parameters": {
+            "config": {
+              "voice": "en-US_MichaelV2Voice"
+            }
+          }
+        }
+      },
+      "metadata": {},
+      "conditions": "#vgwSwitchToMichael",
+      "dialog_node": "node_1_1547818779571",
+      "previous_sibling": "node_1_1548779871594"
+    },
+    {
+      "type": "standard",
+      "title": "Switch to Lisa",
+      "output": {
+        "text": {
+          "values": [
+            "Hi, this is the new Watson D N N Lisa voice. What can I help you with?"
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActSetTTSConfig",
+          "parameters": {
+            "config": {
+              "voice": "en-US_LisaV3Voice"
+            }
+          }
+        }
+      },
+      "metadata": {},
+      "conditions": "#vgwSwitchToLisa",
+      "dialog_node": "node_1_1549489312525",
+      "previous_sibling": "node_1_1547818779571"
+    },
+    {
+      "type": "standard",
+      "title": "Thanks. Goodbye",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#goodbyes || #no",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_13_1539229132959",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_2_1549489606638"
+    },
+    {
+      "type": "standard",
+      "title": "Misunderstanding",
+      "output": {
+        "text": {
+          "values": [
+            "Sorry, I'm still learning and don't know how to do that. What else can I help you with?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "metadata": {},
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "user_input",
+        "dialog_node": "node_1_1547743299653"
+      },
+      "conditions": "anything_else",
+      "digress_in": "does_not_return",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_3_1548023905417"
+    },
+    {
+      "type": "standard",
+      "title": "Authentication",
+      "output": {
+        "text": {
+          "values": [
+            "I can help with that. Please say or enter the phone number on the account."
+          ],
+          "selection_policy": "sequential"
+        },
+        "vgwAction": {
+          "command": "vgwActCollectDTMF",
+          "parameters": {
+            "dtmfTermKey": "#",
+            "dtmfMaxCount": "11",
+            "dtmfMinCount": "10",
+            "dtmfIgnoreSpeech": "true",
+            "dtmfPauseAfterCollection": true,
+            "dtmfInterDigitTimeoutCount": "1500"
+          }
+        }
+      },
+      "context": {},
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1547743299653",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_1_1579790613098"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "welcome || #greetings",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_1_1529420141208",
+      "digress_out": "allow_all"
+    }
+  ],
+  "counterexamples": [
+    {
+      "text": "2"
+    },
+    {
+      "text": "hello"
+    },
+    {
+      "text": "one nine one nine"
+    }
+  ],
+  "system_settings": {
+    "tooling": {
+      "store_generic_responses": true
+    }
+  },
+  "learning_opt_out": false,
+  "name": "Collections-Demo-DNN-SMS to Account Phone Number",
+  "language": "en",
+  "description": "This conversation will support sending and receiving  SMS messages during the voice session. The caller will choose the demo."
+}
