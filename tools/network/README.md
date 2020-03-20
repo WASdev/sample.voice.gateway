@@ -72,15 +72,59 @@ To run this script you will need to do the following:
 ## Text-To-Speech Curl Command Example
 
 You can use this curl command to test Watson TTS:
+> curl -X POST -u "username":"password" \
+> --header "Content-Type: application/json" \
+> --header "Accept: audio/wav" \
+> --data "{\"text\":\"Hello world\"}" \
+> --output hello_world.wav \
+> --show-error \
+> --write-out 'lookup:        %{time_namelookup}\nconnect:       %{time_connect}\nappconnect:    %{time_appconnect}\npretransfer:   %{time_pretransfer}\nredirect:      %{time_redirect}\nstarttransfer: %{time_starttransfer}\ntotal:         %{time_total}\n' \
+> "https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?voice=en-US_AllisonVoice"
 
-curl -X POST -u "username":"password" \
---header "Content-Type: application/json" \
---header "Accept: audio/wav" \
---data "{\"text\":\"Hello world\"}" \
---output hello_world.wav \
---show-error \
---write-out 'lookup:        %{time_namelookup}\nconnect:       %{time_connect}\nappconnect:    %{time_appconnect}\npretransfer:   %{time_pretransfer}\nredirect:      %{time_redirect}\nstarttransfer: %{time_starttransfer}\ntotal:         %{time_total}\n' \
-"https://stream.watsonplatform.net/text-to-speech/api/v1/synthesize?voice=en-US_AllisonVoice"
+
+## Text-To-Speech Curl Script: [tts-curl.sh](./tts-curl.sh)
+
+This bash script will issue periodic requests to Watson Text To Speech (default period is every 10 seconds) and will print out cases where the response time exceeds a predefined threshold (default threshold is 4 seconds). The curl command generates all of the following:
+
+- **HTTP Response Headers** - needed to access transaction IDs
+- **JSON Response from STT** - which includes the TTS ID (X-DP-Watson-Tran-ID and x-global-transaction-id)
+- **Time Elements** - which provide details about where time was spent during the transaction
+
+You will need to make the following two changes to the script before running it:
+1. Be sure to set the API KEY to match your TTS service instance.
+1. Be sure to modify the TTS service URL to match the URL associated with your service instance.
+
+Note that this script first dumps all the results to a file (results.txt) and then uses awk to parse the last line of the file to get the total transaction time. It also dumps the headers to a headers.txt file
+
+Here is an example of the response that is returned from this script:
+
+```
+time: 03/10/2020 16:30:24
+HTTP/1.1 200 OK
+date: Tue, 10 Mar 2020 20:30:25 GMT
+content-type: audio/wav
+transfer-encoding: chunked
+via: 1.1 172.30.0.19,  1.1 97b5a3d, 1.1 78d1358, HTTP/1.1 78d1358
+session-name: HONMHRJWQZQMGMKD-en-US_AllisonVoice
+x-content-type-options: nosniff
+content-disposition: inline; filename="result.wav"
+content-security-policy: default-src 'self'
+x-xss-protection: 1
+x-frame-options: DENY
+strict-transport-security: max-age=31536000; includeSubDomains;
+x-global-transaction-id: e8ed299b921a1510a2d80e9459a6ad89
+x-dp-watson-tran-id: e8ed299b921a1510a2d80e9459a6ad89
+
+
+dns_lookup: 0.004
+connect: 0.056
+appconnect: 0.279
+pretransfer: 0.280
+redirect: 0.000
+starttransfer: 0.653
+total: 0.705
+```
+
 
 
 ## Speech-To-Text Curl Command Example
