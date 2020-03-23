@@ -14,21 +14,23 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1');
+const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
 const SpeechToTextEngine = require('./SpeechToTextEngine');
+const { BasicAuthenticator, IamAuthenticator } = require('ibm-watson/auth');
 
 const Config = require('config');
+const CamelCase = require('camelcase');
 
 const LOG_LEVEL = Config.get('LogLevel');
 const logger = require('pino')({ level: LOG_LEVEL, name: 'WatsonSpeechToTextEngine' });
 
 const WatsonSpeechToTextCredentials = Config.get('WatsonSpeechToText.credentials');
-const { username } = WatsonSpeechToTextCredentials;
-const { password } = WatsonSpeechToTextCredentials;
+const { username, password } = WatsonSpeechToTextCredentials;
+const basicAuthenticator = new BasicAuthenticator({ username, password });
 
 const speechToText = new SpeechToTextV1({
-  username,
-  password,
+  authenticator: basicAuthenticator,
+  url: 'https://stream.watsonplatform.net/speech-to-text/api',
 });
 
 class WatsonSpeechToTextEngine extends SpeechToTextEngine {
@@ -43,7 +45,18 @@ class WatsonSpeechToTextEngine extends SpeechToTextEngine {
   constructor(config = {}) {
     super();
 
-    const params = Object.assign(config, { objectMode: true });
+    /* eslint-disable no-param-reassign */
+    // Convert to camelCase to fit SDK options
+
+    const camelCaseParams = Object.keys(config).reduce((params, key) => {
+      // eslint-disable-next-line
+      console.log(Object.entries(config));
+      params[CamelCase(key)] = config[key];
+      return params;
+    }, {});
+    /* eslint-enable no-param-reassign */
+
+    const params = Object.assign(camelCaseParams, { objectMode: true });
     logger.debug('sending recognize request');
 
     // Watson Node-SDK supports NodeJS streams, its open source you can
@@ -51,8 +64,10 @@ class WatsonSpeechToTextEngine extends SpeechToTextEngine {
     // As a result, we can return recognize stream as our stream for the adapter
     // The idea is your implementation must emit 'data' events that are formatted as Watson results
     // See the WatsonSpeechToText API https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/#recognize_sessionless_nonmp12
-    this.recognizeStream = speechToText.createRecognizeStream(params);
-    this.recognizeStream.initialize();
+    this.recognizeStream = speechToText.recognizeUsingWebSocket(params);
+
+    // Initializes the stream on IBM Node SDK
+    this.recognizeStream.write(Buffer.alloc(1));
     this.recognizeStream.destroy = () => {
       this.recognizeStream.stop();
     };
