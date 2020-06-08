@@ -16,9 +16,9 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 1) Create a secret for the Watson service APIKEYs using the following command (make sure to use your own APIKEY):
    ```bash
    kubectl create secret generic secret-creds \
-   --from-literal=WATSON_STT_APIKEY='aaaBBBcc2hskx44mdcdd_Ind3' \
-   --from-literal=WATSON_TTS_APIKEY='aaaBBBcc2hskx44mdcdd_Ind3' \
-   --from-literal=WATSON_CONVERSATION_APIKEY='aaaBBBcc2hskx44mdcdd_Ind3'
+   --from-literal=WATSON_STT_APIKEY='yourAPIKEY' \
+   --from-literal=WATSON_TTS_APIKEY='yourAPIKEY' \
+   --from-literal=WATSON_CONVERSATION_APIKEY='yourAPIKEY'
    ```
 
 1) If you want to enable recording (Optional): 

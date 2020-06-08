@@ -63,7 +63,7 @@ You can specify it through the [Advanced JSON Configuration](https://www.ibm.com
       "credentials": {
         "url": "https://stream.watsonplatform.net/speech-to-text/api",
         "username": "9h7f54cb-f28f-4a64-91e1-a0657e1dd3f4",
-        "password": "IAB5jfxls0Zt"
+        "password": "password"
       },
       "config": {
         "model": "en-US_NarrowbandModel",
