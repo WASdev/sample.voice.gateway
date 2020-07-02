@@ -3,12 +3,15 @@ Running the IBM Voice Gateway in a Kubernetes environment requires special consi
 
 In Kubernetes terminology, a single voice gateway instance equates to a single Pod which contains both a SIP Orchestrator container and a Media Relay container. Only one POD should be deployed per node and the POD should be deploy with `hostNetwork` set to true. This will ensure that the SIP and media ports would be opened on the host VM and visible by the SIP Load Balancer.  
 
-## Script defaults:
+## Script details:
 
-* Enforces one POD per node. If replicas (PODs > #nodes, the extra replica to be scheduled will remain in a waiting state)
+* The script deploys one POD per node. If #replicas > #nodes, the extra replicas to be scheduled will remain in a waiting state
 * Exposes SIP and media relay ports on the associated VM by setting `hostNetwork` to true
 * Auto restart of any failed containers
-* You may replace  `kubectl`  in commands with `oc` for an Openshift cluster
+* It is recommended to use `oc` in place of `kubectl` for an Openshift cluster
+* Increase `replica` if you have multiple nodes available
+* To make the Voice Gateway pods to deploy on nodes of your choosing refer here: [Assigning Pods to Nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)
+* You can also change image tags from `latest` to the any specific version you want
 
 # Deploying Voice Gateway in single-tenant mode:
 
