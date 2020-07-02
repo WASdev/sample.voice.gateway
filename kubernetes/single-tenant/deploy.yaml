@@ -6,7 +6,7 @@ spec:
   selector:
     matchLabels:
       app: vgw
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -28,16 +28,6 @@ spec:
             exec:
               command:
               - "/opt/quiesce.sh"
-        readinessProbe:
-          exec:
-            command:
-            - probe.sh
-            - readiness
-        livenessProbe:
-          exec:
-            command:
-            - probe.sh
-            - liveness
         env:
         - name: SDP_ADDRESS
           valueFrom:
@@ -115,6 +105,16 @@ spec:
             exec:
               command:
               - "/opt/quiesce.sh"
+        readinessProbe:
+          exec:
+            command:
+            - probe.sh
+            - readiness
+        livenessProbe:
+          exec:
+            command:
+            - probe.sh
+            - liveness
         env:
         - name: SIP_HOST
           valueFrom:
@@ -161,8 +161,10 @@ spec:
         #   mountPath: "/sslConf/trustStoreFile"
         #   subPath: "trustStoreFile"  
 
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 600
 
-# Volume configuration
+      # Volume configuration
       volumes:
       # - name: recordings
       #   persistentVolumeClaim:
@@ -197,6 +199,4 @@ spec:
       #     - key: "clientCaCertFile"
       #       path: "clientCaCertFile"
 
-      restartPolicy: Always
-      terminationGracePeriodSeconds: 600
       

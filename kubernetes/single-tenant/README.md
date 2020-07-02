@@ -12,7 +12,6 @@ In Kubernetes terminology, a single voice gateway instance equates to a single P
 
 # Deploying Voice Gateway in single-tenant mode:
 
-
 ## Prerequisites
 
 ### Openshift specific
