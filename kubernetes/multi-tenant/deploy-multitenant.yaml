@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      service: vgw
+      app: vgw
   replicas: 1
   template:
     metadata:
