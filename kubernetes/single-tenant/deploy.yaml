@@ -50,8 +50,6 @@ spec:
               key: WATSON_STT_APIKEY
         - name: WATSON_STT_URL
           value: https://stream.watsonplatform.net/speech-to-text/api
-        - name: WATSON_STT_TOKEN_SERVICE_PROVIDER_URL
-          value: https://iam.bluemix.net/identity/token
         - name: WATSON_TTS_APIKEY
           valueFrom:
             secretKeyRef:
@@ -60,10 +58,7 @@ spec:
         - name: WATSON_TTS_VOICE
           value: en-US_MichaelVoice
         - name: WATSON_TTS_URL
-          value: https://stream.watsonplatform.net/text-to-speech/api
-        - name: WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL
-          value: https://iam.bluemix.net/identity/token
-          
+          value: https://stream.watsonplatform.net/text-to-speech/api          
         # - name: SSL_CLIENT_CA_CERTIFICATE_FILE
         #   value: "/sslConf/clientCaCertFile"
         
@@ -137,8 +132,6 @@ spec:
             secretKeyRef:
               name: secret-creds
               key: WATSON_CONVERSATION_APIKEY
-        - name: WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL
-          value: https://iam.bluemix.net/identity/token
         - name: ENABLE_AUDIT_MESSAGES
           value: 'true'
         - name: ENABLE_TRANSCRIPTION_AUDIT_MESSAGES

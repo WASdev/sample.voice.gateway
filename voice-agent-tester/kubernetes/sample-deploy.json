@@ -81,10 +81,6 @@
 								"value": "8080"
 							},
 							{
-								"name": "WATSON_STT_TOKEN_SERVICE_PROVIDER_URL",
-								"value": "https://iam.bluemix.net/identity/token"
-							},
-							{
 								"name": "WATSON_STT_APIKEY",
 								"valueFrom": {
 									"secretKeyRef": {
@@ -96,10 +92,6 @@
 							{
 								"name": "WATSON_STT_URL",
 								"value": "https://gateway-wdc.watsonplatform.net/speech-to-text/api"
-							},
-							{
-								"name": "WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL",
-								"value": "https://iam.bluemix.net/identity/token"
 							},
 							{
 								"name": "WATSON_TTS_APIKEY",
