@@ -18,4 +18,3 @@ err=$?
 
 /src/handle-call-exit.sh $err
 
-tail -f /dev/null
