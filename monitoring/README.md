@@ -10,7 +10,7 @@ docker build -t voice-call-monitor .
 
 Run the image:
 ```
-docker run -it --net=host -e SBC_ADDR=10.10.10.10:5060 -e TENANT_NUMBER=18001112222 voice-call-monitor:latest
+docker run -it -e SBC_ADDR=10.10.10.10:5060 -e TENANT_NUMBER=18001112222 voice-call-monitor:latest
 ```
 
 
