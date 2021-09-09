@@ -22,7 +22,7 @@
           "password": ""
         },
         "config": {
-          "voice": ""
+          "voice": "en-US_AllisonV3Voice"
        }
       }
     },
@@ -49,7 +49,7 @@
           "password": ""
         },
         "config": {
-          "voice": ""
+          "voice": "en-US_AllisonV3Voice"
        }
       }
     }
