@@ -19,7 +19,7 @@
           "bearerToken": ""
         },
         "config": {
-          "voice": ""
+          "voice": "en-US_AllisonV3Voice"
        }
       }
     },
@@ -43,7 +43,7 @@
           "bearerToken": ""
         },
         "config": {
-          "voice": ""
+          "voice": "en-US_AllisonV3Voice"
        }
       }
     }
