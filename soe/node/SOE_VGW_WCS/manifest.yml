@@ -12,4 +12,13 @@ applications:
     receiver_email_address: yourstruly@gmail.com
     sender_email_address: abc@gmail.com
     sender_email_password: xyz123
-    
+    USING_IAM : true
+    WATSON_CONVERSATION_APIKEY: <Your API Key>
+    WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL: https://iam.bluemix.net/identity/token
+    WATSON_WORKSPACE_ID: <YOUR WATSON ASSISTANT WORKSPACE ID>
+    WATSON_ASSISTANT_URL: <Watson assistant URL based on hosting location, Eg Dallas has https://gateway.watsonplatform.net/assistant/api>
+    WATSON_ASSITANT_RELEASE_VERSION: <version of whatson assitant you are trying to use.>
+
+
+
+

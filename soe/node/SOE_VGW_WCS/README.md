@@ -26,6 +26,26 @@ This application requires one service instance of IBM Voice Gateway.
 IBM Voice Gateway in turn requires one Watson Assistant (former Watson Conversation), one Watson Speech To Text, and one Watson Text To Speech Service instance.
 Combined, the above four services has to be running to demonstrate/run this application.
 
+
+## Authentication Mechanism
+
+This application is capable of validating user by IBM IAM and the classic mechanism of using userName and password. 
+Manifest.yml guides user to choose the user identifcation mechanism.
+Set "USING_IAM: true" for using IAM way of Authentication. Set the variable to false for using userName and password
+
+USING_IAM: true (Set following variables)
+
+1. WATSON_CONVERSATION_APIKEY
+2. WATSON_WORKSPACE_ID
+3. WATSON_ASSISTANT_URL
+4. WATSON_ASSITANT_RELEASE_VERSION
+
+USING_IAM: false (Set following variables) 
+
+1. wcs_username 
+2. wcs_password
+3. wcs_workspace
+
 ## Parameters
 
 Please set the following parameters in the manifest.yml file.
@@ -37,6 +57,11 @@ Please set the following parameters in the manifest.yml file.
 5) receiver_email_address: Some email address, comma separated multiple email addresses permitted
 6) sender_email_address: Some email address, only one permitted
 7) sender_email_password: Password for the sender email address
+8) USING_IAM : This Environment variable identifies if IBM IAM us used. 
+9) WATSON_CONVERSATION_APIKEY: Watson Assistant API key. 
+10) WATSON_WORKSPACE_ID: Watson Assitant workspace ID
+11) WATSON_ASSISTANT_URL: Watson Assistant URL based on hosting location, Eg Dallas has https://gateway.watsonplatform.net/assistant/api>
+12) WATSON_ASSITANT_RELEASE_VERSION: Typically the date of release of Watson Assistant which you are trying to use. 
 
 These parameters would get uploaded as environment variables for the bluemix application.
 The parameters can also be modified at the runtime from the environment variables configuration page of the bluemix application.
