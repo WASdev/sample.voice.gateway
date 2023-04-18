@@ -24,9 +24,9 @@ Within this repository you will find the following directories:
 The voice gateway is made up of two separate Docker images that can be pulled using the following command:
 
 ```
- docker pull ibmcom/voice-gateway-so:latest
+ docker pull icr.io/voice-gateway/sip-orchestrator:latest
 
- docker pull ibmcom/voice-gateway-mr:latest
+ docker pull icr.io/voice-gateway/media-relay:latest
 ```
   
 Read more about these images here:

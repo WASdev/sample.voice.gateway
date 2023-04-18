@@ -81,7 +81,7 @@
                 "containers": [
                     {
                         "name": "vgw-media-relay",
-                        "image": "ibmcom/voice-gateway-mr:latest",
+                        "image": "icr.io/voice-gateway/media-relay:latest",
                         "ports": [
                             {
                                 "containerPort": 8080,
@@ -177,7 +177,7 @@
                     },
                     {
                         "name": "vgw-sip-orchestrator",
-                        "image": "ibmcom/voice-gateway-so:latest",
+                        "image": "icr.io/voice-gateway/sip-orchestrator:latest",
                         "ports": [
                             {
                                 "containerPort": 5060,

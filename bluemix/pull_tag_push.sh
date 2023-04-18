@@ -9,8 +9,8 @@ SO_V="latest"
 MR_V="latest"
 
 #DockerHub repositories for original images
-DOCKER_HUB_SO_REPO=ibmcom/voice-gateway-so
-DOCKER_HUB_MR_REPO=ibmcom/voice-gateway-mr
+DOCKER_HUB_SO_REPO=icr.io/voice-gateway/sip-orchestrator
+DOCKER_HUB_MR_REPO=icr.io/voice-gateway/media-relay
 
 function usage() {
   cat <<EOF

@@ -31,7 +31,7 @@
 				"containers": [
 					{
 						"name": "vgw-media-relay",
-						"image": "ibmcom/voice-gateway-mr:latest",
+						"image": "icr.io/voice-gateway/media-relay:latest",
 						"ports": [
 							{
 								"containerPort": 8080,
@@ -123,7 +123,7 @@
 					},
 					{
 						"name": "tester-sip-orchestrator",
-						"image": "ibmcom/voice-gateway-so:latest",
+						"image": "icr.io/voice-gateway/sip-orchestrator:latest",
 						"ports": [
 							{
 								"containerPort": 5060,
@@ -224,7 +224,7 @@
 					},
 					{
 						"name": "tester-microservice",
-						"image": "ibmcom/voice-agent-tester:latest",
+						"image": "icr.io/voice-gateway/agent-tester:latest",
 						"ports": [
 							{
 								"containerPort": 9300,

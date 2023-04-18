@@ -1,7 +1,7 @@
 version: '2'
 services:
   sms.gateway:
-    image: ibmcom/voice-gateway-sms:latest
+    image: icr.io/voice-gateway/sms-gateway:latest
 
     container_name: vgw-sms-gateway
     ports:
