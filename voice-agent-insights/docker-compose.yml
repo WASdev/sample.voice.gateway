@@ -10,7 +10,7 @@ services:
 #
   va.op:
     container_name: va-openid-provider
-    image: ibmcom/voice-agent-oidc-provider:latest
+    image: icr.io/voice-gateway/agent-oidc-provider:latest
     
     ports:
       - "9444:9444"
@@ -65,7 +65,7 @@ services:
   
   va.insights:
     container_name: va-insights
-    image: ibmcom/voice-agent-insights:latest
+    image: icr.io/voice-gateway/agent-insights:latest
     
     ports:
       - "9080:9080"

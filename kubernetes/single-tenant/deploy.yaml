@@ -17,7 +17,7 @@ spec:
       imagePullSecrets: []
       containers:
       - name: vgw-media-relay
-        image: ibmcom/voice-gateway-mr:latest
+        image: icr.io/voice-gateway/media-relay:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
@@ -86,7 +86,7 @@ spec:
         #   subPath: "clientPkcs12File"
         
       - name: vgw-sip-orchestrator
-        image: ibmcom/voice-gateway-so:latest
+        image: icr.io/voice-gateway/sip-orchestrator:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5060

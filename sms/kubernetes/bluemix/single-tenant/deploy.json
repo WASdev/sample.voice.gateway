@@ -29,7 +29,7 @@
                 "containers": [
                     {
                         "name": "vgw-sms-gateway",
-                        "image": "ibmcom/voice-gateway-sms:latest",
+                        "image": "icr.io/voice-gateway/sms-gateway:latest",
                         "imagePullPolicy": "Always",
                         "ports": [
                             {

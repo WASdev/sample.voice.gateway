@@ -1,7 +1,7 @@
 version: '2'
 services:
   sip.orchestrator:
-    image: ibmcom/voice-gateway-so:latest
+    image: icr.io/voice-gateway/sip-orchestrator:latest
     container_name: voice-gateway-so
     ports:
       - "5060:5060"
@@ -22,7 +22,7 @@ services:
       - LOG_LEVEL=finest
 
   media.relay:
-    image: ibmcom/voice-gateway-mr:latest
+    image: icr.io/voice-gateway/media-relay:latest
     container_name: voice-gateway-mr
     ports:
       - "16384-16394:16384-16394/udp"
@@ -48,7 +48,7 @@ services:
 
   # Voice Gateway STT Adapter
   stt.adapter:
-    image: ibmcom/voice-gateway-stt-adapter:latest
+    image: icr.io/voice-gateway/stt-adapter:latest
     container_name: voice-gateway-stt-adapter
     ports:
       - "4000:4000"
