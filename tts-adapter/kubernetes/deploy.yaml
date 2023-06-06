@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: tts-adapter
-        image: ibmcom/voice-gateway-tts-adapter:beta.latest
+        image: icr.io/voice-gateway/tts-adapter:beta.latest
         ports:
         - containerPort: 4500
           protocol: TCP

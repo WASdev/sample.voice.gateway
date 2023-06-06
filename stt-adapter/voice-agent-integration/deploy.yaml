@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: stt-adapter
-        image: ibmcom/voice-gateway-stt-adapter:latest
+        image: icr.io/voice-gateway/stt-adapter:latest
         ports:
         - containerPort: 4000
           protocol: TCP
