@@ -10,7 +10,7 @@ services:
 #
   va.op:
     container_name: va-openid-provider
-    image: ibmcom/voice-agent-oidc-provider:latest
+    image: icr.io/voice-gateway/agent-oidc-provider:latest
     
     ports:
       - "9444:9444"
@@ -20,7 +20,7 @@ services:
       # Uncomment and specify your own username and password to override the default
       # Do not add whitespace or quotes around the username (admin) or hashed password (password)
       - BASIC_REGISTRY_USERNAME=admin
-      - BASIC_REGISTRY_PASSWORD=ATAAAAAI7tXy93T2DDdAAAAAIEny+m0RVHlDl2o+hkRcpihcpogPTuI6QznzUMHzYmKd
+      - BASIC_REGISTRY_PASSWORD=password
       
       # Variable required to replace existing basic auth configuration
       #- SERVER_REGISTRY_INCLUDE_PATH=/config/security-incl/server-security-incl.xml
@@ -65,7 +65,7 @@ services:
   
   va.insights:
     container_name: va-insights
-    image: ibmcom/voice-agent-insights:latest
+    image: icr.io/voice-gateway/agent-insights:latest
     
     ports:
       - "9080:9080"

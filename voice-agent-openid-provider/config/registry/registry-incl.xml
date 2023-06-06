@@ -13,7 +13,7 @@
 <server>
    <basicRegistry id="basic" realm="OpBasicRealm">
       <!-- replace / add user -->
-      <user name="bpulito" password="{hash}ATAAAAAI7tXy93T2DDdAAAAAIEny+m0RVHlDl2o+hkRcpihcpogPTuI6QznzUMHzYmKd" />
+      <user name="username" password="{hash} hashed_password" />
       <group name="${env.ROLE_NAME_ADMINISTRATOR}">
          <!-- replace / add above user as member -->
          <member name="admin" />

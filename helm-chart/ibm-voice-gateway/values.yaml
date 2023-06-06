@@ -12,10 +12,10 @@ replicaCount: 1
 
 image:
     sipOrchestrator:
-        image: "ibmcom/voice-gateway-so"
+        image: "icr.io/voice-gateway/sip-orchestrator"
         containerName: "vgw-sip-orchestrator"
     mediaRelay:
-        image: "ibmcom/voice-gateway-mr"
+        image: "icr.io/voice-gateway/media-relay"
         containerName: "vgw-media-relay"
     tag: "latest"
     pullPolicy: "Always"

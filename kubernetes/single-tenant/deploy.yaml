@@ -1,57 +1,24 @@
+apiVersion: apps/v1
 kind: Deployment
-apiVersion: extensions/v1beta1
 metadata:
   name: vgw
-  labels:
-    service: vgw
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      service: vgw
+      app: vgw
+  replicas: 1
   template:
     metadata:
       labels:
-        service: vgw
+        app: vgw
     spec:
-      volumes:
-#      - name: recordings
-#        persistentVolumeClaim:
-#          claimName: recordings
-#
-#      - name: unimrcpconfig
-#        secret:
-#          secretName: unimrcp-config-secret
-#          items:
-#          - key: unimrcpConfig
-#            path: unimrcpclient.xml
-
-# Volumes for SSL configuration
-# Sip Orchestrator
-#      - name: ssl-so
-#        secret:
-#          secretName: trust-store-file-secret
-#          items:
-#          - key: "trustStoreFile"
-#            path: "trustStoreFile"
-# Media Relay
-#      - name: ssl-mr-mutualauth
-#        secret:
-#          secretName: ssl-client-pkcs12-file-secret
-#          items:
-#          - key: "clientPkcs12File"
-#            path: "clientPkcs12File"
-#      - name: ssl-mr
-#        secret:
-#          secretName: client-ca-cert-secret
-#          items:
-#          - key: "clientCaCertFile"
-#            path: "clientCaCertFile"
-            
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      imagePullSecrets: []
       containers:
       - name: vgw-media-relay
-        image: ibmcom/voice-gateway-mr:latest
+        image: icr.io/voice-gateway/media-relay:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
           hostPort: 8080
@@ -83,8 +50,6 @@ spec:
               key: WATSON_STT_APIKEY
         - name: WATSON_STT_URL
           value: https://stream.watsonplatform.net/speech-to-text/api
-        - name: WATSON_STT_TOKEN_SERVICE_PROVIDER_URL
-          value: https://iam.bluemix.net/identity/token
         - name: WATSON_TTS_APIKEY
           valueFrom:
             secretKeyRef:
@@ -93,41 +58,36 @@ spec:
         - name: WATSON_TTS_VOICE
           value: en-US_MichaelVoice
         - name: WATSON_TTS_URL
-          value: https://stream.watsonplatform.net/text-to-speech/api
-        - name: WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL
-          value: https://iam.bluemix.net/identity/token
-          
-#        - name: SSL_CLIENT_CA_CERTIFICATE_FILE
-#          value: "/sslConf/clientCaCertFile"
+          value: https://stream.watsonplatform.net/text-to-speech/api          
+        # - name: SSL_CLIENT_CA_CERTIFICATE_FILE
+        #   value: "/sslConf/clientCaCertFile"
         
-#        - name: SSL_CLIENT_PKCS12_FILE
-#          value: "/sslConf/clientPkcs12File"
-#        - name: SSL_CLIENT_PASSPHRASE
-#          valueFrom:
-#            secretKeyRef:
-#              name: ssl-client-passphrase-secret
-#              key: sslClientPassphrase
+        # - name: SSL_CLIENT_PKCS12_FILE
+        #   value: "/sslConf/clientPkcs12File"
+        # - name: SSL_CLIENT_PASSPHRASE
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: ssl-client-passphrase-secret
+        #       key: sslClientPassphrase
               
         volumeMounts:
-#
-#        - name: recordings
-#          mountPath: "/vgw-media-relay/recordings"
-#
-#        - name: unimrcpconfig
-#          mountPath: "/vgw-media-relay/config/unimrcpclient.xml"
-#          subPath: "unimrcpclient.xml"
+        # - name: recordings
+        #   mountPath: "/vgw-media-relay/recordings"
 
-#        - name: ssl-mr
-#          mountPath: "/sslConf/clientCaCertFile"
-#          subPath: "clientCaCertFile"
-#        - name: ssl-mr-mutualauth
-#          mountPath: "/sslConf/clientPkcs12File"
-#          subPath: "clientPkcs12File"
+        # - name: unimrcpconfig
+        #   mountPath: "/vgw-media-relay/config/unimrcpclient.xml"
+        #   subPath: "unimrcpclient.xml"
 
-        terminationMessagePath: "/dev/termination-log"
-        imagePullPolicy: Always
+        # - name: ssl-mr
+        #   mountPath: "/sslConf/clientCaCertFile"
+        #   subPath: "clientCaCertFile"
+        # - name: ssl-mr-mutualauth
+        #   mountPath: "/sslConf/clientPkcs12File"
+        #   subPath: "clientPkcs12File"
+        
       - name: vgw-sip-orchestrator
-        image: ibmcom/voice-gateway-so:latest
+        image: icr.io/voice-gateway/sip-orchestrator:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5060
           hostPort: 5060
@@ -140,6 +100,16 @@ spec:
             exec:
               command:
               - "/opt/quiesce.sh"
+        readinessProbe:
+          exec:
+            command:
+            - probe.sh
+            - readiness
+        livenessProbe:
+          exec:
+            command:
+            - probe.sh
+            - liveness
         env:
         - name: SIP_HOST
           valueFrom:
@@ -152,7 +122,7 @@ spec:
         - name: HTTPS_PORT
           value: '9443'
         - name: HTTP_HOST
-          value: '127.0.0.1'
+          value: '*'
         - name: WATSON_CONVERSATION_URL
           value: https://gateway.watsonplatform.net/assistant/api
         - name: WATSON_CONVERSATION_WORKSPACE_ID
@@ -162,8 +132,6 @@ spec:
             secretKeyRef:
               name: secret-creds
               key: WATSON_CONVERSATION_APIKEY
-        - name: WATSON_CONVERSATION_TOKEN_SERVICE_PROVIDER_URL
-          value: https://iam.bluemix.net/identity/token
         - name: ENABLE_AUDIT_MESSAGES
           value: 'true'
         - name: ENABLE_TRANSCRIPTION_AUDIT_MESSAGES
@@ -171,23 +139,57 @@ spec:
         - name: LOG_LEVEL
           value: all
 
-#        - name: SSL_KEY_TRUST_STORE_FILE
-#          value: "/sslConf/trustStoreFile"
-#        - name: SSL_FILE_TYPE
-#          value: "JKS"
-#        - name: SSL_PASSPHRASE
-#          valueFrom:
-#            secretKeyRef:
-#              name: ssl-passphrase-secret
-#              key: sslPassphrase
+        # - name: SSL_KEY_TRUST_STORE_FILE
+        #   value: "/sslConf/trustStoreFile"
+        # - name: SSL_FILE_TYPE
+        #   value: "JKS"
+        # - name: SSL_PASSPHRASE
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: ssl-passphrase-secret
+        #       key: sslPassphrase
 
         volumeMounts:
-#        - name: ssl-so
-#          mountPath: "/sslConf/trustStoreFile"
-#          subPath: "trustStoreFile"
-          
-        terminationMessagePath: "/dev/termination-log"
-        imagePullPolicy: Always
+        # - name: ssl-so
+        #   mountPath: "/sslConf/trustStoreFile"
+        #   subPath: "trustStoreFile"  
+
       restartPolicy: Always
       terminationGracePeriodSeconds: 600
-      dnsPolicy: ClusterFirstWithHostNet
+
+      # Volume configuration
+      volumes:
+      # - name: recordings
+      #   persistentVolumeClaim:
+      #     claimName: recordings
+
+      # # UniMRCP volume
+      # - name: unimrcpconfig
+      #   secret:
+      #     secretName: unimrcp-config-secret
+      #     items:
+      #     - key: unimrcpConfig
+      #       path: unimrcpclient.xml
+
+      # # Sip Orchestrator SSL volumes
+      # - name: ssl-so
+      #   secret:
+      #     secretName: trust-store-file-secret
+      #     items:
+      #     - key: "trustStoreFile"
+      #       path: "trustStoreFile"
+      # # Media Relay SSL volumes
+      # - name: ssl-mr-mutualauth
+      #   secret:
+      #     secretName: ssl-client-pkcs12-file-secret
+      #     items:
+      #     - key: "clientPkcs12File"
+      #       path: "clientPkcs12File"
+      # - name: ssl-mr
+      #   secret:
+      #     secretName: client-ca-cert-secret
+      #     items:
+      #     - key: "clientCaCertFile"
+      #       path: "clientCaCertFile"
+
+      

@@ -61,12 +61,12 @@
 
 	This step should always be done whenever more corpora files or words are added. To train, just make a POST request to the custom language model:
 	```bash
-	curl -X POST -u "<username>:<password>"  "https://stream.watsonplatform.net/speech-to-text/api/v1/customizations/<customization-id>/train
+	curl -X POST -u "<username>:<password>"  "https://stream.watsonplatform.net/speech-to-text/api/v1/customizations/<customization-id>/train"
 	```
 7. Monitor the training process:
 
 	```bash
-	curl -X GET -u  "<username>:<password>" https://stream.watsonplatform.net/speech-to-text/api/v1/customizations/<customization-id>"
+	curl -X GET -u  "<username>:<password>" "https://stream.watsonplatform.net/speech-to-text/api/v1/customizations/<customization-id>"
 	```
 	Returns:
 	```json

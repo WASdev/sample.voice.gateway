@@ -1,6 +1,6 @@
 {
     "kind": "Deployment",
-    "apiVersion": "extensions/v1beta1",
+    "apiVersion": "apps/v1",
     "metadata": {
         "name": "sms-gateway",
         "creationTimestamp": null,
@@ -29,7 +29,7 @@
                 "containers": [
                     {
                         "name": "vgw-sms-gateway",
-                        "image": "ibmcom/voice-gateway-sms:latest",
+                        "image": "icr.io/voice-gateway/sms-gateway:latest",
                         "imagePullPolicy": "Always",
                         "ports": [
                             {

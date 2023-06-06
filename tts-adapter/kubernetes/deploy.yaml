@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1 # for versions before 1.8.0 use apps/v1beta1
+apiVersion: apps/v1 # for versions before 1.8.0 use apps/v1beta1
 kind: Deployment
 metadata:
   name: tts-adapter
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: tts-adapter
-        image: ibmcom/voice-gateway-tts-adapter:beta.latest
+        image: icr.io/voice-gateway/tts-adapter:beta.latest
         ports:
         - containerPort: 4500
           protocol: TCP

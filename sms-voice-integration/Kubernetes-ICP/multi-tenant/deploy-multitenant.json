@@ -39,7 +39,7 @@
 
 {
     "kind": "Deployment",
-    "apiVersion": "extensions/v1beta1",
+    "apiVersion": "apps/v1",
     "metadata": {
         "name": "vgw",
         "labels": {
@@ -89,7 +89,7 @@
                 "hostNetwork": true,
                 "containers": [{
                     "name": "vgw-media-relay",
-                    "image": "ibmcom/voice-gateway-mr:latest",
+                    "image": "icr.io/voice-gateway/media-relay:latest",
                     "ports": [{
                         "containerPort": 8080,
                         "hostPort": 8080,
@@ -136,7 +136,7 @@
                     "imagePullPolicy": "Always"
                 }, {
                     "name": "vgw-sip-orchestrator",
-                    "image": "ibmcom/voice-gateway-so:latest",
+                    "image": "icr.io/voice-gateway/sip-orchestrator:latest",
                     "ports": [{
                         "containerPort": 5060,
                         "hostPort": 5060,

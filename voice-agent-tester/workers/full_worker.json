@@ -17,14 +17,14 @@
                 "conversation": {
                     "url": "https://gateway.watsonplatform.net/conversation/api",
                     "workspaceID": "a23de67h-e527-40d5-a867-5c0ce9e72d0d",
-                    "password": "IdnwiOekwed",
-                    "username": "ndajd0da-asdadad-sadsdads-ad"
+                    "password": "password",
+                    "username": "username"
                 },
                 "stt": {
                     "credentials": {
                         "url": "https://stream.watsonplatform.net/speech-to-text/api",
-                        "username": "ndajd0da-asdadad-sadsdads-ad",
-                        "password": "IdnwiOekwed"
+                        "password": "password",
+                        "username": "username"
                     },
                     "config": {
                         "model": "en-US_NarrowbandModel",
@@ -46,8 +46,8 @@
                     "cacheTimeToLive": 336,
                     "credentials": {
                         "url": "https://stream.watsonplatform.net/text-to-speech/api",
-                        "username": "9h7f54cb-8b0f-4766-8b15-eaa8f7c3fae7",
-                        "password": "IdnwiOekwed"
+                        "password": "password",
+                        "username": "username"
                     },
                     "config": {
                         "voice": "en-US_MichaelVoice"
@@ -55,16 +55,16 @@
                 },
                 "reporting": {
                     "url": "http://10.10.10.10:8080",
-                    "username": "john.smith",
-                    "password": "IdnwiOekwed",
+                    "password": "password",
+                    "username": "username",
                     "cdrEventInd": "cdr",
                     "convEventInd": "conv",
                     "transcriptionEventInd": "transcription"
                 },
                 "smsPipe": {
                     "url": "http://host:port/sms.gateway/smsPipe",
-                    "username": "tR3qNZ12-u53qmz93",
-                    "password": "IdnwiOekwed",
+                    "password": "password",
+                    "username": "username",
                     "tenantPhoneNumber": "+18765554321"
                 }
             },

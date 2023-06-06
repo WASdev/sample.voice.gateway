@@ -1,5 +1,5 @@
 {
-	"apiVersion": "extensions/v1beta1",
+	"apiVersion": "apps/v1",
 	"kind": "Deployment",
 	"metadata": {
 		"name": "va-tester-service",
@@ -31,7 +31,7 @@
 				"containers": [
 					{
 						"name": "vgw-media-relay",
-						"image": "ibmcom/voice-gateway-mr:latest",
+						"image": "icr.io/voice-gateway/media-relay:latest",
 						"ports": [
 							{
 								"containerPort": 8080,
@@ -81,10 +81,6 @@
 								"value": "8080"
 							},
 							{
-								"name": "WATSON_STT_TOKEN_SERVICE_PROVIDER_URL",
-								"value": "https://iam.bluemix.net/identity/token"
-							},
-							{
 								"name": "WATSON_STT_APIKEY",
 								"valueFrom": {
 									"secretKeyRef": {
@@ -96,10 +92,6 @@
 							{
 								"name": "WATSON_STT_URL",
 								"value": "https://gateway-wdc.watsonplatform.net/speech-to-text/api"
-							},
-							{
-								"name": "WATSON_TTS_TOKEN_SERVICE_PROVIDER_URL",
-								"value": "https://iam.bluemix.net/identity/token"
 							},
 							{
 								"name": "WATSON_TTS_APIKEY",
@@ -131,7 +123,7 @@
 					},
 					{
 						"name": "tester-sip-orchestrator",
-						"image": "ibmcom/voice-gateway-so:latest",
+						"image": "icr.io/voice-gateway/sip-orchestrator:latest",
 						"ports": [
 							{
 								"containerPort": 5060,
@@ -232,7 +224,7 @@
 					},
 					{
 						"name": "tester-microservice",
-						"image": "ibmcom/voice-agent-tester:latest",
+						"image": "icr.io/voice-gateway/agent-tester:latest",
 						"ports": [
 							{
 								"containerPort": 9300,
