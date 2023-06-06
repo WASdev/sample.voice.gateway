@@ -14,7 +14,7 @@
   "dependencies": {
     "camelcase": "^5.3.1",
     "config": "^3.3.8",
-    "ibm-watson": "^5.4.0",
+    "ibm-watson": "^8.0.0",
     "pino": "^4.10.2",
     "ws": "^3.3.3"
   },
