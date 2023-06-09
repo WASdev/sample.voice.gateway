@@ -13,8 +13,8 @@
   "license": "SEE LICENSE IN LICENSE",
   "dependencies": {
     "config": "^1.29.2",
+    "ibm-watson": "^8.0.0",
     "pino": "^4.10.2",
-    "watson-developer-cloud": "^3.0.3",
     "ws": "^3.3.3"
   },
   "devDependencies": {

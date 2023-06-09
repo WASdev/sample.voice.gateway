@@ -14,9 +14,9 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
+const TextToSpeechV1 = require('ibm-watson/text-to-speech/v1');
 const TextToSpeechEngine = require('./TextToSpeechEngine');
-
+const { BasicAuthenticator } = require('ibm-watson/auth');
 const Config = require('config');
 
 const LOG_LEVEL = Config.get('LogLevel');
@@ -26,10 +26,11 @@ const WatsonTextToSpeechCredentials = Config.get('WatsonTextToSpeech.credentials
 const { username } = WatsonTextToSpeechCredentials;
 const { password } = WatsonTextToSpeechCredentials;
 
-const textToSpeech = new TextToSpeechV1({
+const authenticator = new BasicAuthenticator({
   username,
   password,
 });
+const textToSpeech = new TextToSpeechV1({ authenticator });
 
 const MISSING_TEXT_FIELD_ERROR = 'Text field must be defined';
 
@@ -60,22 +61,30 @@ class WatsonTextToSpeechEngine extends TextToSpeechEngine {
 
     // Use the Node SDK to synthesize the audio
     textToSpeech
-      .synthesize(params, (err, audio) => {
-        if (err) {
-          logger.error(err);
-          this.emit('error', err);
-          return;
-        }
-
+      .synthesize(params)
+      .then((response) => {
         if (this.destroyed) {
           return;
         }
+        response.result.on('data', (data) => {
+          this.push(data);
+        });
+        response.result.on('end', () => {
+          this.push(null);
+        });
 
-        logger.debug(`received synthesized data of length: ${audio.length}`);
-        this.audioBuffer = audio;
-        this.push(audio);
-        this.push(null);
+        response.result.emit('error', (error) => {
+          this.emitError(error);
+        });
+      })
+      .catch((err) => {
+        this.emitError(err);
       });
+  }
+
+  emitError(error) {
+    logger.error(error);
+    this.emit('error', error);
   }
   /* eslint-disable class-methods-use-this */
   _read() {}
