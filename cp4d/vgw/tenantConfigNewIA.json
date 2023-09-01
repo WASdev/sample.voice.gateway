@@ -1,0 +1,57 @@
+{
+  "tenants": [{
+      "tenantURI": "0123456789",
+      "description": "New IA live env of assistant with payment actions",
+      "conversation": {
+        "url": "https://{instance_url}/api",
+        "assistantID": "{environment_id}",
+        "bearerToken": "{bearerToken}"
+      },
+      "stt": {
+        "credentials": {
+          "url": "{instance_url}",
+          "bearerToken": "{bearerToken}"
+        }
+      },
+      "tts": {
+        "credentials": {
+          "url": "{instance_url}",
+          "bearerToken": "{bearerToken}"
+        },
+        "config": {
+          "voice": "en-US_AllisonExpressive"
+       }
+      }
+    },
+    {
+      "tenantURI": "9876543210",
+      "description": "New IA draft env of assistant with payment actions",
+      "conversation": {
+        "url": "https://{instance_url}/api",
+        "assistantID": "{environment_id}",
+        "bearerToken": "{bearerToken}"
+      },
+      "stt": {
+        "credentials": {
+          "url": "{instance_url}",
+          "bearerToken": "{bearerToken}"
+        }
+      },
+      "tts": {
+        "credentials": {
+          "url": "{instance_url}",
+          "bearerToken": "{bearerToken}"
+        }
+      },
+      "tts": {
+        "credentials": {
+          "url": "{instance_url}",
+          "bearerToken": "{bearerToken}"
+        },
+        "config": {
+          "voice": "en-US_EmmaExpressive"
+       }
+      }
+    }
+  ]
+}
